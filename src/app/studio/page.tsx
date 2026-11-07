@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import clsx from "clsx";
 import { PageHead, Panel, Button, Tag, Spinner } from "@/components/ui";
 import { Banner, Scaled, FORMATS, type FormatKey } from "@/components/Banner";
@@ -9,8 +9,17 @@ import { ALL_LANGS, langByKey, needsReview, marketFor, type Lang } from "@/lib/l
 import type { Campaign, Localized, BackCheck } from "@/lib/schemas";
 import { CHANNEL_LABEL, COUNTRY_NAME } from "@/lib/insights";
 
-type Stored = { id: string; prompt: string; campaign: Campaign; model?: string; unverified?: string[] };
+type Stored = {
+  id: string; prompt: string; campaign: Campaign; model?: string; unverified?: string[];
+  /** banner id -> how many earlier versions can be restored */
+  undoable?: Record<string, number>;
+  bannerUpdatedAt?: Record<string, string>;
+  bannerInstructions?: string;
+};
+type Payload = { current: Stored | null; visuals: Record<string, string | null> };
+type BannerResult = Payload & { summary: string; changed: { words: boolean; picture: boolean } };
 type LocState = { status: "idle" | "loading" | "ready" | "error"; data?: Localized; model?: string; error?: string; check?: BackCheck; checking?: boolean };
+type EditState = { text: string; busy?: boolean; note?: string; error?: string };
 
 const DEFAULT_PROMPT = "Make a campaign for my paying users.";
 
@@ -35,8 +44,15 @@ export default function StudioPage() {
   const [fit, setFit] = useState<Record<string, { shrunk: boolean; overflow: boolean }>>({});
   const [adPaywalls, setAdPaywalls] = useState<Record<string, AdPaywall>>({});
   const [pack, setPack] = useState<{ busy: boolean; progress?: string; confirm?: boolean }>({ busy: false });
+  const [instructions, setInstructions] = useState("");
+  const [applying, setApplying] = useState(false);
+  const [rewriteNote, setRewriteNote] = useState<string | null>(null);
+  const [edits, setEdits] = useState<Record<string, EditState>>({});
+  const locsRef = useRef(locs);
+  locsRef.current = locs;
 
   const campaign = cur?.campaign;
+  const campaignId = cur?.id;
   const L = langByKey(lang)!;
 
   // load the current campaign
@@ -45,14 +61,21 @@ export default function StudioPage() {
       if (j.current) {
         setCur(j.current);
         setPrompt(j.current.prompt);
+        setInstructions(j.current.bannerInstructions ?? "");
       }
+      setVisuals(j.visuals ?? {});
       setAdPaywalls(j.adapty?.adPaywalls ?? {});
     });
   }, []);
 
+  /** Writes a language. `force` re-writes one already on screen (after a banner edit) and keeps showing the old words meanwhile. */
   const loadLang = useCallback(
-    async (key: string) => {
-      setLocs((s) => (s[key]?.status === "ready" || s[key]?.status === "loading" ? s : { ...s, [key]: { status: "loading" } }));
+    async (key: string, force = false) => {
+      setLocs((s) =>
+        force
+          ? { ...s, [key]: { ...s[key], status: "loading", check: undefined } }
+          : s[key]?.status === "ready" || s[key]?.status === "loading" ? s : { ...s, [key]: { status: "loading" } },
+      );
       try {
         const r = await post<{ localized: Localized; model: string }>("/api/localize", { lang: key });
         setLocs((s) => ({ ...s, [key]: { ...s[key], status: "ready", data: r.localized, model: r.model } }));
@@ -68,19 +91,13 @@ export default function StudioPage() {
     [],
   );
 
-  // when a campaign exists: load English, find cached visuals
+  // a new campaign: start over with English (banner edits keep the same campaign id, so they don't land here)
   useEffect(() => {
-    if (!campaign) return;
+    if (!campaignId) return;
     setLocs({});
+    setEdits({});
     loadLang("en");
-    for (const c of campaign.concepts) {
-      for (const aspect of ["portrait", "square"] as const) {
-        post<{ url: string | null }>("/api/visual", { prompt: c.visualPrompt, aspect, cacheOnly: true })
-          .then((r) => setVisuals((v) => ({ ...v, [`${c.id}:${aspect}`]: r.url })))
-          .catch(() => {});
-      }
-    }
-  }, [campaign, loadLang]);
+  }, [campaignId, loadLang]);
 
   useEffect(() => {
     if (campaign && !locs[lang]) loadLang(lang);
@@ -90,9 +107,14 @@ export default function StudioPage() {
     setBusy(true);
     setErr(null);
     try {
-      const r = await post<{ current: Stored }>("/api/campaign", { prompt, fresh });
-      if (r.current.id !== cur?.id) setAdPaywalls({}); // a new campaign means new ads
+      const r = await post<Payload>("/api/campaign", { prompt, fresh });
+      if (r.current!.id !== cur?.id) {
+        setAdPaywalls({}); // a new campaign means new ads
+        setInstructions(r.current!.bannerInstructions ?? "");
+        setRewriteNote(null);
+      }
       setCur(r.current);
+      setVisuals(r.visuals);
       setLang("en");
     } catch (e) {
       setErr((e as Error).message);
@@ -101,14 +123,57 @@ export default function StudioPage() {
     }
   }
 
-  async function generateVisuals() {
-    if (!campaign) return;
+  /** After a banner changed on the server: show it, and re-write every language already written if its words changed. */
+  function applyBannerResult(r: BannerResult) {
+    setCur(r.current);
+    setVisuals(r.visuals);
+    if (r.changed.words) {
+      const written = Object.entries(locsRef.current).filter(([, v]) => v.status === "ready" || v.data).map(([k]) => k);
+      written.forEach((k, i) => setTimeout(() => loadLang(k, true), i * 150));
+    }
+  }
+
+  async function applyInstructions() {
+    if (!instructions.trim()) return;
+    setApplying(true);
+    setErr(null);
+    setRewriteNote(null);
+    try {
+      const r = await post<BannerResult>("/api/banner", { action: "rewrite", instructions });
+      applyBannerResult(r);
+      setRewriteNote(r.summary);
+      // new descriptions -> new photos
+      if (r.changed.picture && r.current) await generateVisuals(r.current.campaign, r.visuals);
+    } catch (e) {
+      setErr((e as Error).message);
+    } finally {
+      setApplying(false);
+    }
+  }
+
+  async function editBanner(conceptId: string, action: "edit" | "undo") {
+    const text = edits[conceptId]?.text?.trim() ?? "";
+    if (action === "edit" && !text) return;
+    setEdits((s) => ({ ...s, [conceptId]: { ...s[conceptId], text, busy: true, error: undefined, note: undefined } }));
+    try {
+      const r = await post<BannerResult>("/api/banner", action === "edit" ? { action, conceptId, instruction: text, live } : { action, conceptId });
+      applyBannerResult(r);
+      const nothing = !r.changed.words && !r.changed.picture;
+      setEdits((s) => ({ ...s, [conceptId]: { text: action === "edit" && nothing ? text : "", note: nothing ? `Nothing changed. ${r.summary}` : r.summary } }));
+    } catch (e) {
+      setEdits((s) => ({ ...s, [conceptId]: { ...s[conceptId], busy: false, error: (e as Error).message } }));
+    }
+  }
+
+  /** Generates every banner photo that doesn't exist yet. Takes the campaign explicitly so it can run right after a rewrite. */
+  async function generateVisuals(camp: Campaign | undefined = campaign, have: Record<string, string | null> = visuals) {
+    if (!camp) return;
     setVisualBusy(true);
     setErr(null);
-    const jobs = campaign.concepts.flatMap((c) =>
+    const jobs = camp.concepts.flatMap((c) =>
       (["portrait", "square"] as const).map(async (aspect) => {
         const k = `${c.id}:${aspect}`;
-        if (visuals[k]) return;
+        if (have[k]) return;
         try {
           const r = await post<{ url: string }>("/api/visual", { prompt: c.visualPrompt, aspect, live });
           setVisuals((v) => ({ ...v, [k]: r.url }));
@@ -118,6 +183,8 @@ export default function StudioPage() {
       }),
     );
     await Promise.all(jobs);
+    // pick up the paywall crops the server makes from the new square photos
+    await fetch("/api/campaign").then((r) => r.json()).then((j) => j.visuals && setVisuals(j.visuals)).catch(() => {});
     setVisualBusy(false);
   }
 
@@ -312,30 +379,62 @@ export default function StudioPage() {
                 <label className="ml-2 flex items-center gap-1.5 text-sm text-ink-2">
                   <input type="checkbox" checked={live} onChange={(e) => setLive(e.target.checked)} /> Fast model
                 </label>
-                <Button kind="quiet" onClick={generateVisuals} disabled={visualBusy}>
+                <Button kind="quiet" onClick={() => generateVisuals()} disabled={visualBusy || applying}>
                   {visualBusy ? <Spinner /> : null} {visualBusy ? "Generating visuals…" : "Generate visuals"}
                 </Button>
               </div>
             </div>
+
+            {/* Instructions for every banner: words and pictures */}
+            <form
+              className="mt-4 flex flex-col gap-2 md:flex-row"
+              onSubmit={(e) => {
+                e.preventDefault();
+                applyInstructions();
+              }}
+            >
+              <label className="sr-only" htmlFor="banner-instructions">Instructions for all banners</label>
+              <input
+                id="banner-instructions"
+                value={instructions}
+                onChange={(e) => setInstructions(e.target.value)}
+                className="min-w-0 flex-1 rounded-lg border border-line bg-surface px-4 py-2.5 text-sm outline-none focus:border-ink"
+                placeholder="Instructions for all banners, e.g. “warm evening light, people in their 30s, shorter headlines”"
+              />
+              <Button type="submit" disabled={applying || visualBusy || !instructions.trim()}>
+                {applying ? <Spinner /> : null}
+                {applying ? (visualBusy ? "Making new pictures…" : "Rewriting the banners…") : "Apply to all banners"}
+              </Button>
+            </form>
+            {rewriteNote ? <p className="mt-2 text-sm text-ink-2">{rewriteNote}</p> : null}
+
             <div className="mt-4 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
               {campaign.concepts.map((c, i) => {
                 const lc = loc?.concepts.find((x) => x.id === c.id) ?? loc?.concepts[i];
                 const f = fit[`${lang}:${format}:${c.id}`];
+                const ed = edits[c.id];
                 return (
                   <figure key={c.id}>
                     {lc ? (
-                      <Scaled width={format === "story" ? 260 : 320} format={format}>
-                        <Banner
-                          format={format}
-                          headline={lc.headline}
-                          subline={lc.subline}
-                          cta={lc.cta}
-                          htmlLang={L.htmlLang}
-                          visualUrl={visuals[`${c.id}:${FORMATS[format].visual}`]}
-                          conceptIndex={i}
-                          onFit={onFitFor[c.id]}
-                        />
-                      </Scaled>
+                      <div className="relative w-fit">
+                        <Scaled width={format === "story" ? 260 : 320} format={format}>
+                          <Banner
+                            format={format}
+                            headline={lc.headline}
+                            subline={lc.subline}
+                            cta={lc.cta}
+                            htmlLang={L.htmlLang}
+                            visualUrl={visuals[`${c.id}:${FORMATS[format].visual}`]}
+                            conceptIndex={i}
+                            onFit={onFitFor[c.id]}
+                          />
+                        </Scaled>
+                        {ed?.busy ? (
+                          <div className="absolute inset-0 grid place-items-center rounded-lg bg-canvas/70 text-sm font-semibold backdrop-blur-[2px]">
+                            <span className="flex items-center gap-2"><Spinner /> Editing…</span>
+                          </div>
+                        ) : null}
+                      </div>
                     ) : (
                       <div className="grid aspect-[9/16] w-[260px] place-items-center rounded-lg bg-surface text-sm text-ink-3">
                         <Spinner />
@@ -347,6 +446,34 @@ export default function StudioPage() {
                         {!visuals[`${c.id}:${FORMATS[format].visual}`] ? <Tag>Placeholder visual</Tag> : null}
                         {f?.overflow ? <Tag tone="loss">Text overflows: shorten it</Tag> : f?.shrunk ? <Tag tone="neutral">Text shrunk to fit</Tag> : null}
                       </div>
+                      <form
+                        className="mt-2 flex gap-1.5"
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          editBanner(c.id, "edit");
+                        }}
+                      >
+                        <label className="sr-only" htmlFor={`edit-${c.id}`}>Change {c.name}</label>
+                        <input
+                          id={`edit-${c.id}`}
+                          value={ed?.text ?? ""}
+                          onChange={(e) => setEdits((s) => ({ ...s, [c.id]: { ...s[c.id], text: e.target.value } }))}
+                          disabled={ed?.busy || applying}
+                          className="min-w-0 flex-1 rounded-md border border-line bg-surface px-3 py-1.5 text-sm outline-none focus:border-ink disabled:opacity-60"
+                          placeholder="Change this banner, e.g. “put it in a café”"
+                        />
+                        <Button type="submit" kind="quiet" className="px-3 py-1.5" disabled={ed?.busy || applying || !ed?.text?.trim()}>
+                          Edit
+                        </Button>
+                      </form>
+                      {ed?.busy ? <p className="mt-1 text-xs text-ink-3">A new picture can take up to a minute.</p> : null}
+                      {ed?.note ? <p className="mt-1 text-xs text-ink-2">{ed.note}</p> : null}
+                      {ed?.error ? <p className="mt-1 text-xs text-loss">{ed.error}</p> : null}
+                      {(cur?.undoable?.[c.id] ?? 0) > 0 && !ed?.busy ? (
+                        <button className="mt-1 text-xs text-ink-2 underline disabled:opacity-50" disabled={applying} onClick={() => editBanner(c.id, "undo")}>
+                          Undo last change
+                        </button>
+                      ) : null}
                     </figcaption>
                   </figure>
                 );
@@ -376,6 +503,7 @@ export default function StudioPage() {
               ready={Object.entries(locs).filter(([, v]) => v.status === "ready" && v.data).map(([k, v]) => ({ lang: k, localized: v.data! }))}
               visuals={visuals}
               saved={adPaywalls}
+              bannerUpdatedAt={cur?.bannerUpdatedAt ?? {}}
               onSaved={(p) => setAdPaywalls((s) => ({ ...s, [p.conceptId]: p }))}
             />
           ) : null}

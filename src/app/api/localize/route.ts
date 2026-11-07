@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { generate, LlmUnavailable } from "@/lib/llm";
-import { LocalizedSchema, BackCheckSchema, type Localized } from "@/lib/schemas";
-import { LOCALIZE_SYSTEM, localizeUser, BACKCHECK_SYSTEM, ENGLISH_PLANS } from "@/lib/prompts";
-import { getCurrent } from "@/lib/campaign-store";
+import { LocalizedSchema, BackCheckSchema, BannerCopySchema, type Localized } from "@/lib/schemas";
+import { LOCALIZE_SYSTEM, localizeUser, localizeBannersUser, BACKCHECK_SYSTEM, ENGLISH_PLANS } from "@/lib/prompts";
+import { getCurrent, type StoredCampaign } from "@/lib/campaign-store";
 import { langByKey, deepTranslit, needsReview } from "@/lib/languages";
 import type { Campaign } from "@/lib/schemas";
 
@@ -21,10 +21,9 @@ function englishFrom(c: Campaign): Localized {
   };
 }
 
-async function writeIn(c: Campaign, langKey: string, fresh?: boolean, campaignModel = ""): Promise<{ data: Localized; cached: boolean; model: string }> {
+async function writeIn(c: Campaign, langKey: string, fresh?: boolean): Promise<{ data: Localized; cached: boolean; model: string }> {
   const lang = langByKey(langKey);
   if (!lang) throw new Error(`Unknown language ${langKey}`);
-  if (lang.key === "en") return { data: englishFrom(c), cached: true, model: campaignModel };
   // Serbian Latin is generated in Cyrillic and converted in code, so both scripts always match.
   if (lang.writeAs === "sr-Cyrl") {
     const cyr = await writeIn(c, "sr-Cyrl", fresh);
@@ -38,6 +37,43 @@ async function writeIn(c: Campaign, langKey: string, fresh?: boolean, campaignMo
     fresh,
   });
   return { data: r.data, cached: r.cached, model: r.model };
+}
+
+type BannerCopy = { id: string; headline: string; subline: string; cta: string };
+const sameWords = (a: BannerCopy, b?: BannerCopy) => !!b && a.headline === b.headline && a.subline === b.subline && a.cta === b.cta;
+
+/** Only the banner words, for banners edited after the campaign was written. */
+async function writeBanners(concepts: BannerCopy[], audience: string, langKey: string): Promise<BannerCopy[]> {
+  const lang = langByKey(langKey)!;
+  if (lang.writeAs === "sr-Cyrl") return deepTranslit(await writeBanners(concepts, audience, "sr-Cyrl"));
+  const r = await generate({
+    kind: "localize-banner",
+    schema: BannerCopySchema,
+    system: LOCALIZE_SYSTEM,
+    user: localizeBannersUser(concepts, audience, lang, lang.key),
+  });
+  return r.data.concepts;
+}
+
+/**
+ * A language for the campaign as it is now. Everything is written from the campaign as first generated
+ * (cached), then banners whose words were edited since are re-written on their own and swapped in.
+ */
+async function localizeCurrent(cur: StoredCampaign, langKey: string, fresh?: boolean) {
+  if (langKey === "en") return { data: englishFrom(cur.campaign), cached: true, model: cur.model ?? "" };
+  const base = cur.base ?? cur.campaign;
+  const out = await writeIn(base, langKey, fresh);
+  const edited = cur.campaign.concepts
+    .filter((c) => !sameWords(c, base.concepts.find((b) => b.id === c.id)))
+    .map(({ id, headline, subline, cta }) => ({ id, headline, subline, cta }));
+  if (!edited.length) return out;
+  const patch = await writeBanners(edited, cur.campaign.brief.audience, langKey);
+  const byId = new Map(edited.map((e, i) => [e.id, patch.find((p) => p.id === e.id) ?? patch[i]]));
+  const concepts = out.data.concepts.map((c) => {
+    const p = byId.get(c.id);
+    return p ? { ...c, headline: p.headline, subline: p.subline, cta: p.cta } : c;
+  });
+  return { ...out, data: { ...out.data, concepts } };
 }
 
 function linesOf(l: Localized) {
@@ -65,7 +101,7 @@ export async function POST(req: Request) {
   const lang = langByKey(langKey);
   if (!lang) return NextResponse.json({ error: "Unknown language" }, { status: 400 });
   try {
-    const out = await writeIn(cur.campaign, langKey, fresh, cur.model);
+    const out = await localizeCurrent(cur, langKey, fresh);
     let backCheck = null;
     let checkModel: string | null = null;
     if (check && lang.key !== "en") {

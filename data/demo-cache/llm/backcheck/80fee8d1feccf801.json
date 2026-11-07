@@ -1,0 +1,121 @@
+{
+ "data": {
+  "lines": [
+   {
+    "field": "before-after headline",
+    "backTranslation": "Brighten family pictures",
+    "meaningChanged": true,
+    "note": "Drops/softens “fix dark”; only says brighten."
+   },
+   {
+    "field": "before-after subline",
+    "backTranslation": "Bright, sharp memories with one touch",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "before-after cta",
+    "backTranslation": "Try Lumen",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "holiday-glow headline",
+    "backTranslation": "Save holiday photo",
+    "meaningChanged": false,
+    "note": "Slightly awkward/incomplete wording, but meaning is close."
+   },
+   {
+    "field": "holiday-glow subline",
+    "backTranslation": "From dark rooms to warm memories",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "holiday-glow cta",
+    "backTranslation": "Brighten photo",
+    "meaningChanged": false,
+    "note": "Uses singular/shortened “photo,” but offer is preserved."
+   },
+   {
+    "field": "kids-everyday headline",
+    "backTranslation": "Everyday moments, touched up",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "kids-everyday subline",
+    "backTranslation": "Clean light and colors for family pictures",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "kids-everyday cta",
+    "backTranslation": "Edit now",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 1 headline",
+    "backTranslation": "Brighten family pictures",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 1 primary text",
+    "backTranslation": "Children are fast. Holiday light does not always catch up with them. Lumen brightens dark family photographs with one touch.",
+    "meaningChanged": false,
+    "note": "“Dull” becomes “dark,” close in this context."
+   },
+   {
+    "field": "ad 2 headline",
+    "backTranslation": "Fix holiday photo",
+    "meaningChanged": false,
+    "note": "Awkward/incomplete wording, but meaning is close."
+   },
+   {
+    "field": "ad 2 primary text",
+    "backTranslation": "Turn dark shots from the living room into bright, sharp photographs that you will want to save.",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 3 headline",
+    "backTranslation": "Let moments be clear",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 3 primary text",
+    "backTranslation": "That sweet child’s photograph deserves better light. Open Lumen and make it bright, sharp, and well lit.",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "paywall headline",
+    "backTranslation": "Brighten family pictures",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "paywall subtitle",
+    "backTranslation": "Fix pale/faded children’s and holiday shots",
+    "meaningChanged": true,
+    "note": "“Dull” is rendered as faded/pale, not dim/poorly lit."
+   },
+   {
+    "field": "paywall cta",
+    "backTranslation": "Continue",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "video hook",
+    "backTranslation": "That perfect holiday photograph came out too dark?",
+    "meaningChanged": false,
+    "note": ""
+   }
+  ]
+ },
+ "model": "gpt-5.5"
+}

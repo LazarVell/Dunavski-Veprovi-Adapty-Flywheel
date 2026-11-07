@@ -29,6 +29,26 @@ export class CliError extends Error {
   }
 }
 
+/** oclif's warning when the CLI runs without TypeScript installed: harmless, and never the error. */
+const cleanStderr = (s: string) =>
+  s
+    .split(/\r?\n/)
+    .filter((l) => !/Could not find typescript|devDependency|Falling back to compiled source/i.test(l))
+    .join("\n")
+    .trim();
+
+/** The message inside the CLI's --json error envelope, if stdout is one. */
+function cliErrorText(out: string) {
+  try {
+    const j = JSON.parse(out);
+    const e = j?.error ?? j;
+    const msg = typeof e === "string" ? e : e?.message ?? e?.detail ?? e?.errors?.[0]?.message ?? e?.errors?.[0]?.detail;
+    return msg ? String(msg) + (e?.code ? ` (${e.code})` : "") : out;
+  } catch {
+    return "";
+  }
+}
+
 export function adapty<T = unknown>(args: string[], { json = true } = {}): Promise<T> {
   const entry = cliEntry();
   const [cmd, argv] = entry ? [process.execPath, ["--stack-size=4000", entry, ...args]] : ["adapty", args];
@@ -39,7 +59,9 @@ export function adapty<T = unknown>(args: string[], { json = true } = {}): Promi
       if (err) {
         // exit 4 = rate limited (2 req/s per app); the CLI never retries by itself
         const code = typeof err.code === "number" ? err.code : null;
-        return reject(new CliError(`adapty ${args.slice(0, 3).join(" ")} failed (exit ${code}): ${(stderr || out).slice(0, 600)}`, code, stderr));
+        // With --json the real error is on stdout; stderr often holds only oclif noise ("Could not find typescript…").
+        const detail = cliErrorText(out) || cleanStderr(stderr) || out || stderr;
+        return reject(new CliError(`adapty ${args.slice(0, 3).join(" ")} failed (exit ${code}): ${detail.slice(0, 600)}`, code, stderr));
       }
       try {
         resolve((json ? JSON.parse(out) : out) as T);
@@ -94,6 +116,23 @@ export type AbTestRow = {
 export async function findFlowByName(app: string, name: string) {
   const r = await adapty<{ data: FlowRow[] }>(["flows", "list", "--app", app]);
   return rows(r).find((f) => f.name === name) ?? null;
+}
+
+export const getFlow = async (app: string, id: string) => unwrap(await adapty<FlowRow | { data: FlowRow }>(["flows", "get", id, "--app", app]));
+
+/**
+ * Publishes a flow and waits for it. Adapty publishes in the background: `flows publish` returns
+ * `publishing`, then `flows get` turns `published` or `publication_failed`. Polls under the 2 req/s limit.
+ */
+export async function publishFlow(app: string, id: string, { tries = 20, everyMs = 1500 } = {}) {
+  await adapty(["flows", "publish", id, "--app", app, "--yes"]);
+  for (let i = 0; i < tries; i++) {
+    await new Promise((r) => setTimeout(r, everyMs));
+    const f = await getFlow(app, id);
+    if (f.status === "published") return f;
+    if (f.status === "publication_failed") throw new Error("Adapty could not publish the flow (publication_failed). Open it in the Flow Builder to see why.");
+  }
+  throw new Error("Adapty is still publishing the flow. Give it a moment, then click again.");
 }
 
 export async function placementIdByDevId(app: string, developerId: string) {

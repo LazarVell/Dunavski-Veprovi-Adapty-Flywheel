@@ -15,14 +15,14 @@ async function post<T>(url: string, body: unknown): Promise<T> {
   return j as T;
 }
 
-type Step = "paywall" | "segment" | "abtest";
+type Step = "paywall" | "segment" | "publish" | "abtest";
 
 /**
  * Each ad gets its own paywall: the ad's picture and words on Lumen's paywall, as a draft flow in Adapty,
  * plus a segment of that ad's installs and a draft A/B test. Every button says what it creates before the click.
  */
 export function AdToPaywall({
-  campaign, lang, loc, ready, visuals, saved, onSaved,
+  campaign, lang, loc, ready, visuals, saved, onSaved, bannerUpdatedAt = {},
 }: {
   campaign: Campaign;
   lang: Lang;
@@ -31,6 +31,8 @@ export function AdToPaywall({
   visuals: Record<string, string | null>;
   saved: Record<string, AdPaywall>;
   onSaved: (p: AdPaywall) => void;
+  /** when each banner was last edited in the Studio */
+  bannerUpdatedAt?: Record<string, string>;
 }) {
   const [active, setActive] = useState(campaign.concepts[0]?.id);
   const [busy, setBusy] = useState<Step | null>(null);
@@ -41,9 +43,15 @@ export function AdToPaywall({
   const lc = loc.concepts.find((x) => x.id === concept.id) ?? loc.concepts[ci];
   const visual = visuals[`${concept.id}:portrait`] ?? null;
   const square = visuals[`${concept.id}:square`] ?? visual;
+  // what the paywall shows: the server's 2:1 crop of the square photo (the same file Adapty gets)
+  const hero = visuals[`${concept.id}:hero`] ?? square;
   const pw = saved[concept.id];
+  // The banner was edited after its paywall draft was written: the draft in Adapty still has the old words/picture.
+  const stale = !!pw && (bannerUpdatedAt[concept.id] ?? "") > pw.updatedAt;
   const name = adName(campaign.name, concept.id);
   const langs = ready.map((r) => r.lang);
+  // published, and nothing written to the flow since (an updated draft needs publishing again)
+  const published = !!pw?.publishedAt && (!pw.configAt || pw.publishedAt >= pw.configAt);
 
   async function run(step: Step) {
     setBusy(step);
@@ -76,6 +84,7 @@ export function AdToPaywall({
       done: pw ? (
         <>
           Draft flow “{pw.flowName}”, {pw.locales.length} languages.{" "}
+          {stale ? <Tag tone="warn">The banner changed since. Update the draft.</Tag> : null}{" "}
           {pw.validation === "publishable" ? <Tag tone="money">Adapty says: publishable</Tag> : <Tag tone="warn">{pw.validation.slice(0, 120)}</Tag>}
           <span className="mt-1 flex flex-wrap gap-3">
             {pw.renderUrl ? <a className="font-semibold text-lumen underline" href={pw.renderUrl} target="_blank" rel="noreferrer">See it rendered by Adapty</a> : null}
@@ -100,6 +109,19 @@ export function AdToPaywall({
       cta: "Create the segment",
     },
     {
+      key: "publish",
+      title: "Publish this ad's paywall",
+      what: (
+        <>
+          Adapty only puts published flows into A/B tests. Publishing changes nothing users see: no placement shows this flow, and the
+          test below stays a draft until you start it.
+        </>
+      ),
+      done: published ? <>Published in Adapty.</> : null,
+      enabled: !!pw,
+      cta: pw?.publishedAt && !published ? "Publish the update" : "Publish the flow",
+    },
+    {
       key: "abtest",
       title: "Test it against the current paywall",
       what: (
@@ -109,7 +131,7 @@ export function AdToPaywall({
         </>
       ),
       done: pw?.abTestId ? <>Draft test “{pw.abTestTitle}” is waiting in Adapty. Starting it is your call.</> : null,
-      enabled: !!pw?.segmentId,
+      enabled: !!pw?.segmentId && published,
       cta: "Create the draft test",
     },
   ];
@@ -150,7 +172,7 @@ export function AdToPaywall({
           <figcaption className="mt-2 text-center text-xs text-ink-3">The ad</figcaption>
         </figure>
         <figure className="mx-auto">
-          <PaywallPreview pw={{ ...loc.paywall, headline: lc?.headline ?? loc.paywall.headline, subtitle: lc?.subline ?? loc.paywall.subtitle }} htmlLang={lang.htmlLang} heroUrl={pw?.heroUrl ?? square} />
+          <PaywallPreview pw={{ ...loc.paywall, headline: lc?.headline ?? loc.paywall.headline, subtitle: lc?.subline ?? loc.paywall.subtitle }} htmlLang={lang.htmlLang} heroUrl={hero} />
           <figcaption className="mt-2 text-center text-xs text-ink-3">The paywall it lands on</figcaption>
         </figure>
 
@@ -175,7 +197,7 @@ export function AdToPaywall({
               </div>
             </li>
           ))}
-          <li className="text-xs text-ink-3">Flywheel never publishes a flow or starts a test. That stays your call in Adapty.</li>
+          <li className="text-xs text-ink-3">Flywheel never starts a test. That stays your call in Adapty.</li>
         </ol>
       </div>
     </Panel>

@@ -1,0 +1,121 @@
+{
+ "data": {
+  "lines": [
+   {
+    "field": "before-after headline",
+    "backTranslation": "Lighten family photos",
+    "meaningChanged": true,
+    "note": "Omits 'dark' problem, but offer broadly similar."
+   },
+   {
+    "field": "before-after subline",
+    "backTranslation": "Bright, sharp memories in one touch",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "before-after cta",
+    "backTranslation": "Try Lumen",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "holiday-glow headline",
+    "backTranslation": "Save holiday photos",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "holiday-glow subline",
+    "backTranslation": "Dim rooms — into warm memories",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "holiday-glow cta",
+    "backTranslation": "Lighten photos",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "kids-everyday headline",
+    "backTranslation": "Everyday moments — beautifully",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "kids-everyday subline",
+    "backTranslation": "Clean light and color for family photos",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "kids-everyday cta",
+    "backTranslation": "Edit",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 1 headline",
+    "backTranslation": "Lighten family photos",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 1 primary text",
+    "backTranslation": "Children do not stand still. And festive light does not always help. Lumen lightens dull family photos in one touch.",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 2 headline",
+    "backTranslation": "Fix holiday photos",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 2 primary text",
+    "backTranslation": "Turn dark shots from the living room into bright, sharp photos that you will want to save.",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 3 headline",
+    "backTranslation": "Make moments clearer",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 3 primary text",
+    "backTranslation": "Such a cute photo of a child deserves better light. Open Lumen and make it bright, sharp, and well lit.",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "paywall headline",
+    "backTranslation": "Lighten family photos",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "paywall subtitle",
+    "backTranslation": "Fix dull children's and holiday shots",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "paywall cta",
+    "backTranslation": "Continue",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "video hook",
+    "backTranslation": "Did the perfect holiday photo come out too dark?",
+    "meaningChanged": false,
+    "note": ""
+   }
+  ]
+ },
+ "model": "gpt-5.5"
+}

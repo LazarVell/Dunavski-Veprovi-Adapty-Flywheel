@@ -98,7 +98,9 @@ function addHero(cfg: FlowConfig, hero: HeroImage, def: string, headlineId: stri
     props: {
       position: { type: "relative" },
       width: { type: "fill" },
-      height: { type: "fixed", value: 160 },
+      // Hug: the height follows the uploaded 2:1 crop, so nothing is cropped again on any screen width.
+      // (A fixed height with `cover` fills from the top of the image, which showed only the empty sky.)
+      height: { type: "hug" },
       objectFit: "cover",
       borderRadius: { tl: 20, tr: 20, bl: 20, br: 20 },
       image: { _localizable: true, values: { [def]: { id: hero.id, url: hero.url, ...(hero.previewValue ? { previewValue: hero.previewValue } : {}) } } },

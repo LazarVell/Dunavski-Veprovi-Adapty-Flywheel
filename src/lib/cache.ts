@@ -36,6 +36,8 @@ export function readBinary(bucket: string, key: string, ext: string): Buffer | n
   }
 }
 
+export const hasBinary = (bucket: string, key: string, ext: string) => fs.existsSync(file(bucket, key, ext));
+
 export function writeBinary(bucket: string, key: string, ext: string, data: Buffer) {
   fs.mkdirSync(path.join(CACHE_DIR, bucket), { recursive: true });
   fs.writeFileSync(file(bucket, key, ext), data);

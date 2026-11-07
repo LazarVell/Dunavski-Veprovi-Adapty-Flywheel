@@ -71,4 +71,37 @@ export function localizeUser(c: Campaign, lang: Lang, writeAs: string) {
   return `TARGET LANGUAGE: ${script}\nAUDIENCE: ${c.brief.audience}\n\nENGLISH MASTER (JSON):\n${JSON.stringify(master, null, 1)}`;
 }
 
+/** Banner words only, for banners edited after the rest of the campaign was written in a language. */
+export function localizeBannersUser(concepts: { id: string; headline: string; subline: string; cta: string }[], audience: string, lang: Lang, writeAs: string) {
+  const script =
+    writeAs === "sr-Cyrl" ? "Serbian, written in Serbian Cyrillic (ћирилица), ekavian standard" : `${lang.name} (${lang.native})`;
+  return `TARGET LANGUAGE: ${script}\nAUDIENCE: ${audience}\n\nENGLISH MASTER (JSON):\n${JSON.stringify({ concepts }, null, 1)}`;
+}
+
+const BANNER_RULES = `A banner is a text-free photo with HTML text on top: a headline (max 6 words), a subline (max 12 words) and a CTA button (max 3 words).
+Consumer copy rules (the viewer is a stranger scrolling paid social):
+- Never mention data, analytics, payers, revenue, refunds, segments, channels or "users like you". Sell what Lumen does for the viewer's photos.
+- Never invent numbers, prices, discounts or claims beyond the brand facts. No fake stats, no testimonials.
+- Punchy and concrete. No hype words like "revolutionary" or "dazzling", at most one emoji per text.
+Picture rules: one photograph only. No text, letters, numbers, logos, watermarks, phone UI or app screens anywhere in it. Keep calm empty space in the top third for the headline.
+If a request breaks a rule, do the closest thing the rules allow and say so in the summary.`;
+
+export const BANNER_EDIT_SYSTEM = `You edit one ad banner for Lumen, at the growth lead's request.
+${BANNER_RULES}
+Change only what the request asks for. A request about the look or the scene changes the picture and leaves the words exactly as they are; a request about the words leaves the picture alone (imageEdit is "", visualPrompt unchanged). A request can change both.
+imageEdit tells an image editor what to change in the existing photo, so describe the change, not the whole photo. visualPrompt describes the whole photo after the change.`;
+
+export function bannerEditUser(c: { headline: string; subline: string; cta: string; visualPrompt: string }, request: string, audience: string, isBeforeAfter: boolean) {
+  return `BRAND FACTS\n${LUMEN_BRAND}\n\nAUDIENCE: ${audience}\n${isBeforeAfter ? "This banner is the before/after of Lumen's AI edit: the photo is split down the middle, left half dull and flat, right half the same scene bright and sharp. Keep it that way.\n" : ""}\nCURRENT BANNER (JSON):\n${JSON.stringify(c, null, 1)}\n\nREQUEST\n${request}`;
+}
+
+export const BANNERS_REWRITE_SYSTEM = `You rewrite the ad banners of a Lumen campaign to follow the growth lead's instructions.
+${BANNER_RULES}
+Return every banner, with the same ids in the same order. Follow the instructions where they apply and keep everything else: if they are only about the look, keep the words exactly; if they are only about the words, keep each visualPrompt exactly.
+The first banner stays a before/after of Lumen's AI edit: one photo split down the middle, left half dull and flat, right half the same scene bright and sharp.`;
+
+export function bannersRewriteUser(concepts: { id: string; headline: string; subline: string; cta: string; visualPrompt: string }[], instructions: string, audience: string) {
+  return `BRAND FACTS\n${LUMEN_BRAND}\n\nAUDIENCE: ${audience}\n\nCURRENT BANNERS (JSON):\n${JSON.stringify(concepts, null, 1)}\n\nINSTRUCTIONS\n${instructions}`;
+}
+
 export const BACKCHECK_SYSTEM = `You check machine-written marketing translations. For each localized line, give a literal English back-translation and say whether its meaning changed versus the English source (a changed offer, claim, number, tone that misleads, or a missing/extra promise). Small stylistic rewording is NOT a change. Keep notes short.`;

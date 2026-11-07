@@ -1,0 +1,131 @@
+{
+ "data": {
+  "name": "Lumen Current User Re-Engagement: Product Photo Polish",
+  "brief": {
+   "audience": "Current Lumen users in high-value markets who have already used AI editing, especially people improving product photos for selling, listings, or small-business content.",
+   "hook": "Bring them back when photo quality matters: one tap to keep product shots bright, sharp, and ready to post, with unlimited editing unlocked at the moment they hit the AI limit.",
+   "markets": [
+    "NL",
+    "US",
+    "DE",
+    "SE",
+    "GB",
+    "CA",
+    "AU",
+    "FR"
+   ],
+   "channels": [
+    "apple_search_ads",
+    "google_uac",
+    "meta_ads"
+   ],
+   "avoid": [
+    "TikTok Ads: 15.5% of payers refund, $5.09/user",
+    "0-edit users: 9.6% paid, $3.71/user",
+    "IN broad spend: 8% paid, $1.39/user",
+    "TR broad spend: 6.5% billing issues, $1.87/user",
+    "Onboarding paywall push: 10.9% of payers refund, $6.55/user"
+   ],
+   "why": [
+    "Current users who reach the AI edit limit convert at 47.5% and generate $30.74/user with 2.3% refunds.",
+    "People making 5-7 AI edits on day one pay at 33% and generate $15.47/user with 30.3% revenue share.",
+    "The product_photos goal is the strongest onboarding goal at 22.9% paid and $10.32/user with 6.3% refunds.",
+    "The product_photos × apple_search_ads segment reaches 39.5% paid and $19.61/user with 3.8% refunds.",
+    "Apple Search Ads is the strongest paid channel at 32.1% paid and $15.03/user, while google_uac adds scale with 4526 users and $8.64/user."
+   ]
+  },
+  "concepts": [
+   {
+    "id": "before-after-product-shot",
+    "name": "Before/After Product Shot",
+    "visualPrompt": "A single photograph split vertically down the middle, showing the same handmade ceramic mug on a simple table; the left half is dull, flat, dim, and slightly muddy, while the right half is bright, sharp, clean, and well-lit with natural shadows; no text, no letters, no numbers, no logos, no watermarks, no UI, no phone UI, no app screens.",
+    "headline": "Fix Flat Photos",
+    "subline": "Make product shots bright and sharp in one tap.",
+    "cta": "Open Lumen"
+   },
+   {
+    "id": "listing-ready",
+    "name": "Listing Ready",
+    "visualPrompt": "A clean lifestyle photograph of a pair of white sneakers on a neutral background, evenly lit, crisp detail, soft natural shadows, styled like a polished online listing photo; no text, no letters, no numbers, no logos, no watermarks, no UI, no phone UI, no app screens.",
+    "headline": "Make Listings Pop",
+    "subline": "Clean up product photos before you post.",
+    "cta": "Edit Now"
+   },
+   {
+    "id": "bright-batch",
+    "name": "Bright Batch",
+    "visualPrompt": "A neat tabletop scene with several small handmade products arranged for photography, bright window light, sharp details, clean white surface, professional but natural look; no text, no letters, no numbers, no logos, no watermarks, no UI, no phone UI, no app screens.",
+    "headline": "Keep Every Shot Clean",
+    "subline": "Use AI edits, pro styles, and full-resolution export.",
+    "cta": "Keep Editing"
+   }
+  ],
+  "adCopy": [
+   {
+    "primaryText": "Flat product photo? Make it bright, sharp, and clean in one tap. Keep editing without watermarks.",
+    "headline": "Fix Flat Photos",
+    "description": "AI photo editing for sharper product shots."
+   },
+   {
+    "primaryText": "Your product deserves better light. Use Lumen to polish phone photos before you post or sell.",
+    "headline": "Make Listings Look Better",
+    "description": "Bright edits, pro styles, full-resolution export."
+   },
+   {
+    "primaryText": "Turn a dim phone shot into a clean product photo fast. Open Lumen and keep your photos ready to share.",
+    "headline": "Brighten Product Photos",
+    "description": "One-tap AI edits with no watermark."
+   }
+  ],
+  "videoScript": {
+   "hook": "Flat product photo? Fix it fast.",
+   "shots": [
+    {
+     "time": "0-2s",
+     "shot": "Dim tabletop product photo appears with flat lighting and soft detail.",
+     "onScreenText": "Flat photo?"
+    },
+    {
+     "time": "2-4s",
+     "shot": "The same product becomes brighter, sharper, and cleaner with a quick visual transition.",
+     "onScreenText": "One tap"
+    },
+    {
+     "time": "4-7s",
+     "shot": "Close-up of crisp edges, clean color, and natural shadows on the product.",
+     "onScreenText": "Bright. Sharp. Clean."
+    },
+    {
+     "time": "7-10s",
+     "shot": "A set of polished product photos arranged in a clean grid-like scene without showing any app interface.",
+     "onScreenText": "Ready to post"
+    },
+    {
+     "time": "10-13s",
+     "shot": "Final polished product photo fills the frame on a white and violet-inspired background.",
+     "onScreenText": "No watermark"
+    },
+    {
+     "time": "13-15s",
+     "shot": "Product photo exports as a clean final image, shown as a finished photograph only.",
+     "onScreenText": "Keep editing"
+    }
+   ],
+   "cta": "Open Lumen"
+  },
+  "paywall": {
+   "headline": "Keep Photos Bright",
+   "subtitle": "Unlimited AI edits for cleaner product shots.",
+   "features": [
+    "Unlimited AI edits",
+    "No daily limits",
+    "Pro filters and styles",
+    "New packs weekly",
+    "No watermark",
+    "Full-resolution export"
+   ],
+   "cta": "Keep Editing"
+  }
+ },
+ "model": "gpt-5.5"
+}

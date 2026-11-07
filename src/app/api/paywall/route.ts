@@ -5,6 +5,7 @@ import { adapty, appId, findFlowByName, unwrap, withTempFile, withTempJson } fro
 import { buildPaywallDraft, type HeroImage, type LocaleInput } from "@/lib/flow";
 import { getCurrent, saveAdPaywall } from "@/lib/campaign-store";
 import { readBinary, readCache, writeCache } from "@/lib/cache";
+import { heroCrop } from "@/lib/visuals";
 import { langByKey } from "@/lib/languages";
 import { adName, paywallFlowName, type AdPaywall } from "@/lib/ads";
 import type { Localized } from "@/lib/schemas";
@@ -30,7 +31,9 @@ async function baseConfig(app: string | null) {
  * and its preview thumbnail comes back from that one call only, so the result is kept on disk.
  */
 async function heroFor(app: string, visualUrl: string | undefined): Promise<HeroImage | null> {
-  const key = visualUrl?.match(/^\/api\/visual\/([a-f0-9]{16})$/)?.[1];
+  const square = visualUrl?.match(/^\/api\/visual\/([a-f0-9]{16})$/)?.[1];
+  // The paywall gets the 2:1 crop around the people, not the ad's square photo with its empty headline space.
+  const key = square ? await heroCrop(square) : null;
   if (!key) return null;
   const cacheKey = `media-${app}-${key}`;
   const hit = readCache<HeroImage>("adapty", cacheKey);
@@ -127,6 +130,8 @@ export async function POST(req: Request) {
       heroUrl: hero?.url ?? null,
       renderUrl: await renderUrl(draft.config),
       builderUrl: written?.builder_url ?? prev?.builderUrl ?? null,
+      // a new config is not live until it is published again (step 3 on the page)
+      configAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
     saveAdPaywall(app, result);

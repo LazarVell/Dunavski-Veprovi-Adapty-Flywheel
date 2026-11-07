@@ -30,5 +30,9 @@ export type AdPaywall = {
   abTestId?: string;
   abTestTitle?: string;
   abTestError?: string;
+  /** when Flywheel last wrote the flow's config, and when it last published it (published is current only if it's later) */
+  configAt?: string;
+  publishedAt?: string;
+  publishError?: string;
   updatedAt: string;
 };

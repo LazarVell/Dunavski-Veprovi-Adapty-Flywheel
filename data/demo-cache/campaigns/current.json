@@ -1,178 +1,152 @@
 {
- "id": "4e5885423700e084",
- "prompt": "Make a campaign for my paying users.",
+ "id": "5d1698406e62779d",
+ "prompt": "Make the campaign for current users.",
  "campaign": {
-  "name": "Lumen | Photo Upgrade Buyers",
+  "name": "Lumen Current User Re-Engagement: Product Photo Polish",
   "brief": {
-   "audience": "People who edit product photos, family shots, travel pictures, selfies, and social posts on their phone, especially on iPhone, in the US, GB, DE, CA, AU, NL, SE, and FR.",
-   "hook": "One tap turns a dull photo into a bright, sharp, well-lit version.",
+   "audience": "Current Lumen users in high-value markets who have already used AI editing, especially people improving product photos for selling, listings, or small-business content.",
+   "hook": "Bring them back when photo quality matters: one tap to keep product shots bright, sharp, and ready to post, with unlimited editing unlocked at the moment they hit the AI limit.",
    "markets": [
+    "NL",
     "US",
-    "GB",
     "DE",
+    "SE",
+    "GB",
     "CA",
     "AU",
-    "NL",
-    "SE",
     "FR"
    ],
    "channels": [
     "apple_search_ads",
-    "meta_ads",
-    "google_uac"
+    "google_uac",
+    "meta_ads"
    ],
    "avoid": [
-    "tiktok_ads: 12.2% paid and $5.09/user",
-    "IN: 8% paid and $1.39/user",
-    "BR: 12.3% paid and $3.53/user",
-    "MX: 12.3% paid and $3.35/user",
-    "TR: 11.5% paid and $1.87/user"
+    "TikTok Ads: 15.5% of payers refund, $5.09/user",
+    "0-edit users: 9.6% paid, $3.71/user",
+    "IN broad spend: 8% paid, $1.39/user",
+    "TR broad spend: 6.5% billing issues, $1.87/user",
+    "Onboarding paywall push: 10.9% of payers refund, $6.55/user"
    ],
    "why": [
-    "Apple Search Ads has 32.1% paid and $15.03/user, the strongest channel in the dataset.",
-    "People who make 5-7 AI edits on day one pay 33% and generate $15.47/user.",
-    "People who make 13+ AI edits on day one pay 35.8% and generate $16.97/user.",
-    "Product photos lead onboarding with 22.9% paid and $10.32/user.",
-    "The ai_limit_reached paywall placement converts 47.5% paid and makes $30.74/user."
+    "Current users who reach the AI edit limit convert at 47.5% and generate $30.74/user with 2.3% refunds.",
+    "People making 5-7 AI edits on day one pay at 33% and generate $15.47/user with 30.3% revenue share.",
+    "The product_photos goal is the strongest onboarding goal at 22.9% paid and $10.32/user with 6.3% refunds.",
+    "The product_photos × apple_search_ads segment reaches 39.5% paid and $19.61/user with 3.8% refunds.",
+    "Apple Search Ads is the strongest paid channel at 32.1% paid and $15.03/user, while google_uac adds scale with 4526 users and $8.64/user."
    ]
   },
   "concepts": [
    {
-    "id": "before-after",
-    "name": "Dull to vivid split",
-    "visualPrompt": "A single smartphone photo of a plain product on a table, split down the middle: left half dull, flat, underexposed and soft; right half the same scene bright, sharp, well-lit and polished. No text, no letters, no logos, no UI.",
-    "headline": "One photo, better light",
-    "subline": "Fix the dull half instantly",
-    "cta": "Try Lumen"
+    "id": "before-after-product-shot",
+    "name": "Before/After Product Shot",
+    "visualPrompt": "A single photograph split vertically down the middle, showing the same handmade ceramic mug on a simple table; the left half is dull, flat, dim, and slightly muddy, while the right half is bright, sharp, clean, and well-lit with natural shadows; no text, no letters, no numbers, no logos, no watermarks, no UI, no phone UI, no app screens.",
+    "headline": "Fix Flat Photos",
+    "subline": "Make product shots bright and sharp in one tap.",
+    "cta": "Open Lumen"
    },
    {
-    "id": "family-cleanup",
-    "name": "Family photo glow-up",
-    "visualPrompt": "A single candid family photo in a living room, natural scene, split down the middle: left half dim and slightly blurry; right half the same moment brighter, clearer, and warmly lit. No text, no letters, no logos, no UI.",
-    "headline": "Make family photos shine",
-    "subline": "Clearer, brighter, better lit",
-    "cta": "Edit now"
+    "id": "listing-ready",
+    "name": "Listing Ready",
+    "visualPrompt": "A clean lifestyle photograph of a pair of white sneakers on a neutral background, evenly lit, crisp detail, soft natural shadows, styled like a polished online listing photo; no text, no letters, no numbers, no logos, no watermarks, no UI, no phone UI, no app screens.",
+    "headline": "Make Listings Pop",
+    "subline": "Clean up product photos before you post.",
+    "cta": "Edit Now"
    },
    {
-    "id": "travel-polish",
-    "name": "Travel shot refresh",
-    "visualPrompt": "A single travel photo of a street café or landmark, split down the middle: left half dull and muted; right half the same scene vivid, sharp, and well exposed. No text, no letters, no logos, no UI.",
-    "headline": "Travel shots, instantly polished",
-    "subline": "Bring back the detail",
-    "cta": "See more"
+    "id": "bright-batch",
+    "name": "Bright Batch",
+    "visualPrompt": "A neat tabletop scene with several small handmade products arranged for photography, bright window light, sharp details, clean white surface, professional but natural look; no text, no letters, no numbers, no logos, no watermarks, no UI, no phone UI, no app screens.",
+    "headline": "Keep Every Shot Clean",
+    "subline": "Use AI edits, pro styles, and full-resolution export.",
+    "cta": "Keep Editing"
    }
   ],
   "adCopy": [
    {
-    "primaryText": "Turn a dull phone photo into a bright, sharp, well-lit one in one tap. Great for product shots, family moments, travel photos, and selfies.",
-    "headline": "One tap, better photos",
-    "description": "Brighten and sharpen any shot fast."
+    "primaryText": "Flat product photo? Make it bright, sharp, and clean in one tap. Keep editing without watermarks.",
+    "headline": "Fix Flat Photos",
+    "description": "AI photo editing for sharper product shots."
    },
    {
-    "primaryText": "Give your photos a cleaner look with bright light, crisp detail, and pro-style finishing. Easy for everyday shots on your phone.",
-    "headline": "Photos that look finished",
-    "description": "Quick edits for everyday moments."
+    "primaryText": "Your product deserves better light. Use Lumen to polish phone photos before you post or sell.",
+    "headline": "Make Listings Look Better",
+    "description": "Bright edits, pro styles, full-resolution export."
    },
    {
-    "primaryText": "From flat to polished in seconds. Lumen helps your photos look brighter, sharper, and ready to share.",
-    "headline": "Flat to polished",
-    "description": "Simple photo fixes on mobile."
+    "primaryText": "Turn a dim phone shot into a clean product photo fast. Open Lumen and keep your photos ready to share.",
+    "headline": "Brighten Product Photos",
+    "description": "One-tap AI edits with no watermark."
    }
   ],
   "videoScript": {
-   "hook": "Watch a dull photo become bright and sharp in one tap.",
+   "hook": "Flat product photo? Fix it fast.",
    "shots": [
     {
-     "time": "0:00-0:02",
-     "shot": "A dim, soft photo appears on screen beside the same photo improved.",
-     "onScreenText": "Dull photo"
+     "time": "0-2s",
+     "shot": "Dim tabletop product photo appears with flat lighting and soft detail.",
+     "onScreenText": "Flat photo?"
     },
     {
-     "time": "0:02-0:05",
-     "shot": "A single tap transforms the image to a brighter, clearer version.",
+     "time": "2-4s",
+     "shot": "The same product becomes brighter, sharper, and cleaner with a quick visual transition.",
      "onScreenText": "One tap"
     },
     {
-     "time": "0:05-0:08",
-     "shot": "Close-up of the finished photo with crisp detail and balanced light.",
-     "onScreenText": "Bright. Sharp. Well-lit."
+     "time": "4-7s",
+     "shot": "Close-up of crisp edges, clean color, and natural shadows on the product.",
+     "onScreenText": "Bright. Sharp. Clean."
     },
     {
-     "time": "0:08-0:12",
-     "shot": "A row of different photo types appears: product, family, travel, selfie.",
-     "onScreenText": "For any photo"
+     "time": "7-10s",
+     "shot": "A set of polished product photos arranged in a clean grid-like scene without showing any app interface.",
+     "onScreenText": "Ready to post"
     },
     {
-     "time": "0:12-0:15",
-     "shot": "The final improved image fills the screen with a clean violet accent.",
-     "onScreenText": "Try Lumen"
+     "time": "10-13s",
+     "shot": "Final polished product photo fills the frame on a white and violet-inspired background.",
+     "onScreenText": "No watermark"
+    },
+    {
+     "time": "13-15s",
+     "shot": "Product photo exports as a clean final image, shown as a finished photograph only.",
+     "onScreenText": "Keep editing"
     }
    ],
-   "cta": "Try Lumen"
+   "cta": "Open Lumen"
   },
   "paywall": {
-   "headline": "Unlock better photos",
-   "subtitle": "Keep editing without limits",
+   "headline": "Keep Photos Bright",
+   "subtitle": "Unlimited AI edits for cleaner product shots.",
    "features": [
     "Unlimited AI edits",
     "No daily limits",
     "Pro filters and styles",
-    "New packs every week",
+    "New packs weekly",
     "No watermark",
     "Full-resolution export"
    ],
-   "cta": "Start free"
+   "cta": "Keep Editing"
   }
  },
- "model": "gpt-5.4-mini",
- "createdAt": "2026-11-07T14:07:03.930Z",
- "paywallFlow": {
-  "flowId": "60646934-0ca7-4dae-a837-2ccdc6540f9a",
-  "name": "Flywheel · Lumen | Photo Upgrade Buyers",
-  "locales": [
-   "en",
-   "ru"
-  ],
-  "createdAt": "2026-11-07T14:07:45.761Z",
-  "validation": "publishable"
- },
+ "model": "gpt-5.5",
+ "createdAt": "2026-11-07T17:57:04.727Z",
  "adPaywalls": {
-  "48d59b74-a5b1-4f32-a54d-3860c4a28c95": {
-   "before-after": {
-    "conceptId": "before-after",
-    "adName": "flywheel_lumen-photo-upgrade-buyers_before-after",
-    "flowId": "7fe9686d-ad03-4109-8fc4-21eb3cee94de",
-    "flowName": "Flywheel · Lumen | Photo Upgrade Buyers · Dull to vivid split",
-    "locales": [
-     "en",
-     "ru"
-    ],
-    "validation": "publishable",
-    "heroUrl": null,
-    "renderUrl": "https://app.adapty.io/flow-preview?device=iphone-14&orientation=portrait#config=H4sIAAAAAAAAA-09227byJK_QnBfmzT7QrJpTAZwPOOTAMmuMcnJWXgTBC2qJRGhSIGk7GgCA0lm9swCJ5hgsfu02Nl92OcFMpnxGZ9cnF8gf2G_ZNFNUiIpWbYS25E9MmCJl-rqqq7q6qrqi56oHT_cU9efqLEbcR7E6vo_PVG9trouHjwcsNEe830VqIMoHMQCruP5vgRKRgOurqtu6IeRCorv9fpzLU5GPi_f3hRo93pewtX9_QdA9dkoHCaiDPO9bnBDVJqwKFFB_uBe5UHbi7ibeGGgrqu7PEo8l_nycZxEXmuYv3midtlAXTdASYS43d8H6oC1217QleSFA3UdIqD6vJOo68gAauR1e8VlK0ySsK-uI7IP1Jh1-EbEmbqeREMOBC3JML7OInW9w_xYPHGj0PdZy-clzCAKuxGPc6gnKg_Ey3ZRYL-C426P9wWJvqx8H6guGxT8bY9bnfu8z4NENnxfsPZE5f5DZMA74lKKqbwf8xwnzH10ThLb89pJr1Kk4z3mbRWou8wfcnWd0H3RhFGbS7ynraAbsZGGDEO0QlED3Adqj-dymVvbDB1yeZDwqKpE4ydVLeqFkfdtGCQL6VEYeyVI8SriPku8Xa6OWf-Gtb2hbPmWLzQJqK0o_06K-0Te7xfqwEWne1BVgOvDJAkDFaieoJtJiis90wuSUuZT75ibPHT9MOZbol-PGZg8EmJMIq_bFTJSE8HYg32QqxG6WVcrdHOCwXMlRWOtkvfrT9SASTX-RxWosfctz7tRUWbQC-NBr65sPf5YXVf_Dsu_CXrxWIi_kLka8e7QZ5F6UqPX2rDkAze6B57XPaZ12vfVWerXG3bV2RrHg_ZJNuvMtW0m4-RunXFyd8J4wh8nNbMQBpKLQcRjLpq8BwV7kgthl4R5PL2RkH3YqfXhhVtUZcMk1AoogTxIeE6j7PFxblCrpmzAItaN2KBXBZ-8LliWX-vqPwRcGfTCJARKiycJjxS_qIklSZR32NBvj427lzDfc8e3w6DNI98L-MT6J5H3iCe9KBx2e6WJ338gelg0_Ggy0_9Kf03fp0dK9n16lD1Pj5T_e_rvSvo2-y77IfuX9EDJnqWv04Ps-TkQvg_Uh37oMt_7djKonWz32twNI1ZoehAG8uG0dpoN7TQX0c5W2B59qn6aS62fW95jJelxpT30faXH_I7iBXHCgsQfLZ2O_mf6i9BRoYjpe6mt6WH2LP2QPU1fpa-zF9lzoajPs--yZ-kbqbs_KumH9Ch9Kwsdpu-z7y6d_lqNYcU652HlTJxhegbDit1g3L4MjEPrEzivemO3vFg66JJ12mgKugxNcbJz8UmNUfLuNNxD5_Tu4Z0Bix5Jk1w4iWSuk3iCMWeu8Og_3V-sSlkSXHAKjbqUxf3nl_IF9HQI60O0uF9giJZhi-azFvc_daimSz1U_zHwvb6X8LaycVPhbS-Jl26E_ik9SI_SX-SA_D49zH7IR-rsL-mBsnFTy56mB-mv6av0TfY8PcyeymE5h3y5zAMzGHeDjUK7REJnpi6jhi6ji3Y3l1uH_z5U2szzR4pU5eVT4H9ND9LflPQg_avU1PfpQfpa6G_2z0r6Nj1M36WHIjpKX18RdW0kLeB5Jy2WyLOApO5ZiPvTehbbzBfB_GXxLMyGlM1lkPJFeBZWwxpbK89iltnbjkKl4_kJj2KFBW1FMrF8xvm_hceQfZ8eZM-yZ-lhepS-T1-lb7MXhYeRfZ8eitvsefY0-4uSHirZM-FoCMt9Rey13VBoe-Ve1NwLvqcMmPsoVvguj0bKHuePlk6NfxL-g1TY9IPwhUVaVajrm_RV-tf01zxt9V76Hwfp2-zHK6K6jSQG_B0lMWAjiQEXSGLc7LPuZXE0UCOFgX4vKQzUSGGgVQrjuPBvjyU86rNo-exyEfu9To_SX7OXcqbhFzHH8Jt0M96kr66GIUaNFAVapSjqM2JD39ciHoe-NBMKfzwIo-WbsP3f9I2Y-0qPsqfZcyV9Xc50CbV9p8gM3G8i3yZmb0WG7aq4wKiRskBLkbK4sHmh7ShsD90kHg-5ZLveHGR70hyDHPjC1mXlbfuRa7HgyWuxFhDSR66-miGnNu-woZ-Ua-26UTgcSKoHPgtEkHz8Oj9xVazzE5flOj-I9sFYNqXwoOMYlBiOZlKbaAS7rsYINjTKLWq6sMVNh57opc1eDSbrjvLvpLhP5H1Nz8olmNznbiLXvJW9ahQnvC8XcU0pYqlb10d3BB5R5RiBtDMfpQu0oQv7-6W6N1JZ6PeSykKNVBZaKJXVw1d7zN4IgqFs_uUao_9NuJJykuso_dsVGX4bGSi0UAYq7jPfv2qBTi7sqVY4U2GDMRm7LPKksCs1FGPJN7yTD_Hcbxej_8NB5LkCNmFRly842gD1kRe0K36EsExl_TdPi0av0JEzkjeYMuCRMuIsEisj40TJF1ifaysu0qFXUv04qYpI5Bdh98Bk-ehh-jdFpjx_FuHKucv4c5jFRnYTzc1uXtzmCLml5MI2R8jaln5zhOM4Tu4Q51fJ-FlSPDs-_BKYwla5U-JCPV-noWHOYp5vTVD0FMI8ZqPLZwmHz16QX4UnhS6f2kkn4tx_MJYiNurhurhfhevnEq4Xo8R5xesYM0ydFtFsy6YawSbRqANdDVmmgWzmMoLtVbyOG5sG8dxNg1coXseNLDteKMt-1eP122GQ9JZyh4lYW_Iy-0GuKLkiITvGDVXEq5D9EgZ3pxpwTg7uToNmbsjeF30XKC4LXO4rLBglXn8Vt1960Yq4_V1h_v4MFLkL9J2cOnwl373NfhThu1i19Fqu438n1-xfuUgek4bHQlaR_CqSP1OfuDGHhRecw1pF8ksRyVuNSN5aRfKXM5JvEUKQDZFm4xbXCCOu5piWqZE2tCizGHJxaxXJ48Z-bHwp9mOfRSRPG-ETXUXyk5D5T5w_WsJA_qfx8vkXVyqUdxq66KxCeSlwrLXZSOlEnCtJ5DEfiENNAuVyhYGnGohODgNPg-a4MHCt2DGzVME81iZbcdNX2Usl_VkEqumH9G36KntePvwgN5T_XN6K44qein1i2UsgFnELyIP03UonFtaJxmakKxfyk8a2FTJ328oq5F-F_Is6z6QxDUYWnAZbhfzLEPIT1JAiugwhEDqDMx4J3qpzjrcmnHfCMDcHF5nrWKAVpw1YfnTmp-p8I_kgtmYWyQdrknywKskH66N3fWzlTVxKo5GiJueaoi43jS4kjYs-NfcU8jFOEI9xrimemjg3724orVMct5sLduZxu63hqJJuHEZuj8VcpsRGfsjaFWezwssui9SGYyhTaXppOrfH_uOcE3tJ40hNstiRmmez2bUwEdMqWdiBz5wWuSMMtYxHlzA18ir7QURD2YvpQOroknv0zV42VjOpqI2zNMnZnKXZtHXG-dm6ktYBc7nW4ske58EnbCbMhxXF94JH4w2FpJHnJQvleY_rfRfYRguPB3Q8HNDPMhrc5VE_Pt14YB87HohN9fFEUOGAB3-M_PqAMIx80XhJMojX19ZYmw2Ske6Fa7LsmjrX5jeS4GShJHjJ6_mcpLwcFv9uIYDlMvb_kz0rTz--9EcsTveZunVvLJAnCy2QXxmuxQ3XNzxOwoifznQ5x5quKEezXTixFSs29WaOhTKNuoUS91fEQpUNrZ5_vypFWutZZiN7ZS6UvVr1rMV71nbk7TJ3dKqeZR7_myyDHM1HugVF6fmOgdlY524utM59qbvdmR2uWAphuVyD_xDnJ8ojE8XUzvvsz-lheZpieiQOTsxeXCGHoexRhWETauHxiEVubzTW3yiUeWW35_ntqJB4I9k7-13-Wz_HvINz3qGbat4oU7_wcEwBcletA5t31WZ5e055Ouedc7OOOz-AfjawOKO9DozuTrMC57SLOG63DmzOAbaa1dmzqpvDHWxyh-Zwh5rcoZK7eoVoDn_5QTzHvJvDKmqyiuwpEaM5jIp9oVOE5tsMZxfAcxRU7FqqI8JTxOQLpI8pb84ixppDzBzlFQuv6oicKWLIHKmKSbdCiI1CcjbjmEJzuCPTnY_M6bxkDm8inm6ico4HF85tA9ycI0Zzor4P9icrICvewilPH1ps7-NC6ysfgGICTwwLfxBLPSvklQs-y4GuTFPLQVAOJ9V1lDyQA2Cbl9fFUZpfB13fi3sTyqLhBFBeF4DfDOPYY4EkqliFektWUiIsU-jFMJPkP6tYzBbXnDA5dwLUtjjwcPJDdNYm2dwyxWhV1LhRAvqlr9KAHNOcJ76nMG7JvwrGPxVwTYQl4BjheA3wNE6yhbdoBecfIjZSctAptAVsHS2ahfZr8jX6erOJFs1EW8LW0eJZaDe3Nje_2miixTPRlrB1tGQW2g1nw7w-1QhkJtoSto7WnIXW_sp2HKOJ1pyJtoSto7VnocVfYcecQmvPRFvC1tHSWWgRQRBtNdHSmWhL2DpaZxZaSCCCU5rgzERbwspYZDQIpaM7mnS1Hpz03xviOuZJ4gVd6bzmh-dio3LwrfRnJ0T2UKU4mllcTPAeWxxXiuOZxaFdKR7zvtdAIU_WHCO5nt_NQGPOOr13gqU6vTbBJp8q5dMZWK35xJWO9Bjj5vjBDGRoLonVZahjfHfEw3kE4pk4RTzhhv1BGBS_WCviiz5PmFqcpJwb44jtqevqF_FuV3nc94P42n0Z766vre3t7el7WA-j7hoyDGMt3u3eVxUZSV67ryLjvqrkkWF5J6aBrt1X3WEU8SDZFAb_vqrsenzvevj42n3VUAwFmZb4v69--cWAJT2lfe2-ehsZpm5ZADpEx4RRQIEBDAA1CHWMgPy8BREFEDs6hsCCAjov1ITWCmho6ZYDRCHT0DHJy2yMgQsc8l2OWhbwLUvHRBOf5gQzqNGR0wAR3RFMrAkuvvxCNM6XE5GJX1-dcY70crQ2dGzdpAAiRzcsAIkFIDR8DTqaCXULMWjqDgL5p-Df0JCjUwqMWzbNQSUcgM40KDCABJagNvWhA45BCkqkkgCb-hJOm400p2DnNsQ2gBbRERpLx9CIbhMgPm5BiABCWKcmcKAuSLCcscwNQMvCtzDSoQkgIfIZwrpNK3BFWehIhBaRsBjpSOiAM6kZVGp2oKgVErJzW6AlRkV9qEZ70LoHrapKWcC4h1Gv9tAA0LoBKbln1XqBACX0BjRRRYHzWnZuI0IBpRVwCmhPo7u0icGxehqtVqZBq0fv2ahB1S7t0Uo9Of45uj75Kbml1XhkGLptAxPr1NmABtaRDYqvXJDCAiDS06Bu2BvQIED8F2pKxFvXAAQDZImOY8t-Yzk6toBDdGhvYARwqasQC0OGGLRkaxbNKtqaWDqCDEOdQpB_5iUw1JGGiOgN0CA6weVXQYBuOhoiOd0UFF_FuwpjO32IgYN1G25AU6cOyD8LChyqI0GIIdSIVQjW8usKuRqC0sKZumFvWkgnTm6ZARH6SeQXoowKvSg13NYNR6O0pzuMUh2bIP8s3lIBgMwNSnVqgfyz0C6IRUNAYuuW6DkGsC0GEYAoJ1uDSINoo3ySK74A2rntWAAaxkYFGFAi6qoC50A7fQOYJ-EVoKa106dUOxEWUiLxHt8rJj-DtLy9AlqAGDeIsTERvtR307qHDINVn8rrGwhajacatO6ZVh2BRCuaXNg8k-q26WvI0g1bftYwaAjpFgaGryGhzBohGiFTAAgYt4TSEUfH9j3T2rkt7mzkm0gzEaAGoIKNnT60LYDoDaGtFvY1bGlY-AkaMm4JqiCFOqaCt9xIQ8FkRX3kdUPXTpJz-RsU01J-AGRSv4iDYzfiPMi9Njd6OGCjPSYWHz752IwDUDt-uFesSpP5fuK6zOXM1GyGmWa2MdJanLkaQqTTNqlDWi1nwUTFdCWG3TGh0zE1w21xzbRdU2MWpRrFHQdbzGoZGC6Y35iuxGwZiDDH1CxIkWa2Oh2NYs410rK4jW1qcddWi9XHsdvjfXaPR7HMZsttrBHvhwnfDIOO183X6v4_TrFP6FiDAAA",
-    "builderUrl": null,
-    "updatedAt": "2026-11-07T15:24:45.903Z",
-    "segmentId": "bc1c7d66-0f9a-4c5c-ab3e-7cc29d54695c",
-    "segmentTitle": "Flywheel · Ad: flywheel_lumen-photo-upgrade-buyers_before-after",
-    "abTestError": "Adapty only adds published flows to a test. Publishing it shows it to no one until a test or placement uses it. Publish the flow in Adapty, then click again."
-   },
-   "family-cleanup": {
-    "conceptId": "family-cleanup",
-    "adName": "flywheel_lumen-photo-upgrade-buyers_family-cleanup",
-    "flowId": "ed69a2c1-bfeb-4ca2-b3c1-527cf913844b",
-    "flowName": "Flywheel · Lumen | Photo Upgrade Buyers · Family photo glow-up",
+  "e27c8246-b940-45f0-a76e-5b119afbfa0a": {
+   "before-after-product-shot": {
+    "conceptId": "before-after-product-shot",
+    "adName": "flywheel_lumen-current-user-re-engagement-product_before-after-product-shot",
+    "flowId": "ffad79db-d58c-4101-97dc-f10999473472",
+    "flowName": "Flywheel · Lumen Current User Re-Engagement: Product Photo Polish · Before/After Product Shot",
     "locales": [
      "en"
     ],
     "validation": "publishable",
-    "heroUrl": null,
-    "renderUrl": "https://app.adapty.io/flow-preview?device=iphone-14&orientation=portrait#config=H4sIAAAAAAAAA-1dbW_bOBL-KwLvK6WIL5IoY7uAm91cC7SHYJvNHnIpClqmLSGyZFB0Um-R_34gJdmSLDtxm6RJ1gFi62X4kMMZDmeoEf0NTNL8Bgy-gSKSQmQFGPzvG0jGYKAvfJnz5Q1PUwDBXObzQtNNkjQ1RGo5F2AAojzNJYDV96B93S7UMhX13fca9iZOlAC3t58hSPkyXyhdhqfJNHunK1VcKgDLC-eNC-NEikgleQYG4FpIlUQ8NZcLJZPRorzzDUz5HAxcWDdCn97eQjDn43GSTU3z8jkYIAxBKiYKDLALgUymcXU4ypXKZ2CA6S0EBZ-IoRQcDJRcCKjbohbFWy7BYMLTQl-JZJ6mfJSKmmYu86kURUn1DYhM3xxXBW4bGGexmOkmpqbyWwgiPq_4O131ukjFTGTKdPxMs_YNiPQLdtEnfWjEVJ-veC4Uj64eSWI3yVjFjSKT5KsYAwiueboQYEDZre5CORYG974VTCVf2th1dS9UNaBbCGJRymVnbT06FIlMCdlUotWVphbFuUz-zjO1lx7lRVKTVLekSLlKrgVYsf4HHycL0_OjVGsSBCNZfqvqXJnz20odhB50n5sK8HahVJ4BCBLdbm5a3BiZSaZqmW_c45H6EqV5IU70uF4xsL6kxahkMp1qGQGlGft8C0s1wu_baoXfrxGSyLRopVXmfPANZNyo8X8BBEXytyiHUVVmHufFPG4rWyy-ggH4FzF_a3h9WYu_kjmQYrpIuQR3dXqrD2s-SGd4kF3DY1On0xT0qV-8mIJ-jRPZ-C6b9eDa1ss4PWszTs_WjCvxVbXMQp4ZLuZSFEJ3eYw0e4YLbZe0eby_kTBjOGyN4b17FPCFyu2KSoNnSpRtNCO-KA1q05TNueRTyedxk3x9u2LZfA3AR34lrAmfJenSmse5yguriJNM88GVkuWIzdPxyroniqdJtDpdZGMhU11gZf6VTK6EimW-mMa1jb_9bAbUlzSPeJr8vZ4c7rYfYxHlklcak-WZubgpZa8jZW8fKY_y8fJH5ew9azkfp4JLIaE1MhO7ORJKCWmliXpxwvY7tsx_ZFv2IB4YewBbFnQYD14C48j_Ac6bLsCHpDBeoWGddbqCPYeuuHtG-6HOqHkPOz5JeH-f5NOcyytjvyrPhO70TO6wfDzSbuSPOylNKZsGV5wity1lff7zpfwEIx2h9nymz_eYz4yvbKd8JNIfndfYs57X_szSZJYoMbaG7y0xTlTxnCczuFKdYSURHXn3yh935I-f2p953nL_T26NuXZajfhfi9A7MRp67BjtGc1piLbnNH1-3zntlKfal30pc5rXkbL3HKT8FHOa37Fp_mFO67NtpzK3JkmqhCwsno0tw8RrMXFBRweCw7zWmtfEjTXn0VVhiWshl9aNEFevRPKdgA39gwI21AnY0B4B2_sZn76UqQ13wjX8TwnXcCdcw4dwbZvbfsOVkDMuX4lZw51ADR8CtZbETxZpaktR5KkZdJb4Os_ls15x3kP2nXgNP4t47cmWY09lPl5EqlhZf3ra7g56uu6OeUn8ZM_gy779zufu6O7n7nsI6TuftPfIaSwmfJGqOq9iKvPF3LR6nvJMRwjbczr0UZXToQ_rnA6Eb-FKNrXwUBi6jLqh7bGA2pREkc0pcW0mfOZFaCS8kN3pMPQ_-Td1y_JbVefKnLf0rE63EamIlMlvqEfVslBiZh7YbyhirVtvl580jq5yBWDszHfpAuvowu1tre6dOB7_U-J43Inj8V5xfExe94Q3zLKF6f7XMMF1onW8V7RezHiavjavthTyRi88qLDhqhnXXCZG2I0aKmv9h5iUk6hIx9X8-mUuk0jTKi6nYk97DsFVko0bM7Ue-3X97-8L4zTaUTJSdpg1F9JaCm7yDgpllelqj9qLP2nIdJY58M5ljqdLQzTJm0-Whmhqe_ZpiGEYhqU7Uh6p1TVVXdvu_GqkfFTnJD6p3xF2NCzcz-9oCYrdQ5hbUkp_SjDy8IL8Lb_LcfzRQboW5-3nlRSJ2w6W9PkhWHqUYKmaJR4rWiKEExaOqB34AbMp8ajNQhTZ2PdcHPCIUxIcoiXSSc8nO9PzX1G0RDoLhGSvBcLXHi19zDMVp8vX4fsR0hE1OYRLLzBcupdBvztcug_MznBppscGtCKeRSK1eLZUyexVxkyEduYGeoiZDjHTg3ofnbVasuda7SFmehYxk9-JmfxDzPQyY6YRpRQHCNsBGQmbchrZoed7Nh0jn3Gf44iMDjET6bzuQ17E6z4PETOxjiPNDjHTOmb6S4irVxMyhR1Jh4eQyQiZ2GO-tCZSCEvJhKfQUrHIrJcVSd3LzN8dSd0HZlskdVRl0L66oIl2ci3pzlzLQ9B0CJr2dT9oZ8mW7rlkewiankPQRHFHivglOJH4AXb-oOSkzTk5WXM-yfPSHDxltLhHL24asHJDlR_V-U74pt8nqMI3fx2--Y3wzf_u_NCTsotraXQW-eijLvLVbzrsJY2n3kvpHvJx7xCP-6hBckucx2dDa3SPTZhKwfZuwjRaLBsLNgsZxbwQZlFhmeZ83HAyG7xccwk6DqFZjHBq03m68ht37ONEOxvE0P02iHmYNzQqE7GpkpUd-MmB5SdtqE3M8cJd5K7aruRmJN_ZPYY-zO4xXePhPp7xqNs655GwR0LdCJH9QB5_aaetNMmuVrn8tLP0RPdaetqmzk_YR3sbWLayr-ynmNczIWfF_QxssNXA6lerirWg8rnI_pRp28IuZKo7T6l5MTg64mM-V0snyY9M2SOw04h21uXoXutyNa-Ps9HW8zChZ5UAXov1LLWybT87-Yd0r_zDg2nY3zT8IQqVS3E_4xBuNQ6yhDmt_K6Gndi4s8MGeG7bBujzV2ID6o4Gjz-uapG2RpbXWXDx9lpwOYys_UfWqUyuebS818jytm8uOy9hvnPirUrvnnq9Thqht1ca4bMedg-2bUothNcy-dbaWRkJ3cWJkFxG8XKlCzI3y4pRnKRjWfVeZ62v_165AfCWe2jHPfwelJ2ysQPnlgL0DLSJvTPQLR_sKM923Avft7HLDQL7ifUeem1ifLbJCtrRL3pTqjaxt4PY71YX9FW3gzvU5Q7v4A53ucM1d-0K8Q7-yje2t9zbwSrusoqDDRHjHYzqV1g2Glq-EdFfgOxQUJ1g3QYiG40pMwy3lPf6GuPvaMwO5dWZC22gcKMxdIdU9TOXSoidQmYxe0uhHdzRzcFHdwxeuoM3Hf11ocLt5NpR7JB7O8TordX38-06hagx897zNfX9XtPYK0HpM6ye3-hp4d86V6rRvDpjqpOfpvmBwEwnzUQkkZk5bizq42r7n9-zaZoUsamrys76YMrWdPXCaDV7qPInFKpngC0_xayIQzDWe6-sN533j-nxiacnoarGYU2Y1tN5h3LVSeVy5gbiiflrIP5V0XUBa8IV4Co3bhOTnpAT1sD8t-RLqyTdgK1o27C4D_Z3-jv-_bgLi3tha9o2LOmDPT45Pv5t2IUlvbA1bRuW9sEOw6H3dqMTaC9sTduG9fpgg9-CMHS7sF4vbE3bhg36YMlvJPQ2YINe2Jq2Dcv6YDHFCJ90YVkvbE3bhg37YBFFGG1oQtgLW9Mad305z42LulwPtRitx-87fVwIpZJsanzSch8v4jb24DJu6rqRMW4Ux73F9WO7rcVJozjpLY6CRvFCzJIOhNmWaAXytjzrgfH6NhJbozQfmqzRzFWrvtqD6u9uXO0frxCPVxd6wPDOJjYTyFZ4n_TFXQ0kvZg6TIjy2TzPql-n0WHDTCgOqk3dSmMs-Q0YgF-K66n1dZZmxZtLExIOjo5ubm6cG-LkcnqEXdc9Kq6nl8AywdabS4DdS2CVwVN9pp9FvLkE0UJKkaljbfAvgXWdiJu3-dc3l8C1XAt7vv6_BL_-MucqtsZvLsFH7HqO70MUUodQziCDLnQhshFyCIbm8wPCDCISOgRBH2nqslCX2q6oke_4IdSFPNchtCwzXBFXGOZeCW0KpL7vEGrrT2-NDFvtKNuAMLvQTBxpLn79RXfOr2uR6V9a6dnS7nn0NgoDx2MQ4dBxfYioDxFyUxuFtoccH3PkOSGG5afm37Vx6DAG3Q8BK0kNHUThJil0oSE2pAFLUQi3gMIa1DQgYKmhs_tByxZcfEQkgMinDsYr6bg2dQIK9ccHhDDEmDjMgyFydBP8cCVzF7K68AeCHeRBRKm5hokTsAZdVRaFBtCnhpZgB2sdCNc1w0bNIdK1IkovPmpY6jbUh9ksRv458psq5UP3nOC4ddGFyH-HGD33W6NAk1L2Dnm4ocBlLRcfMWWQsQY5gyy22TXrIoR-bLNmZTbyY3Ye4E6rrlnMGvWU-Dt0fb2D_7PVeOy6ThBAjzgsHCKXODiA1VcpSG0BMI1t5LjBELkU6v9KTam-G7mQEoh9PXACM2780CE-DKmDgiHBkNS6iog2ZJgj3_Rm1a26r6nvYMQJchiC5WdZgiAH25jq0YBc6lBSf1UNcLzQxrRsN4PVV3WvwdjFDBEYEidAQ-Q5LITlZ9WCkDlYN8TVasQbDbbL40ZzbYyMhfMcNzj2sUPD0jJDqvWTmi_MONN6UWt44LihzVjshJwxh3iw_KzuMk2AvSFjDvNh-VlpFyK6IxANHF-PHBcGPkcYIlw220bYRnhYXykVXxNdfAx9iFx32CCGjOq6msQl0cXMhd5duJrU8y9mjNl30iJGDe72UbHeA_z5jgrkQ-q-o-5wLXyj755_jl2XN6-a43cY-Z2rNvLPPb8NYGB1l2ub5zEn8FIb-44bmM8Wgo2x4xPopjbWymxTalO6QYCh-0ErHQ0dEpx7_sVHfRbg1MO2hyFzIdNsXMxQ4EPM3mlt9UlqE98m2k-wsftBtwox5BCmeSuNNNJMNtTHHHd07S4519vhbkr5MzTr3lUcvPrpRvMrjqsfbVxnGO27kADNr0JWuUZmSZxGEY8E9-yAE257Y4LtkeCRjTGdjD0W0tEo3HP9YbMSN5h4KJx4thuNhO0FkWdznzGbkUlIfO6PXIL2XLbYrMQbuZjy0LN9xLDtjSYTmxEhbDryRUAC5osoAFVOaRHFYsbPhSzMIrV5vUuKWa7EcZ5NkmmZgfl_F59pzkRzAAA",
+    "heroUrl": "https://public-media.adapty.io/public/0a/7f/0a7ff4c2-7a19-406c-a2f5-dc2aa9beda98/flywheel-1794074327960-27fg8es2rkl.jpeg",
+    "renderUrl": "https://app.adapty.io/flow-preview?device=iphone-14&orientation=portrait#config=H4sIAAAAAAAACu19eXOjOPPwV3Hx_mlsIyGu1LNPFb7v-35na0sGcdhcBnxOzXf_FdhObOJkJrszszN5kqpgEK2WWn1ILbXEZ0qz3B318JkKFJ8QJ6Ae_v9nylSphyjhLw8fdtiyKJryfNcLIjjNtKwYKDx4hHqgFNdyfYo-_z7cpmeC8GCRy9tahHZnmCGhvnz5k6YsfHA3YZQHW6buVKNCQ-yHFH1KGF8lqKZPlNB0HeqB2hI_NBVsxclB6JuLzenNZ0rHHvXA0JdKRI9fvtCUh1XVdPS4eq5HPQBIUxbRQuoBMjTlm7pxvl24Yeja1ANEX2gqwBqRfYKph9DfEDqqS7gJ8tinHjRsBVGK4ruWhRcWucB4vqv7JDhBfaaIE71Uzxm-XOEYGsSOqmjFhX-hKQV7Z_q6j61OLGITJ4wb3o5I-0wR6y_IgEF0G7Pp8vxIcxBiZfWDOLYz1dC4yqKZe6JSNLXF1oZQD0j8EjWhr5IY77cWoPv4kIEME7XCuQTwhaYMcuLLq6XdkSGFOCHxr4XoMeVaigzXN4-uE75JjtzAvICcX_nEwqG5JdQj6X2smpu45RdWJEk0tfBPv-H5OYyfv5zFgURK9-e1AOQ3Yeg6FE2ZUb1xXOMrzTSd8MLzZ--wEv6lWG5AypFePxLwlBSxMfRNXY94RIURYX9-oU9iBGu3YgVrTxhMJa7Ro1TFzw-fKQfHYjylaCowj-SkRuc8nuEGnnErbAbZUw_U_2Pjvyf0UXLE_jPPKZ_oGwv71Nca_aYNL3SwCfVgX1OP5zJtWdQ98TM2OnVf4oijfs1mfXdpu0s4Gt4SjoZPhIdkH96YBdeJqfB8EpCoyQ0QkRdTEdmlyDx-u5GIdVi60eE3tyiFN6GbOUNFyJ2QnOoYa3xwMqjXpszDPtZ97BnX4E-vzyTHPw9U2dynyhYOU13DDd0g4lgY-idFdS310aibIbZM5fFx46jEt0yHPFn90DdXJDR8d6MbF9P-5c9Yj_6yXAVb5vGpT_i62VCJ4vr4LCiO68SJz5nLJZjLvYW5C1c9_FP2cr80e1t4RVKe76obJUwFhhsGqUXcs6ewo6YCA_teynRSrkNSIfayvx37-YRR43-wUfsuQzHxOxg1IUG48DsQDvh_QPn1WKBpBvHwMCZdTDSF-Cs0xde7tn_UGBfapcTgRPr2wcnAw_4qtmjnIQp6dYjyFVuIlWg8-c9HK9dcjit8phQwt1yOnv99Lv8ETQfgtoeLnt_Qw8WD5oyFF8T6pz2d-Ev3dCPHMm0zJGpKrqWIaoa_9FiGfhQd-cyRyAW_y3-Y4D_82SOcX5vvbTelYtM6pGL2vxemJ5w18KOdtV-oTwPotk-Lnr-1T-tii4Thb9OncQkuc78Cl39Gn8YnbBr_0afds21d301pphUSPzj5axER78XECQkZED76tZt-jexSHlZWQWpHyMo6vBOuJ5w18D_krIGEswbe4KzVbKz_Lt0aTLhq8H_FVYMJVw1-uGovDdl3OCS-jf3V-zBrMOGkwQ8n7XaVYWNZGZ8ErhUrXYrsPfeksu-A9wlfDf4SvtpPm4rtnhYXgkfrj7q3zYG6T81xXon4aQvxp7b9m4vv4OuL729g0t9cbr_DJ5VoeGOFl-AK3Xc3Xlxrz8JO5B28HNgR3Z0DO6LbS2AHgF_oR95cmCeqgoolwmQEwmsZJAgkI7KilNEkjoP8YqEhjXx1wHB_-T8u2z_9hufnMH6-kbNLzA2xiBLGQQ4XrToEIbHjVftngniRrfxhEOGJinxEENuZvyULYkIWvny5iHvCh4f_Kz48TPjw8E0-vMG-7w5PdpxN3PzvoYNLeOrwTZ56YGPLem-j2hOTn7XCd2U2_ViNLfbNmNlXJZytdZ9op06UWOq5f_3L800lgg2xr5M32nOaWpmOetVTR7p_Kb_2rWiyV_U4EXJqsJRH_NSBYJ9OLUgQpk4xaz-0Ff8llUlMc8BXpzl-XixiHMH502IR49J--VhESZKk03DkdBc-poXntJcHvxEmd3EJTPyp4w4pIWHS28YdN4wSv4GZL8SV_ivOyPdnZNH92sDxnyrpEzu__PnIRZa5dZai5w9n6Yc4S-de4kd5S4yiqoyElYyEeZJBUOUymOdQBmBGQxxQJZX58JYgm4jRZ1-N0X9H3hKbmCBk3zRB-N69pZbrhMZ7WeJi2QSr2Q936Td0l77JoH_dXfoWNK-6S3akG3RKwY5CrBR2DqFpv0ufiUWJvgF9-EwfPtN3HX0k5mrZN87VfvhMv4TPxCd8Jv7DZ_o9fSaOxZgooprRFEnLIE1aZBYijzIMTwgSkLYQEPfhM7GJrT7sb7HV53v4TGJiIC1--ExPPtPkHUUFslKC09KHyxQzmc2o-JDSfEJSoW9ii06FBnFSv5cn9U1m_uue1LegecmTykUxtO_RaUKJWEv0aqzlh9P04TS9dfiBElO26I1Tth9O06_gNCGY4CL8HQaR8Dsc_4HY8i3lbPmJcs11T-bgZ3qLb2jF5wbsdKrKP5X5hPsW7Sc4u2_8k_vGX7lv_N-ODy2fmvjCjcQkH_qhk3yXnQ5v4sbPPlDpG_jDfIU9zA91km_YWRjKqcU3nMR0Yuzdk5gWm8PVhM3GVwwckHhS4WC5WL0aZF7RssU-lRgQxpMR2Yvp7D6OG185zAkljotBbzsu5vvs0DibiOciebYD_7Jj2SDES5VUM4wk8PceJCcF95FzMe8TZ8eg73N2TNJ8MD_OfFzq6mGFZBYk3BHi_INI_pOlTlmms3qM5keJySf0psmnlwT6J7bRm02s-GhhxX_FwA6JbwffZmKFF01stLkqeGKU6xFn5Fu3NnbjW1HjhaEXPORyWMVeeMiabi7Om6NeNaOJmTn0ppm5C60_5uCtX8OIDs8MeC_W8ySVt_YzEYGI3hSB-GEa3m4a-iQIXZ98m3GQXjQO_glN9zzyurITz968YgM45tYGRM_vxAZcGpr68Xp1YemNZnGJKRfuTVMuH5r1ds3q-uYWK4dv0izu5TNmvROav9nxnnO_3vVyiUBC7k2BhL-02n23Q1MuTHgvne9FOq-NhMSA1rUgxM9Pp0mcj4t4wiGrqa0ZnPakPcrHVyr-1gksd7EkSlg2Y0lzt7HNSGpofNozcz7tOTpb_PwcnwYdafyp6g-f7zQ1nRCQy_oSL0KeoeiEYnmbhWUqGZuoJs5eaVmcnGNwTtByDBY0DSkwI2AgZRDDKxkMNS6jKhBjaUFULIk5zTrsDEKsDBAkxAiIhYLEMxkoaLpIAuivrOzSI3rcsGRrkt34ZGGp0cqq9O1ZXZbz0_6o3htbMqqV3bosF3u9XkGVB24gz2dyNyzr61LarS9GTB0MsbiWcWGiblSl1oYdrz9RJs0cv1DcYVnYON1cbrcaj3pFXVXKfTQIW9KsFOizYq41zbkzm6v2Ai6dO0zGe0dxNKbINBo5ez1YOjiY4ioIVwujOBmEkmziZvsIa8QGyqACV-Gwakrz5rScPuq8jNYlJcda7WmzVrP36dJ8ERgFdVMdNXdiWLKqnVa_JxMHl7A53xdLgeK4HqosdZOtN5pHjy1X6ukug4c5ybEmgVci_b5RLh53ThV0nWZrKLl2c9_qhSHq1pVhbgXTRlVketX23irYTlvdVMP8sCnkoMS0t9p2X0k394dNqyn01-1gJZpbazzf6bOijTb5ZVceqDrI4TVrlUC_wuXIvDffHraalN66fp1zysQCQIX-5rir7FrlQXpnilaxrhuVdrvVCTYOSnfW9RIpjgegKWtKtVeaFUrOYTQcc4cZCkuyTuqVRd0iqNsT_eGgkS9uWSZX1tcbSQL-eCA5rjwCvNle5vpcfTnZKHOmRqraIgwnXWt3qOlNZcmvm1J1vKxIQatVKM-ciecvB6GFLGAIuU6tUTogUoLHWW_RaQQ4XDsNGa8rjLVpB6w26CK90F8qU6XRH1ota4_KkIjHme702xXdLPs7O4csTRnpOoODKsZmaZwWXX2Uq6gTYVSHpcGxu7ODbWG7mxWqnt_skHZgF5vNiXIoCu4eH7pC3eGOR_moWEdGnbSUHbFAZTpazZSu3CfDthocdwe2bm89Mt4sCz1Z7vIhjys9eFA5s5KvFUNjyYvF4n4LJ5jMdaSm4UxmOxo06qN8oTKRWocxmpT3lU1urSiFXD1tdFt7qdByWuNR62Aydk0SNb1kjxRYWPdqpLl1D2SMlq5V0pz2yNIma7PQLRfXPa68LKd5NAMKLy9tLBXdPSas40mlMBfgUZ0xS5vquF2ty7m5LY67S3XOc1XfRLvSyitNuEX_sFnO5b3nOaNpQeyWw4nmCg12W-luyoBYilsoTYwaY238bs4ipdautUWcUyp2RBQyXh8NFrm8Z276ptHZ-WLdwIX0ejdb2napgvjpIdeA4naFBhK3KR6KGzZ_mIL6sX2UNjtGk-dToc6GxooZzQo1MlPD1tHeoqC6dEv1aTMdVMcbVRr2XKZjMA2n20r3G0tZ70-mVXUwQ25VDxbCJN0iClchQ9tn5oJsbbTJcbKrzsPcpN1blMOgy6Kpru4H-DgLAu7ol5dle6CBfHroKLNhm6_18p2R3C7se3sJbfZjfyMGxfy2156X-ulGPeQALnAi21sV7SY8ps0JKCr9YIEGWDgaKFDLshVyi4OxbLT7fc0F7izHuzMtNNRQZI3qYtis5HtoxVsCZ68YJOfHVWHaXacHjI5Up7ns8rKx0svl2aE-DbV-ndsGSpc_IIZp5XsrbS_39HxuW3eNnTaCK18aOhPWh6BGpJLlYFdUzfnc7HXNalFd7Kdyb3TQF22jKE6Xxfl4ya8XDW2_zK19vB1OpWramYyLjk940jimddXusEpHsfsY1arSrHdwJqI22HTDbc87iN0danVEqzrdH_PT1rwy2HXq_cpOQN1O10JbAYnVybEtgLJjBUScjpSOfmAnUsECHaUcINdbp8ubeblhbep4N3MaVqEIEa-OdQ8Ucnl9u2b6jdLWtnoTVFw5rj_uFiWgVbleaKwM3dZKq6oVTqtudTYZ9uvzeTq_1MQey0_1FdSqzTqvLOfz9IRdiMKCZ_ZzY7L2e2ELBwFqiu15HfesHQiZneixHTXXCfMQrZvbotaa-mxL9XPzMC9tGNtyRguM5AMSSqtQO9SZOpKGw0Izl1PU8UIOmLAoDIaN3bxna1baaJaq49UShLm1vexVwqLeAZK_snU8KHszX9gT2a3WlI6Zn7BliQQHt15rFoz0xBpz-t7gRtX5UKqbu7E1BrWaPhqSAObyuw5f6vONSWu-qJpjDTQPvmI7qxW7Weed8rrrGP1lsF700FCeteohJpX0IGBJxRiTjttvpGvppldcTpo90TYFpAsbSKzcuCiNXcDnhsO2wU0qRnNVKhY74820UVB5tulsVsYU2LWcN9rVc4ZrirVBgT_4S6nebEO1YPd3Rm48tcU5h6d5i3MLvrwSg-baYYxa3zt08qE5x8Q64vYxFwrD7trt-4VJ2VtXG0OtqmqD9KJf5gttmZspat4tjtjmZDUe6I4vTfnuru4z4ST0pYW_3WybK1X3vSE3nbn1FWjWOLwoFiR8NAuTAWeN4aw4CDoeH24bjV1ghMO6pheZYpvg0rzb8eF4owvDID_pBG1jEYz3gqa3nMmk2m_o8gJs8LC4DHfybDzAXRt29DrMrZrOVi_PjHa7kBt4Y7WlrLs7ZW8Fwz4qip5YWVUbYrur4XA82c4ILrQIUQb5HgKDtdVcrmfzudsLF9PubDUK7NEYKpMCNwgAk65oxUKg73NzG6tLXQjTqtkPkREuXdVFdr9tGbrtz2eznRN2F-2pXN3AshEWqsWev59sek1nlgNTc8SG661d0tPjhtPPO1I6REJnyLVHoLRYOHBGRpOg71SEzXJkbovLMjeFu63HlB0710MTsWv3dst6dd7O481ukauJqNd3dgXVD8vrTS8nog0uictaWl_IqiW1yAgh39xPjMHcarMO6hwaHY0x8VovzOfNA-da_QMq-_LUbOrOvD2b1fW8qazKqwN7XOqtHVoeW6I6P_rdfmuL0VLTg3weFmajXFgH1XIzsIEU9FBhsu-v9VI9PeoZ5XLLGmKXaUmjoWnmG8UdlCqLyhpUlYIrVkB5rlRNtlNQDuM1HpF2vdEkmj_pW0RpiOx8hwmxBXPr1bpegPodggrriaAON4XhoT0rpUFR6i8CX27IeVPazor9UChU02inO-maWdmqdmOm6PbECI988TDrF8m8NFTb3tbChcNEKRVKh0OnIZfVHuxVhwvLZo_Fhj9ZdsWJP9VbB2vNHSUpXzDWFrcabKd6j_VgwKRHoF3zw3JFdRm9xhaXarM5SWNBGfnW-jAwj96szw5nsD1ftIsa6dXSg5GBW_PWbqKIKCTwoG-hUsHGrFKatWVzsvQGbQ43RzvCtczO8DiRxvPFpux4C360mZujNM6x3Z3CdHrBcFpihwpuqVbe64w1qz44yPKwR2oY2Mbw2K4xBHTcRYtd99kJ3DWP6rHpdD3Y1v1cGnrlcd2uVMr6uAMA6U50vnas5aGu9ebscTFvmoOKH5akUanlVwVV8BdyaciGg74xbXiC4qNSB6xy1Zm6MHyZt1Yhh7rpRad7MFcoPZUErMBNJWgfxHEOW21x0NR7PNMctvZlVKnV_E7YahKzPC2N-QNfdOZMfrjX2xBO3eXqUN7Z5XQRjYyCIedRH9tqpTO0O1YHLt3SeFSosJ7UYNlju2TXeNA9Sk1lUrGNPDOartsKl-tyvjZe6rv2bCbL8h_UKbLnKkwicuhM4mNfMQ6PPpXvxnEqimFaqn92xhPBI_ffnT4r88I78Mo7WKNOPnbCp71OOH_f4QUMaJgA5obULcLzZxJeyC--8k6q3eI-HT9_Hzg6of0WGA6f0XY-0vkFDChZHPcKMJ8sTrhX3CvUgSR18BXqYJI6eKHutkD4Cn2nM8FeePcKqTBJKhSesRi-Qmh0SMKzip723N_PwL4isdEW3ltE7LPKnPawvZCfu1cZ_pXKvCK8UWz8LSLpWWXQK1yNovrOTExkisOlXsj0CnXoufKhV5QXvUJbtLqYRCW9DB4tRCTAuVfYyD2Jb2wLvct5do9Q33gQ2tsOAnjTFpg_6XOEYDQXVol241xV77InJ7EDKqKHpuI5tOutLsSJ51BVcrk_HzBbcnTLDIy4rPP-n2ac9wJ3Cb05z06Gpy_1naNMb-bB45grmlKj0z2fvm3GF1ChHG_nOZcoXwCty2xiAvKxkU4BM88wluO_K4yTM1wS4QXwEeHj7qvnOFGZLYtXOCs-PqROoM_QnmFv0cJ7aEuoBEuFJFp4F-0F9hYtew9toVwoFOUkWvYu2gvsLVp0D60syVz-WSOgu2gvsLdouXtohaIgSUwSLXcX7QX2Fq1wDy1bZCXuGVrhLtoL7C1a8R5aiCCA5SRa8S7aC-wtWukeWoAABM8kQbqL9gIbLwcdPDdeAjk8qZoBnvS3Gt0HJIyituIJ8tNJ0SxzdcpzvAzyVEkDXmWHd7NHgaEvZmevsrN3swPhKntAbDOBIj749hFJ_vR0Bw1376jqJyzXYXlP2OLU1CX1Dlb-9cpd1k4eMRYeE-4gg69W8XqL0iO-QZT4WgXZuzijZSjFtT3XOX8ENVqWskmIqfOx4Sdj7OMd9UD9J9jqqb1tOcEfn-KVkYdcbrfbZXds1vX1HGQYJhds9U9UKl7s-eMTBZlPVOq0wnN5itZ9_vhEKRvfJ05YiAz-JyoVrXTk3f0fnygmxaQgx0f_n6j__sfDoZFS__hEtSDDZXmeBhLKsgiLtEgzNEODDABZFtLxtQmgSANWyrKA5kEEfcqUhM6coQGf5SU6ysQxWRad8siPwGcc8bsT6jiDxfNZFmWiK_eEmb6px6kOAIrziIhcRMV__xM1zn-fWBZ90PPOoem_RmsDSchyIg2glGV4GiCeBoCxMkDKcCDLQwy4rATp0zWin8lAKSuKNNMUxBNoDEcD6TkozdAxcAwqiBaQ6BeQ0hekcQUE0YrhMveRnmowbwFWoAGPshA-cofJoKyA6OjSBADSELJZkaMlkI2qwEuPPGdo8ZK5ycIs4GiAUJwG2awgXsGd8wIpRsijGJaFWRjJgPRUMn1VsgSiUgFC81aEFjFX4iNmRAPwY8BfixRPM2MWGjeJDA34KhDRmL_RgggUiVXAwSsBPpUyb0Ek0qJ4BS7SopERt2ISg8QbGfG6sAzgDXEswESttqIhXpVzwv-KrD99H-6XlXjIMFlBoDk2K0oyYNgsFOjzz4mRkQWAyMiALCPIgEF09H8WUxS9VRgasTTkI8URYr3hpSzL0xLKAkFmIc1eZBWwkSGDGPBxa56bNWprxGchwCzIioA-XU85WJCFGYgibQAMyiL28nOuQJaTMhCd6i3S55_zuyvC5jZgaYnNCkAGXFaU6NP1XANJzMKoIkwkRviqwpnT_VV1MxDEFo7LMkKBh1kknSwzjSL5RPEPFLEYycVFwoUsI2VE0chKWBSzLEefrue3YgQAOVkUsyJPn65n6QJs1BAACVk-0hyGFngMIA3gqdoZADMAypeUk-BHQPOWxNOAYeQrYFpEUVnXwCeguc3Q3NfwRqAcP7dFMfNVWCCiGO_LWvH0halfVysATyOmihj5ifmxvHP8GDIMvk6N76sQ8InUDODHHH-LIEYbNXlk8zgxK3BWBvJZRoivNxgyEGZ5lmasDIyEOYNQBqFnAJBmmpHQISnLCmOOn7eiJwFaHMxwkBYZWozImNtA4GkoViNp5Vkrw_IZNhonZCDTjGoFRJBlxYi2k5EGEZFX4hPfJ2Tta3y-fHDlOZf_pOO4qrMfHCg-Ic5p1Kb4f3nnr9Q_7WF560QCTWmWuzvvZolDrhRGxTzHqRkVEDbDsQRmFoBXMwqSVLRAAkBIeeP8w_NCOCQwmsiqGY4IiwwnKSSDAeAykqgCTmEEVUDwjdMWzwvBKgDCQoEZDUtChhNVkMGSqmQ4IEnMQhB5ZaFQ512LgWIQG4-JH8QBSvEBIj6x3ZAUXEcz9dPk9f8B5f722auBAAA",
     "builderUrl": null,
-    "updatedAt": "2026-11-07T15:34:15.113Z",
-    "segmentId": "22355f55-57d2-47f8-9794-5256877573e4",
-    "segmentTitle": "Flywheel · Ad: flywheel_lumen-photo-upgrade-buyers_family-cleanup",
-    "abTestId": "4b5742e2-5dec-4c39-920a-54253c4510e7",
-    "abTestTitle": "Flywheel: current vs matched paywall (Family photo glow-up)"
+    "configAt": "2026-11-07T17:58:51.958Z",
+    "updatedAt": "2026-11-07T17:58:51.958Z"
    }
   }
  }

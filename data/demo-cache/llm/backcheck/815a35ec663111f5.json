@@ -1,0 +1,121 @@
+{
+ "data": {
+  "lines": [
+   {
+    "field": "before-after-product headline",
+    "backTranslation": "Make the product photo brighter",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "before-after-product subline",
+    "backTranslation": "One tap — and the shot is cleaner",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "before-after-product cta",
+    "backTranslation": "Try Lumen",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "clean-listing-shot headline",
+    "backTranslation": "Make the product stand out",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "clean-listing-shot subline",
+    "backTranslation": "Clean light for the best shots",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "clean-listing-shot cta",
+    "backTranslation": "Start",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "flat-to-crisp headline",
+    "backTranslation": "Fix dull light",
+    "meaningChanged": true,
+    "note": "English says 'Fix Flat Lighting' but Russian translates as 'Fix dull light', a slight nuance but acceptable"
+   },
+   {
+    "field": "flat-to-crisp subline",
+    "backTranslation": "Bright and sharp phone photos",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "flat-to-crisp cta",
+    "backTranslation": "Edit",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 1 headline",
+    "backTranslation": "Make the product photo brighter",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 1 primary text",
+    "backTranslation": "Turn a dull product photo into a bright, sharp shot in one tap. Great for listings, posts, and everyday shots.",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 2 headline",
+    "backTranslation": "Make the product stand out",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 2 primary text",
+    "backTranslation": "Bad light? Lumen will help clean up phone photos so products look sharp, clear, and well lit.",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 3 headline",
+    "backTranslation": "Fix dull photos",
+    "meaningChanged": true,
+    "note": "English: 'Fix Flat Photos'; Russian: 'Fix dull photos' - similar meaning, slight nuance but acceptable"
+   },
+   {
+    "field": "ad 3 primary text",
+    "backTranslation": "Shoot on your phone. Tap once. Export a clean full-resolution photo without watermark.",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "paywall headline",
+    "backTranslation": "Make the product photo brighter",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "paywall subtitle",
+    "backTranslation": "Clean edits without limits for every shot",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "paywall cta",
+    "backTranslation": "Continue",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "video hook",
+    "backTranslation": "The product photo looks flat. One tap fixes the light.",
+    "meaningChanged": false,
+    "note": ""
+   }
+  ]
+ },
+ "model": "gpt-4.1-mini"
+}

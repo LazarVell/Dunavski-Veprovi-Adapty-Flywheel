@@ -12,6 +12,33 @@ export const ConceptSchema = z.object({
   cta: z.string().describe("max 3 words"),
 });
 
+export type Concept = z.infer<typeof ConceptSchema>;
+
+/** One banner changed as the user asked: words, picture, or both. */
+export const BannerEditSchema = z.object({
+  headline: z.string().describe("max 6 words; unchanged unless the request is about the words"),
+  subline: z.string().describe("max 12 words; unchanged unless the request is about the words"),
+  cta: z.string().describe("max 3 words; unchanged unless the request is about the words"),
+  imageEdit: z
+    .string()
+    .describe("instruction for an image editor that changes the existing photo, 1-2 sentences; empty string when the picture stays as it is"),
+  visualPrompt: z.string().describe("full description of the photo after the change; identical to the current one when the picture stays"),
+  summary: z.string().describe("one short sentence for the user saying what changed"),
+});
+export type BannerEdit = z.infer<typeof BannerEditSchema>;
+
+/** All banners rewritten to follow the growth lead's instructions. */
+export const BannersRewriteSchema = z.object({
+  concepts: z.array(
+    z.object({ id: z.string(), headline: z.string(), subline: z.string(), cta: z.string(), visualPrompt: z.string() }),
+  ),
+  summary: z.string().describe("one short sentence for the user saying what changed"),
+});
+
+export const BannerCopySchema = z.object({
+  concepts: z.array(z.object({ id: z.string(), headline: z.string(), subline: z.string(), cta: z.string() })),
+});
+
 export const CampaignSchema = z.object({
   name: z.string(),
   brief: z.object({
