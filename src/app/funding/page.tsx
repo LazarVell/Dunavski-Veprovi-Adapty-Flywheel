@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { Area, AreaChart, CartesianGrid, Legend, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { PageHead, Panel, Tag, usd } from "@/components/ui";
-import { DEFAULTS, PAID_CHANNELS, channelEconomics, simulate, F, type Settings, type Channel } from "@/lib/funding";
+import { DEFAULTS, PAID_CHANNELS, ADVANCE_FEE_RANGE, channelEconomics, simulate, F, type Settings, type Channel } from "@/lib/funding";
 import { CHANNEL_LABEL } from "@/lib/insights";
 
 function Num({ label, value, onChange, step = 1, prefix = "$", suffix = "", hint }: {
@@ -67,12 +67,13 @@ export default function FundingPage() {
           <div className="mt-1 font-display text-4xl font-extrabold tabular-nums text-money">{usd(sim.unpaid.advanceMax)}</div>
           <div className="mt-2 text-sm text-ink-3">
             {Math.round(s.advanceRate * 100)}% of {usd(sim.unpaid.net)} after the {Math.round(s.storeFee * 100)}% store fee. Repaid from those payouts.
+            Taking all of it costs {usd(sim.unpaid.advanceMax * ADVANCE_FEE_RANGE[0])}–{usd(sim.unpaid.advanceMax * ADVANCE_FEE_RANGE[1])}.
           </div>
         </Panel>
         <Panel>
           <div className="text-sm text-ink-2">This campaign uses</div>
           <div className="mt-1 font-display text-4xl font-extrabold tabular-nums">{usd(sim.advance)}</div>
-          <div className="mt-2 text-sm text-ink-3">Fee {usd(sim.fee)} at {(s.advanceFee * 100).toFixed(1)}%. Buys {Math.round(sim.usersYes - sim.usersNo).toLocaleString()} more installs now.</div>
+          <div className="mt-2 text-sm text-ink-3">Fee {usd(sim.fee)} at {(s.advanceFee * 100).toFixed(1)}% (Adapty&apos;s range: {usd(sim.advance * ADVANCE_FEE_RANGE[0])}–{usd(sim.advance * ADVANCE_FEE_RANGE[1])}). Buys {Math.round(sim.usersYes - sim.usersNo).toLocaleString()} more installs now.</div>
         </Panel>
       </section>
 
@@ -106,7 +107,7 @@ export default function FundingPage() {
           <div className="mt-3 space-y-3">
             <Num label="Campaign budget" value={s.budget} step={1000} onChange={(v) => set("budget", v)} />
             <Num label="Cash on hand for ads" value={s.cashOnHand} step={1000} onChange={(v) => set("cashOnHand", v)} />
-            <Num label="Advance fee" prefix="" suffix="%" step={0.1} value={+(s.advanceFee * 100).toFixed(2)} onChange={(v) => set("advanceFee", v / 100)} hint="Adapty doesn't publish its fee; 2.5% is RevenueCat's published rate." />
+            <Num label="Advance fee" prefix="" suffix="%" step={0.1} value={+(s.advanceFee * 100).toFixed(2)} onChange={(v) => set("advanceFee", v / 100)} hint="Adapty Finance publishes a flat 2.5%–3.25% per advance, depending on the app (adapty.io/finance)." />
             <Num label="Store fee" prefix="" suffix="%" value={Math.round(s.storeFee * 100)} onChange={(v) => set("storeFee", v / 100)} />
           </div>
         </Panel>

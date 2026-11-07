@@ -3,6 +3,7 @@ import { PageHead, Panel, Tag } from "@/components/ui";
 import { CARDS, I, COUNTRY_NAME } from "@/lib/insights";
 import { ChannelChart, EditsChart, MarketChart } from "@/components/InsightCharts";
 import { NarrationProvider, SoWhat } from "@/components/SoWhat";
+import { AbCheck } from "@/components/AbCheck";
 import { LANGS, marketFor, suggestedDataLangs, notSuggestedDataLangs } from "@/lib/languages";
 
 const CHART: Record<string, React.ReactNode> = {
@@ -27,10 +28,9 @@ export default function InsightsPage() {
 
       <div className="grid gap-5 lg:grid-cols-2">
         {CARDS.map((c) => (
-          <Panel key={c.id} className={c.kind === "alert" ? "border-warn/40 bg-warn-soft/40" : undefined}>
+          <Panel key={c.id}>
             <div className="flex items-center justify-between gap-3">
               <h2 className="text-sm font-semibold text-ink-2">{c.title}</h2>
-              {c.kind === "alert" ? <Tag tone="warn">Check this test</Tag> : null}
             </div>
             <p className="mt-2 font-display text-xl font-bold leading-snug">{c.headline}</p>
             {CHART[c.id] ? <div className="mt-3">{CHART[c.id]}</div> : null}
@@ -44,9 +44,11 @@ export default function InsightsPage() {
         ))}
       </div>
 
+      <AbCheck />
+
       <Panel className="mt-5">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
-          <h2 className="text-xl font-bold">Which languages to write in first</h2>
+          <h2 className="text-xl font-bold">Which markets to focus on first?</h2>
           <span className="text-sm text-ink-3">Revenue per user by the user&apos;s app language (app average {`$${avg.toFixed(2)}`})</span>
         </div>
         <div className="mt-4 grid gap-x-8 gap-y-1 sm:grid-cols-2">
@@ -92,7 +94,8 @@ export default function InsightsPage() {
         </div>
       </Panel>
 
-      <Panel className="mt-5 flex flex-wrap items-center justify-between gap-4 bg-ink text-white">
+      {/* not a Panel: its bg-surface would win over bg-ink and hide the white text */}
+      <section className="mt-5 flex flex-wrap items-center justify-between gap-4 rounded-xl bg-ink p-5 text-white">
         <div className="max-w-xl">
           <h2 className="text-xl font-bold">Hand-off to Creative Studio</h2>
           <p className="mt-1 text-sm text-white/75">
@@ -103,7 +106,7 @@ export default function InsightsPage() {
         <Link href="/studio" className="rounded-lg bg-white px-4 py-2 text-sm font-semibold text-ink hover:bg-white/90">
           Make the campaign
         </Link>
-      </Panel>
+      </section>
     </NarrationProvider>
   );
 }

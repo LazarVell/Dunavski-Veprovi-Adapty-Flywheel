@@ -15,7 +15,8 @@
   "revenue": 224282,
   "revenueShare": 100,
   "refundRate": 7.1,
-  "billingIssueRate": 2.2
+  "billingIssueRate": 2.2,
+  "refundDollarShare": 2.9
  },
  "channels": [
   {
@@ -27,7 +28,8 @@
    "revenue": 30317,
    "revenueShare": 13.5,
    "refundRate": 4.9,
-   "billingIssueRate": 1.4
+   "billingIssueRate": 1.4,
+   "refundDollarShare": 2.3
   },
   {
    "key": "organic",
@@ -38,7 +40,8 @@
    "revenue": 93700,
    "revenueShare": 41.8,
    "refundRate": 6,
-   "billingIssueRate": 2.4
+   "billingIssueRate": 2.4,
+   "refundDollarShare": 2.2
   },
   {
    "key": "google_uac",
@@ -49,7 +52,8 @@
    "revenue": 39101,
    "revenueShare": 17.4,
    "refundRate": 6.6,
-   "billingIssueRate": 2.6
+   "billingIssueRate": 2.6,
+   "refundDollarShare": 2.1
   },
   {
    "key": "meta_ads",
@@ -60,7 +64,8 @@
    "revenue": 41018,
    "revenueShare": 18.3,
    "refundRate": 7.3,
-   "billingIssueRate": 2
+   "billingIssueRate": 2,
+   "refundDollarShare": 3.4
   },
   {
    "key": "tiktok_ads",
@@ -71,7 +76,8 @@
    "revenue": 20146,
    "revenueShare": 9,
    "refundRate": 15.5,
-   "billingIssueRate": 2.3
+   "billingIssueRate": 2.3,
+   "refundDollarShare": 7.2
   }
  ],
  "countries": [
@@ -84,7 +90,8 @@
    "revenue": 7367,
    "revenueShare": 3.3,
    "refundRate": 8,
-   "billingIssueRate": 0.7
+   "billingIssueRate": 0.7,
+   "refundDollarShare": 3.3
   },
   {
    "key": "US",
@@ -95,7 +102,8 @@
    "revenue": 91752,
    "revenueShare": 40.9,
    "refundRate": 7.4,
-   "billingIssueRate": 1.8
+   "billingIssueRate": 1.8,
+   "refundDollarShare": 2.8
   },
   {
    "key": "DE",
@@ -106,7 +114,8 @@
    "revenue": 22879,
    "revenueShare": 10.2,
    "refundRate": 8.5,
-   "billingIssueRate": 3
+   "billingIssueRate": 3,
+   "refundDollarShare": 3.7
   },
   {
    "key": "SE",
@@ -117,7 +126,8 @@
    "revenue": 6305,
    "revenueShare": 2.8,
    "refundRate": 3.3,
-   "billingIssueRate": 0
+   "billingIssueRate": 0,
+   "refundDollarShare": 1.9
   },
   {
    "key": "GB",
@@ -128,7 +138,8 @@
    "revenue": 22196,
    "revenueShare": 9.9,
    "refundRate": 7.2,
-   "billingIssueRate": 1.6
+   "billingIssueRate": 1.6,
+   "refundDollarShare": 2.8
   },
   {
    "key": "CA",
@@ -139,7 +150,8 @@
    "revenue": 12233,
    "revenueShare": 5.5,
    "refundRate": 6.1,
-   "billingIssueRate": 2.4
+   "billingIssueRate": 2.4,
+   "refundDollarShare": 3.2
   },
   {
    "key": "AU",
@@ -150,7 +162,8 @@
    "revenue": 8073,
    "revenueShare": 3.6,
    "refundRate": 6.9,
-   "billingIssueRate": 1.7
+   "billingIssueRate": 1.7,
+   "refundDollarShare": 1.5
   },
   {
    "key": "FR",
@@ -161,7 +174,8 @@
    "revenue": 13493,
    "revenueShare": 6,
    "refundRate": 8.3,
-   "billingIssueRate": 1.4
+   "billingIssueRate": 1.4,
+   "refundDollarShare": 2.6
   },
   {
    "key": "JP",
@@ -172,7 +186,8 @@
    "revenue": 9977,
    "revenueShare": 4.4,
    "refundRate": 6.7,
-   "billingIssueRate": 2.5
+   "billingIssueRate": 2.5,
+   "refundDollarShare": 2.2
   },
   {
    "key": "RS",
@@ -183,7 +198,8 @@
    "revenue": 6201,
    "revenueShare": 2.8,
    "refundRate": 5,
-   "billingIssueRate": 1.2
+   "billingIssueRate": 1.2,
+   "refundDollarShare": 1.3
   },
   {
    "key": "PL",
@@ -194,7 +210,8 @@
    "revenue": 6105,
    "revenueShare": 2.7,
    "refundRate": 8.4,
-   "billingIssueRate": 1.6
+   "billingIssueRate": 1.6,
+   "refundDollarShare": 3.7
   },
   {
    "key": "BR",
@@ -205,7 +222,8 @@
    "revenue": 8046,
    "revenueShare": 3.6,
    "refundRate": 3.6,
-   "billingIssueRate": 4.6
+   "billingIssueRate": 4.6,
+   "refundDollarShare": 2.4
   },
   {
    "key": "MX",
@@ -216,7 +234,8 @@
    "revenue": 4446,
    "revenueShare": 2,
    "refundRate": 9.8,
-   "billingIssueRate": 3.1
+   "billingIssueRate": 3.1,
+   "refundDollarShare": 6.5
   },
   {
    "key": "TR",
@@ -227,7 +246,8 @@
    "revenue": 1747,
    "revenueShare": 0.8,
    "refundRate": 4.7,
-   "billingIssueRate": 6.5
+   "billingIssueRate": 6.5,
+   "refundDollarShare": 2.4
   },
   {
    "key": "IN",
@@ -238,7 +258,8 @@
    "revenue": 3462,
    "revenueShare": 1.5,
    "refundRate": 8,
-   "billingIssueRate": 4.5
+   "billingIssueRate": 4.5,
+   "refundDollarShare": 2.1
   }
  ],
  "languages": [
@@ -251,7 +272,8 @@
    "revenue": 7367,
    "revenueShare": 3.3,
    "refundRate": 8,
-   "billingIssueRate": 0.7
+   "billingIssueRate": 0.7,
+   "refundDollarShare": 3.3
   },
   {
    "key": "de",
@@ -262,7 +284,8 @@
    "revenue": 22879,
    "revenueShare": 10.2,
    "refundRate": 8.5,
-   "billingIssueRate": 3
+   "billingIssueRate": 3,
+   "refundDollarShare": 3.7
   },
   {
    "key": "en",
@@ -273,7 +296,8 @@
    "revenue": 134254,
    "revenueShare": 59.9,
    "refundRate": 7.2,
-   "billingIssueRate": 1.8
+   "billingIssueRate": 1.8,
+   "refundDollarShare": 2.8
   },
   {
    "key": "sv",
@@ -284,7 +308,8 @@
    "revenue": 6305,
    "revenueShare": 2.8,
    "refundRate": 3.3,
-   "billingIssueRate": 0
+   "billingIssueRate": 0,
+   "refundDollarShare": 1.9
   },
   {
    "key": "fr",
@@ -295,7 +320,8 @@
    "revenue": 13493,
    "revenueShare": 6,
    "refundRate": 8.3,
-   "billingIssueRate": 1.4
+   "billingIssueRate": 1.4,
+   "refundDollarShare": 2.6
   },
   {
    "key": "ja",
@@ -306,7 +332,8 @@
    "revenue": 9977,
    "revenueShare": 4.4,
    "refundRate": 6.7,
-   "billingIssueRate": 2.5
+   "billingIssueRate": 2.5,
+   "refundDollarShare": 2.2
   },
   {
    "key": "sr",
@@ -317,7 +344,8 @@
    "revenue": 6201,
    "revenueShare": 2.8,
    "refundRate": 5,
-   "billingIssueRate": 1.2
+   "billingIssueRate": 1.2,
+   "refundDollarShare": 1.3
   },
   {
    "key": "pl",
@@ -328,7 +356,8 @@
    "revenue": 6105,
    "revenueShare": 2.7,
    "refundRate": 8.4,
-   "billingIssueRate": 1.6
+   "billingIssueRate": 1.6,
+   "refundDollarShare": 3.7
   },
   {
    "key": "pt",
@@ -339,7 +368,8 @@
    "revenue": 8046,
    "revenueShare": 3.6,
    "refundRate": 3.6,
-   "billingIssueRate": 4.6
+   "billingIssueRate": 4.6,
+   "refundDollarShare": 2.4
   },
   {
    "key": "es",
@@ -350,7 +380,8 @@
    "revenue": 4446,
    "revenueShare": 2,
    "refundRate": 9.8,
-   "billingIssueRate": 3.1
+   "billingIssueRate": 3.1,
+   "refundDollarShare": 6.5
   },
   {
    "key": "tr",
@@ -361,7 +392,8 @@
    "revenue": 1747,
    "revenueShare": 0.8,
    "refundRate": 4.7,
-   "billingIssueRate": 6.5
+   "billingIssueRate": 6.5,
+   "refundDollarShare": 2.4
   },
   {
    "key": "hi",
@@ -372,7 +404,8 @@
    "revenue": 3462,
    "revenueShare": 1.5,
    "refundRate": 8,
-   "billingIssueRate": 4.5
+   "billingIssueRate": 4.5,
+   "refundDollarShare": 2.1
   }
  ],
  "goals": [
@@ -385,7 +418,8 @@
    "revenue": 50721,
    "revenueShare": 22.6,
    "refundRate": 6.3,
-   "billingIssueRate": 2
+   "billingIssueRate": 2,
+   "refundDollarShare": 2.3
   },
   {
    "key": "family",
@@ -396,7 +430,8 @@
    "revenue": 44780,
    "revenueShare": 20,
    "refundRate": 6,
-   "billingIssueRate": 2.2
+   "billingIssueRate": 2.2,
+   "refundDollarShare": 3.1
   },
   {
    "key": "travel",
@@ -407,7 +442,8 @@
    "revenue": 44282,
    "revenueShare": 19.7,
    "refundRate": 5.1,
-   "billingIssueRate": 2.7
+   "billingIssueRate": 2.7,
+   "refundDollarShare": 2.2
   },
   {
    "key": "selfies",
@@ -418,7 +454,8 @@
    "revenue": 42712,
    "revenueShare": 19,
    "refundRate": 9.4,
-   "billingIssueRate": 1.7
+   "billingIssueRate": 1.7,
+   "refundDollarShare": 3.5
   },
   {
    "key": "social_content",
@@ -429,7 +466,8 @@
    "revenue": 41787,
    "revenueShare": 18.6,
    "refundRate": 8.9,
-   "billingIssueRate": 2.6
+   "billingIssueRate": 2.6,
+   "refundDollarShare": 3.5
   }
  ],
  "placements": [
@@ -442,7 +480,8 @@
    "revenue": 55519,
    "revenueShare": 24.8,
    "refundRate": 2.3,
-   "billingIssueRate": 0
+   "billingIssueRate": 0,
+   "refundDollarShare": 2.4
   },
   {
    "key": "settings_upgrade",
@@ -453,7 +492,8 @@
    "revenue": 20793,
    "revenueShare": 9.3,
    "refundRate": 2.6,
-   "billingIssueRate": 0.3
+   "billingIssueRate": 0.3,
+   "refundDollarShare": 2
   },
   {
    "key": "main",
@@ -464,7 +504,8 @@
    "revenue": 54657,
    "revenueShare": 24.4,
    "refundRate": 4.7,
-   "billingIssueRate": 1.7
+   "billingIssueRate": 1.7,
+   "refundDollarShare": 3.1
   },
   {
    "key": "onboarding",
@@ -475,7 +516,8 @@
    "revenue": 90306,
    "revenueShare": 40.3,
    "refundRate": 10.9,
-   "billingIssueRate": 3.5
+   "billingIssueRate": 3.5,
+   "refundDollarShare": 3.2
   },
   {
    "key": "win_back",
@@ -486,7 +528,8 @@
    "revenue": 3007,
    "revenueShare": 1.3,
    "refundRate": 8.3,
-   "billingIssueRate": 3.5
+   "billingIssueRate": 3.5,
+   "refundDollarShare": 4.9
   }
  ],
  "segments": [
@@ -499,7 +542,8 @@
    "revenue": 7786,
    "revenueShare": 3.5,
    "refundRate": 3.8,
-   "billingIssueRate": 0.6
+   "billingIssueRate": 0.6,
+   "refundDollarShare": 3.2
   },
   {
    "key": "family × apple_search_ads",
@@ -510,7 +554,8 @@
    "revenue": 6923,
    "revenueShare": 3.1,
    "refundRate": 3.6,
-   "billingIssueRate": 0
+   "billingIssueRate": 0,
+   "refundDollarShare": 0.9
   },
   {
    "key": "travel × apple_search_ads",
@@ -521,7 +566,8 @@
    "revenue": 5525,
    "revenueShare": 2.5,
    "refundRate": 4,
-   "billingIssueRate": 4
+   "billingIssueRate": 4,
+   "refundDollarShare": 1.4
   },
   {
    "key": "selfies × apple_search_ads",
@@ -532,7 +578,8 @@
    "revenue": 5293,
    "revenueShare": 2.4,
    "refundRate": 8.7,
-   "billingIssueRate": 1.7
+   "billingIssueRate": 1.7,
+   "refundDollarShare": 3.2
   },
   {
    "key": "social_content × apple_search_ads",
@@ -543,7 +590,8 @@
    "revenue": 4791,
    "revenueShare": 2.1,
    "refundRate": 5.4,
-   "billingIssueRate": 0.9
+   "billingIssueRate": 0.9,
+   "refundDollarShare": 2.8
   },
   {
    "key": "product_photos × organic",
@@ -554,7 +602,8 @@
    "revenue": 19582,
    "revenueShare": 8.7,
    "refundRate": 5.3,
-   "billingIssueRate": 1.4
+   "billingIssueRate": 1.4,
+   "refundDollarShare": 1.5
   },
   {
    "key": "travel × organic",
@@ -565,7 +614,8 @@
    "revenue": 19275,
    "revenueShare": 8.6,
    "refundRate": 4,
-   "billingIssueRate": 3.1
+   "billingIssueRate": 3.1,
+   "refundDollarShare": 1.3
   },
   {
    "key": "selfies × organic",
@@ -576,7 +626,8 @@
    "revenue": 18244,
    "revenueShare": 8.1,
    "refundRate": 8.3,
-   "billingIssueRate": 1.9
+   "billingIssueRate": 1.9,
+   "refundDollarShare": 3.5
   }
  ],
  "push": [
@@ -589,7 +640,8 @@
    "revenue": 147701,
    "revenueShare": 65.9,
    "refundRate": 7.6,
-   "billingIssueRate": 2.2
+   "billingIssueRate": 2.2,
+   "refundDollarShare": 2.9
   },
   {
    "key": "no push",
@@ -600,7 +652,8 @@
    "revenue": 76582,
    "revenueShare": 34.1,
    "refundRate": 6.2,
-   "billingIssueRate": 2.2
+   "billingIssueRate": 2.2,
+   "refundDollarShare": 2.8
   }
  ],
  "aiEdits": [
@@ -613,7 +666,8 @@
    "revenue": 12423,
    "revenueShare": 5.5,
    "refundRate": 10.3,
-   "billingIssueRate": 3.7
+   "billingIssueRate": 3.7,
+   "refundDollarShare": 3
   },
   {
    "key": "1-2",
@@ -624,7 +678,8 @@
    "revenue": 56144,
    "revenueShare": 25,
    "refundRate": 7.1,
-   "billingIssueRate": 2.2
+   "billingIssueRate": 2.2,
+   "refundDollarShare": 2.7
   },
   {
    "key": "3-4",
@@ -635,7 +690,8 @@
    "revenue": 52572,
    "revenueShare": 23.4,
    "refundRate": 7.1,
-   "billingIssueRate": 2.2
+   "billingIssueRate": 2.2,
+   "refundDollarShare": 3.2
   },
   {
    "key": "5-7",
@@ -646,7 +702,8 @@
    "revenue": 67858,
    "revenueShare": 30.3,
    "refundRate": 7.1,
-   "billingIssueRate": 2
+   "billingIssueRate": 2,
+   "refundDollarShare": 3.3
   },
   {
    "key": "8-12",
@@ -657,7 +714,8 @@
    "revenue": 28785,
    "revenueShare": 12.8,
    "refundRate": 6.2,
-   "billingIssueRate": 2.3
+   "billingIssueRate": 2.3,
+   "refundDollarShare": 2.1
   },
   {
    "key": "13+",
@@ -668,7 +726,8 @@
    "revenue": 6501,
    "revenueShare": 2.9,
    "refundRate": 4.4,
-   "billingIssueRate": 1.5
+   "billingIssueRate": 1.5,
+   "refundDollarShare": 0.6
   }
  ],
  "aiEditsSplit": [
@@ -681,7 +740,8 @@
    "revenue": 121138,
    "revenueShare": 54,
    "refundRate": 7.5,
-   "billingIssueRate": 2.4
+   "billingIssueRate": 2.4,
+   "refundDollarShare": 2.9
   },
   {
    "key": "5+ edits",
@@ -692,7 +752,8 @@
    "revenue": 103144,
    "revenueShare": 46,
    "refundRate": 6.7,
-   "billingIssueRate": 2
+   "billingIssueRate": 2,
+   "refundDollarShare": 2.8
   }
  ],
  "abAudit": [
@@ -708,7 +769,8 @@
      "revenue": 59433,
      "revenueShare": 26.5,
      "refundRate": 11.5,
-     "billingIssueRate": 4.2
+     "billingIssueRate": 4.2,
+     "refundDollarShare": 3
     },
     {
      "key": "onb_trial",
@@ -719,11 +781,54 @@
      "revenue": 30874,
      "revenueShare": 13.8,
      "refundRate": 9.6,
-     "billingIssueRate": 2.2
+     "billingIssueRate": 2.2,
+     "refundDollarShare": 3.5
     }
    ],
    "leaderByPaidRate": "onb_weekly",
    "z": 17.6,
+   "tRevenue": 14.7,
+   "horizon": [
+    {
+     "day": 7,
+     "onb_weekly": 4.6,
+     "onb_weekly_n": 13038,
+     "onb_trial": 0.25,
+     "onb_trial_n": 12990
+    },
+    {
+     "day": 30,
+     "onb_weekly": 6.53,
+     "onb_weekly_n": 10385,
+     "onb_trial": 3.94,
+     "onb_trial_n": 10308
+    },
+    {
+     "day": 60,
+     "onb_weekly": 8.56,
+     "onb_weekly_n": 6944,
+     "onb_trial": 4.51,
+     "onb_trial_n": 6840
+    },
+    {
+     "day": 90,
+     "onb_weekly": 9.39,
+     "onb_weekly_n": 3475,
+     "onb_trial": 5.06,
+     "onb_trial_n": 3427
+    },
+    {
+     "day": 110,
+     "onb_weekly": 10.13,
+     "onb_weekly_n": 1232,
+     "onb_trial": 4.76,
+     "onb_trial_n": 1192
+    }
+   ],
+   "lifetimeShare": {
+    "onb_weekly": 0,
+    "onb_trial": 0
+   },
    "declaredWinner": null,
    "dataWinnerByRevenue": "onb_weekly",
    "suspicious": false
@@ -740,7 +845,8 @@
      "revenue": 10759,
      "revenueShare": 4.8,
      "refundRate": 4.2,
-     "billingIssueRate": 0.5
+     "billingIssueRate": 0.5,
+     "refundDollarShare": 3.2
     },
     {
      "key": "settings",
@@ -751,11 +857,54 @@
      "revenue": 10033,
      "revenueShare": 4.5,
      "refundRate": 0.6,
-     "billingIssueRate": 0
+     "billingIssueRate": 0,
+     "refundDollarShare": 0.6
     }
    ],
    "leaderByPaidRate": "main_lifetime",
    "z": 3.6,
+   "tRevenue": 1.5,
+   "horizon": [
+    {
+     "day": 7,
+     "settings": 10.5,
+     "settings_n": 1691,
+     "main_lifetime": 11.53,
+     "main_lifetime_n": 1628
+    },
+    {
+     "day": 30,
+     "settings": 10.96,
+     "settings_n": 1350,
+     "main_lifetime": 11.64,
+     "main_lifetime_n": 1276
+    },
+    {
+     "day": 60,
+     "settings": 10.8,
+     "settings_n": 929,
+     "main_lifetime": 12.6,
+     "main_lifetime_n": 854
+    },
+    {
+     "day": 90,
+     "settings": 12.67,
+     "settings_n": 482,
+     "main_lifetime": 12.76,
+     "main_lifetime_n": 422
+    },
+    {
+     "day": 110,
+     "settings": 14.93,
+     "settings_n": 159,
+     "main_lifetime": 12.34,
+     "main_lifetime_n": 138
+    }
+   ],
+   "lifetimeShare": {
+    "settings": 51.8,
+    "main_lifetime": 52.5
+   },
    "declaredWinner": "settings",
    "dataWinnerByRevenue": "main_lifetime",
    "suspicious": true
@@ -772,7 +921,8 @@
      "revenue": 16484,
      "revenueShare": 7.3,
      "refundRate": 3.2,
-     "billingIssueRate": 1
+     "billingIssueRate": 1,
+     "refundDollarShare": 3.2
     },
     {
      "key": "main",
@@ -783,11 +933,54 @@
      "revenue": 9768,
      "revenueShare": 4.4,
      "refundRate": 7.1,
-     "billingIssueRate": 2.6
+     "billingIssueRate": 2.6,
+     "refundDollarShare": 3.7
     }
    ],
    "leaderByPaidRate": "main_lifetime",
    "z": 2.6,
+   "tRevenue": 6.4,
+   "horizon": [
+    {
+     "day": 7,
+     "main_lifetime": 15.16,
+     "main_lifetime_n": 1954,
+     "main": 5.86,
+     "main_n": 1997
+    },
+    {
+     "day": 30,
+     "main_lifetime": 15.18,
+     "main_lifetime_n": 1575,
+     "main": 6.78,
+     "main_n": 1563
+    },
+    {
+     "day": 60,
+     "main_lifetime": 15.99,
+     "main_lifetime_n": 1031,
+     "main": 9.23,
+     "main_n": 1058
+    },
+    {
+     "day": 90,
+     "main_lifetime": 15.02,
+     "main_lifetime_n": 507,
+     "main": 10.04,
+     "main_n": 521
+    },
+    {
+     "day": 110,
+     "main_lifetime": 15.23,
+     "main_lifetime_n": 182,
+     "main": 12.12,
+     "main_n": 182
+    }
+   ],
+   "lifetimeShare": {
+    "main_lifetime": 44.3,
+    "main": 0
+   },
    "declaredWinner": null,
    "dataWinnerByRevenue": "main_lifetime",
    "suspicious": false
@@ -808,6 +1001,7 @@
    "revenueShare": 4.4,
    "refundRate": 6.7,
    "billingIssueRate": 2.5,
+   "refundDollarShare": 2.2,
    "suggested": true,
    "reason": "revenue share"
   },
@@ -821,6 +1015,7 @@
    "revenueShare": 2.7,
    "refundRate": 8.4,
    "billingIssueRate": 1.6,
+   "refundDollarShare": 3.7,
    "suggested": false,
    "reason": null
   },
@@ -834,6 +1029,7 @@
    "revenueShare": 1.5,
    "refundRate": 8,
    "billingIssueRate": 4.5,
+   "refundDollarShare": 2.1,
    "suggested": false,
    "reason": null
   }

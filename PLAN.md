@@ -20,7 +20,7 @@ The demo uses the Lumen app already seeded in the Adapty account (app id `e27c82
 **What it does:** reads the account's revenue data and explains, in plain English with numbers, which users and channels make money.
 - **Sources:** offline Lumen data (`adapty-seed-data-hack/data/offline/*.csv.gz`), plus `adapty analytics` CLI calls where the live account supports them.
 - **Findings for the demo:**
-  - Apple Search Ads users bring in about $15 each; TikTok users about $5, and 18% of TikTok payers refund.
+  - Apple Search Ads users bring in about $15 each; TikTok users about $5, and 15.5% of TikTok payers refund.
   - 5 or more AI edits on the first day is the strongest sign a user will pay.
   - The best-paying markets are NL, US, DE, SE and GB.
 - **Bonus alert:** the finished "Settings" A/B test probably declared the wrong winner.
@@ -44,7 +44,7 @@ The demo uses the Lumen app already seeded in the Adapty account (app id `e27c82
 ## 3. Funding: pay for the campaign with Adapty Finance
 **What it does:** shows how much the campaign costs, how much it can borrow against store revenue that's earned but not yet paid out, and when it pays back.
 - **Unpaid revenue:** estimated from `transactions.csv`. Apple pays roughly 33 days after its fiscal month closes.
-- **Advance:** up to 85% of that revenue, per Adapty's public page (https://adapty.io/finance/). The fee is a setting, defaulting to 2.5%. Adapty doesn't publish its fee; 2.5% is RevenueCat's published rate.
+- **Advance:** up to 85% of that revenue, per Adapty's public page (https://adapty.io/finance/). The fee is a setting, defaulting to 2.5%; Adapty publishes a flat 2.5%–3.25% per advance.
 - **Acquisition cost per channel:** typed in, because the seed data has no ad spend.
 - **Payback:** acquisition cost compared with 60-day revenue per user, giving a payback in days.
 - **Chart:** cash over time, with and without the advance.

@@ -7,8 +7,11 @@ import path from "node:path";
 /**
  * Thin wrapper over the Adapty Developer CLI (`adapty`), the same surface the Adapty agent skills use.
  * Runs the CLI's JS entry with this Node binary (no shell), so arguments are never shell-interpreted.
+ *
+ * Nothing here holds an Adapty id: the app is found by its title, placements by developer id,
+ * and flows, segments and A/B tests by name, so the same code runs on any account seeded with Lumen.
  */
-export const APP_ID = process.env.ADAPTY_APP_ID || "e27c8246-b940-45f0-a76e-5b119afbfa0a";
+const APP_TITLE = process.env.ADAPTY_APP_TITLE || "Lumen - AI Photo Editor (Hackathon)";
 
 function cliEntry(): string | null {
   const candidates = [
@@ -51,4 +54,61 @@ export function withTempJson<R>(obj: unknown, fn: (file: string) => Promise<R>):
   const file = path.join(os.tmpdir(), `flywheel-${Date.now()}-${Math.random().toString(36).slice(2)}.json`);
   fs.writeFileSync(file, JSON.stringify(obj));
   return fn(file).finally(() => fs.rmSync(file, { force: true }));
+}
+
+export function withTempFile<R>(data: Buffer, ext: string, fn: (file: string) => Promise<R>): Promise<R> {
+  const file = path.join(os.tmpdir(), `flywheel-${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`);
+  fs.writeFileSync(file, data);
+  return fn(file).finally(() => fs.rmSync(file, { force: true }));
+}
+
+/** The CLI wraps lists as {data: [...]}; single objects come back bare or as {data: {...}}. */
+const rows = <T>(r: { data?: T[] } | T[]): T[] => (Array.isArray(r) ? r : r.data ?? []);
+export const unwrap = <T>(r: T | { data: T }): T => (r && typeof r === "object" && "data" in (r as object) ? (r as { data: T }).data : (r as T));
+
+let appIdPromise: Promise<string> | null = null;
+
+/** The Lumen app's id: ADAPTY_APP_ID if set, otherwise looked up by title. */
+export function appId(): Promise<string> {
+  if (process.env.ADAPTY_APP_ID) return Promise.resolve(process.env.ADAPTY_APP_ID);
+  appIdPromise ??= adapty<{ data: { id: string; title: string }[] }>(["apps", "list"])
+    .then((r) => {
+      const app = rows(r).find((a) => a.title === APP_TITLE);
+      if (!app) throw new Error(`No app titled "${APP_TITLE}" in this Adapty account`);
+      return app.id;
+    })
+    .catch((e) => {
+      appIdPromise = null; // let the next request try again
+      throw e;
+    });
+  return appIdPromise;
+}
+
+export type FlowRow = { id: string; name: string; status: string };
+export type SegmentRow = { id: string; title: string };
+export type AbTestRow = {
+  ab_test_id: string; title: string; state: string; placement: { placement_id: string; title: string };
+  segment_ids: string[] | null; started_at: string | null; stopped_at: string | null;
+};
+
+export async function findFlowByName(app: string, name: string) {
+  const r = await adapty<{ data: FlowRow[] }>(["flows", "list", "--app", app]);
+  return rows(r).find((f) => f.name === name) ?? null;
+}
+
+export async function placementIdByDevId(app: string, developerId: string) {
+  const r = await adapty<{ data: { id: string; developer_id: string }[] }>(["placements", "list", "--app", app]);
+  const p = rows(r).find((x) => x.developer_id === developerId);
+  if (!p) throw new Error(`No placement "${developerId}" in the app`);
+  return p.id;
+}
+
+export async function findSegmentByTitle(app: string, title: string) {
+  const r = await adapty<{ data: SegmentRow[] }>(["segments", "list", "--app", app]);
+  return rows(r).find((s) => s.title === title) ?? null;
+}
+
+export async function listAbTests(app: string) {
+  const r = await adapty<{ data: AbTestRow[] }>(["ab-tests", "list", "--app", app]);
+  return rows(r);
 }

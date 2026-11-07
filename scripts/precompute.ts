@@ -8,7 +8,7 @@
  *         adapty-seed-data-hack/flows/main.json                           (paywall base for drafts)
  * Output: data/derived/*.json  (committed, so the app runs without the seed kit)
  *
- * Run: npm run precompute
+ * Run: npm run precompute   (SEED_DIR=/path/to/adapty-seed-data-hack if the kit lives elsewhere)
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -16,7 +16,7 @@ import zlib from "node:zlib";
 import { parse } from "csv-parse/sync";
 
 const ROOT = path.resolve(__dirname, "..");
-const SEED = path.join(ROOT, "adapty-seed-data-hack");
+const SEED = process.env.SEED_DIR ? path.resolve(process.env.SEED_DIR) : path.join(ROOT, "adapty-seed-data-hack");
 const OUT = path.join(ROOT, "data", "derived");
 fs.mkdirSync(OUT, { recursive: true });
 
@@ -45,8 +45,8 @@ const asOfMs = asOf.getTime();
 type U = {
   id: string; platform: string; country: string; lang: string; channel: string; goal: string; aiEdits: number;
   push: boolean; os: string; placement: string; flow: string; abTest: string; installMs: number; full: boolean;
-  paid: boolean; refunded: boolean; billingIssue: boolean; rev60: number; revAll: number;
-  txs: { dayIdx: number; usd: number; refunded: boolean }[];
+  paid: boolean; refunded: boolean; billingIssue: boolean; rev60: number; gross60: number; revAll: number;
+  txs: { dayIdx: number; usd: number; refunded: boolean; product: string }[];
 };
 
 const byUser = new Map<string, U>();
@@ -57,7 +57,7 @@ for (const r of users) {
     goal: r.onboarding_goal, aiEdits: Number(r.ai_edits_first_day), push: r.push_opt_in === "yes", os: r.os,
     placement: r.placement, flow: r.flow, abTest: r.ab_test, installMs,
     full: installMs <= asOfMs - WINDOW_DAYS * DAY,
-    paid: false, refunded: false, billingIssue: false, rev60: 0, revAll: 0, txs: [],
+    paid: false, refunded: false, billingIssue: false, rev60: 0, gross60: 0, revAll: 0, txs: [],
   });
 }
 for (const t of txs) {
@@ -66,13 +66,14 @@ for (const t of txs) {
   const usd = Number(t.price_usd);
   const dayIdx = Math.floor((Date.parse(t.purchased_at) - u.installMs) / DAY);
   const refunded = !!t.refunded_at;
-  u.txs.push({ dayIdx, usd, refunded });
+  u.txs.push({ dayIdx, usd, refunded, product: t.product });
   if (!refunded) u.revAll += usd;
   if (dayIdx < WINDOW_DAYS) {
     if (usd > 0) u.paid = true;
     if (usd > 0 && refunded) u.refunded = true;
     if (t.billing_issue_detected_at) u.billingIssue = true;
     if (!refunded) u.rev60 += usd;
+    u.gross60 += usd;
   }
 }
 const all = [...byUser.values()];
@@ -86,6 +87,8 @@ const pct = (n: number, d: number) => (d ? r1((100 * n) / d) : 0);
 type Stats = {
   key: string; users: number; payers: number; paidRate: number; revPerUser: number; revenue: number;
   revenueShare: number; refundRate: number; billingIssueRate: number;
+  /** share of gross 60-day revenue that refunds took back */
+  refundDollarShare: number;
 };
 const totalRev = cohort.reduce((s, u) => s + u.rev60, 0);
 const stats = (key: string, us: U[]): Stats => {
@@ -97,6 +100,7 @@ const stats = (key: string, us: U[]): Stats => {
     revenueShare: pct(revenue, totalRev),
     refundRate: pct(payers.filter((u) => u.refunded).length, payers.length),
     billingIssueRate: pct(payers.filter((u) => u.billingIssue).length, payers.length),
+    refundDollarShare: (() => { const g = us.reduce((a, u) => a + u.gross60, 0); return g ? r1(100 * (1 - revenue / g)) : 0; })(),
   };
 };
 const groupStats = (fn: (u: U) => string, us: U[] = cohort) => {
@@ -135,9 +139,39 @@ const abTests = [...new Set(cohort.map((u) => u.abTest).filter(Boolean))].map((n
     const p = (a.payers + b.payers) / (a.users + b.users);
     z = r1((p1 - p2) / Math.sqrt(p * (1 - p) * (1 / a.users + 1 / b.users)));
   }
-  return { name, variants, leaderByPaidRate: a?.key ?? null, z };
+  // Welch t-test on 60-day revenue per user: is the revenue gap real, or noise?
+  let tRevenue = 0;
+  if (a && b) {
+    const vals = (k: string) => us.filter((u) => u.flow === k).map((u) => u.rev60);
+    const [x, y] = [vals(a.key), vals(b.key)];
+    const mean = (v: number[]) => v.reduce((s, n) => s + n, 0) / v.length;
+    const vr = (v: number[], m: number) => v.reduce((s, n) => s + (n - m) ** 2, 0) / (v.length - 1);
+    const [mx, my] = [mean(x), mean(y)];
+    tRevenue = r1((mx - my) / Math.sqrt(vr(x, mx) / x.length + vr(y, my) / y.length));
+  }
+  // Revenue per user by day N since install, per arm, over every user of the test with N days of history.
+  // A one-time lifetime purchase lands early, renewals keep coming, so a 60-day read can overstate a lifetime arm.
+  const everyone = all.filter((u) => u.abTest === name);
+  const arms = [...new Set(everyone.map((u) => u.flow))];
+  const horizon = [7, 30, 60, 90, 110].map((day) => {
+    const row: Record<string, number> & { day: number } = { day };
+    for (const arm of arms) {
+      const el = everyone.filter((u) => u.flow === arm && u.installMs + day * DAY <= asOfMs);
+      row[arm] = el.length >= 100 ? r2(el.reduce((s, u) => s + u.txs.filter((t) => t.dayIdx < day && !t.refunded).reduce((q, t) => q + t.usd, 0), 0) / el.length) : NaN;
+      row[`${arm}_n`] = el.length;
+    }
+    return row;
+  });
+  const lifetimeShare = Object.fromEntries(arms.map((arm) => {
+    const net = (f: (t: U["txs"][number]) => boolean) =>
+      us.filter((u) => u.flow === arm).reduce((s, u) => s + u.txs.filter((t) => t.dayIdx < WINDOW_DAYS && !t.refunded && f(t)).reduce((q, t) => q + t.usd, 0), 0);
+    const tot = net(() => true);
+    return [arm, tot ? r1((100 * net((t) => t.product === "lifetime")) / tot) : 0];
+  }));
+  return { name, variants, leaderByPaidRate: a?.key ?? null, z, tRevenue, horizon, lifetimeShare };
 });
-// The seeded account's "Settings" test was completed with `settings` declared the winner.
+// The seeded account's "Settings" test was completed with `settings` declared the winner
+// (adapty-seed-data-hack/seed_adapty.py:201). Adapty's API shows the test as completed but doesn't return the winner.
 const DECLARED_WINNERS: Record<string, string> = { "Settings: upgrade vs lifetime anchor": "settings" };
 const abAudit = abTests.map((t) => {
   const declared = DECLARED_WINNERS[t.name] ?? null;

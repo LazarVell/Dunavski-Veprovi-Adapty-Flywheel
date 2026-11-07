@@ -47,9 +47,9 @@ type Cached<T> = { data: T; model: string };
 
 /**
  * One structured call, cached on disk per model.
- * For each model in the chain: use its cached result if there is one, otherwise call it.
- * So a result from a fallback model is reused while the better model is unavailable,
- * and replaced automatically once the better model answers.
+ * First pass: a cached result from any model in the chain wins (best model first), so the demo replays
+ * instantly and never goes live by accident just because a key is set. Second pass: call the models in order.
+ * `fresh: true` skips the cache and asks the best available model again.
  * The model only writes words: every number it may cite is passed in `user`, computed in code.
  */
 export async function generate<S extends z.ZodType>(opts: {
@@ -65,12 +65,15 @@ export async function generate<S extends z.ZodType>(opts: {
   const hasKey = !!process.env.OPENAI_API_KEY;
   let last: unknown = null;
 
-  for (const model of TEXT_MODELS) {
-    const key = keyFor(model);
-    if (!opts.fresh) {
+  if (!opts.fresh) {
+    for (const model of TEXT_MODELS) {
+      const key = keyFor(model);
       const hit = readCache<Cached<z.infer<S>>>(bucket, key);
       if (hit) return { data: hit.data, cached: true, key, model };
     }
+  }
+  for (const model of TEXT_MODELS) {
+    const key = keyFor(model);
     if (!hasKey) continue;
     try {
       const data = await callModel(model, opts);

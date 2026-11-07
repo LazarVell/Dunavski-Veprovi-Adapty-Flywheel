@@ -3,12 +3,13 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
 import { PageHead, Panel, Button, Tag, Spinner } from "@/components/ui";
 import { Banner, Scaled, FORMATS, type FormatKey } from "@/components/Banner";
-import { PaywallPreview } from "@/components/PaywallPreview";
+import { AdToPaywall } from "@/components/AdToPaywall";
+import type { AdPaywall } from "@/lib/ads";
 import { ALL_LANGS, langByKey, needsReview, marketFor, type Lang } from "@/lib/languages";
 import type { Campaign, Localized, BackCheck } from "@/lib/schemas";
 import { CHANNEL_LABEL, COUNTRY_NAME } from "@/lib/insights";
 
-type Stored = { id: string; prompt: string; campaign: Campaign; model?: string; unverified?: string[]; paywallFlow?: { flowId: string; name: string; locales: string[]; validation: string } };
+type Stored = { id: string; prompt: string; campaign: Campaign; model?: string; unverified?: string[] };
 type LocState = { status: "idle" | "loading" | "ready" | "error"; data?: Localized; model?: string; error?: string; check?: BackCheck; checking?: boolean };
 
 const DEFAULT_PROMPT = "Make a campaign for my paying users.";
@@ -32,8 +33,7 @@ export default function StudioPage() {
   const [visualBusy, setVisualBusy] = useState(false);
   const [live, setLive] = useState(false);
   const [fit, setFit] = useState<Record<string, { shrunk: boolean; overflow: boolean }>>({});
-  const [pwBusy, setPwBusy] = useState(false);
-  const [pwResult, setPwResult] = useState<string | null>(null);
+  const [adPaywalls, setAdPaywalls] = useState<Record<string, AdPaywall>>({});
   const [pack, setPack] = useState<{ busy: boolean; progress?: string; confirm?: boolean }>({ busy: false });
 
   const campaign = cur?.campaign;
@@ -46,6 +46,7 @@ export default function StudioPage() {
         setCur(j.current);
         setPrompt(j.current.prompt);
       }
+      setAdPaywalls(j.adapty?.adPaywalls ?? {});
     });
   }, []);
 
@@ -90,6 +91,7 @@ export default function StudioPage() {
     setErr(null);
     try {
       const r = await post<{ current: Stored }>("/api/campaign", { prompt, fresh });
+      if (r.current.id !== cur?.id) setAdPaywalls({}); // a new campaign means new ads
       setCur(r.current);
       setLang("en");
     } catch (e) {
@@ -121,23 +123,6 @@ export default function StudioPage() {
 
   function writeAll() {
     ALL_LANGS.forEach((l, i) => setTimeout(() => !locs[l.key] && loadLang(l.key), i * 150));
-  }
-
-  async function createPaywall() {
-    const ready = Object.entries(locs).filter(([, v]) => v.status === "ready" && v.data);
-    setPwBusy(true);
-    setPwResult(null);
-    try {
-      const r = await post<{ flowId: string; locales: string[]; validation: string }>("/api/paywall", {
-        create: true,
-        locales: ready.map(([k, v]) => ({ lang: k, localized: v.data })),
-      });
-      setPwResult(`Draft flow created in Adapty with ${r.locales.length} languages (${r.locales.join(", ")}). Validation: ${r.validation}. Flow id ${r.flowId}.`);
-    } catch (e) {
-      setPwResult(`Could not create the draft: ${(e as Error).message}`);
-    } finally {
-      setPwBusy(false);
-    }
   }
 
   async function exportPack(confirmed = false) {
@@ -382,9 +367,22 @@ export default function StudioPage() {
             </Panel>
           ) : null}
 
-          {/* Copy, script, paywall */}
+          {/* Ad -> its own paywall, wired in Adapty */}
           {loc ? (
-            <section className="mt-8 grid gap-5 xl:grid-cols-[1fr_1fr_340px]">
+            <AdToPaywall
+              campaign={campaign}
+              lang={L}
+              loc={loc}
+              ready={Object.entries(locs).filter(([, v]) => v.status === "ready" && v.data).map(([k, v]) => ({ lang: k, localized: v.data! }))}
+              visuals={visuals}
+              saved={adPaywalls}
+              onSaved={(p) => setAdPaywalls((s) => ({ ...s, [p.conceptId]: p }))}
+            />
+          ) : null}
+
+          {/* Copy, script */}
+          {loc ? (
+            <section className="mt-8 grid gap-5 xl:grid-cols-2">
               <Panel>
                 <h2 className="text-xl font-bold">Ad copy</h2>
                 <div className="mt-3 space-y-4" lang={L.htmlLang}>
@@ -413,21 +411,6 @@ export default function StudioPage() {
                   ))}
                 </ol>
                 <p className="mt-3 text-sm">CTA: <span className="font-semibold" lang={L.htmlLang}>{loc.videoScript.cta}</span></p>
-              </Panel>
-              <Panel>
-                <h2 className="text-xl font-bold">Matching paywall</h2>
-                <p className="mt-1 text-sm text-ink-2">Same promise as the ad, in the same language.</p>
-                <div className="mt-4">
-                  <PaywallPreview pw={loc.paywall} htmlLang={L.htmlLang} />
-                </div>
-                <Button kind="money" className="mt-4 w-full" onClick={createPaywall} disabled={pwBusy || !readyCount}>
-                  {pwBusy ? <Spinner /> : null}
-                  {pwBusy ? "Creating draft in Adapty…" : `Create draft in Adapty (${readyCount} language${readyCount === 1 ? "" : "s"})`}
-                </Button>
-                <p className="mt-2 text-xs text-ink-3">Creates a new flow as a draft. Nothing is published or shown to users.</p>
-                {pwResult || cur?.paywallFlow ? (
-                  <p className="mt-2 text-sm">{pwResult ?? `Draft “${cur!.paywallFlow!.name}” exists with ${cur!.paywallFlow!.locales.length} languages.`}</p>
-                ) : null}
               </Panel>
             </section>
           ) : null}

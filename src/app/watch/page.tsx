@@ -111,21 +111,21 @@ export default function WatchPage() {
           </Panel>
         </div>
 
-        <Panel className="bg-[#1d1c2b] text-white">
+        <Panel>
           <div className="flex items-center justify-between">
             <div className="font-semibold"># growth-alerts</div>
-            <span className="text-xs text-white/50">Slack</span>
+            <span className="text-xs text-ink-3">Slack</span>
           </div>
           <div className="mt-4 space-y-3">
-            {feed.length === 0 ? <p className="text-sm text-white/50">Alerts appear here and in your Slack channel as the weeks go by.</p> : null}
+            {feed.length === 0 ? <p className="text-sm text-ink-3">Alerts appear here and in your Slack channel as the weeks go by.</p> : null}
             {feed.map((a) => (
-              <div key={a.id} className={clsx("slack-in rounded-lg border-l-4 bg-white/5 p-3", a.level === "good" ? "border-[#2bb673]" : a.level === "warn" ? "border-[#f2a33a]" : "border-[#7aa7ff]")}>
-                <div className="flex items-center justify-between gap-2 text-xs text-white/50">
-                  <span className="font-semibold text-white/80">Flywheel</span>
+              <div key={a.id} className={clsx("slack-in rounded-lg border-l-4 bg-canvas p-3", a.level === "good" ? "border-[#2bb673]" : a.level === "warn" ? "border-[#f2a33a]" : "border-[#7aa7ff]")}>
+                <div className="flex items-center justify-between gap-2 text-xs text-ink-3">
+                  <span className="font-semibold text-ink">Flywheel</span>
                   <span>week {a.week} · {a.slack === "sent" ? "sent to Slack" : "preview (Slack not connected)"}</span>
                 </div>
                 <div className="mt-1 text-sm font-semibold">{a.title}</div>
-                <p className="mt-1 text-sm leading-relaxed text-white/80">{a.text}</p>
+                <p className="mt-1 text-sm leading-relaxed text-ink-2">{a.text}</p>
               </div>
             ))}
           </div>
@@ -133,11 +133,11 @@ export default function WatchPage() {
       </section>
 
       {week >= REPLAY_WEEKS.length - 1 ? (
-        <Panel className="mt-5 flex flex-wrap items-center justify-between gap-4 bg-ink text-white">
-          <p className="max-w-2xl text-sm text-white/80">
+        <Panel className="mt-5 flex flex-wrap items-center justify-between gap-4">
+          <p className="max-w-2xl text-sm text-ink-2">
             What these users did is the next round of insights: which markets refunded, which concept wore out, which channel earned its advance back.
           </p>
-          <Link href="/insights" className="rounded-lg bg-white px-4 py-2 text-sm font-semibold text-ink">Back to Insights</Link>
+          <Link href="/insights" className="rounded-lg bg-ink px-4 py-2 text-sm font-semibold text-white">Back to Insights</Link>
         </Panel>
       ) : null}
     </div>
