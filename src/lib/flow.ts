@@ -59,10 +59,60 @@ function eachLocalizable(node: unknown, fn: (c: LocalizableContent) => void) {
 
 export type LocaleInput = { flowLocale: string; name: string; localized: Localized };
 
-export function buildPaywallDraft(base: FlowConfig, english: Localized, others: LocaleInput[]) {
+/** An image uploaded with `flows media upload`: the three values a config binds. */
+export type HeroImage = { id: string; url: string; previewValue?: string };
+
+type HierarchyNode = { id: string; children?: HierarchyNode[] };
+type Screen = { elements?: { map: Record<string, { props?: { content?: LocalizableContent } }>; hierarchy: HierarchyNode } };
+
+const HERO_ID = "el_901M";
+
+/**
+ * Puts the ad's visual on the paywall, right above the headline, so the user sees the picture they tapped.
+ * Shape per the flow-generator skill (references/media.md): an `image` element with an inline localizable value.
+ */
+function findHeadline(cfg: FlowConfig, def: string) {
+  const els = (cfg.screens[0] as Screen)?.elements;
+  return els ? Object.entries(els.map).find(([, e]) => plainText(e.props?.content?.values?.[def]) === "Go Premium")?.[0] ?? null : null;
+}
+
+function addHero(cfg: FlowConfig, hero: HeroImage, def: string, headlineId: string | null) {
+  const els = (cfg.screens[0] as Screen)?.elements;
+  if (!els || !headlineId) return false;
+  const contains = (n: HierarchyNode, id: string): boolean => n.id === id || !!n.children?.some((c) => contains(c, id));
+  // Walk down to the stack whose direct child holds the headline, and insert the image before that child.
+  let parent = els.hierarchy;
+  for (;;) {
+    const next: HierarchyNode | undefined = parent.children?.find((c) => contains(c, headlineId));
+    if (!next) return false;
+    if (next.id === headlineId || next.children?.some((c) => c.id === headlineId)) break;
+    parent = next;
+  }
+  const at = parent.children!.findIndex((c) => contains(c, headlineId));
+  if (parent.children!.some((c) => c.id === HERO_ID)) return true;
+  parent.children!.splice(at, 0, { id: HERO_ID });
+  els.map[HERO_ID] = {
+    id: HERO_ID,
+    type: "image",
+    caption: "Ad visual",
+    props: {
+      position: { type: "relative" },
+      width: { type: "fill" },
+      height: { type: "fixed", value: 160 },
+      objectFit: "cover",
+      borderRadius: { tl: 20, tr: 20, bl: 20, br: 20 },
+      image: { _localizable: true, values: { [def]: { id: hero.id, url: hero.url, ...(hero.previewValue ? { previewValue: hero.previewValue } : {}) } } },
+    },
+    states: [],
+  } as never;
+  return true;
+}
+
+export function buildPaywallDraft(base: FlowConfig, english: Localized, others: LocaleInput[], hero?: HeroImage) {
   const cfg: FlowConfig = structuredClone(base);
   const def = cfg.defaultLocale || "en";
   const all: LocaleInput[] = [{ flowLocale: def, name: "English", localized: english }, ...others];
+  const headlineId = findHeadline(cfg, def); // before the copy walk rewrites the English headline
   let replaced = 0;
 
   // Lines that wrap a store price variable: [text before, {price}, text after]
@@ -100,9 +150,11 @@ export function buildPaywallDraft(base: FlowConfig, english: Localized, others: 
     }
   });
 
+  const heroAdded = hero ? addHero(cfg, hero, def, headlineId) : false;
+
   const have = new Set(cfg.locales.map((l) => l.id));
   for (const loc of others) {
     if (!have.has(loc.flowLocale)) cfg.locales.push({ id: loc.flowLocale, code: loc.flowLocale, name: loc.name });
   }
-  return { config: cfg, replaced, locales: cfg.locales.map((l) => l.id) };
+  return { config: cfg, replaced, heroAdded, locales: cfg.locales.map((l) => l.id) };
 }

@@ -6,7 +6,7 @@ import type { Localized } from "@/lib/schemas";
  * The real thing is the draft flow Flywheel writes into Adapty; this is for switching languages instantly.
  * Prices are illustrative store prices; in the app they come from the store per locale.
  */
-export function PaywallPreview({ pw, htmlLang }: { pw: Localized["paywall"]; htmlLang: string }) {
+export function PaywallPreview({ pw, htmlLang, heroUrl }: { pw: Localized["paywall"]; htmlLang: string; heroUrl?: string | null }) {
   const plans = [
     { label: pw.plans.annual, sub: `$49.99${pw.plans.annualSuffix}` },
     { label: pw.plans.monthly, sub: `$9.99${pw.plans.monthlySuffix}` },
@@ -15,10 +15,15 @@ export function PaywallPreview({ pw, htmlLang }: { pw: Localized["paywall"]; htm
   return (
     <div lang={htmlLang} className="mx-auto w-[300px] rounded-[44px] border-[10px] border-[#1b1b22] bg-white shadow-[0_24px_60px_-20px_rgba(22,33,58,.45)]" style={{ fontFamily: "var(--font-banner)" }}>
       <div className="flex h-[600px] flex-col overflow-hidden rounded-[34px] px-5 pb-5 pt-9 text-[#14121C]">
+        {/* the same picture as the ad, where Flywheel puts the image element in the Adapty flow */}
+        {heroUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={heroUrl} alt="" className="mb-3 h-[110px] w-full shrink-0 rounded-[14px] object-cover" />
+        ) : null}
         <div className="text-[24px] font-black leading-tight tracking-tight">{pw.headline}</div>
         <div className="mt-1.5 text-[13px] leading-snug text-[#7D7990]">{pw.subtitle}</div>
         <div className="mt-4 grid grid-cols-2 gap-x-3 gap-y-2">
-          {pw.features.slice(0, 6).map((f, i) => (
+          {pw.features.slice(0, heroUrl ? 4 : 6).map((f, i) => (
             <div key={i} className="flex items-start gap-1.5 text-[12px] leading-tight text-[#3D3950]">
               <span className="mt-[3px] inline-block size-2.5 shrink-0 rounded-full bg-[#6C4CF5]" />
               {f}

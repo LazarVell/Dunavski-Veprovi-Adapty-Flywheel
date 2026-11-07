@@ -33,12 +33,11 @@ const editsHi = insights.aiEditsSplit.find((s) => s.key === "5+ edits")!;
 const editsLo = insights.aiEditsSplit.find((s) => s.key === "under 5 edits")!;
 const topMarkets = insights.countries.filter((c) => c.users >= 400).slice(0, 5);
 const weakMarkets = [...insights.countries].sort((a, b) => a.revPerUser - b.revPerUser).slice(0, 3);
-const settingsTest = insights.abAudit.find((t) => t.suspicious);
 const bestSegment = insights.segments[0];
 
 export type Card = {
   id: string;
-  kind: "money" | "signal" | "markets" | "alert" | "segment";
+  kind: "money" | "signal" | "markets" | "segment";
   title: string;
   headline: string;
   facts: string[];
@@ -54,6 +53,7 @@ export const CARDS: Card[] = [
       `Apple Search Ads: ${asa.paidRate}% pay, ${asa.refundRate}% of payers refund`,
       `TikTok Ads: ${tiktok.paidRate}% pay, ${tiktok.refundRate}% of payers refund (${(tiktok.refundRate / insights.overall.refundRate).toFixed(1)}× the app average)`,
       `App average: $${insights.overall.revPerUser.toFixed(2)} per user, ${insights.overall.paidRate}% pay`,
+      `Refunds take back ${tiktok.refundDollarShare}% of TikTok's gross revenue: the gap is mostly fewer payers (${tiktok.paidRate}% vs ${asa.paidRate}%)`,
     ],
   },
   {
@@ -84,20 +84,6 @@ export const CARDS: Card[] = [
     headline: `${GOAL_LABEL[bestSegment.key.split(" × ")[0]]} users from ${CHANNEL_LABEL[bestSegment.key.split(" × ")[1]]}: ${bestSegment.paidRate}% pay, $${bestSegment.revPerUser.toFixed(2)} each.`,
     facts: insights.segments.slice(1, 3).map((s) => `${s.key.replace(/_/g, " ")}: $${s.revPerUser.toFixed(2)}/user, ${s.paidRate}% pay`),
   },
-  ...(settingsTest
-    ? [
-        {
-          id: "ab-audit",
-          kind: "alert" as const,
-          title: "A/B test alert",
-          headline: `The "${settingsTest.name.split(":")[0]}" test declared "${settingsTest.declaredWinner}" the winner, but the data says "${settingsTest.dataWinnerByRevenue}".`,
-          facts: [
-            ...settingsTest.variants.map((v) => `${v.key}: ${v.paidRate}% pay, $${v.revPerUser.toFixed(2)}/user (${v.users} users)`),
-            `Difference in paid rate: z = ${settingsTest.z} (significant at 95%)`,
-          ],
-        },
-      ]
-    : []),
 ];
 
 /** The fact sheet the text model receives. Plain numbers only, all computed above. */

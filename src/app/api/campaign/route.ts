@@ -4,6 +4,7 @@ import { CampaignSchema } from "@/lib/schemas";
 import { factSheet } from "@/lib/insights";
 import { CAMPAIGN_SYSTEM, campaignUser } from "@/lib/prompts";
 import { getCurrent, setCurrent } from "@/lib/campaign-store";
+import { appId } from "@/lib/adapty";
 
 /** Every number the model wrote in the brief must appear in the fact sheet we gave it. Returns the ones that don't. */
 function unverifiedNumbers(lines: string[]) {
@@ -25,7 +26,10 @@ const withCheck = <T extends { campaign: { brief: { why: string[]; avoid: string
   c ? { ...c, unverified: unverifiedNumbers([...c.campaign.brief.why, ...c.campaign.brief.avoid]) } : c;
 
 export async function GET() {
-  return NextResponse.json({ current: withCheck(getCurrent()) });
+  // The ad paywalls that exist in the Adapty account this machine is logged into (none when the CLI is offline).
+  const app = await appId().catch(() => null);
+  const cur = getCurrent();
+  return NextResponse.json({ current: withCheck(cur), adapty: { app, adPaywalls: (app && cur?.adPaywalls?.[app]) || {} } });
 }
 
 export async function POST(req: Request) {

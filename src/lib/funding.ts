@@ -16,13 +16,16 @@ export type Settings = {
   cashOnHand: number;
   storeFee: number; // store commission, 0.15 for small-business / subscription year 2+
   advanceRate: number; // Adapty Finance: up to 85% of earned, unpaid revenue
-  advanceFee: number; // not published by Adapty; 2.5% is RevenueCat's published rate
+  advanceFee: number; // Adapty Finance publishes a flat 2.5%–3.25% per advance (adapty.io/finance)
   payoutLagDays: number; // average days from purchase to store payout
   repayDay: number; // when the current unpaid balance pays out and repays the advance
   horizonDays: number;
   cpi: Record<Channel, number>;
   mix: Record<Channel, number>; // share of budget per channel (0..1)
 };
+
+/** Adapty Finance's published fee range per advance (https://adapty.io/finance/). */
+export const ADVANCE_FEE_RANGE = [0.025, 0.0325] as const;
 
 export const DEFAULTS: Settings = {
   budget: 40000,

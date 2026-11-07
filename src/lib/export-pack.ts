@@ -7,6 +7,7 @@ import JSZip from "jszip";
 import { Banner, FORMATS, type FormatKey } from "@/components/Banner";
 import type { Campaign, Localized, BackCheck } from "./schemas";
 import { langByKey, needsReview } from "./languages";
+import { adName } from "./ads";
 
 /** Renders one banner off-screen at full size and returns a PNG data URL. */
 async function bannerPng(props: Parameters<typeof Banner>[0]) {
@@ -41,7 +42,7 @@ export async function buildPack(opts: {
   const total = langs.length * opts.campaign.concepts.length * formats.length;
   let done = 0;
 
-  const rows = [["language", "review_status", "asset", "field", "text", "meaning_check"].join(",")];
+  const rows = [["language", "review_status", "asset", "ad_name", "field", "text", "meaning_check"].join(",")];
   const review: string[] = [];
 
   for (const key of langs) {
@@ -54,7 +55,7 @@ export async function buildPack(opts: {
 
     for (const [ci, c] of l.concepts.entries()) {
       for (const [field, text] of [["headline", c.headline], ["subline", c.subline], ["cta", c.cta]] as const) {
-        rows.push([key, status, `banner:${c.id}`, field, text, flag(`${c.id} ${field}`)].map(csvCell).join(","));
+        rows.push([key, status, `banner:${c.id}`, adName(opts.campaign.name, c.id), field, text, flag(`${c.id} ${field}`)].map(csvCell).join(","));
       }
       // banners (RTL languages get copy only)
       if (!lang.rtl) {
@@ -67,9 +68,9 @@ export async function buildPack(opts: {
       }
     }
     l.adCopy.forEach((a, i) => {
-      rows.push([key, status, `ad:${i + 1}`, "primary_text", a.primaryText, flag(`ad ${i + 1} primary text`)].map(csvCell).join(","));
-      rows.push([key, status, `ad:${i + 1}`, "headline", a.headline, flag(`ad ${i + 1} headline`)].map(csvCell).join(","));
-      rows.push([key, status, `ad:${i + 1}`, "description", a.description, "not_checked"].map(csvCell).join(","));
+      rows.push([key, status, `ad:${i + 1}`, "", "primary_text", a.primaryText, flag(`ad ${i + 1} primary text`)].map(csvCell).join(","));
+      rows.push([key, status, `ad:${i + 1}`, "", "headline", a.headline, flag(`ad ${i + 1} headline`)].map(csvCell).join(","));
+      rows.push([key, status, `ad:${i + 1}`, "", "description", a.description, "not_checked"].map(csvCell).join(","));
     });
     zip.file(
       `video-scripts/${key}.md`,
@@ -90,6 +91,8 @@ export async function buildPack(opts: {
         channels: opts.campaign.brief.channels,
         exclude: opts.campaign.brief.avoid,
         languages: langs,
+        // Name each ad exactly `ad_name`: Adapty matches it as the install's attribution creative and shows that ad's paywall.
+        ads: opts.campaign.concepts.map((c) => ({ concept: c.id, name: c.name, ad_name: adName(opts.campaign.name, c.id) })),
         note: "Publishing to Meta/TikTok is not automated: their ad APIs need app review. Upload this pack in Ads Manager.",
       },
       null,
