@@ -4,20 +4,20 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { STAGES } from "@/lib/stages";
 
-/** The flywheel: four stages on a ring. The active stage is filled; the ring turns when you move. */
+/** The flywheel: the stages on a ring. The active stage is filled; the ring turns when you move. */
 export function Ring({ active, size = 132 }: { active: number; size?: number }) {
-  const c = size / 2, r = size / 2 - 14;
+  const c = size / 2, r = size / 2 - 14, n = STAGES.length;
   const pos = (i: number) => {
-    const a = (-90 + i * 90) * (Math.PI / 180);
+    const a = (-90 + (i * 360) / n) * (Math.PI / 180);
     return { x: c + r * Math.cos(a), y: c + r * Math.sin(a) };
   };
   return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} role="img" aria-label={`Flywheel, stage ${active + 1} of 4`}>
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} role="img" aria-label={`Flywheel, stage ${active + 1} of ${n}`}>
       <circle cx={c} cy={c} r={r} fill="none" stroke="currentColor" strokeOpacity={0.18} strokeWidth={6} />
       <g key={active} className="ring-turn">
         <circle
           cx={c} cy={c} r={r} fill="none" stroke="var(--color-money)" strokeWidth={6} strokeLinecap="round"
-          strokeDasharray={`${(2 * Math.PI * r * (active + 1)) / 4} ${2 * Math.PI * r}`}
+          strokeDasharray={`${(2 * Math.PI * r * (active + 1)) / n} ${2 * Math.PI * r}`}
           transform={`rotate(-90 ${c} ${c})`}
         />
       </g>

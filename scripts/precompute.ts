@@ -265,6 +265,71 @@ const watch = {
   baseline: outcome14(watchUsers),
 };
 
+// ---------- signal: predicted 60-day value per install, from what is known at ~24h ----------
+// Multiplicative model: base × one smoothed factor per day-one feature. Trained on the earlier 70% of the
+// 60-day cohort, checked on the later 30% it never saw.
+const SIGNAL_FEATURES = {
+  channel: (u: U) => u.channel,
+  country: (u: U) => u.country,
+  goal: (u: U) => u.goal,
+  edits: (u: U) => editBucket(u.aiEdits),
+  platform: (u: U) => u.platform,
+  push: (u: U) => (u.push ? "yes" : "no"),
+} as const;
+type SignalFeature = keyof typeof SIGNAL_FEATURES;
+const SMOOTHING = 200;
+const byInstall = [...cohort].sort((a, b) => a.installMs - b.installMs);
+const train = byInstall.slice(0, Math.floor(byInstall.length * 0.7));
+const holdout = byInstall.slice(Math.floor(byInstall.length * 0.7));
+const mean = (xs: number[]) => (xs.length ? xs.reduce((s, x) => s + x, 0) / xs.length : 0);
+const base = mean(train.map((u) => u.rev60));
+const factors = Object.fromEntries(
+  (Object.keys(SIGNAL_FEATURES) as SignalFeature[]).map((f) => {
+    const g = new Map<string, number[]>();
+    for (const u of train) { const k = SIGNAL_FEATURES[f](u); if (!g.has(k)) g.set(k, []); g.get(k)!.push(u.rev60); }
+    return [f, Object.fromEntries([...g.entries()].map(([k, v]) => [k, Math.round(((mean(v) * v.length + base * SMOOTHING) / (v.length + SMOOTHING) / base) * 1000) / 1000]))];
+  }),
+) as Record<SignalFeature, Record<string, number>>;
+const predict = (u: U) => (Object.keys(SIGNAL_FEATURES) as SignalFeature[]).reduce((p, f) => p * (factors[f][SIGNAL_FEATURES[f](u)] ?? 1), base);
+const quintileSplit = <T>(xs: T[]) => [0, 1, 2, 3, 4].map((q) => xs.slice(Math.floor((q * xs.length) / 5), Math.floor(((q + 1) * xs.length) / 5)));
+const scored = holdout.map((u) => ({ u, p: predict(u) })).sort((a, b) => a.p - b.p);
+const holdoutRev = scored.reduce((s, x) => s + x.u.rev60, 0);
+const corr = (() => {
+  const xs = scored.map((x) => x.p), ys = scored.map((x) => x.u.rev60), mx = mean(xs), my = mean(ys);
+  let sxy = 0, sxx = 0, syy = 0;
+  xs.forEach((x, i) => { sxy += (x - mx) * (ys[i] - my); sxx += (x - mx) ** 2; syy += (ys[i] - my) ** 2; });
+  return Math.round((sxy / Math.sqrt(sxx * syy)) * 1000) / 1000;
+})();
+const quintiles = quintileSplit(scored).map((g, q) => ({
+  q: q + 1, users: g.length, pred: r2(mean(g.map((x) => x.p))), actual: r2(mean(g.map((x) => x.u.rev60))),
+  paidRate: pct(g.filter((x) => x.u.paid).length, g.length), revShare: pct(g.reduce((s, x) => s + x.u.rev60, 0), holdoutRev),
+}));
+const signalByChannel = ["apple_search_ads", "meta_ads", "google_uac", "tiktok_ads"].map((ch) => {
+  const g = scored.filter((x) => x.u.channel === ch); // already sorted by prediction
+  const fifth = Math.floor(g.length / 5);
+  return {
+    ch, users: g.length, avgPred: r2(mean(g.map((x) => x.p))), actual: r2(mean(g.map((x) => x.u.rev60))),
+    top20Actual: r2(mean(g.slice(-fifth).map((x) => x.u.rev60))), bottom20Actual: r2(mean(g.slice(0, fifth).map((x) => x.u.rev60))),
+  };
+});
+const trainPreds = train.map(predict).sort((a, b) => a - b);
+const signal = {
+  base: r2(base), smoothing: SMOOTHING, factors,
+  split: {
+    train: train.length, holdout: holdout.length,
+    trainInstalls: [train[0], train.at(-1)!].map((u) => new Date(u.installMs).toISOString().slice(0, 10)),
+    holdoutInstalls: [holdout[0], holdout.at(-1)!].map((u) => new Date(u.installMs).toISOString().slice(0, 10)),
+  },
+  holdout: { corr, quintiles },
+  byChannel: signalByChannel,
+  /** prediction cut points between quintiles 1|2, 2|3, 3|4, 4|5, from the training users */
+  tiers: [1, 2, 3, 4].map((q) => r2(trainPreds[Math.floor((q * trainPreds.length) / 5)])),
+  examples: quintileSplit(scored).map((g) => {
+    const { u, p } = g[Math.floor(g.length / 2)];
+    return { features: Object.fromEntries((Object.keys(SIGNAL_FEATURES) as SignalFeature[]).map((f) => [f, SIGNAL_FEATURES[f](u)])), pred: r2(p), actual: r2(u.rev60) };
+  }),
+};
+
 // ---------- write ----------
 const insights = {
   asOf: asOf.toISOString(), windowDays: WINDOW_DAYS,
@@ -277,6 +342,7 @@ write("insights.json", insights);
 write("revenue-curves.json", revenueCurves);
 write("funding.json", funding);
 write("watch.json", watch);
+write("signal.json", signal);
 
 // Paywall base for the matching-paywall draft: the seeded "main" flow (organizers' material, disclosed in README).
 const flowSrc = path.join(SEED, "flows", "main.json");
@@ -294,3 +360,6 @@ console.log("\nLANG SUGGESTIONS"); langSuggestions.forEach((l) => console.log(`$
 console.log("\nFUNDING unpaid gross", funding.unpaidGross, "\nmonthly", funding.monthlyGross);
 console.log("\nCURVE all d30/d60/d90", [30, 60, 90].map((d) => revenueCurves.all[d]?.revPerUser));
 console.log("WATCH weeks", watch.weeks.length, "baseline", watch.baseline);
+console.log(`\nSIGNAL base $${signal.base} | holdout ${holdout.length} users | corr ${corr}`);
+quintiles.forEach((q) => console.log(`  quintile ${q.q}: pred $${q.pred}  actual $${q.actual}  paid ${q.paidRate}%  rev share ${q.revShare}%`));
+signalByChannel.forEach((c) => console.log(`  ${c.ch.padEnd(18)} best fifth $${c.top20Actual}  worst fifth $${c.bottom20Actual}`));
