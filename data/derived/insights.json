@@ -1,0 +1,841 @@
+{
+ "asOf": "2026-11-03T00:06:14.000Z",
+ "windowDays": 60,
+ "dataset": {
+  "usersTotal": 50000,
+  "usersInWindow": 24964,
+  "transactions": 29794
+ },
+ "overall": {
+  "key": "all",
+  "users": 24964,
+  "payers": 5042,
+  "paidRate": 20.2,
+  "revPerUser": 8.98,
+  "revenue": 224282,
+  "revenueShare": 100,
+  "refundRate": 7.1,
+  "billingIssueRate": 2.2
+ },
+ "channels": [
+  {
+   "key": "apple_search_ads",
+   "users": 2017,
+   "payers": 647,
+   "paidRate": 32.1,
+   "revPerUser": 15.03,
+   "revenue": 30317,
+   "revenueShare": 13.5,
+   "refundRate": 4.9,
+   "billingIssueRate": 1.4
+  },
+  {
+   "key": "organic",
+   "users": 9406,
+   "payers": 2098,
+   "paidRate": 22.3,
+   "revPerUser": 9.96,
+   "revenue": 93700,
+   "revenueShare": 41.8,
+   "refundRate": 6,
+   "billingIssueRate": 2.4
+  },
+  {
+   "key": "google_uac",
+   "users": 4526,
+   "payers": 879,
+   "paidRate": 19.4,
+   "revPerUser": 8.64,
+   "revenue": 39101,
+   "revenueShare": 17.4,
+   "refundRate": 6.6,
+   "billingIssueRate": 2.6
+  },
+  {
+   "key": "meta_ads",
+   "users": 5059,
+   "payers": 934,
+   "paidRate": 18.5,
+   "revPerUser": 8.11,
+   "revenue": 41018,
+   "revenueShare": 18.3,
+   "refundRate": 7.3,
+   "billingIssueRate": 2
+  },
+  {
+   "key": "tiktok_ads",
+   "users": 3956,
+   "payers": 484,
+   "paidRate": 12.2,
+   "revPerUser": 5.09,
+   "revenue": 20146,
+   "revenueShare": 9,
+   "refundRate": 15.5,
+   "billingIssueRate": 2.3
+  }
+ ],
+ "countries": [
+  {
+   "key": "NL",
+   "users": 482,
+   "payers": 137,
+   "paidRate": 28.4,
+   "revPerUser": 15.28,
+   "revenue": 7367,
+   "revenueShare": 3.3,
+   "refundRate": 8,
+   "billingIssueRate": 0.7
+  },
+  {
+   "key": "US",
+   "users": 6924,
+   "payers": 1869,
+   "paidRate": 27,
+   "revPerUser": 13.25,
+   "revenue": 91752,
+   "revenueShare": 40.9,
+   "refundRate": 7.4,
+   "billingIssueRate": 1.8
+  },
+  {
+   "key": "DE",
+   "users": 1765,
+   "payers": 435,
+   "paidRate": 24.6,
+   "revPerUser": 12.96,
+   "revenue": 22879,
+   "revenueShare": 10.2,
+   "refundRate": 8.5,
+   "billingIssueRate": 3
+  },
+  {
+   "key": "SE",
+   "users": 493,
+   "payers": 120,
+   "paidRate": 24.3,
+   "revPerUser": 12.79,
+   "revenue": 6305,
+   "revenueShare": 2.8,
+   "refundRate": 3.3,
+   "billingIssueRate": 0
+  },
+  {
+   "key": "GB",
+   "users": 1798,
+   "payers": 444,
+   "paidRate": 24.7,
+   "revPerUser": 12.34,
+   "revenue": 22196,
+   "revenueShare": 9.9,
+   "refundRate": 7.2,
+   "billingIssueRate": 1.6
+  },
+  {
+   "key": "CA",
+   "users": 1038,
+   "payers": 246,
+   "paidRate": 23.7,
+   "revPerUser": 11.79,
+   "revenue": 12233,
+   "revenueShare": 5.5,
+   "refundRate": 6.1,
+   "billingIssueRate": 2.4
+  },
+  {
+   "key": "AU",
+   "users": 739,
+   "payers": 173,
+   "paidRate": 23.4,
+   "revPerUser": 10.92,
+   "revenue": 8073,
+   "revenueShare": 3.6,
+   "refundRate": 6.9,
+   "billingIssueRate": 1.7
+  },
+  {
+   "key": "FR",
+   "users": 1244,
+   "payers": 278,
+   "paidRate": 22.3,
+   "revPerUser": 10.85,
+   "revenue": 13493,
+   "revenueShare": 6,
+   "refundRate": 8.3,
+   "billingIssueRate": 1.4
+  },
+  {
+   "key": "JP",
+   "users": 1196,
+   "payers": 238,
+   "paidRate": 19.9,
+   "revPerUser": 8.34,
+   "revenue": 9977,
+   "revenueShare": 4.4,
+   "refundRate": 6.7,
+   "billingIssueRate": 2.5
+  },
+  {
+   "key": "RS",
+   "users": 1007,
+   "payers": 161,
+   "paidRate": 16,
+   "revPerUser": 6.16,
+   "revenue": 6201,
+   "revenueShare": 2.8,
+   "refundRate": 5,
+   "billingIssueRate": 1.2
+  },
+  {
+   "key": "PL",
+   "users": 1252,
+   "payers": 191,
+   "paidRate": 15.3,
+   "revPerUser": 4.88,
+   "revenue": 6105,
+   "revenueShare": 2.7,
+   "refundRate": 8.4,
+   "billingIssueRate": 1.6
+  },
+  {
+   "key": "BR",
+   "users": 2277,
+   "payers": 281,
+   "paidRate": 12.3,
+   "revPerUser": 3.53,
+   "revenue": 8046,
+   "revenueShare": 3.6,
+   "refundRate": 3.6,
+   "billingIssueRate": 4.6
+  },
+  {
+   "key": "MX",
+   "users": 1327,
+   "payers": 163,
+   "paidRate": 12.3,
+   "revPerUser": 3.35,
+   "revenue": 4446,
+   "revenueShare": 2,
+   "refundRate": 9.8,
+   "billingIssueRate": 3.1
+  },
+  {
+   "key": "TR",
+   "users": 933,
+   "payers": 107,
+   "paidRate": 11.5,
+   "revPerUser": 1.87,
+   "revenue": 1747,
+   "revenueShare": 0.8,
+   "refundRate": 4.7,
+   "billingIssueRate": 6.5
+  },
+  {
+   "key": "IN",
+   "users": 2489,
+   "payers": 199,
+   "paidRate": 8,
+   "revPerUser": 1.39,
+   "revenue": 3462,
+   "revenueShare": 1.5,
+   "refundRate": 8,
+   "billingIssueRate": 4.5
+  }
+ ],
+ "languages": [
+  {
+   "key": "nl",
+   "users": 482,
+   "payers": 137,
+   "paidRate": 28.4,
+   "revPerUser": 15.28,
+   "revenue": 7367,
+   "revenueShare": 3.3,
+   "refundRate": 8,
+   "billingIssueRate": 0.7
+  },
+  {
+   "key": "de",
+   "users": 1765,
+   "payers": 435,
+   "paidRate": 24.6,
+   "revPerUser": 12.96,
+   "revenue": 22879,
+   "revenueShare": 10.2,
+   "refundRate": 8.5,
+   "billingIssueRate": 3
+  },
+  {
+   "key": "en",
+   "users": 10499,
+   "payers": 2732,
+   "paidRate": 26,
+   "revPerUser": 12.79,
+   "revenue": 134254,
+   "revenueShare": 59.9,
+   "refundRate": 7.2,
+   "billingIssueRate": 1.8
+  },
+  {
+   "key": "sv",
+   "users": 493,
+   "payers": 120,
+   "paidRate": 24.3,
+   "revPerUser": 12.79,
+   "revenue": 6305,
+   "revenueShare": 2.8,
+   "refundRate": 3.3,
+   "billingIssueRate": 0
+  },
+  {
+   "key": "fr",
+   "users": 1244,
+   "payers": 278,
+   "paidRate": 22.3,
+   "revPerUser": 10.85,
+   "revenue": 13493,
+   "revenueShare": 6,
+   "refundRate": 8.3,
+   "billingIssueRate": 1.4
+  },
+  {
+   "key": "ja",
+   "users": 1196,
+   "payers": 238,
+   "paidRate": 19.9,
+   "revPerUser": 8.34,
+   "revenue": 9977,
+   "revenueShare": 4.4,
+   "refundRate": 6.7,
+   "billingIssueRate": 2.5
+  },
+  {
+   "key": "sr",
+   "users": 1007,
+   "payers": 161,
+   "paidRate": 16,
+   "revPerUser": 6.16,
+   "revenue": 6201,
+   "revenueShare": 2.8,
+   "refundRate": 5,
+   "billingIssueRate": 1.2
+  },
+  {
+   "key": "pl",
+   "users": 1252,
+   "payers": 191,
+   "paidRate": 15.3,
+   "revPerUser": 4.88,
+   "revenue": 6105,
+   "revenueShare": 2.7,
+   "refundRate": 8.4,
+   "billingIssueRate": 1.6
+  },
+  {
+   "key": "pt",
+   "users": 2277,
+   "payers": 281,
+   "paidRate": 12.3,
+   "revPerUser": 3.53,
+   "revenue": 8046,
+   "revenueShare": 3.6,
+   "refundRate": 3.6,
+   "billingIssueRate": 4.6
+  },
+  {
+   "key": "es",
+   "users": 1327,
+   "payers": 163,
+   "paidRate": 12.3,
+   "revPerUser": 3.35,
+   "revenue": 4446,
+   "revenueShare": 2,
+   "refundRate": 9.8,
+   "billingIssueRate": 3.1
+  },
+  {
+   "key": "tr",
+   "users": 933,
+   "payers": 107,
+   "paidRate": 11.5,
+   "revPerUser": 1.87,
+   "revenue": 1747,
+   "revenueShare": 0.8,
+   "refundRate": 4.7,
+   "billingIssueRate": 6.5
+  },
+  {
+   "key": "hi",
+   "users": 2489,
+   "payers": 199,
+   "paidRate": 8,
+   "revPerUser": 1.39,
+   "revenue": 3462,
+   "revenueShare": 1.5,
+   "refundRate": 8,
+   "billingIssueRate": 4.5
+  }
+ ],
+ "goals": [
+  {
+   "key": "product_photos",
+   "users": 4913,
+   "payers": 1125,
+   "paidRate": 22.9,
+   "revPerUser": 10.32,
+   "revenue": 50721,
+   "revenueShare": 22.6,
+   "refundRate": 6.3,
+   "billingIssueRate": 2
+  },
+  {
+   "key": "family",
+   "users": 5007,
+   "payers": 993,
+   "paidRate": 19.8,
+   "revPerUser": 8.94,
+   "revenue": 44780,
+   "revenueShare": 20,
+   "refundRate": 6,
+   "billingIssueRate": 2.2
+  },
+  {
+   "key": "travel",
+   "users": 5100,
+   "payers": 979,
+   "paidRate": 19.2,
+   "revPerUser": 8.68,
+   "revenue": 44282,
+   "revenueShare": 19.7,
+   "refundRate": 5.1,
+   "billingIssueRate": 2.7
+  },
+  {
+   "key": "selfies",
+   "users": 4972,
+   "payers": 972,
+   "paidRate": 19.5,
+   "revPerUser": 8.59,
+   "revenue": 42712,
+   "revenueShare": 19,
+   "refundRate": 9.4,
+   "billingIssueRate": 1.7
+  },
+  {
+   "key": "social_content",
+   "users": 4972,
+   "payers": 973,
+   "paidRate": 19.6,
+   "revPerUser": 8.4,
+   "revenue": 41787,
+   "revenueShare": 18.6,
+   "refundRate": 8.9,
+   "billingIssueRate": 2.6
+  }
+ ],
+ "placements": [
+  {
+   "key": "ai_limit_reached",
+   "users": 1806,
+   "payers": 857,
+   "paidRate": 47.5,
+   "revPerUser": 30.74,
+   "revenue": 55519,
+   "revenueShare": 24.8,
+   "refundRate": 2.3,
+   "billingIssueRate": 0
+  },
+  {
+   "key": "settings_upgrade",
+   "users": 1783,
+   "payers": 378,
+   "paidRate": 21.2,
+   "revPerUser": 11.66,
+   "revenue": 20793,
+   "revenueShare": 9.3,
+   "refundRate": 2.6,
+   "billingIssueRate": 0.3
+  },
+  {
+   "key": "main",
+   "users": 6593,
+   "payers": 1321,
+   "paidRate": 20,
+   "revPerUser": 8.29,
+   "revenue": 54657,
+   "revenueShare": 24.4,
+   "refundRate": 4.7,
+   "billingIssueRate": 1.7
+  },
+  {
+   "key": "onboarding",
+   "users": 13784,
+   "payers": 2342,
+   "paidRate": 17,
+   "revPerUser": 6.55,
+   "revenue": 90306,
+   "revenueShare": 40.3,
+   "refundRate": 10.9,
+   "billingIssueRate": 3.5
+  },
+  {
+   "key": "win_back",
+   "users": 998,
+   "payers": 144,
+   "paidRate": 14.4,
+   "revPerUser": 3.01,
+   "revenue": 3007,
+   "revenueShare": 1.3,
+   "refundRate": 8.3,
+   "billingIssueRate": 3.5
+  }
+ ],
+ "segments": [
+  {
+   "key": "product_photos × apple_search_ads",
+   "users": 397,
+   "payers": 157,
+   "paidRate": 39.5,
+   "revPerUser": 19.61,
+   "revenue": 7786,
+   "revenueShare": 3.5,
+   "refundRate": 3.8,
+   "billingIssueRate": 0.6
+  },
+  {
+   "key": "family × apple_search_ads",
+   "users": 409,
+   "payers": 140,
+   "paidRate": 34.2,
+   "revPerUser": 16.93,
+   "revenue": 6923,
+   "revenueShare": 3.1,
+   "refundRate": 3.6,
+   "billingIssueRate": 0
+  },
+  {
+   "key": "travel × apple_search_ads",
+   "users": 418,
+   "payers": 124,
+   "paidRate": 29.7,
+   "revPerUser": 13.22,
+   "revenue": 5525,
+   "revenueShare": 2.5,
+   "refundRate": 4,
+   "billingIssueRate": 4
+  },
+  {
+   "key": "selfies × apple_search_ads",
+   "users": 409,
+   "payers": 115,
+   "paidRate": 28.1,
+   "revPerUser": 12.94,
+   "revenue": 5293,
+   "revenueShare": 2.4,
+   "refundRate": 8.7,
+   "billingIssueRate": 1.7
+  },
+  {
+   "key": "social_content × apple_search_ads",
+   "users": 384,
+   "payers": 111,
+   "paidRate": 28.9,
+   "revPerUser": 12.48,
+   "revenue": 4791,
+   "revenueShare": 2.1,
+   "refundRate": 5.4,
+   "billingIssueRate": 0.9
+  },
+  {
+   "key": "product_photos × organic",
+   "users": 1807,
+   "payers": 430,
+   "paidRate": 23.8,
+   "revPerUser": 10.84,
+   "revenue": 19582,
+   "revenueShare": 8.7,
+   "refundRate": 5.3,
+   "billingIssueRate": 1.4
+  },
+  {
+   "key": "travel × organic",
+   "users": 1937,
+   "payers": 424,
+   "paidRate": 21.9,
+   "revPerUser": 9.95,
+   "revenue": 19275,
+   "revenueShare": 8.6,
+   "refundRate": 4,
+   "billingIssueRate": 3.1
+  },
+  {
+   "key": "selfies × organic",
+   "users": 1858,
+   "payers": 423,
+   "paidRate": 22.8,
+   "revPerUser": 9.82,
+   "revenue": 18244,
+   "revenueShare": 8.1,
+   "refundRate": 8.3,
+   "billingIssueRate": 1.9
+  }
+ ],
+ "push": [
+  {
+   "key": "push opt-in",
+   "users": 15886,
+   "payers": 3298,
+   "paidRate": 20.8,
+   "revPerUser": 9.3,
+   "revenue": 147701,
+   "revenueShare": 65.9,
+   "refundRate": 7.6,
+   "billingIssueRate": 2.2
+  },
+  {
+   "key": "no push",
+   "users": 9078,
+   "payers": 1744,
+   "paidRate": 19.2,
+   "revPerUser": 8.44,
+   "revenue": 76582,
+   "revenueShare": 34.1,
+   "refundRate": 6.2,
+   "billingIssueRate": 2.2
+  }
+ ],
+ "aiEdits": [
+  {
+   "key": "0",
+   "users": 3351,
+   "payers": 321,
+   "paidRate": 9.6,
+   "revPerUser": 3.71,
+   "revenue": 12423,
+   "revenueShare": 5.5,
+   "refundRate": 10.3,
+   "billingIssueRate": 3.7
+  },
+  {
+   "key": "1-2",
+   "users": 8720,
+   "payers": 1388,
+   "paidRate": 15.9,
+   "revPerUser": 6.44,
+   "revenue": 56144,
+   "revenueShare": 25,
+   "refundRate": 7.1,
+   "billingIssueRate": 2.2
+  },
+  {
+   "key": "3-4",
+   "users": 6113,
+   "payers": 1134,
+   "paidRate": 18.6,
+   "revPerUser": 8.6,
+   "revenue": 52572,
+   "revenueShare": 23.4,
+   "refundRate": 7.1,
+   "billingIssueRate": 2.2
+  },
+  {
+   "key": "5-7",
+   "users": 4385,
+   "payers": 1447,
+   "paidRate": 33,
+   "revPerUser": 15.47,
+   "revenue": 67858,
+   "revenueShare": 30.3,
+   "refundRate": 7.1,
+   "billingIssueRate": 2
+  },
+  {
+   "key": "8-12",
+   "users": 2012,
+   "payers": 615,
+   "paidRate": 30.6,
+   "revPerUser": 14.31,
+   "revenue": 28785,
+   "revenueShare": 12.8,
+   "refundRate": 6.2,
+   "billingIssueRate": 2.3
+  },
+  {
+   "key": "13+",
+   "users": 383,
+   "payers": 137,
+   "paidRate": 35.8,
+   "revPerUser": 16.97,
+   "revenue": 6501,
+   "revenueShare": 2.9,
+   "refundRate": 4.4,
+   "billingIssueRate": 1.5
+  }
+ ],
+ "aiEditsSplit": [
+  {
+   "key": "under 5 edits",
+   "users": 18184,
+   "payers": 2843,
+   "paidRate": 15.6,
+   "revPerUser": 6.66,
+   "revenue": 121138,
+   "revenueShare": 54,
+   "refundRate": 7.5,
+   "billingIssueRate": 2.4
+  },
+  {
+   "key": "5+ edits",
+   "users": 6780,
+   "payers": 2199,
+   "paidRate": 32.4,
+   "revPerUser": 15.21,
+   "revenue": 103144,
+   "revenueShare": 46,
+   "refundRate": 6.7,
+   "billingIssueRate": 2
+  }
+ ],
+ "abAudit": [
+  {
+   "name": "Onboarding: annual trial vs weekly first",
+   "variants": [
+    {
+     "key": "onb_weekly",
+     "users": 6944,
+     "payers": 1568,
+     "paidRate": 22.6,
+     "revPerUser": 8.56,
+     "revenue": 59433,
+     "revenueShare": 26.5,
+     "refundRate": 11.5,
+     "billingIssueRate": 4.2
+    },
+    {
+     "key": "onb_trial",
+     "users": 6840,
+     "payers": 774,
+     "paidRate": 11.3,
+     "revPerUser": 4.51,
+     "revenue": 30874,
+     "revenueShare": 13.8,
+     "refundRate": 9.6,
+     "billingIssueRate": 2.2
+    }
+   ],
+   "leaderByPaidRate": "onb_weekly",
+   "z": 17.6,
+   "declaredWinner": null,
+   "dataWinnerByRevenue": "onb_weekly",
+   "suspicious": false
+  },
+  {
+   "name": "Settings: upgrade vs lifetime anchor",
+   "variants": [
+    {
+     "key": "main_lifetime",
+     "users": 854,
+     "payers": 212,
+     "paidRate": 24.8,
+     "revPerUser": 12.6,
+     "revenue": 10759,
+     "revenueShare": 4.8,
+     "refundRate": 4.2,
+     "billingIssueRate": 0.5
+    },
+    {
+     "key": "settings",
+     "users": 929,
+     "payers": 166,
+     "paidRate": 17.9,
+     "revPerUser": 10.8,
+     "revenue": 10033,
+     "revenueShare": 4.5,
+     "refundRate": 0.6,
+     "billingIssueRate": 0
+    }
+   ],
+   "leaderByPaidRate": "main_lifetime",
+   "z": 3.6,
+   "declaredWinner": "settings",
+   "dataWinnerByRevenue": "main_lifetime",
+   "suspicious": true
+  },
+  {
+   "name": "Main: 3 plans vs lifetime anchor (NA)",
+   "variants": [
+    {
+     "key": "main_lifetime",
+     "users": 1031,
+     "payers": 313,
+     "paidRate": 30.4,
+     "revPerUser": 15.99,
+     "revenue": 16484,
+     "revenueShare": 7.3,
+     "refundRate": 3.2,
+     "billingIssueRate": 1
+    },
+    {
+     "key": "main",
+     "users": 1058,
+     "payers": 268,
+     "paidRate": 25.3,
+     "revPerUser": 9.23,
+     "revenue": 9768,
+     "revenueShare": 4.4,
+     "refundRate": 7.1,
+     "billingIssueRate": 2.6
+    }
+   ],
+   "leaderByPaidRate": "main_lifetime",
+   "z": 2.6,
+   "declaredWinner": null,
+   "dataWinnerByRevenue": "main_lifetime",
+   "suspicious": false
+  }
+ ],
+ "langRule": {
+  "minRevenueShare": 3,
+  "minUsers": 300
+ },
+ "langSuggestions": [
+  {
+   "key": "ja",
+   "users": 1196,
+   "payers": 238,
+   "paidRate": 19.9,
+   "revPerUser": 8.34,
+   "revenue": 9977,
+   "revenueShare": 4.4,
+   "refundRate": 6.7,
+   "billingIssueRate": 2.5,
+   "suggested": true,
+   "reason": "revenue share"
+  },
+  {
+   "key": "pl",
+   "users": 1252,
+   "payers": 191,
+   "paidRate": 15.3,
+   "revPerUser": 4.88,
+   "revenue": 6105,
+   "revenueShare": 2.7,
+   "refundRate": 8.4,
+   "billingIssueRate": 1.6,
+   "suggested": false,
+   "reason": null
+  },
+  {
+   "key": "hi",
+   "users": 2489,
+   "payers": 199,
+   "paidRate": 8,
+   "revPerUser": 1.39,
+   "revenue": 3462,
+   "revenueShare": 1.5,
+   "refundRate": 8,
+   "billingIssueRate": 4.5,
+   "suggested": false,
+   "reason": null
+  }
+ ]
+}

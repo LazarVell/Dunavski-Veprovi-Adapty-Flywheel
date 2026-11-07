@@ -1,0 +1,3339 @@
+{
+ "all": [
+  {
+   "day": 0,
+   "revPerUser": 1.8,
+   "n": 49780
+  },
+  {
+   "day": 1,
+   "revPerUser": 2.63,
+   "n": 49354
+  },
+  {
+   "day": 2,
+   "revPerUser": 3.5,
+   "n": 48922
+  },
+  {
+   "day": 3,
+   "revPerUser": 4.59,
+   "n": 48505
+  },
+  {
+   "day": 4,
+   "revPerUser": 5.41,
+   "n": 48080
+  },
+  {
+   "day": 5,
+   "revPerUser": 6.27,
+   "n": 47694
+  },
+  {
+   "day": 6,
+   "revPerUser": 6.28,
+   "n": 47230
+  },
+  {
+   "day": 7,
+   "revPerUser": 7.15,
+   "n": 46848
+  },
+  {
+   "day": 8,
+   "revPerUser": 7.15,
+   "n": 46453
+  },
+  {
+   "day": 9,
+   "revPerUser": 7.15,
+   "n": 46046
+  },
+  {
+   "day": 10,
+   "revPerUser": 7.4,
+   "n": 45602
+  },
+  {
+   "day": 11,
+   "revPerUser": 7.43,
+   "n": 45184
+  },
+  {
+   "day": 12,
+   "revPerUser": 7.42,
+   "n": 44787
+  },
+  {
+   "day": 13,
+   "revPerUser": 7.43,
+   "n": 44332
+  },
+  {
+   "day": 14,
+   "revPerUser": 7.43,
+   "n": 43904
+  },
+  {
+   "day": 15,
+   "revPerUser": 7.45,
+   "n": 43493
+  },
+  {
+   "day": 16,
+   "revPerUser": 7.44,
+   "n": 43057
+  },
+  {
+   "day": 17,
+   "revPerUser": 7.66,
+   "n": 42588
+  },
+  {
+   "day": 18,
+   "revPerUser": 7.65,
+   "n": 42145
+  },
+  {
+   "day": 19,
+   "revPerUser": 7.65,
+   "n": 41700
+  },
+  {
+   "day": 20,
+   "revPerUser": 7.66,
+   "n": 41275
+  },
+  {
+   "day": 21,
+   "revPerUser": 7.68,
+   "n": 40824
+  },
+  {
+   "day": 22,
+   "revPerUser": 7.69,
+   "n": 40438
+  },
+  {
+   "day": 23,
+   "revPerUser": 7.71,
+   "n": 40058
+  },
+  {
+   "day": 24,
+   "revPerUser": 7.91,
+   "n": 39652
+  },
+  {
+   "day": 25,
+   "revPerUser": 7.92,
+   "n": 39269
+  },
+  {
+   "day": 26,
+   "revPerUser": 7.92,
+   "n": 38851
+  },
+  {
+   "day": 27,
+   "revPerUser": 7.92,
+   "n": 38407
+  },
+  {
+   "day": 28,
+   "revPerUser": 7.92,
+   "n": 37981
+  },
+  {
+   "day": 29,
+   "revPerUser": 7.91,
+   "n": 37566
+  },
+  {
+   "day": 30,
+   "revPerUser": 7.98,
+   "n": 37146
+  },
+  {
+   "day": 31,
+   "revPerUser": 8.21,
+   "n": 36732
+  },
+  {
+   "day": 32,
+   "revPerUser": 8.28,
+   "n": 36323
+  },
+  {
+   "day": 33,
+   "revPerUser": 8.32,
+   "n": 35904
+  },
+  {
+   "day": 34,
+   "revPerUser": 8.35,
+   "n": 35470
+  },
+  {
+   "day": 35,
+   "revPerUser": 8.42,
+   "n": 35021
+  },
+  {
+   "day": 36,
+   "revPerUser": 8.42,
+   "n": 34597
+  },
+  {
+   "day": 37,
+   "revPerUser": 8.42,
+   "n": 34178
+  },
+  {
+   "day": 38,
+   "revPerUser": 8.58,
+   "n": 33785
+  },
+  {
+   "day": 39,
+   "revPerUser": 8.58,
+   "n": 33385
+  },
+  {
+   "day": 40,
+   "revPerUser": 8.6,
+   "n": 32952
+  },
+  {
+   "day": 41,
+   "revPerUser": 8.61,
+   "n": 32520
+  },
+  {
+   "day": 42,
+   "revPerUser": 8.63,
+   "n": 32078
+  },
+  {
+   "day": 43,
+   "revPerUser": 8.64,
+   "n": 31652
+  },
+  {
+   "day": 44,
+   "revPerUser": 8.63,
+   "n": 31222
+  },
+  {
+   "day": 45,
+   "revPerUser": 8.76,
+   "n": 30875
+  },
+  {
+   "day": 46,
+   "revPerUser": 8.76,
+   "n": 30461
+  },
+  {
+   "day": 47,
+   "revPerUser": 8.75,
+   "n": 30068
+  },
+  {
+   "day": 48,
+   "revPerUser": 8.75,
+   "n": 29667
+  },
+  {
+   "day": 49,
+   "revPerUser": 8.73,
+   "n": 29250
+  },
+  {
+   "day": 50,
+   "revPerUser": 8.74,
+   "n": 28770
+  },
+  {
+   "day": 51,
+   "revPerUser": 8.77,
+   "n": 28328
+  },
+  {
+   "day": 52,
+   "revPerUser": 8.89,
+   "n": 27933
+  },
+  {
+   "day": 53,
+   "revPerUser": 8.88,
+   "n": 27510
+  },
+  {
+   "day": 54,
+   "revPerUser": 8.88,
+   "n": 27067
+  },
+  {
+   "day": 55,
+   "revPerUser": 8.91,
+   "n": 26670
+  },
+  {
+   "day": 56,
+   "revPerUser": 8.89,
+   "n": 26240
+  },
+  {
+   "day": 57,
+   "revPerUser": 8.89,
+   "n": 25813
+  },
+  {
+   "day": 58,
+   "revPerUser": 8.9,
+   "n": 25407
+  },
+  {
+   "day": 59,
+   "revPerUser": 8.98,
+   "n": 24964
+  },
+  {
+   "day": 60,
+   "revPerUser": 9,
+   "n": 24564
+  },
+  {
+   "day": 61,
+   "revPerUser": 9.05,
+   "n": 24163
+  },
+  {
+   "day": 62,
+   "revPerUser": 9.12,
+   "n": 23712
+  },
+  {
+   "day": 63,
+   "revPerUser": 9.16,
+   "n": 23294
+  },
+  {
+   "day": 64,
+   "revPerUser": 9.19,
+   "n": 22885
+  },
+  {
+   "day": 65,
+   "revPerUser": 9.25,
+   "n": 22448
+  },
+  {
+   "day": 66,
+   "revPerUser": 9.33,
+   "n": 22032
+  },
+  {
+   "day": 67,
+   "revPerUser": 9.35,
+   "n": 21604
+  },
+  {
+   "day": 68,
+   "revPerUser": 9.34,
+   "n": 21208
+  },
+  {
+   "day": 69,
+   "revPerUser": 9.35,
+   "n": 20763
+  },
+  {
+   "day": 70,
+   "revPerUser": 9.33,
+   "n": 20369
+  },
+  {
+   "day": 71,
+   "revPerUser": 9.31,
+   "n": 19993
+  },
+  {
+   "day": 72,
+   "revPerUser": 9.32,
+   "n": 19561
+  },
+  {
+   "day": 73,
+   "revPerUser": 9.37,
+   "n": 19108
+  },
+  {
+   "day": 74,
+   "revPerUser": 9.36,
+   "n": 18648
+  },
+  {
+   "day": 75,
+   "revPerUser": 9.32,
+   "n": 18263
+  },
+  {
+   "day": 76,
+   "revPerUser": 9.39,
+   "n": 17822
+  },
+  {
+   "day": 77,
+   "revPerUser": 9.41,
+   "n": 17436
+  },
+  {
+   "day": 78,
+   "revPerUser": 9.41,
+   "n": 17024
+  },
+  {
+   "day": 79,
+   "revPerUser": 9.38,
+   "n": 16603
+  },
+  {
+   "day": 80,
+   "revPerUser": 9.47,
+   "n": 16188
+  },
+  {
+   "day": 81,
+   "revPerUser": 9.48,
+   "n": 15766
+  },
+  {
+   "day": 82,
+   "revPerUser": 9.49,
+   "n": 15332
+  },
+  {
+   "day": 83,
+   "revPerUser": 9.47,
+   "n": 14925
+  },
+  {
+   "day": 84,
+   "revPerUser": 9.41,
+   "n": 14485
+  },
+  {
+   "day": 85,
+   "revPerUser": 9.45,
+   "n": 14083
+  },
+  {
+   "day": 86,
+   "revPerUser": 9.49,
+   "n": 13679
+  },
+  {
+   "day": 87,
+   "revPerUser": 9.55,
+   "n": 13263
+  },
+  {
+   "day": 88,
+   "revPerUser": 9.56,
+   "n": 12881
+  },
+  {
+   "day": 89,
+   "revPerUser": 9.59,
+   "n": 12472
+  },
+  {
+   "day": 90,
+   "revPerUser": 9.63,
+   "n": 12052
+  },
+  {
+   "day": 91,
+   "revPerUser": 9.63,
+   "n": 11630
+  },
+  {
+   "day": 92,
+   "revPerUser": 9.65,
+   "n": 11229
+  },
+  {
+   "day": 93,
+   "revPerUser": 9.71,
+   "n": 10837
+  },
+  {
+   "day": 94,
+   "revPerUser": 9.8,
+   "n": 10433
+  },
+  {
+   "day": 95,
+   "revPerUser": 9.8,
+   "n": 10041
+  },
+  {
+   "day": 96,
+   "revPerUser": 9.77,
+   "n": 9648
+  },
+  {
+   "day": 97,
+   "revPerUser": 9.76,
+   "n": 9206
+  },
+  {
+   "day": 98,
+   "revPerUser": 9.8,
+   "n": 8789
+  },
+  {
+   "day": 99,
+   "revPerUser": 9.81,
+   "n": 8377
+  },
+  {
+   "day": 100,
+   "revPerUser": 9.82,
+   "n": 7986
+  },
+  {
+   "day": 101,
+   "revPerUser": 9.96,
+   "n": 7560
+  },
+  {
+   "day": 102,
+   "revPerUser": 10.13,
+   "n": 7158
+  },
+  {
+   "day": 103,
+   "revPerUser": 10.05,
+   "n": 6729
+  },
+  {
+   "day": 104,
+   "revPerUser": 10.09,
+   "n": 6322
+  },
+  {
+   "day": 105,
+   "revPerUser": 10.06,
+   "n": 5906
+  },
+  {
+   "day": 106,
+   "revPerUser": 10.18,
+   "n": 5526
+  },
+  {
+   "day": 107,
+   "revPerUser": 10.21,
+   "n": 5090
+  },
+  {
+   "day": 108,
+   "revPerUser": 10.25,
+   "n": 4690
+  },
+  {
+   "day": 109,
+   "revPerUser": 10.14,
+   "n": 4315
+  },
+  {
+   "day": 110,
+   "revPerUser": 10,
+   "n": 3894
+  }
+ ],
+ "apple_search_ads": [
+  {
+   "day": 0,
+   "revPerUser": 2.68,
+   "n": 4072
+  },
+  {
+   "day": 1,
+   "revPerUser": 3.97,
+   "n": 4041
+  },
+  {
+   "day": 2,
+   "revPerUser": 5.25,
+   "n": 4002
+  },
+  {
+   "day": 3,
+   "revPerUser": 7.25,
+   "n": 3972
+  },
+  {
+   "day": 4,
+   "revPerUser": 8.61,
+   "n": 3931
+  },
+  {
+   "day": 5,
+   "revPerUser": 9.98,
+   "n": 3901
+  },
+  {
+   "day": 6,
+   "revPerUser": 9.98,
+   "n": 3859
+  },
+  {
+   "day": 7,
+   "revPerUser": 11.39,
+   "n": 3829
+  },
+  {
+   "day": 8,
+   "revPerUser": 11.42,
+   "n": 3797
+  },
+  {
+   "day": 9,
+   "revPerUser": 11.43,
+   "n": 3764
+  },
+  {
+   "day": 10,
+   "revPerUser": 11.9,
+   "n": 3721
+  },
+  {
+   "day": 11,
+   "revPerUser": 11.91,
+   "n": 3677
+  },
+  {
+   "day": 12,
+   "revPerUser": 11.97,
+   "n": 3644
+  },
+  {
+   "day": 13,
+   "revPerUser": 11.92,
+   "n": 3615
+  },
+  {
+   "day": 14,
+   "revPerUser": 11.97,
+   "n": 3579
+  },
+  {
+   "day": 15,
+   "revPerUser": 12.04,
+   "n": 3549
+  },
+  {
+   "day": 16,
+   "revPerUser": 11.96,
+   "n": 3523
+  },
+  {
+   "day": 17,
+   "revPerUser": 12.42,
+   "n": 3467
+  },
+  {
+   "day": 18,
+   "revPerUser": 12.44,
+   "n": 3442
+  },
+  {
+   "day": 19,
+   "revPerUser": 12.48,
+   "n": 3398
+  },
+  {
+   "day": 20,
+   "revPerUser": 12.5,
+   "n": 3363
+  },
+  {
+   "day": 21,
+   "revPerUser": 12.48,
+   "n": 3326
+  },
+  {
+   "day": 22,
+   "revPerUser": 12.51,
+   "n": 3290
+  },
+  {
+   "day": 23,
+   "revPerUser": 12.55,
+   "n": 3261
+  },
+  {
+   "day": 24,
+   "revPerUser": 12.93,
+   "n": 3222
+  },
+  {
+   "day": 25,
+   "revPerUser": 12.94,
+   "n": 3183
+  },
+  {
+   "day": 26,
+   "revPerUser": 12.93,
+   "n": 3151
+  },
+  {
+   "day": 27,
+   "revPerUser": 12.87,
+   "n": 3110
+  },
+  {
+   "day": 28,
+   "revPerUser": 12.87,
+   "n": 3077
+  },
+  {
+   "day": 29,
+   "revPerUser": 12.9,
+   "n": 3042
+  },
+  {
+   "day": 30,
+   "revPerUser": 13.04,
+   "n": 3004
+  },
+  {
+   "day": 31,
+   "revPerUser": 13.37,
+   "n": 2969
+  },
+  {
+   "day": 32,
+   "revPerUser": 13.52,
+   "n": 2928
+  },
+  {
+   "day": 33,
+   "revPerUser": 13.58,
+   "n": 2896
+  },
+  {
+   "day": 34,
+   "revPerUser": 13.58,
+   "n": 2858
+  },
+  {
+   "day": 35,
+   "revPerUser": 13.71,
+   "n": 2829
+  },
+  {
+   "day": 36,
+   "revPerUser": 13.84,
+   "n": 2778
+  },
+  {
+   "day": 37,
+   "revPerUser": 13.85,
+   "n": 2745
+  },
+  {
+   "day": 38,
+   "revPerUser": 14.02,
+   "n": 2716
+  },
+  {
+   "day": 39,
+   "revPerUser": 13.98,
+   "n": 2694
+  },
+  {
+   "day": 40,
+   "revPerUser": 13.98,
+   "n": 2660
+  },
+  {
+   "day": 41,
+   "revPerUser": 13.95,
+   "n": 2625
+  },
+  {
+   "day": 42,
+   "revPerUser": 14,
+   "n": 2599
+  },
+  {
+   "day": 43,
+   "revPerUser": 14.02,
+   "n": 2563
+  },
+  {
+   "day": 44,
+   "revPerUser": 13.95,
+   "n": 2523
+  },
+  {
+   "day": 45,
+   "revPerUser": 14.22,
+   "n": 2500
+  },
+  {
+   "day": 46,
+   "revPerUser": 14.3,
+   "n": 2476
+  },
+  {
+   "day": 47,
+   "revPerUser": 14.3,
+   "n": 2444
+  },
+  {
+   "day": 48,
+   "revPerUser": 14.25,
+   "n": 2404
+  },
+  {
+   "day": 49,
+   "revPerUser": 14.25,
+   "n": 2372
+  },
+  {
+   "day": 50,
+   "revPerUser": 14.28,
+   "n": 2343
+  },
+  {
+   "day": 51,
+   "revPerUser": 14.3,
+   "n": 2309
+  },
+  {
+   "day": 52,
+   "revPerUser": 14.57,
+   "n": 2277
+  },
+  {
+   "day": 53,
+   "revPerUser": 14.69,
+   "n": 2243
+  },
+  {
+   "day": 54,
+   "revPerUser": 14.8,
+   "n": 2206
+  },
+  {
+   "day": 55,
+   "revPerUser": 14.87,
+   "n": 2175
+  },
+  {
+   "day": 56,
+   "revPerUser": 14.81,
+   "n": 2138
+  },
+  {
+   "day": 57,
+   "revPerUser": 14.79,
+   "n": 2099
+  },
+  {
+   "day": 58,
+   "revPerUser": 14.77,
+   "n": 2050
+  },
+  {
+   "day": 59,
+   "revPerUser": 15.03,
+   "n": 2017
+  },
+  {
+   "day": 60,
+   "revPerUser": 15.13,
+   "n": 1987
+  },
+  {
+   "day": 61,
+   "revPerUser": 15.14,
+   "n": 1954
+  },
+  {
+   "day": 62,
+   "revPerUser": 15.2,
+   "n": 1921
+  },
+  {
+   "day": 63,
+   "revPerUser": 15.26,
+   "n": 1886
+  },
+  {
+   "day": 64,
+   "revPerUser": 15.25,
+   "n": 1851
+  },
+  {
+   "day": 65,
+   "revPerUser": 15.28,
+   "n": 1827
+  },
+  {
+   "day": 66,
+   "revPerUser": 15.32,
+   "n": 1800
+  },
+  {
+   "day": 67,
+   "revPerUser": 15.43,
+   "n": 1762
+  },
+  {
+   "day": 68,
+   "revPerUser": 15.58,
+   "n": 1729
+  },
+  {
+   "day": 69,
+   "revPerUser": 15.62,
+   "n": 1691
+  },
+  {
+   "day": 70,
+   "revPerUser": 15.67,
+   "n": 1653
+  },
+  {
+   "day": 71,
+   "revPerUser": 15.66,
+   "n": 1613
+  },
+  {
+   "day": 72,
+   "revPerUser": 15.65,
+   "n": 1577
+  },
+  {
+   "day": 73,
+   "revPerUser": 15.88,
+   "n": 1540
+  },
+  {
+   "day": 74,
+   "revPerUser": 15.79,
+   "n": 1498
+  },
+  {
+   "day": 75,
+   "revPerUser": 15.83,
+   "n": 1460
+  },
+  {
+   "day": 76,
+   "revPerUser": 16.02,
+   "n": 1428
+  },
+  {
+   "day": 77,
+   "revPerUser": 15.94,
+   "n": 1402
+  },
+  {
+   "day": 78,
+   "revPerUser": 16.13,
+   "n": 1371
+  },
+  {
+   "day": 79,
+   "revPerUser": 16.09,
+   "n": 1324
+  },
+  {
+   "day": 80,
+   "revPerUser": 16.24,
+   "n": 1294
+  },
+  {
+   "day": 81,
+   "revPerUser": 16.27,
+   "n": 1261
+  },
+  {
+   "day": 82,
+   "revPerUser": 16.12,
+   "n": 1214
+  },
+  {
+   "day": 83,
+   "revPerUser": 16.29,
+   "n": 1186
+  },
+  {
+   "day": 84,
+   "revPerUser": 16.24,
+   "n": 1153
+  },
+  {
+   "day": 85,
+   "revPerUser": 16.34,
+   "n": 1120
+  },
+  {
+   "day": 86,
+   "revPerUser": 16.34,
+   "n": 1090
+  },
+  {
+   "day": 87,
+   "revPerUser": 16.58,
+   "n": 1059
+  },
+  {
+   "day": 88,
+   "revPerUser": 16.65,
+   "n": 1022
+  },
+  {
+   "day": 89,
+   "revPerUser": 16.77,
+   "n": 987
+  },
+  {
+   "day": 90,
+   "revPerUser": 16.94,
+   "n": 956
+  },
+  {
+   "day": 91,
+   "revPerUser": 16.72,
+   "n": 910
+  },
+  {
+   "day": 92,
+   "revPerUser": 16.73,
+   "n": 877
+  },
+  {
+   "day": 93,
+   "revPerUser": 16.92,
+   "n": 846
+  },
+  {
+   "day": 94,
+   "revPerUser": 17.4,
+   "n": 810
+  },
+  {
+   "day": 95,
+   "revPerUser": 17.75,
+   "n": 774
+  },
+  {
+   "day": 96,
+   "revPerUser": 17.98,
+   "n": 746
+  },
+  {
+   "day": 97,
+   "revPerUser": 17.94,
+   "n": 707
+  },
+  {
+   "day": 98,
+   "revPerUser": 17.63,
+   "n": 681
+  },
+  {
+   "day": 99,
+   "revPerUser": 17.59,
+   "n": 646
+  },
+  {
+   "day": 100,
+   "revPerUser": 17.84,
+   "n": 614
+  },
+  {
+   "day": 101,
+   "revPerUser": 18.02,
+   "n": 581
+  },
+  {
+   "day": 102,
+   "revPerUser": 18.21,
+   "n": 556
+  },
+  {
+   "day": 103,
+   "revPerUser": 17.91,
+   "n": 514
+  },
+  {
+   "day": 104,
+   "revPerUser": 18.01,
+   "n": 483
+  },
+  {
+   "day": 105,
+   "revPerUser": 17.83,
+   "n": 458
+  },
+  {
+   "day": 106,
+   "revPerUser": 18.58,
+   "n": 419
+  },
+  {
+   "day": 107,
+   "revPerUser": 18.56,
+   "n": 394
+  },
+  {
+   "day": 108,
+   "revPerUser": 18.67,
+   "n": 359
+  },
+  {
+   "day": 109,
+   "revPerUser": 18.36,
+   "n": 334
+  }
+ ],
+ "organic": [
+  {
+   "day": 0,
+   "revPerUser": 1.99,
+   "n": 18767
+  },
+  {
+   "day": 1,
+   "revPerUser": 2.91,
+   "n": 18608
+  },
+  {
+   "day": 2,
+   "revPerUser": 3.9,
+   "n": 18439
+  },
+  {
+   "day": 3,
+   "revPerUser": 5.08,
+   "n": 18268
+  },
+  {
+   "day": 4,
+   "revPerUser": 6.04,
+   "n": 18091
+  },
+  {
+   "day": 5,
+   "revPerUser": 6.97,
+   "n": 17942
+  },
+  {
+   "day": 6,
+   "revPerUser": 6.98,
+   "n": 17770
+  },
+  {
+   "day": 7,
+   "revPerUser": 7.93,
+   "n": 17627
+  },
+  {
+   "day": 8,
+   "revPerUser": 7.93,
+   "n": 17460
+  },
+  {
+   "day": 9,
+   "revPerUser": 7.91,
+   "n": 17303
+  },
+  {
+   "day": 10,
+   "revPerUser": 8.2,
+   "n": 17139
+  },
+  {
+   "day": 11,
+   "revPerUser": 8.23,
+   "n": 16981
+  },
+  {
+   "day": 12,
+   "revPerUser": 8.22,
+   "n": 16844
+  },
+  {
+   "day": 13,
+   "revPerUser": 8.25,
+   "n": 16667
+  },
+  {
+   "day": 14,
+   "revPerUser": 8.25,
+   "n": 16500
+  },
+  {
+   "day": 15,
+   "revPerUser": 8.27,
+   "n": 16350
+  },
+  {
+   "day": 16,
+   "revPerUser": 8.27,
+   "n": 16176
+  },
+  {
+   "day": 17,
+   "revPerUser": 8.51,
+   "n": 15998
+  },
+  {
+   "day": 18,
+   "revPerUser": 8.48,
+   "n": 15822
+  },
+  {
+   "day": 19,
+   "revPerUser": 8.47,
+   "n": 15659
+  },
+  {
+   "day": 20,
+   "revPerUser": 8.49,
+   "n": 15494
+  },
+  {
+   "day": 21,
+   "revPerUser": 8.53,
+   "n": 15332
+  },
+  {
+   "day": 22,
+   "revPerUser": 8.54,
+   "n": 15183
+  },
+  {
+   "day": 23,
+   "revPerUser": 8.56,
+   "n": 15053
+  },
+  {
+   "day": 24,
+   "revPerUser": 8.79,
+   "n": 14888
+  },
+  {
+   "day": 25,
+   "revPerUser": 8.81,
+   "n": 14754
+  },
+  {
+   "day": 26,
+   "revPerUser": 8.81,
+   "n": 14584
+  },
+  {
+   "day": 27,
+   "revPerUser": 8.82,
+   "n": 14434
+  },
+  {
+   "day": 28,
+   "revPerUser": 8.8,
+   "n": 14267
+  },
+  {
+   "day": 29,
+   "revPerUser": 8.81,
+   "n": 14121
+  },
+  {
+   "day": 30,
+   "revPerUser": 8.88,
+   "n": 13967
+  },
+  {
+   "day": 31,
+   "revPerUser": 9.17,
+   "n": 13807
+  },
+  {
+   "day": 32,
+   "revPerUser": 9.23,
+   "n": 13658
+  },
+  {
+   "day": 33,
+   "revPerUser": 9.27,
+   "n": 13520
+  },
+  {
+   "day": 34,
+   "revPerUser": 9.3,
+   "n": 13365
+  },
+  {
+   "day": 35,
+   "revPerUser": 9.38,
+   "n": 13194
+  },
+  {
+   "day": 36,
+   "revPerUser": 9.36,
+   "n": 13046
+  },
+  {
+   "day": 37,
+   "revPerUser": 9.36,
+   "n": 12887
+  },
+  {
+   "day": 38,
+   "revPerUser": 9.54,
+   "n": 12730
+  },
+  {
+   "day": 39,
+   "revPerUser": 9.54,
+   "n": 12577
+  },
+  {
+   "day": 40,
+   "revPerUser": 9.55,
+   "n": 12413
+  },
+  {
+   "day": 41,
+   "revPerUser": 9.56,
+   "n": 12251
+  },
+  {
+   "day": 42,
+   "revPerUser": 9.55,
+   "n": 12070
+  },
+  {
+   "day": 43,
+   "revPerUser": 9.59,
+   "n": 11901
+  },
+  {
+   "day": 44,
+   "revPerUser": 9.6,
+   "n": 11753
+  },
+  {
+   "day": 45,
+   "revPerUser": 9.72,
+   "n": 11630
+  },
+  {
+   "day": 46,
+   "revPerUser": 9.75,
+   "n": 11463
+  },
+  {
+   "day": 47,
+   "revPerUser": 9.72,
+   "n": 11338
+  },
+  {
+   "day": 48,
+   "revPerUser": 9.75,
+   "n": 11185
+  },
+  {
+   "day": 49,
+   "revPerUser": 9.69,
+   "n": 11010
+  },
+  {
+   "day": 50,
+   "revPerUser": 9.68,
+   "n": 10830
+  },
+  {
+   "day": 51,
+   "revPerUser": 9.75,
+   "n": 10663
+  },
+  {
+   "day": 52,
+   "revPerUser": 9.9,
+   "n": 10507
+  },
+  {
+   "day": 53,
+   "revPerUser": 9.86,
+   "n": 10340
+  },
+  {
+   "day": 54,
+   "revPerUser": 9.83,
+   "n": 10165
+  },
+  {
+   "day": 55,
+   "revPerUser": 9.89,
+   "n": 10025
+  },
+  {
+   "day": 56,
+   "revPerUser": 9.85,
+   "n": 9864
+  },
+  {
+   "day": 57,
+   "revPerUser": 9.86,
+   "n": 9713
+  },
+  {
+   "day": 58,
+   "revPerUser": 9.89,
+   "n": 9582
+  },
+  {
+   "day": 59,
+   "revPerUser": 9.96,
+   "n": 9406
+  },
+  {
+   "day": 60,
+   "revPerUser": 9.98,
+   "n": 9268
+  },
+  {
+   "day": 61,
+   "revPerUser": 10.03,
+   "n": 9133
+  },
+  {
+   "day": 62,
+   "revPerUser": 10.11,
+   "n": 8976
+  },
+  {
+   "day": 63,
+   "revPerUser": 10.1,
+   "n": 8827
+  },
+  {
+   "day": 64,
+   "revPerUser": 10.11,
+   "n": 8681
+  },
+  {
+   "day": 65,
+   "revPerUser": 10.18,
+   "n": 8516
+  },
+  {
+   "day": 66,
+   "revPerUser": 10.27,
+   "n": 8363
+  },
+  {
+   "day": 67,
+   "revPerUser": 10.31,
+   "n": 8203
+  },
+  {
+   "day": 68,
+   "revPerUser": 10.28,
+   "n": 8045
+  },
+  {
+   "day": 69,
+   "revPerUser": 10.29,
+   "n": 7871
+  },
+  {
+   "day": 70,
+   "revPerUser": 10.32,
+   "n": 7737
+  },
+  {
+   "day": 71,
+   "revPerUser": 10.32,
+   "n": 7606
+  },
+  {
+   "day": 72,
+   "revPerUser": 10.34,
+   "n": 7454
+  },
+  {
+   "day": 73,
+   "revPerUser": 10.36,
+   "n": 7285
+  },
+  {
+   "day": 74,
+   "revPerUser": 10.39,
+   "n": 7112
+  },
+  {
+   "day": 75,
+   "revPerUser": 10.35,
+   "n": 6972
+  },
+  {
+   "day": 76,
+   "revPerUser": 10.46,
+   "n": 6784
+  },
+  {
+   "day": 77,
+   "revPerUser": 10.48,
+   "n": 6628
+  },
+  {
+   "day": 78,
+   "revPerUser": 10.36,
+   "n": 6460
+  },
+  {
+   "day": 79,
+   "revPerUser": 10.41,
+   "n": 6292
+  },
+  {
+   "day": 80,
+   "revPerUser": 10.53,
+   "n": 6123
+  },
+  {
+   "day": 81,
+   "revPerUser": 10.52,
+   "n": 5951
+  },
+  {
+   "day": 82,
+   "revPerUser": 10.58,
+   "n": 5787
+  },
+  {
+   "day": 83,
+   "revPerUser": 10.51,
+   "n": 5651
+  },
+  {
+   "day": 84,
+   "revPerUser": 10.49,
+   "n": 5504
+  },
+  {
+   "day": 85,
+   "revPerUser": 10.45,
+   "n": 5369
+  },
+  {
+   "day": 86,
+   "revPerUser": 10.53,
+   "n": 5206
+  },
+  {
+   "day": 87,
+   "revPerUser": 10.63,
+   "n": 5039
+  },
+  {
+   "day": 88,
+   "revPerUser": 10.62,
+   "n": 4902
+  },
+  {
+   "day": 89,
+   "revPerUser": 10.57,
+   "n": 4748
+  },
+  {
+   "day": 90,
+   "revPerUser": 10.52,
+   "n": 4593
+  },
+  {
+   "day": 91,
+   "revPerUser": 10.6,
+   "n": 4428
+  },
+  {
+   "day": 92,
+   "revPerUser": 10.53,
+   "n": 4288
+  },
+  {
+   "day": 93,
+   "revPerUser": 10.65,
+   "n": 4145
+  },
+  {
+   "day": 94,
+   "revPerUser": 10.71,
+   "n": 3981
+  },
+  {
+   "day": 95,
+   "revPerUser": 10.74,
+   "n": 3823
+  },
+  {
+   "day": 96,
+   "revPerUser": 10.67,
+   "n": 3677
+  },
+  {
+   "day": 97,
+   "revPerUser": 10.69,
+   "n": 3507
+  },
+  {
+   "day": 98,
+   "revPerUser": 10.75,
+   "n": 3355
+  },
+  {
+   "day": 99,
+   "revPerUser": 10.7,
+   "n": 3208
+  },
+  {
+   "day": 100,
+   "revPerUser": 10.64,
+   "n": 3059
+  },
+  {
+   "day": 101,
+   "revPerUser": 10.84,
+   "n": 2899
+  },
+  {
+   "day": 102,
+   "revPerUser": 11,
+   "n": 2737
+  },
+  {
+   "day": 103,
+   "revPerUser": 11.01,
+   "n": 2563
+  },
+  {
+   "day": 104,
+   "revPerUser": 11.22,
+   "n": 2412
+  },
+  {
+   "day": 105,
+   "revPerUser": 11.08,
+   "n": 2257
+  },
+  {
+   "day": 106,
+   "revPerUser": 11.25,
+   "n": 2118
+  },
+  {
+   "day": 107,
+   "revPerUser": 11.31,
+   "n": 1948
+  },
+  {
+   "day": 108,
+   "revPerUser": 11.3,
+   "n": 1783
+  },
+  {
+   "day": 109,
+   "revPerUser": 11.24,
+   "n": 1647
+  },
+  {
+   "day": 110,
+   "revPerUser": 10.84,
+   "n": 1470
+  }
+ ],
+ "google_uac": [
+  {
+   "day": 0,
+   "revPerUser": 1.79,
+   "n": 9016
+  },
+  {
+   "day": 1,
+   "revPerUser": 2.56,
+   "n": 8949
+  },
+  {
+   "day": 2,
+   "revPerUser": 3.49,
+   "n": 8873
+  },
+  {
+   "day": 3,
+   "revPerUser": 4.52,
+   "n": 8791
+  },
+  {
+   "day": 4,
+   "revPerUser": 5.26,
+   "n": 8733
+  },
+  {
+   "day": 5,
+   "revPerUser": 6.1,
+   "n": 8660
+  },
+  {
+   "day": 6,
+   "revPerUser": 6.11,
+   "n": 8575
+  },
+  {
+   "day": 7,
+   "revPerUser": 6.98,
+   "n": 8513
+  },
+  {
+   "day": 8,
+   "revPerUser": 7,
+   "n": 8457
+  },
+  {
+   "day": 9,
+   "revPerUser": 7.01,
+   "n": 8371
+  },
+  {
+   "day": 10,
+   "revPerUser": 7.23,
+   "n": 8289
+  },
+  {
+   "day": 11,
+   "revPerUser": 7.28,
+   "n": 8217
+  },
+  {
+   "day": 12,
+   "revPerUser": 7.26,
+   "n": 8146
+  },
+  {
+   "day": 13,
+   "revPerUser": 7.24,
+   "n": 8077
+  },
+  {
+   "day": 14,
+   "revPerUser": 7.23,
+   "n": 8001
+  },
+  {
+   "day": 15,
+   "revPerUser": 7.26,
+   "n": 7922
+  },
+  {
+   "day": 16,
+   "revPerUser": 7.23,
+   "n": 7837
+  },
+  {
+   "day": 17,
+   "revPerUser": 7.4,
+   "n": 7758
+  },
+  {
+   "day": 18,
+   "revPerUser": 7.39,
+   "n": 7662
+  },
+  {
+   "day": 19,
+   "revPerUser": 7.37,
+   "n": 7584
+  },
+  {
+   "day": 20,
+   "revPerUser": 7.35,
+   "n": 7509
+  },
+  {
+   "day": 21,
+   "revPerUser": 7.36,
+   "n": 7420
+  },
+  {
+   "day": 22,
+   "revPerUser": 7.38,
+   "n": 7334
+  },
+  {
+   "day": 23,
+   "revPerUser": 7.41,
+   "n": 7270
+  },
+  {
+   "day": 24,
+   "revPerUser": 7.58,
+   "n": 7190
+  },
+  {
+   "day": 25,
+   "revPerUser": 7.59,
+   "n": 7124
+  },
+  {
+   "day": 26,
+   "revPerUser": 7.6,
+   "n": 7055
+  },
+  {
+   "day": 27,
+   "revPerUser": 7.6,
+   "n": 6971
+  },
+  {
+   "day": 28,
+   "revPerUser": 7.62,
+   "n": 6899
+  },
+  {
+   "day": 29,
+   "revPerUser": 7.63,
+   "n": 6825
+  },
+  {
+   "day": 30,
+   "revPerUser": 7.66,
+   "n": 6751
+  },
+  {
+   "day": 31,
+   "revPerUser": 7.88,
+   "n": 6674
+  },
+  {
+   "day": 32,
+   "revPerUser": 7.94,
+   "n": 6595
+  },
+  {
+   "day": 33,
+   "revPerUser": 7.98,
+   "n": 6509
+  },
+  {
+   "day": 34,
+   "revPerUser": 8.04,
+   "n": 6427
+  },
+  {
+   "day": 35,
+   "revPerUser": 8.11,
+   "n": 6342
+  },
+  {
+   "day": 36,
+   "revPerUser": 8.1,
+   "n": 6266
+  },
+  {
+   "day": 37,
+   "revPerUser": 8.09,
+   "n": 6191
+  },
+  {
+   "day": 38,
+   "revPerUser": 8.25,
+   "n": 6123
+  },
+  {
+   "day": 39,
+   "revPerUser": 8.27,
+   "n": 6042
+  },
+  {
+   "day": 40,
+   "revPerUser": 8.28,
+   "n": 5966
+  },
+  {
+   "day": 41,
+   "revPerUser": 8.26,
+   "n": 5883
+  },
+  {
+   "day": 42,
+   "revPerUser": 8.26,
+   "n": 5813
+  },
+  {
+   "day": 43,
+   "revPerUser": 8.28,
+   "n": 5731
+  },
+  {
+   "day": 44,
+   "revPerUser": 8.24,
+   "n": 5647
+  },
+  {
+   "day": 45,
+   "revPerUser": 8.36,
+   "n": 5578
+  },
+  {
+   "day": 46,
+   "revPerUser": 8.33,
+   "n": 5516
+  },
+  {
+   "day": 47,
+   "revPerUser": 8.32,
+   "n": 5436
+  },
+  {
+   "day": 48,
+   "revPerUser": 8.34,
+   "n": 5358
+  },
+  {
+   "day": 49,
+   "revPerUser": 8.35,
+   "n": 5289
+  },
+  {
+   "day": 50,
+   "revPerUser": 8.36,
+   "n": 5195
+  },
+  {
+   "day": 51,
+   "revPerUser": 8.37,
+   "n": 5107
+  },
+  {
+   "day": 52,
+   "revPerUser": 8.45,
+   "n": 5031
+  },
+  {
+   "day": 53,
+   "revPerUser": 8.51,
+   "n": 4964
+  },
+  {
+   "day": 54,
+   "revPerUser": 8.53,
+   "n": 4902
+  },
+  {
+   "day": 55,
+   "revPerUser": 8.5,
+   "n": 4839
+  },
+  {
+   "day": 56,
+   "revPerUser": 8.52,
+   "n": 4751
+  },
+  {
+   "day": 57,
+   "revPerUser": 8.54,
+   "n": 4665
+  },
+  {
+   "day": 58,
+   "revPerUser": 8.54,
+   "n": 4587
+  },
+  {
+   "day": 59,
+   "revPerUser": 8.64,
+   "n": 4526
+  },
+  {
+   "day": 60,
+   "revPerUser": 8.68,
+   "n": 4462
+  },
+  {
+   "day": 61,
+   "revPerUser": 8.74,
+   "n": 4384
+  },
+  {
+   "day": 62,
+   "revPerUser": 8.88,
+   "n": 4288
+  },
+  {
+   "day": 63,
+   "revPerUser": 8.99,
+   "n": 4201
+  },
+  {
+   "day": 64,
+   "revPerUser": 9.05,
+   "n": 4116
+  },
+  {
+   "day": 65,
+   "revPerUser": 9.18,
+   "n": 4044
+  },
+  {
+   "day": 66,
+   "revPerUser": 9.28,
+   "n": 3958
+  },
+  {
+   "day": 67,
+   "revPerUser": 9.3,
+   "n": 3883
+  },
+  {
+   "day": 68,
+   "revPerUser": 9.29,
+   "n": 3818
+  },
+  {
+   "day": 69,
+   "revPerUser": 9.3,
+   "n": 3734
+  },
+  {
+   "day": 70,
+   "revPerUser": 9.21,
+   "n": 3661
+  },
+  {
+   "day": 71,
+   "revPerUser": 9.23,
+   "n": 3602
+  },
+  {
+   "day": 72,
+   "revPerUser": 9.25,
+   "n": 3525
+  },
+  {
+   "day": 73,
+   "revPerUser": 9.3,
+   "n": 3444
+  },
+  {
+   "day": 74,
+   "revPerUser": 9.3,
+   "n": 3366
+  },
+  {
+   "day": 75,
+   "revPerUser": 9.31,
+   "n": 3292
+  },
+  {
+   "day": 76,
+   "revPerUser": 9.39,
+   "n": 3221
+  },
+  {
+   "day": 77,
+   "revPerUser": 9.45,
+   "n": 3149
+  },
+  {
+   "day": 78,
+   "revPerUser": 9.49,
+   "n": 3076
+  },
+  {
+   "day": 79,
+   "revPerUser": 9.39,
+   "n": 2995
+  },
+  {
+   "day": 80,
+   "revPerUser": 9.44,
+   "n": 2925
+  },
+  {
+   "day": 81,
+   "revPerUser": 9.46,
+   "n": 2850
+  },
+  {
+   "day": 82,
+   "revPerUser": 9.51,
+   "n": 2767
+  },
+  {
+   "day": 83,
+   "revPerUser": 9.4,
+   "n": 2700
+  },
+  {
+   "day": 84,
+   "revPerUser": 9.36,
+   "n": 2603
+  },
+  {
+   "day": 85,
+   "revPerUser": 9.52,
+   "n": 2535
+  },
+  {
+   "day": 86,
+   "revPerUser": 9.63,
+   "n": 2465
+  },
+  {
+   "day": 87,
+   "revPerUser": 9.73,
+   "n": 2391
+  },
+  {
+   "day": 88,
+   "revPerUser": 9.73,
+   "n": 2314
+  },
+  {
+   "day": 89,
+   "revPerUser": 9.81,
+   "n": 2238
+  },
+  {
+   "day": 90,
+   "revPerUser": 9.93,
+   "n": 2170
+  },
+  {
+   "day": 91,
+   "revPerUser": 9.96,
+   "n": 2100
+  },
+  {
+   "day": 92,
+   "revPerUser": 10.02,
+   "n": 2027
+  },
+  {
+   "day": 93,
+   "revPerUser": 10.08,
+   "n": 1958
+  },
+  {
+   "day": 94,
+   "revPerUser": 10.07,
+   "n": 1892
+  },
+  {
+   "day": 95,
+   "revPerUser": 10.09,
+   "n": 1827
+  },
+  {
+   "day": 96,
+   "revPerUser": 10.2,
+   "n": 1738
+  },
+  {
+   "day": 97,
+   "revPerUser": 10.12,
+   "n": 1659
+  },
+  {
+   "day": 98,
+   "revPerUser": 10.27,
+   "n": 1579
+  },
+  {
+   "day": 99,
+   "revPerUser": 10.22,
+   "n": 1514
+  },
+  {
+   "day": 100,
+   "revPerUser": 10.24,
+   "n": 1440
+  },
+  {
+   "day": 101,
+   "revPerUser": 10.37,
+   "n": 1365
+  },
+  {
+   "day": 102,
+   "revPerUser": 10.45,
+   "n": 1301
+  },
+  {
+   "day": 103,
+   "revPerUser": 10.52,
+   "n": 1239
+  },
+  {
+   "day": 104,
+   "revPerUser": 10.46,
+   "n": 1167
+  },
+  {
+   "day": 105,
+   "revPerUser": 10.45,
+   "n": 1083
+  },
+  {
+   "day": 106,
+   "revPerUser": 10.56,
+   "n": 1011
+  },
+  {
+   "day": 107,
+   "revPerUser": 10.5,
+   "n": 922
+  },
+  {
+   "day": 108,
+   "revPerUser": 10.57,
+   "n": 859
+  },
+  {
+   "day": 109,
+   "revPerUser": 9.97,
+   "n": 791
+  },
+  {
+   "day": 110,
+   "revPerUser": 10.09,
+   "n": 723
+  }
+ ],
+ "meta_ads": [
+  {
+   "day": 0,
+   "revPerUser": 1.7,
+   "n": 10032
+  },
+  {
+   "day": 1,
+   "revPerUser": 2.49,
+   "n": 9938
+  },
+  {
+   "day": 2,
+   "revPerUser": 3.28,
+   "n": 9863
+  },
+  {
+   "day": 3,
+   "revPerUser": 4.18,
+   "n": 9791
+  },
+  {
+   "day": 4,
+   "revPerUser": 4.82,
+   "n": 9710
+  },
+  {
+   "day": 5,
+   "revPerUser": 5.66,
+   "n": 9642
+  },
+  {
+   "day": 6,
+   "revPerUser": 5.69,
+   "n": 9540
+  },
+  {
+   "day": 7,
+   "revPerUser": 6.55,
+   "n": 9455
+  },
+  {
+   "day": 8,
+   "revPerUser": 6.55,
+   "n": 9381
+  },
+  {
+   "day": 9,
+   "revPerUser": 6.55,
+   "n": 9310
+  },
+  {
+   "day": 10,
+   "revPerUser": 6.76,
+   "n": 9232
+  },
+  {
+   "day": 11,
+   "revPerUser": 6.78,
+   "n": 9160
+  },
+  {
+   "day": 12,
+   "revPerUser": 6.77,
+   "n": 9058
+  },
+  {
+   "day": 13,
+   "revPerUser": 6.77,
+   "n": 8953
+  },
+  {
+   "day": 14,
+   "revPerUser": 6.78,
+   "n": 8870
+  },
+  {
+   "day": 15,
+   "revPerUser": 6.77,
+   "n": 8792
+  },
+  {
+   "day": 16,
+   "revPerUser": 6.75,
+   "n": 8702
+  },
+  {
+   "day": 17,
+   "revPerUser": 6.93,
+   "n": 8617
+  },
+  {
+   "day": 18,
+   "revPerUser": 6.94,
+   "n": 8547
+  },
+  {
+   "day": 19,
+   "revPerUser": 6.97,
+   "n": 8453
+  },
+  {
+   "day": 20,
+   "revPerUser": 7,
+   "n": 8372
+  },
+  {
+   "day": 21,
+   "revPerUser": 7.01,
+   "n": 8260
+  },
+  {
+   "day": 22,
+   "revPerUser": 6.99,
+   "n": 8193
+  },
+  {
+   "day": 23,
+   "revPerUser": 6.98,
+   "n": 8112
+  },
+  {
+   "day": 24,
+   "revPerUser": 7.16,
+   "n": 8047
+  },
+  {
+   "day": 25,
+   "revPerUser": 7.17,
+   "n": 7958
+  },
+  {
+   "day": 26,
+   "revPerUser": 7.17,
+   "n": 7873
+  },
+  {
+   "day": 27,
+   "revPerUser": 7.17,
+   "n": 7783
+  },
+  {
+   "day": 28,
+   "revPerUser": 7.19,
+   "n": 7684
+  },
+  {
+   "day": 29,
+   "revPerUser": 7.16,
+   "n": 7598
+  },
+  {
+   "day": 30,
+   "revPerUser": 7.26,
+   "n": 7505
+  },
+  {
+   "day": 31,
+   "revPerUser": 7.49,
+   "n": 7432
+  },
+  {
+   "day": 32,
+   "revPerUser": 7.55,
+   "n": 7350
+  },
+  {
+   "day": 33,
+   "revPerUser": 7.61,
+   "n": 7262
+  },
+  {
+   "day": 34,
+   "revPerUser": 7.59,
+   "n": 7178
+  },
+  {
+   "day": 35,
+   "revPerUser": 7.64,
+   "n": 7093
+  },
+  {
+   "day": 36,
+   "revPerUser": 7.65,
+   "n": 7006
+  },
+  {
+   "day": 37,
+   "revPerUser": 7.64,
+   "n": 6915
+  },
+  {
+   "day": 38,
+   "revPerUser": 7.81,
+   "n": 6831
+  },
+  {
+   "day": 39,
+   "revPerUser": 7.82,
+   "n": 6744
+  },
+  {
+   "day": 40,
+   "revPerUser": 7.87,
+   "n": 6656
+  },
+  {
+   "day": 41,
+   "revPerUser": 7.9,
+   "n": 6570
+  },
+  {
+   "day": 42,
+   "revPerUser": 7.95,
+   "n": 6479
+  },
+  {
+   "day": 43,
+   "revPerUser": 7.93,
+   "n": 6404
+  },
+  {
+   "day": 44,
+   "revPerUser": 7.95,
+   "n": 6325
+  },
+  {
+   "day": 45,
+   "revPerUser": 8.07,
+   "n": 6259
+  },
+  {
+   "day": 46,
+   "revPerUser": 8.05,
+   "n": 6173
+  },
+  {
+   "day": 47,
+   "revPerUser": 8.04,
+   "n": 6088
+  },
+  {
+   "day": 48,
+   "revPerUser": 8.01,
+   "n": 6016
+  },
+  {
+   "day": 49,
+   "revPerUser": 8.03,
+   "n": 5945
+  },
+  {
+   "day": 50,
+   "revPerUser": 8.01,
+   "n": 5843
+  },
+  {
+   "day": 51,
+   "revPerUser": 8,
+   "n": 5763
+  },
+  {
+   "day": 52,
+   "revPerUser": 8.12,
+   "n": 5690
+  },
+  {
+   "day": 53,
+   "revPerUser": 8.05,
+   "n": 5603
+  },
+  {
+   "day": 54,
+   "revPerUser": 8.06,
+   "n": 5503
+  },
+  {
+   "day": 55,
+   "revPerUser": 8.09,
+   "n": 5403
+  },
+  {
+   "day": 56,
+   "revPerUser": 8.09,
+   "n": 5332
+  },
+  {
+   "day": 57,
+   "revPerUser": 8.07,
+   "n": 5239
+  },
+  {
+   "day": 58,
+   "revPerUser": 8.08,
+   "n": 5157
+  },
+  {
+   "day": 59,
+   "revPerUser": 8.11,
+   "n": 5059
+  },
+  {
+   "day": 60,
+   "revPerUser": 8.09,
+   "n": 4945
+  },
+  {
+   "day": 61,
+   "revPerUser": 8.12,
+   "n": 4859
+  },
+  {
+   "day": 62,
+   "revPerUser": 8.17,
+   "n": 4753
+  },
+  {
+   "day": 63,
+   "revPerUser": 8.25,
+   "n": 4680
+  },
+  {
+   "day": 64,
+   "revPerUser": 8.31,
+   "n": 4610
+  },
+  {
+   "day": 65,
+   "revPerUser": 8.36,
+   "n": 4508
+  },
+  {
+   "day": 66,
+   "revPerUser": 8.42,
+   "n": 4434
+  },
+  {
+   "day": 67,
+   "revPerUser": 8.4,
+   "n": 4342
+  },
+  {
+   "day": 68,
+   "revPerUser": 8.39,
+   "n": 4265
+  },
+  {
+   "day": 69,
+   "revPerUser": 8.38,
+   "n": 4175
+  },
+  {
+   "day": 70,
+   "revPerUser": 8.37,
+   "n": 4096
+  },
+  {
+   "day": 71,
+   "revPerUser": 8.35,
+   "n": 4009
+  },
+  {
+   "day": 72,
+   "revPerUser": 8.36,
+   "n": 3916
+  },
+  {
+   "day": 73,
+   "revPerUser": 8.37,
+   "n": 3823
+  },
+  {
+   "day": 74,
+   "revPerUser": 8.45,
+   "n": 3733
+  },
+  {
+   "day": 75,
+   "revPerUser": 8.33,
+   "n": 3657
+  },
+  {
+   "day": 76,
+   "revPerUser": 8.31,
+   "n": 3562
+  },
+  {
+   "day": 77,
+   "revPerUser": 8.29,
+   "n": 3490
+  },
+  {
+   "day": 78,
+   "revPerUser": 8.36,
+   "n": 3405
+  },
+  {
+   "day": 79,
+   "revPerUser": 8.35,
+   "n": 3325
+  },
+  {
+   "day": 80,
+   "revPerUser": 8.37,
+   "n": 3251
+  },
+  {
+   "day": 81,
+   "revPerUser": 8.4,
+   "n": 3172
+  },
+  {
+   "day": 82,
+   "revPerUser": 8.41,
+   "n": 3093
+  },
+  {
+   "day": 83,
+   "revPerUser": 8.41,
+   "n": 2998
+  },
+  {
+   "day": 84,
+   "revPerUser": 8.23,
+   "n": 2912
+  },
+  {
+   "day": 85,
+   "revPerUser": 8.31,
+   "n": 2819
+  },
+  {
+   "day": 86,
+   "revPerUser": 8.27,
+   "n": 2739
+  },
+  {
+   "day": 87,
+   "revPerUser": 8.21,
+   "n": 2661
+  },
+  {
+   "day": 88,
+   "revPerUser": 8.31,
+   "n": 2592
+  },
+  {
+   "day": 89,
+   "revPerUser": 8.35,
+   "n": 2508
+  },
+  {
+   "day": 90,
+   "revPerUser": 8.42,
+   "n": 2421
+  },
+  {
+   "day": 91,
+   "revPerUser": 8.32,
+   "n": 2341
+  },
+  {
+   "day": 92,
+   "revPerUser": 8.44,
+   "n": 2254
+  },
+  {
+   "day": 93,
+   "revPerUser": 8.41,
+   "n": 2171
+  },
+  {
+   "day": 94,
+   "revPerUser": 8.53,
+   "n": 2091
+  },
+  {
+   "day": 95,
+   "revPerUser": 8.35,
+   "n": 2027
+  },
+  {
+   "day": 96,
+   "revPerUser": 8.36,
+   "n": 1946
+  },
+  {
+   "day": 97,
+   "revPerUser": 8.29,
+   "n": 1855
+  },
+  {
+   "day": 98,
+   "revPerUser": 8.33,
+   "n": 1761
+  },
+  {
+   "day": 99,
+   "revPerUser": 8.34,
+   "n": 1676
+  },
+  {
+   "day": 100,
+   "revPerUser": 8.28,
+   "n": 1598
+  },
+  {
+   "day": 101,
+   "revPerUser": 8.44,
+   "n": 1511
+  },
+  {
+   "day": 102,
+   "revPerUser": 8.69,
+   "n": 1438
+  },
+  {
+   "day": 103,
+   "revPerUser": 8.42,
+   "n": 1351
+  },
+  {
+   "day": 104,
+   "revPerUser": 8.33,
+   "n": 1267
+  },
+  {
+   "day": 105,
+   "revPerUser": 8.4,
+   "n": 1176
+  },
+  {
+   "day": 106,
+   "revPerUser": 8.46,
+   "n": 1101
+  },
+  {
+   "day": 107,
+   "revPerUser": 8.45,
+   "n": 1022
+  },
+  {
+   "day": 108,
+   "revPerUser": 8.55,
+   "n": 950
+  },
+  {
+   "day": 109,
+   "revPerUser": 8.66,
+   "n": 876
+  },
+  {
+   "day": 110,
+   "revPerUser": 8.6,
+   "n": 806
+  }
+ ],
+ "tiktok_ads": [
+  {
+   "day": 0,
+   "revPerUser": 1.05,
+   "n": 7893
+  },
+  {
+   "day": 1,
+   "revPerUser": 1.5,
+   "n": 7818
+  },
+  {
+   "day": 2,
+   "revPerUser": 1.92,
+   "n": 7745
+  },
+  {
+   "day": 3,
+   "revPerUser": 2.67,
+   "n": 7683
+  },
+  {
+   "day": 4,
+   "revPerUser": 3.15,
+   "n": 7615
+  },
+  {
+   "day": 5,
+   "revPerUser": 3.64,
+   "n": 7549
+  },
+  {
+   "day": 6,
+   "revPerUser": 3.63,
+   "n": 7486
+  },
+  {
+   "day": 7,
+   "revPerUser": 4.06,
+   "n": 7424
+  },
+  {
+   "day": 8,
+   "revPerUser": 4.05,
+   "n": 7358
+  },
+  {
+   "day": 9,
+   "revPerUser": 4.08,
+   "n": 7298
+  },
+  {
+   "day": 10,
+   "revPerUser": 4.2,
+   "n": 7221
+  },
+  {
+   "day": 11,
+   "revPerUser": 4.22,
+   "n": 7149
+  },
+  {
+   "day": 12,
+   "revPerUser": 4.22,
+   "n": 7095
+  },
+  {
+   "day": 13,
+   "revPerUser": 4.24,
+   "n": 7020
+  },
+  {
+   "day": 14,
+   "revPerUser": 4.22,
+   "n": 6954
+  },
+  {
+   "day": 15,
+   "revPerUser": 4.24,
+   "n": 6880
+  },
+  {
+   "day": 16,
+   "revPerUser": 4.25,
+   "n": 6819
+  },
+  {
+   "day": 17,
+   "revPerUser": 4.4,
+   "n": 6748
+  },
+  {
+   "day": 18,
+   "revPerUser": 4.41,
+   "n": 6672
+  },
+  {
+   "day": 19,
+   "revPerUser": 4.42,
+   "n": 6606
+  },
+  {
+   "day": 20,
+   "revPerUser": 4.42,
+   "n": 6537
+  },
+  {
+   "day": 21,
+   "revPerUser": 4.43,
+   "n": 6486
+  },
+  {
+   "day": 22,
+   "revPerUser": 4.44,
+   "n": 6438
+  },
+  {
+   "day": 23,
+   "revPerUser": 4.48,
+   "n": 6362
+  },
+  {
+   "day": 24,
+   "revPerUser": 4.59,
+   "n": 6305
+  },
+  {
+   "day": 25,
+   "revPerUser": 4.58,
+   "n": 6250
+  },
+  {
+   "day": 26,
+   "revPerUser": 4.57,
+   "n": 6188
+  },
+  {
+   "day": 27,
+   "revPerUser": 4.57,
+   "n": 6109
+  },
+  {
+   "day": 28,
+   "revPerUser": 4.57,
+   "n": 6054
+  },
+  {
+   "day": 29,
+   "revPerUser": 4.53,
+   "n": 5980
+  },
+  {
+   "day": 30,
+   "revPerUser": 4.53,
+   "n": 5919
+  },
+  {
+   "day": 31,
+   "revPerUser": 4.62,
+   "n": 5850
+  },
+  {
+   "day": 32,
+   "revPerUser": 4.68,
+   "n": 5792
+  },
+  {
+   "day": 33,
+   "revPerUser": 4.71,
+   "n": 5717
+  },
+  {
+   "day": 34,
+   "revPerUser": 4.77,
+   "n": 5642
+  },
+  {
+   "day": 35,
+   "revPerUser": 4.77,
+   "n": 5563
+  },
+  {
+   "day": 36,
+   "revPerUser": 4.79,
+   "n": 5501
+  },
+  {
+   "day": 37,
+   "revPerUser": 4.81,
+   "n": 5440
+  },
+  {
+   "day": 38,
+   "revPerUser": 4.9,
+   "n": 5385
+  },
+  {
+   "day": 39,
+   "revPerUser": 4.92,
+   "n": 5328
+  },
+  {
+   "day": 40,
+   "revPerUser": 4.95,
+   "n": 5257
+  },
+  {
+   "day": 41,
+   "revPerUser": 4.95,
+   "n": 5191
+  },
+  {
+   "day": 42,
+   "revPerUser": 5,
+   "n": 5117
+  },
+  {
+   "day": 43,
+   "revPerUser": 4.98,
+   "n": 5053
+  },
+  {
+   "day": 44,
+   "revPerUser": 4.95,
+   "n": 4974
+  },
+  {
+   "day": 45,
+   "revPerUser": 5.02,
+   "n": 4908
+  },
+  {
+   "day": 46,
+   "revPerUser": 5,
+   "n": 4833
+  },
+  {
+   "day": 47,
+   "revPerUser": 5.01,
+   "n": 4762
+  },
+  {
+   "day": 48,
+   "revPerUser": 4.98,
+   "n": 4704
+  },
+  {
+   "day": 49,
+   "revPerUser": 4.97,
+   "n": 4634
+  },
+  {
+   "day": 50,
+   "revPerUser": 5.01,
+   "n": 4559
+  },
+  {
+   "day": 51,
+   "revPerUser": 5.02,
+   "n": 4486
+  },
+  {
+   "day": 52,
+   "revPerUser": 5.06,
+   "n": 4428
+  },
+  {
+   "day": 53,
+   "revPerUser": 5.05,
+   "n": 4360
+  },
+  {
+   "day": 54,
+   "revPerUser": 5.06,
+   "n": 4291
+  },
+  {
+   "day": 55,
+   "revPerUser": 5.04,
+   "n": 4228
+  },
+  {
+   "day": 56,
+   "revPerUser": 5.01,
+   "n": 4155
+  },
+  {
+   "day": 57,
+   "revPerUser": 5.01,
+   "n": 4097
+  },
+  {
+   "day": 58,
+   "revPerUser": 5.04,
+   "n": 4031
+  },
+  {
+   "day": 59,
+   "revPerUser": 5.09,
+   "n": 3956
+  },
+  {
+   "day": 60,
+   "revPerUser": 5.08,
+   "n": 3902
+  },
+  {
+   "day": 61,
+   "revPerUser": 5.13,
+   "n": 3833
+  },
+  {
+   "day": 62,
+   "revPerUser": 5.15,
+   "n": 3774
+  },
+  {
+   "day": 63,
+   "revPerUser": 5.15,
+   "n": 3700
+  },
+  {
+   "day": 64,
+   "revPerUser": 5.14,
+   "n": 3627
+  },
+  {
+   "day": 65,
+   "revPerUser": 5.11,
+   "n": 3553
+  },
+  {
+   "day": 66,
+   "revPerUser": 5.15,
+   "n": 3477
+  },
+  {
+   "day": 67,
+   "revPerUser": 5.15,
+   "n": 3414
+  },
+  {
+   "day": 68,
+   "revPerUser": 5.16,
+   "n": 3351
+  },
+  {
+   "day": 69,
+   "revPerUser": 5.15,
+   "n": 3292
+  },
+  {
+   "day": 70,
+   "revPerUser": 5.07,
+   "n": 3222
+  },
+  {
+   "day": 71,
+   "revPerUser": 4.97,
+   "n": 3163
+  },
+  {
+   "day": 72,
+   "revPerUser": 4.93,
+   "n": 3089
+  },
+  {
+   "day": 73,
+   "revPerUser": 4.97,
+   "n": 3016
+  },
+  {
+   "day": 74,
+   "revPerUser": 4.85,
+   "n": 2939
+  },
+  {
+   "day": 75,
+   "revPerUser": 4.82,
+   "n": 2882
+  },
+  {
+   "day": 76,
+   "revPerUser": 4.82,
+   "n": 2827
+  },
+  {
+   "day": 77,
+   "revPerUser": 4.87,
+   "n": 2767
+  },
+  {
+   "day": 78,
+   "revPerUser": 4.94,
+   "n": 2712
+  },
+  {
+   "day": 79,
+   "revPerUser": 4.93,
+   "n": 2667
+  },
+  {
+   "day": 80,
+   "revPerUser": 5.01,
+   "n": 2595
+  },
+  {
+   "day": 81,
+   "revPerUser": 5,
+   "n": 2532
+  },
+  {
+   "day": 82,
+   "revPerUser": 4.97,
+   "n": 2471
+  },
+  {
+   "day": 83,
+   "revPerUser": 5,
+   "n": 2390
+  },
+  {
+   "day": 84,
+   "revPerUser": 4.98,
+   "n": 2313
+  },
+  {
+   "day": 85,
+   "revPerUser": 4.99,
+   "n": 2240
+  },
+  {
+   "day": 86,
+   "revPerUser": 4.99,
+   "n": 2179
+  },
+  {
+   "day": 87,
+   "revPerUser": 4.94,
+   "n": 2113
+  },
+  {
+   "day": 88,
+   "revPerUser": 4.91,
+   "n": 2051
+  },
+  {
+   "day": 89,
+   "revPerUser": 5,
+   "n": 1991
+  },
+  {
+   "day": 90,
+   "revPerUser": 5.02,
+   "n": 1912
+  },
+  {
+   "day": 91,
+   "revPerUser": 5.1,
+   "n": 1851
+  },
+  {
+   "day": 92,
+   "revPerUser": 5.14,
+   "n": 1783
+  },
+  {
+   "day": 93,
+   "revPerUser": 5.14,
+   "n": 1717
+  },
+  {
+   "day": 94,
+   "revPerUser": 5.18,
+   "n": 1659
+  },
+  {
+   "day": 95,
+   "revPerUser": 5.17,
+   "n": 1590
+  },
+  {
+   "day": 96,
+   "revPerUser": 4.95,
+   "n": 1541
+  },
+  {
+   "day": 97,
+   "revPerUser": 5.09,
+   "n": 1478
+  },
+  {
+   "day": 98,
+   "revPerUser": 5.1,
+   "n": 1413
+  },
+  {
+   "day": 99,
+   "revPerUser": 5.3,
+   "n": 1333
+  },
+  {
+   "day": 100,
+   "revPerUser": 5.48,
+   "n": 1275
+  },
+  {
+   "day": 101,
+   "revPerUser": 5.39,
+   "n": 1204
+  },
+  {
+   "day": 102,
+   "revPerUser": 5.52,
+   "n": 1126
+  },
+  {
+   "day": 103,
+   "revPerUser": 5.45,
+   "n": 1062
+  },
+  {
+   "day": 104,
+   "revPerUser": 5.32,
+   "n": 993
+  },
+  {
+   "day": 105,
+   "revPerUser": 5.42,
+   "n": 932
+  },
+  {
+   "day": 106,
+   "revPerUser": 5.31,
+   "n": 877
+  },
+  {
+   "day": 107,
+   "revPerUser": 5.34,
+   "n": 804
+  },
+  {
+   "day": 108,
+   "revPerUser": 5.44,
+   "n": 739
+  },
+  {
+   "day": 109,
+   "revPerUser": 5.46,
+   "n": 667
+  },
+  {
+   "day": 110,
+   "revPerUser": 5.69,
+   "n": 599
+  }
+ ]
+}

@@ -1,0 +1,116 @@
+{
+ "data": {
+  "name": "Lumen Pro Editors Acquisition",
+  "brief": {
+   "audience": "People who use Lumen to edit product photos for selling online and make multiple AI edits on day one.",
+   "hook": "Transform your product photos instantly with one tap to bright, sharp perfection.",
+   "markets": [
+    "US",
+    "NL",
+    "DE",
+    "SE",
+    "GB",
+    "CA",
+    "AU"
+   ],
+   "channels": [
+    "apple_search_ads",
+    "meta_ads",
+    "google_uac"
+   ],
+   "avoid": [
+    "tiktok_ads: high refund rate 15.5% and low revenue $5.09/user"
+   ],
+   "why": [
+    "Users who make 5-7 AI edits on day one pay 33%, with $15.47 revenue per user, highest revenue share at 30.3%.",
+    "Product photo editors have the highest paying rate at 22.9%, with $10.32 revenue per user and 6.3% refunds.",
+    "Apple Search Ads users show highest paid rate at 32.1% and $15.03 revenue per user with low refunds to 4.9%.",
+    "US market has highest number of paying users at 27% and $13.25 revenue per user.",
+    "Avoid TikTok Ads due to low paying rate 12.2% and high refund rate 15.5%."
+   ]
+  },
+  "concepts": [
+   {
+    "id": "before-after",
+    "name": "Instant Brightness Boost",
+    "visualPrompt": "A single photo split down the middle vertically; left side is dull, flat, low light product shot; right side is bright, sharp, and well-lit product shot with enhanced colors, no text, no letters, no logos, no UI.",
+    "headline": "Dull to Dazzling Instantly",
+    "subline": "One tap saves your product photo",
+    "cta": "Try Now"
+   },
+   {
+    "id": "vivid-focus",
+    "name": "Sharp Focus Boost",
+    "visualPrompt": "Close-up photo of a product with shallow depth of field; before side blurred and muted colors; after side vivid, crystal clear and colorful, no text, no letters, no logos, no UI.",
+    "headline": "Make Details Pop",
+    "subline": "Showcase products clearly every time",
+    "cta": "Get Started"
+   },
+   {
+    "id": "light-play",
+    "name": "Light Perfected",
+    "visualPrompt": "Indoor product photo with poor lighting on left, warm and balanced lighting on right, highlighting product textures and colors, no text, no letters, no logos, no UI.",
+    "headline": "Lights That Impress",
+    "subline": "Fix lighting with one tap",
+    "cta": "Edit Now"
+   }
+  ],
+  "adCopy": [
+   {
+    "primaryText": "Tired of dull product photos? Lumen instantly transforms your photos with a single tap to bright, sharp, well-lit perfection. Make your products stand out and sell better.",
+    "headline": "Instantly Brighten Photos",
+    "description": "One tap transforms your product images with vivid focus and perfect lighting."
+   },
+   {
+    "primaryText": "Boost your online sales with stunning product photos. Lumen AI edits photos instantly—no skills needed. Try professional-quality edits with unlimited AI edits and no watermark.",
+    "headline": "Pro-Level Photo Edits",
+    "description": "Create bright, sharp photos that catch every eye."
+   },
+   {
+    "primaryText": "Get flawless product shots on your phone. Lumen’s AI enhances dull photos instantly for crisp, well-lit results. Unlimited edits and pro filters included.",
+    "headline": "Transform Photos Fast",
+    "description": "Bright, sharp, and ready to impress buyers."
+   }
+  ],
+  "videoScript": {
+   "hook": "Struggling with dull product photos? Watch one tap turn them bright and sharp instantly.",
+   "shots": [
+    {
+     "time": "0-3s",
+     "shot": "Split-screen of dull product photo on left, brightened photo on right",
+     "onScreenText": "Before → After"
+    },
+    {
+     "time": "4-7s",
+     "shot": "Someone tapping the screen and photo instantly enhancing",
+     "onScreenText": "One tap magic"
+    },
+    {
+     "time": "8-12s",
+     "shot": "Different product photos showing sharp details and perfect lighting",
+     "onScreenText": "Showcase your products"
+    },
+    {
+     "time": "13-15s",
+     "shot": "Call to action screen with Lumen logo and violet brand color background",
+     "onScreenText": "Try Lumen Free Trial"
+    }
+   ],
+   "cta": "Try Free Trial"
+  },
+  "paywall": {
+   "headline": "Unlimited AI Edits",
+   "subtitle": "Brighten and sharpen every photo",
+   "features": [
+    "Unlimited AI edits",
+    "No daily limits",
+    "Pro filters and styles",
+    "Weekly new packs",
+    "No watermark",
+    "Full resolution export"
+   ],
+   "cta": "Subscribe"
+  }
+ },
+ "model": "gpt-4.1-mini"
+}

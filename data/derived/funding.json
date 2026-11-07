@@ -1,0 +1,52 @@
+{
+ "asOf": "2026-11-03T00:06:14.000Z",
+ "payoutRules": {
+  "appStore": "about 33 days after Apple's fiscal month closes",
+  "googlePlay": "15th of the following month"
+ },
+ "unpaidGross": {
+  "appStore": 81997,
+  "googlePlay": 49364
+ },
+ "monthlyGross": [
+  {
+   "month": "2026-07",
+   "appStore": 47387,
+   "googlePlay": 24429
+  },
+  {
+   "month": "2026-08",
+   "appStore": 69094,
+   "googlePlay": 41300
+  },
+  {
+   "month": "2026-09",
+   "appStore": 72046,
+   "googlePlay": 44086
+  },
+  {
+   "month": "2026-10",
+   "appStore": 77047,
+   "googlePlay": 46148
+  },
+  {
+   "month": "2026-11",
+   "appStore": 4951,
+   "googlePlay": 3216
+  }
+ ],
+ "rev60PerUserByChannel": {
+  "apple_search_ads": 15.03,
+  "organic": 9.96,
+  "google_uac": 8.64,
+  "meta_ads": 8.11,
+  "tiktok_ads": 5.09
+ },
+ "refundRateByChannel": {
+  "apple_search_ads": 4.9,
+  "organic": 6,
+  "google_uac": 6.6,
+  "meta_ads": 7.3,
+  "tiktok_ads": 15.5
+ }
+}

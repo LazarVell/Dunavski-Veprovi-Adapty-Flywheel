@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #edf0f4;
+  --color-surface: #ffffff;
+  --color-ink: #16213a;
+  --color-ink-2: #46506a;
+  --color-ink-3: #7a8399;
+  --color-line: #d9dee7;
+  --color-money: #0b7a5c;
+  --color-money-soft: #e3f3ed;
+  --color-warn: #b4610b;
+  --color-warn-soft: #fbf0e1;
+  --color-loss: #b42318;
+  --color-loss-soft: #fbe9e7;
+  --color-lumen: #6c4cf5;
+  --color-lumen-soft: #efebfe;
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui;
+  --font-sans: var(--font-plex), ui-sans-serif, system-ui;
+  --font-banner: var(--font-noto), var(--font-noto-jp), ui-sans-serif, system-ui;
+}
+
+html {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* The flywheel ring in the rail turns once when a stage changes. */
+@keyframes turn {
+  from { transform: rotate(-90deg); }
+  to { transform: rotate(0deg); }
+}
+.ring-turn {
+  animation: turn 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transform-origin: 50% 50%;
+}
+
+@keyframes slack-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+.slack-in {
+  animation: slack-in 320ms ease-out;
+}

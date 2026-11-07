@@ -1,0 +1,117 @@
+{
+ "data": {
+  "name": "Lumen AI Edits Power Users",
+  "brief": {
+   "audience": "Users who make 5+ AI edits on day one, proven high payers.",
+   "hook": "Unlock your photo's full potential with unlimited AI edits today.",
+   "markets": [
+    "US",
+    "NL",
+    "DE",
+    "SE",
+    "GB",
+    "CA",
+    "AU"
+   ],
+   "channels": [
+    "apple_search_ads",
+    "organic",
+    "google_uac"
+   ],
+   "avoid": [
+    "tiktok_ads",
+    "meta_ads"
+   ],
+   "why": [
+    "Users with 5-7 edits paid 33%, $15.47/user, refunds 7.1%, billing issues 2% (FACT SHEET AI EDITS ON DAY ONE).",
+    "Apple Search Ads channel has highest paid rate 32.1%, $15.03/user, lowest refunds 4.9% (FACT SHEET CHANNELS).",
+    "Top segments like product_photos × apple_search_ads paid 39.5%, $19.61/user, refunds 3.8% (FACT SHEET TOP SEGMENTS).",
+    "Avoid TikTok due to low paid 12.2% and high refunds 15.5% (FACT SHEET CHANNELS).",
+    "Focusing on high edits users correlates to highest paying and lowest refund rates (FACT SHEET AI EDITS ON DAY ONE)."
+   ]
+  },
+  "concepts": [
+   {
+    "id": "before-after-lumen",
+    "name": "Before & After AI Edit",
+    "visualPrompt": "A vibrant, natural landscape photo and alongside it the same photo brightly enhanced with sharpness and lighting, no text, no letters, no logos, no UI.",
+    "headline": "Transform Photos Instantly",
+    "subline": "From dull to dazzling with one tap",
+    "cta": "Try Free"
+   },
+   {
+    "id": "edit-power",
+    "name": "Power User Impact",
+    "visualPrompt": "A confident young adult using a smartphone outdoors, glowing with satisfaction, photo style pristine and bright, no text, no letters, no logos, no UI.",
+    "headline": "Edit More. Pay Less.",
+    "subline": "Unlimited AI edits unlocks your best photos",
+    "cta": "Subscribe Now"
+   },
+   {
+    "id": "photo-goals",
+    "name": "Photo Goals",
+    "visualPrompt": "A collection of photos showing product shots, family moments, and travel scenery, each vibrantly enhanced, no text, no letters, no logos, no UI.",
+    "headline": "Photos For Every Goal",
+    "subline": "Pro filters & styles for all your moments",
+    "cta": "Get Started"
+   }
+  ],
+  "adCopy": [
+   {
+    "primaryText": "Users making 5+ AI edits on day one pay more and stay longer. Unlock unlimited AI edits, no daily limits, and pro styles today.",
+    "headline": "Unlock Unlimited AI Editing",
+    "description": "Turn any photo from dull to dazzling with one tap."
+   },
+   {
+    "primaryText": "Your photos deserve the best. Start with free trial access to unlimited AI edits and pro filters. Enhance every shot instantly.",
+    "headline": "Unlimited AI Edits Await",
+    "description": "No watermarks, full resolution exports included."
+   },
+   {
+    "primaryText": "Make powerful photo edits without limits. Join thousands who pay for a brighter, sharper photo experience with zero daily limits.",
+    "headline": "Edit More, Pay Smarter",
+    "description": "Subscribe now and elevate your photos."
+   }
+  ],
+  "videoScript": {
+   "hook": "See how just one tap turns your ordinary photos into masterpieces instantly.",
+   "shots": [
+    {
+     "time": "0:00-0:05",
+     "shot": "Close-up of a dull phone photo on a smartphone screen, natural lighting.",
+     "onScreenText": "Before"
+    },
+    {
+     "time": "0:06-0:10",
+     "shot": "Tap on Lumen app icon, then tap AI enhance button, photo brightens and sharpens immediately.",
+     "onScreenText": "One Tap AI Edit"
+    },
+    {
+     "time": "0:11-0:15",
+     "shot": "Side-by-side split screen of before and after photos showcasing vibrancy and details.",
+     "onScreenText": "After"
+    },
+    {
+     "time": "0:16-0:20",
+     "shot": "Smiling user browsing enhanced photos in gallery, sharing with friends.",
+     "onScreenText": "Unlimited Edits, No Limits"
+    }
+   ],
+   "cta": "Start Your Free Trial"
+  },
+  "paywall": {
+   "headline": "Unlimited AI Edits",
+   "subtitle": "Brighten and sharpen every photo today",
+   "features": [
+    "No daily limits",
+    "Pro filters & styles",
+    "Weekly new packs",
+    "No watermark",
+    "Full resolution export",
+    "3-day free trial"
+   ],
+   "cta": "Subscribe"
+  }
+ },
+ "model": "gpt-4.1-mini"
+}

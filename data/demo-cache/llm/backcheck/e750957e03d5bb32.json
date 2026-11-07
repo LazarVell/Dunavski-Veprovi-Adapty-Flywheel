@@ -1,0 +1,121 @@
+{
+ "data": {
+  "lines": [
+   {
+    "field": "before-after headline",
+    "backTranslation": "From matte to shine in a moment",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "before-after subline",
+    "backTranslation": "One touch brings the product image to life",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "before-after cta",
+    "backTranslation": "Try now",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "vivid-focus headline",
+    "backTranslation": "Highlight the details",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "vivid-focus subline",
+    "backTranslation": "Always show products clearly",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "vivid-focus cta",
+    "backTranslation": "Start now",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "light-play headline",
+    "backTranslation": "Lighting that captivates",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "light-play subline",
+    "backTranslation": "Fix the light with one touch",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "light-play cta",
+    "backTranslation": "Edit now",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 1 headline",
+    "backTranslation": "Brighten photos immediately",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 1 primary text",
+    "backTranslation": "Are you tired of dull product photos? Lumen instantly turns your images into bright, sharp, perfectly lit ones. Let your products attract attention and sell better.",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 2 headline",
+    "backTranslation": "Professional photo editing",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 2 primary text",
+    "backTranslation": "Increase sales with amazing product photos. Lumen AI edits photos right away — no knowledge needed. Try professional edits without limitation with no watermark.",
+    "meaningChanged": false,
+    "note": "\"without limitation\" suggests unlimited edits, but the core promise is preserved."
+   },
+   {
+    "field": "ad 3 headline",
+    "backTranslation": "Transform photos quickly",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "ad 3 primary text",
+    "backTranslation": "Improve product photos on your phone. Lumen AI immediately enhances dull images into clear and perfectly lit ones. Unlimited editing and professional filters included.",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "paywall headline",
+    "backTranslation": "Unlimited AI editing",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "paywall subtitle",
+    "backTranslation": "Brighten and refresh every shot",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "paywall cta",
+    "backTranslation": "Subscribe",
+    "meaningChanged": false,
+    "note": ""
+   },
+   {
+    "field": "video hook",
+    "backTranslation": "Having trouble with dull product photos? Watch one touch instantly brighten and sharpen the images.",
+    "meaningChanged": false,
+    "note": ""
+   }
+  ]
+ },
+ "model": "gpt-5.4-mini"
+}

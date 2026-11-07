@@ -1,0 +1,29 @@
+diff --git a/seed_adapty.py b/seed_adapty.py
+index dd72b67..203c40d 100644
+--- a/seed_adapty.py
++++ b/seed_adapty.py
+@@ -278,10 +278,20 @@ def _find_values(obj, key: str):
+ class Cli:
+     def __init__(self, dry_run: bool):
+         self.dry_run = dry_run
+-        if shutil.which("adapty"):
+-            self.base = ["adapty"]
+-        elif shutil.which("npx"):
+-            self.base = ["npx", "-y", "adapty"]
++        # Use the resolved path: on Windows these are .cmd shims, which
++        # subprocess can't find by bare name (no PATHEXT lookup).
++        adapty, npx = shutil.which("adapty"), shutil.which("npx")
++        run_js = Path(adapty).parent / "node_modules" / "adapty" / "bin" / "run.js" if adapty else None
++        if adapty and os.name == "nt" and adapty.lower().endswith(".cmd") \
++                and run_js.exists() and shutil.which("node"):
++            # A .cmd shim passes args through cmd.exe, which treats > & | ^ % in
++            # unquoted args (e.g. the filter "total_revenue_usd:>:0") as shell syntax.
++            # Run the CLI's entry script with node directly instead.
++            self.base = [shutil.which("node"), str(run_js)]
++        elif adapty:
++            self.base = [adapty]
++        elif npx:
++            self.base = [npx, "-y", "adapty"]
+         elif dry_run:
+             self.base = ["adapty"]
+         else:

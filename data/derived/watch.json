@@ -1,0 +1,2703 @@
+{
+ "windowDays": 14,
+ "weeks": [
+  {
+   "weekOf": "2026-06-29",
+   "users": 191,
+   "payers": 36,
+   "paidRate": 18.8,
+   "refundRate": 5.6,
+   "revPerUser": 6.36,
+   "byCountry": {
+    "US": {
+     "users": 62,
+     "payers": 18,
+     "paidRate": 29,
+     "refundRate": 0,
+     "revPerUser": 9.3
+    },
+    "TR": {
+     "users": 7,
+     "payers": 0,
+     "paidRate": 0,
+     "refundRate": 0,
+     "revPerUser": 0
+    },
+    "BR": {
+     "users": 18,
+     "payers": 2,
+     "paidRate": 11.1,
+     "refundRate": 0,
+     "revPerUser": 4.58
+    },
+    "JP": {
+     "users": 10,
+     "payers": 3,
+     "paidRate": 30,
+     "refundRate": 33.3,
+     "revPerUser": 5.76
+    },
+    "GB": {
+     "users": 7,
+     "payers": 0,
+     "paidRate": 0,
+     "refundRate": 0,
+     "revPerUser": 0
+    },
+    "FR": {
+     "users": 12,
+     "payers": 2,
+     "paidRate": 16.7,
+     "refundRate": 0,
+     "revPerUser": 5.25
+    },
+    "IN": {
+     "users": 17,
+     "payers": 1,
+     "paidRate": 5.9,
+     "refundRate": 100,
+     "revPerUser": 0
+    },
+    "NL": {
+     "users": 3,
+     "payers": 2,
+     "paidRate": 66.7,
+     "refundRate": 0,
+     "revPerUser": 33.33
+    },
+    "MX": {
+     "users": 10,
+     "payers": 1,
+     "paidRate": 10,
+     "refundRate": 0,
+     "revPerUser": 3
+    },
+    "PL": {
+     "users": 11,
+     "payers": 2,
+     "paidRate": 18.2,
+     "refundRate": 0,
+     "revPerUser": 6.36
+    },
+    "DE": {
+     "users": 11,
+     "payers": 1,
+     "paidRate": 9.1,
+     "refundRate": 0,
+     "revPerUser": 4.54
+    },
+    "SE": {
+     "users": 2,
+     "payers": 1,
+     "paidRate": 50,
+     "refundRate": 0,
+     "revPerUser": 25
+    },
+    "CA": {
+     "users": 9,
+     "payers": 1,
+     "paidRate": 11.1,
+     "refundRate": 0,
+     "revPerUser": 5.55
+    },
+    "RS": {
+     "users": 6,
+     "payers": 1,
+     "paidRate": 16.7,
+     "refundRate": 0,
+     "revPerUser": 12
+    },
+    "AU": {
+     "users": 6,
+     "payers": 1,
+     "paidRate": 16.7,
+     "refundRate": 0,
+     "revPerUser": 2.17
+    }
+   },
+   "byChannel": {
+    "organic": {
+     "users": 75,
+     "payers": 14,
+     "paidRate": 18.7,
+     "refundRate": 7.1,
+     "revPerUser": 5.45
+    },
+    "meta_ads": {
+     "users": 44,
+     "payers": 7,
+     "paidRate": 15.9,
+     "refundRate": 0,
+     "revPerUser": 6.32
+    },
+    "google_uac": {
+     "users": 33,
+     "payers": 7,
+     "paidRate": 21.2,
+     "refundRate": 14.3,
+     "revPerUser": 8.21
+    },
+    "apple_search_ads": {
+     "users": 12,
+     "payers": 4,
+     "paidRate": 33.3,
+     "refundRate": 0,
+     "revPerUser": 10.83
+    },
+    "tiktok_ads": {
+     "users": 27,
+     "payers": 4,
+     "paidRate": 14.8,
+     "refundRate": 0,
+     "revPerUser": 4.7
+    }
+   }
+  },
+  {
+   "weekOf": "2026-07-06",
+   "users": 2884,
+   "payers": 590,
+   "paidRate": 20.5,
+   "refundRate": 2.5,
+   "revPerUser": 7.35,
+   "byCountry": {
+    "RS": {
+     "users": 101,
+     "payers": 17,
+     "paidRate": 16.8,
+     "refundRate": 0,
+     "revPerUser": 5.93
+    },
+    "GB": {
+     "users": 202,
+     "payers": 43,
+     "paidRate": 21.3,
+     "refundRate": 2.3,
+     "revPerUser": 9.54
+    },
+    "US": {
+     "users": 801,
+     "payers": 213,
+     "paidRate": 26.6,
+     "refundRate": 3.3,
+     "revPerUser": 10.73
+    },
+    "BR": {
+     "users": 242,
+     "payers": 37,
+     "paidRate": 15.3,
+     "refundRate": 0,
+     "revPerUser": 3.27
+    },
+    "DE": {
+     "users": 220,
+     "payers": 49,
+     "paidRate": 22.3,
+     "refundRate": 4.1,
+     "revPerUser": 10.83
+    },
+    "IN": {
+     "users": 319,
+     "payers": 27,
+     "paidRate": 8.5,
+     "refundRate": 0,
+     "revPerUser": 1.23
+    },
+    "AU": {
+     "users": 78,
+     "payers": 18,
+     "paidRate": 23.1,
+     "refundRate": 0,
+     "revPerUser": 8.57
+    },
+    "NL": {
+     "users": 59,
+     "payers": 19,
+     "paidRate": 32.2,
+     "refundRate": 0,
+     "revPerUser": 13.76
+    },
+    "MX": {
+     "users": 156,
+     "payers": 19,
+     "paidRate": 12.2,
+     "refundRate": 5.3,
+     "revPerUser": 2.2
+    },
+    "JP": {
+     "users": 146,
+     "payers": 31,
+     "paidRate": 21.2,
+     "refundRate": 6.5,
+     "revPerUser": 5.37
+    },
+    "CA": {
+     "users": 128,
+     "payers": 30,
+     "paidRate": 23.4,
+     "refundRate": 0,
+     "revPerUser": 8
+    },
+    "FR": {
+     "users": 141,
+     "payers": 35,
+     "paidRate": 24.8,
+     "refundRate": 5.7,
+     "revPerUser": 9.9
+    },
+    "PL": {
+     "users": 129,
+     "payers": 24,
+     "paidRate": 18.6,
+     "refundRate": 0,
+     "revPerUser": 4.51
+    },
+    "TR": {
+     "users": 101,
+     "payers": 13,
+     "paidRate": 12.9,
+     "refundRate": 0,
+     "revPerUser": 1.93
+    },
+    "SE": {
+     "users": 61,
+     "payers": 15,
+     "paidRate": 24.6,
+     "refundRate": 0,
+     "revPerUser": 11.41
+    }
+   },
+   "byChannel": {
+    "apple_search_ads": {
+     "users": 228,
+     "payers": 84,
+     "paidRate": 36.8,
+     "refundRate": 1.2,
+     "revPerUser": 14.22
+    },
+    "meta_ads": {
+     "users": 606,
+     "payers": 108,
+     "paidRate": 17.8,
+     "refundRate": 3.7,
+     "revPerUser": 6.7
+    },
+    "tiktok_ads": {
+     "users": 441,
+     "payers": 51,
+     "paidRate": 11.6,
+     "refundRate": 3.9,
+     "revPerUser": 4.55
+    },
+    "organic": {
+     "users": 1075,
+     "payers": 242,
+     "paidRate": 22.5,
+     "refundRate": 2.9,
+     "revPerUser": 7.51
+    },
+    "google_uac": {
+     "users": 534,
+     "payers": 105,
+     "paidRate": 19.7,
+     "refundRate": 1,
+     "revPerUser": 7.12
+    }
+   }
+  },
+  {
+   "weekOf": "2026-07-13",
+   "users": 2831,
+   "payers": 580,
+   "paidRate": 20.5,
+   "refundRate": 3.1,
+   "revPerUser": 7.76,
+   "byCountry": {
+    "BR": {
+     "users": 259,
+     "payers": 30,
+     "paidRate": 11.6,
+     "refundRate": 3.3,
+     "revPerUser": 2.69
+    },
+    "GB": {
+     "users": 176,
+     "payers": 52,
+     "paidRate": 29.5,
+     "refundRate": 1.9,
+     "revPerUser": 13.87
+    },
+    "TR": {
+     "users": 111,
+     "payers": 14,
+     "paidRate": 12.6,
+     "refundRate": 7.1,
+     "revPerUser": 1.76
+    },
+    "PL": {
+     "users": 148,
+     "payers": 22,
+     "paidRate": 14.9,
+     "refundRate": 0,
+     "revPerUser": 4.42
+    },
+    "DE": {
+     "users": 217,
+     "payers": 69,
+     "paidRate": 31.8,
+     "refundRate": 4.3,
+     "revPerUser": 12.82
+    },
+    "US": {
+     "users": 768,
+     "payers": 212,
+     "paidRate": 27.6,
+     "refundRate": 4.2,
+     "revPerUser": 11.41
+    },
+    "FR": {
+     "users": 151,
+     "payers": 26,
+     "paidRate": 17.2,
+     "refundRate": 3.8,
+     "revPerUser": 9.39
+    },
+    "IN": {
+     "users": 280,
+     "payers": 17,
+     "paidRate": 6.1,
+     "refundRate": 0,
+     "revPerUser": 1.03
+    },
+    "SE": {
+     "users": 49,
+     "payers": 11,
+     "paidRate": 22.4,
+     "refundRate": 0,
+     "revPerUser": 7.73
+    },
+    "NL": {
+     "users": 53,
+     "payers": 14,
+     "paidRate": 26.4,
+     "refundRate": 0,
+     "revPerUser": 7.83
+    },
+    "RS": {
+     "users": 125,
+     "payers": 23,
+     "paidRate": 18.4,
+     "refundRate": 0,
+     "revPerUser": 5.72
+    },
+    "AU": {
+     "users": 92,
+     "payers": 24,
+     "paidRate": 26.1,
+     "refundRate": 0,
+     "revPerUser": 9.96
+    },
+    "MX": {
+     "users": 150,
+     "payers": 21,
+     "paidRate": 14,
+     "refundRate": 0,
+     "revPerUser": 3.24
+    },
+    "CA": {
+     "users": 109,
+     "payers": 25,
+     "paidRate": 22.9,
+     "refundRate": 4,
+     "revPerUser": 9.88
+    },
+    "JP": {
+     "users": 143,
+     "payers": 20,
+     "paidRate": 14,
+     "refundRate": 5,
+     "revPerUser": 5.14
+    }
+   },
+   "byChannel": {
+    "organic": {
+     "users": 1107,
+     "payers": 258,
+     "paidRate": 23.3,
+     "refundRate": 2.7,
+     "revPerUser": 8.51
+    },
+    "google_uac": {
+     "users": 516,
+     "payers": 111,
+     "paidRate": 21.5,
+     "refundRate": 2.7,
+     "revPerUser": 9.12
+    },
+    "apple_search_ads": {
+     "users": 218,
+     "payers": 70,
+     "paidRate": 32.1,
+     "refundRate": 1.4,
+     "revPerUser": 13.5
+    },
+    "meta_ads": {
+     "users": 526,
+     "payers": 85,
+     "paidRate": 16.2,
+     "refundRate": 2.4,
+     "revPerUser": 6.16
+    },
+    "tiktok_ads": {
+     "users": 464,
+     "payers": 56,
+     "paidRate": 12.1,
+     "refundRate": 8.9,
+     "revPerUser": 3.56
+    }
+   }
+  },
+  {
+   "weekOf": "2026-07-20",
+   "users": 2881,
+   "payers": 573,
+   "paidRate": 19.9,
+   "refundRate": 4.4,
+   "revPerUser": 7.4,
+   "byCountry": {
+    "PL": {
+     "users": 152,
+     "payers": 22,
+     "paidRate": 14.5,
+     "refundRate": 0,
+     "revPerUser": 4.1
+    },
+    "US": {
+     "users": 808,
+     "payers": 220,
+     "paidRate": 27.2,
+     "refundRate": 5,
+     "revPerUser": 10.82
+    },
+    "IN": {
+     "users": 283,
+     "payers": 20,
+     "paidRate": 7.1,
+     "refundRate": 5,
+     "revPerUser": 0.92
+    },
+    "BR": {
+     "users": 274,
+     "payers": 31,
+     "paidRate": 11.3,
+     "refundRate": 3.2,
+     "revPerUser": 3.07
+    },
+    "MX": {
+     "users": 153,
+     "payers": 15,
+     "paidRate": 9.8,
+     "refundRate": 0,
+     "revPerUser": 2.12
+    },
+    "RS": {
+     "users": 139,
+     "payers": 21,
+     "paidRate": 15.1,
+     "refundRate": 4.8,
+     "revPerUser": 4.3
+    },
+    "NL": {
+     "users": 51,
+     "payers": 19,
+     "paidRate": 37.3,
+     "refundRate": 10.5,
+     "revPerUser": 18.92
+    },
+    "DE": {
+     "users": 166,
+     "payers": 33,
+     "paidRate": 19.9,
+     "refundRate": 0,
+     "revPerUser": 8.26
+    },
+    "JP": {
+     "users": 141,
+     "payers": 29,
+     "paidRate": 20.6,
+     "refundRate": 3.4,
+     "revPerUser": 8.08
+    },
+    "CA": {
+     "users": 124,
+     "payers": 32,
+     "paidRate": 25.8,
+     "refundRate": 0,
+     "revPerUser": 9.16
+    },
+    "FR": {
+     "users": 152,
+     "payers": 34,
+     "paidRate": 22.4,
+     "refundRate": 8.8,
+     "revPerUser": 8
+    },
+    "GB": {
+     "users": 192,
+     "payers": 45,
+     "paidRate": 23.4,
+     "refundRate": 4.4,
+     "revPerUser": 10.55
+    },
+    "AU": {
+     "users": 85,
+     "payers": 22,
+     "paidRate": 25.9,
+     "refundRate": 13.6,
+     "revPerUser": 10.97
+    },
+    "TR": {
+     "users": 104,
+     "payers": 12,
+     "paidRate": 11.5,
+     "refundRate": 0,
+     "revPerUser": 1.45
+    },
+    "SE": {
+     "users": 57,
+     "payers": 18,
+     "paidRate": 31.6,
+     "refundRate": 0,
+     "revPerUser": 17.56
+    }
+   },
+   "byChannel": {
+    "meta_ads": {
+     "users": 584,
+     "payers": 107,
+     "paidRate": 18.3,
+     "refundRate": 2.8,
+     "revPerUser": 6.57
+    },
+    "apple_search_ads": {
+     "users": 223,
+     "payers": 72,
+     "paidRate": 32.3,
+     "refundRate": 0,
+     "revPerUser": 13.24
+    },
+    "organic": {
+     "users": 1097,
+     "payers": 237,
+     "paidRate": 21.6,
+     "refundRate": 4.6,
+     "revPerUser": 7.92
+    },
+    "tiktok_ads": {
+     "users": 481,
+     "payers": 55,
+     "paidRate": 11.4,
+     "refundRate": 10.9,
+     "revPerUser": 3.78
+    },
+    "google_uac": {
+     "users": 496,
+     "payers": 102,
+     "paidRate": 20.6,
+     "refundRate": 4.9,
+     "revPerUser": 8.13
+    }
+   }
+  },
+  {
+   "weekOf": "2026-07-27",
+   "users": 2840,
+   "payers": 568,
+   "paidRate": 20,
+   "refundRate": 2.5,
+   "revPerUser": 7.48,
+   "byCountry": {
+    "RS": {
+     "users": 113,
+     "payers": 14,
+     "paidRate": 12.4,
+     "refundRate": 7.1,
+     "revPerUser": 4.47
+    },
+    "BR": {
+     "users": 254,
+     "payers": 26,
+     "paidRate": 10.2,
+     "refundRate": 0,
+     "revPerUser": 2.17
+    },
+    "AU": {
+     "users": 85,
+     "payers": 23,
+     "paidRate": 27.1,
+     "refundRate": 0,
+     "revPerUser": 10.88
+    },
+    "IN": {
+     "users": 272,
+     "payers": 26,
+     "paidRate": 9.6,
+     "refundRate": 0,
+     "revPerUser": 1.16
+    },
+    "GB": {
+     "users": 237,
+     "payers": 51,
+     "paidRate": 21.5,
+     "refundRate": 3.9,
+     "revPerUser": 10.97
+    },
+    "JP": {
+     "users": 139,
+     "payers": 26,
+     "paidRate": 18.7,
+     "refundRate": 0,
+     "revPerUser": 6.3
+    },
+    "CA": {
+     "users": 112,
+     "payers": 31,
+     "paidRate": 27.7,
+     "refundRate": 3.2,
+     "revPerUser": 12.14
+    },
+    "US": {
+     "users": 786,
+     "payers": 204,
+     "paidRate": 26,
+     "refundRate": 1.5,
+     "revPerUser": 10.71
+    },
+    "NL": {
+     "users": 41,
+     "payers": 8,
+     "paidRate": 19.5,
+     "refundRate": 0,
+     "revPerUser": 8.31
+    },
+    "PL": {
+     "users": 132,
+     "payers": 20,
+     "paidRate": 15.2,
+     "refundRate": 5,
+     "revPerUser": 3.81
+    },
+    "DE": {
+     "users": 208,
+     "payers": 55,
+     "paidRate": 26.4,
+     "refundRate": 5.5,
+     "revPerUser": 10.2
+    },
+    "TR": {
+     "users": 118,
+     "payers": 14,
+     "paidRate": 11.9,
+     "refundRate": 7.1,
+     "revPerUser": 1.45
+    },
+    "MX": {
+     "users": 144,
+     "payers": 14,
+     "paidRate": 9.7,
+     "refundRate": 14.3,
+     "revPerUser": 2.31
+    },
+    "FR": {
+     "users": 145,
+     "payers": 40,
+     "paidRate": 27.6,
+     "refundRate": 0,
+     "revPerUser": 10.9
+    },
+    "SE": {
+     "users": 54,
+     "payers": 16,
+     "paidRate": 29.6,
+     "refundRate": 0,
+     "revPerUser": 11.94
+    }
+   },
+   "byChannel": {
+    "organic": {
+     "users": 1073,
+     "payers": 246,
+     "paidRate": 22.9,
+     "refundRate": 1.2,
+     "revPerUser": 8.16
+    },
+    "google_uac": {
+     "users": 521,
+     "payers": 106,
+     "paidRate": 20.3,
+     "refundRate": 3.8,
+     "revPerUser": 8.27
+    },
+    "meta_ads": {
+     "users": 580,
+     "payers": 104,
+     "paidRate": 17.9,
+     "refundRate": 1.9,
+     "revPerUser": 6.91
+    },
+    "tiktok_ads": {
+     "users": 438,
+     "payers": 49,
+     "paidRate": 11.2,
+     "refundRate": 4.1,
+     "revPerUser": 3.94
+    },
+    "apple_search_ads": {
+     "users": 228,
+     "payers": 63,
+     "paidRate": 27.6,
+     "refundRate": 4.8,
+     "revPerUser": 10.76
+    }
+   }
+  },
+  {
+   "weekOf": "2026-08-03",
+   "users": 2857,
+   "payers": 571,
+   "paidRate": 20,
+   "refundRate": 4.4,
+   "revPerUser": 7.28,
+   "byCountry": {
+    "US": {
+     "users": 810,
+     "payers": 221,
+     "paidRate": 27.3,
+     "refundRate": 4.1,
+     "revPerUser": 11.13
+    },
+    "TR": {
+     "users": 105,
+     "payers": 10,
+     "paidRate": 9.5,
+     "refundRate": 0,
+     "revPerUser": 1.31
+    },
+    "PL": {
+     "users": 139,
+     "payers": 19,
+     "paidRate": 13.7,
+     "refundRate": 0,
+     "revPerUser": 2.73
+    },
+    "JP": {
+     "users": 131,
+     "payers": 30,
+     "paidRate": 22.9,
+     "refundRate": 0,
+     "revPerUser": 8.94
+    },
+    "GB": {
+     "users": 211,
+     "payers": 53,
+     "paidRate": 25.1,
+     "refundRate": 9.4,
+     "revPerUser": 9.18
+    },
+    "IN": {
+     "users": 291,
+     "payers": 28,
+     "paidRate": 9.6,
+     "refundRate": 7.1,
+     "revPerUser": 1.42
+    },
+    "DE": {
+     "users": 201,
+     "payers": 48,
+     "paidRate": 23.9,
+     "refundRate": 6.3,
+     "revPerUser": 10.49
+    },
+    "SE": {
+     "users": 57,
+     "payers": 13,
+     "paidRate": 22.8,
+     "refundRate": 0,
+     "revPerUser": 9.86
+    },
+    "BR": {
+     "users": 276,
+     "payers": 36,
+     "paidRate": 13,
+     "refundRate": 2.8,
+     "revPerUser": 2.82
+    },
+    "RS": {
+     "users": 107,
+     "payers": 19,
+     "paidRate": 17.8,
+     "refundRate": 0,
+     "revPerUser": 6.29
+    },
+    "AU": {
+     "users": 81,
+     "payers": 12,
+     "paidRate": 14.8,
+     "refundRate": 8.3,
+     "revPerUser": 5.23
+    },
+    "MX": {
+     "users": 145,
+     "payers": 24,
+     "paidRate": 16.6,
+     "refundRate": 4.2,
+     "revPerUser": 3.56
+    },
+    "NL": {
+     "users": 57,
+     "payers": 13,
+     "paidRate": 22.8,
+     "refundRate": 15.4,
+     "revPerUser": 9.23
+    },
+    "FR": {
+     "users": 132,
+     "payers": 23,
+     "paidRate": 17.4,
+     "refundRate": 0,
+     "revPerUser": 7.85
+    },
+    "CA": {
+     "users": 114,
+     "payers": 22,
+     "paidRate": 19.3,
+     "refundRate": 4.5,
+     "revPerUser": 9.87
+    }
+   },
+   "byChannel": {
+    "apple_search_ads": {
+     "users": 244,
+     "payers": 82,
+     "paidRate": 33.6,
+     "refundRate": 6.1,
+     "revPerUser": 12.41
+    },
+    "meta_ads": {
+     "users": 572,
+     "payers": 110,
+     "paidRate": 19.2,
+     "refundRate": 3.6,
+     "revPerUser": 6.67
+    },
+    "organic": {
+     "users": 1077,
+     "payers": 231,
+     "paidRate": 21.4,
+     "refundRate": 3,
+     "revPerUser": 8.6
+    },
+    "google_uac": {
+     "users": 502,
+     "payers": 93,
+     "paidRate": 18.5,
+     "refundRate": 6.5,
+     "revPerUser": 5.82
+    },
+    "tiktok_ads": {
+     "users": 462,
+     "payers": 55,
+     "paidRate": 11.9,
+     "refundRate": 5.5,
+     "revPerUser": 3.87
+    }
+   }
+  },
+  {
+   "weekOf": "2026-08-10",
+   "users": 2951,
+   "payers": 614,
+   "paidRate": 20.8,
+   "refundRate": 4.6,
+   "revPerUser": 7.94,
+   "byCountry": {
+    "PL": {
+     "users": 158,
+     "payers": 24,
+     "paidRate": 15.2,
+     "refundRate": 8.3,
+     "revPerUser": 3.64
+    },
+    "MX": {
+     "users": 163,
+     "payers": 17,
+     "paidRate": 10.4,
+     "refundRate": 11.8,
+     "revPerUser": 2.25
+    },
+    "DE": {
+     "users": 203,
+     "payers": 45,
+     "paidRate": 22.2,
+     "refundRate": 6.7,
+     "revPerUser": 11.32
+    },
+    "US": {
+     "users": 805,
+     "payers": 228,
+     "paidRate": 28.3,
+     "refundRate": 4.8,
+     "revPerUser": 11.83
+    },
+    "FR": {
+     "users": 140,
+     "payers": 34,
+     "paidRate": 24.3,
+     "refundRate": 8.8,
+     "revPerUser": 9.79
+    },
+    "RS": {
+     "users": 112,
+     "payers": 23,
+     "paidRate": 20.5,
+     "refundRate": 0,
+     "revPerUser": 6.14
+    },
+    "IN": {
+     "users": 304,
+     "payers": 28,
+     "paidRate": 9.2,
+     "refundRate": 0,
+     "revPerUser": 1.62
+    },
+    "AU": {
+     "users": 81,
+     "payers": 19,
+     "paidRate": 23.5,
+     "refundRate": 5.3,
+     "revPerUser": 9.02
+    },
+    "JP": {
+     "users": 140,
+     "payers": 24,
+     "paidRate": 17.1,
+     "refundRate": 0,
+     "revPerUser": 6.81
+    },
+    "TR": {
+     "users": 121,
+     "payers": 18,
+     "paidRate": 14.9,
+     "refundRate": 5.6,
+     "revPerUser": 1.43
+    },
+    "BR": {
+     "users": 263,
+     "payers": 40,
+     "paidRate": 15.2,
+     "refundRate": 0,
+     "revPerUser": 3.45
+    },
+    "CA": {
+     "users": 120,
+     "payers": 34,
+     "paidRate": 28.3,
+     "refundRate": 5.9,
+     "revPerUser": 12.96
+    },
+    "SE": {
+     "users": 56,
+     "payers": 11,
+     "paidRate": 19.6,
+     "refundRate": 0,
+     "revPerUser": 9.68
+    },
+    "GB": {
+     "users": 219,
+     "payers": 55,
+     "paidRate": 25.1,
+     "refundRate": 5.5,
+     "revPerUser": 11.05
+    },
+    "NL": {
+     "users": 66,
+     "payers": 14,
+     "paidRate": 21.2,
+     "refundRate": 0,
+     "revPerUser": 12.8
+    }
+   },
+   "byChannel": {
+    "meta_ads": {
+     "users": 577,
+     "payers": 114,
+     "paidRate": 19.8,
+     "refundRate": 4.4,
+     "revPerUser": 6.7
+    },
+    "tiktok_ads": {
+     "users": 454,
+     "payers": 47,
+     "paidRate": 10.4,
+     "refundRate": 14.9,
+     "revPerUser": 3.77
+    },
+    "organic": {
+     "users": 1124,
+     "payers": 262,
+     "paidRate": 23.3,
+     "refundRate": 3.8,
+     "revPerUser": 8.83
+    },
+    "google_uac": {
+     "users": 547,
+     "payers": 111,
+     "paidRate": 20.3,
+     "refundRate": 3.6,
+     "revPerUser": 8.77
+    },
+    "apple_search_ads": {
+     "users": 249,
+     "payers": 80,
+     "paidRate": 32.1,
+     "refundRate": 2.5,
+     "revPerUser": 12.59
+    }
+   }
+  },
+  {
+   "weekOf": "2026-08-17",
+   "users": 2930,
+   "payers": 591,
+   "paidRate": 20.2,
+   "refundRate": 3.6,
+   "revPerUser": 7.47,
+   "byCountry": {
+    "AU": {
+     "users": 92,
+     "payers": 21,
+     "paidRate": 22.8,
+     "refundRate": 9.5,
+     "revPerUser": 6.17
+    },
+    "MX": {
+     "users": 171,
+     "payers": 14,
+     "paidRate": 8.2,
+     "refundRate": 7.1,
+     "revPerUser": 2.03
+    },
+    "BR": {
+     "users": 257,
+     "payers": 41,
+     "paidRate": 16,
+     "refundRate": 4.9,
+     "revPerUser": 3.42
+    },
+    "CA": {
+     "users": 123,
+     "payers": 22,
+     "paidRate": 17.9,
+     "refundRate": 0,
+     "revPerUser": 7.47
+    },
+    "GB": {
+     "users": 226,
+     "payers": 67,
+     "paidRate": 29.6,
+     "refundRate": 3,
+     "revPerUser": 12.24
+    },
+    "IN": {
+     "users": 269,
+     "payers": 18,
+     "paidRate": 6.7,
+     "refundRate": 0,
+     "revPerUser": 1
+    },
+    "RS": {
+     "users": 122,
+     "payers": 22,
+     "paidRate": 18,
+     "refundRate": 4.5,
+     "revPerUser": 6.77
+    },
+    "PL": {
+     "users": 144,
+     "payers": 29,
+     "paidRate": 20.1,
+     "refundRate": 3.4,
+     "revPerUser": 4.32
+    },
+    "TR": {
+     "users": 101,
+     "payers": 9,
+     "paidRate": 8.9,
+     "refundRate": 0,
+     "revPerUser": 1.22
+    },
+    "JP": {
+     "users": 126,
+     "payers": 27,
+     "paidRate": 21.4,
+     "refundRate": 3.7,
+     "revPerUser": 7.46
+    },
+    "US": {
+     "users": 825,
+     "payers": 214,
+     "paidRate": 25.9,
+     "refundRate": 4.7,
+     "revPerUser": 10.44
+    },
+    "DE": {
+     "users": 210,
+     "payers": 47,
+     "paidRate": 22.4,
+     "refundRate": 0,
+     "revPerUser": 11.29
+    },
+    "FR": {
+     "users": 152,
+     "payers": 35,
+     "paidRate": 23,
+     "refundRate": 2.9,
+     "revPerUser": 10.04
+    },
+    "NL": {
+     "users": 56,
+     "payers": 12,
+     "paidRate": 21.4,
+     "refundRate": 0,
+     "revPerUser": 9.68
+    },
+    "SE": {
+     "users": 56,
+     "payers": 13,
+     "paidRate": 23.2,
+     "refundRate": 0,
+     "revPerUser": 10.35
+    }
+   },
+   "byChannel": {
+    "meta_ads": {
+     "users": 607,
+     "payers": 119,
+     "paidRate": 19.6,
+     "refundRate": 5,
+     "revPerUser": 7.28
+    },
+    "google_uac": {
+     "users": 512,
+     "payers": 95,
+     "paidRate": 18.6,
+     "refundRate": 2.1,
+     "revPerUser": 6.24
+    },
+    "tiktok_ads": {
+     "users": 454,
+     "payers": 69,
+     "paidRate": 15.2,
+     "refundRate": 5.8,
+     "revPerUser": 5.26
+    },
+    "organic": {
+     "users": 1107,
+     "payers": 232,
+     "paidRate": 21,
+     "refundRate": 3.4,
+     "revPerUser": 8.07
+    },
+    "apple_search_ads": {
+     "users": 250,
+     "payers": 76,
+     "paidRate": 30.4,
+     "refundRate": 1.3,
+     "revPerUser": 11.83
+    }
+   }
+  },
+  {
+   "weekOf": "2026-08-24",
+   "users": 2929,
+   "payers": 585,
+   "paidRate": 20,
+   "refundRate": 4.1,
+   "revPerUser": 7.47,
+   "byCountry": {
+    "DE": {
+     "users": 214,
+     "payers": 56,
+     "paidRate": 26.2,
+     "refundRate": 7.1,
+     "revPerUser": 11.76
+    },
+    "US": {
+     "users": 824,
+     "payers": 226,
+     "paidRate": 27.4,
+     "refundRate": 3.1,
+     "revPerUser": 11.48
+    },
+    "IN": {
+     "users": 292,
+     "payers": 16,
+     "paidRate": 5.5,
+     "refundRate": 6.3,
+     "revPerUser": 0.79
+    },
+    "CA": {
+     "users": 128,
+     "payers": 31,
+     "paidRate": 24.2,
+     "refundRate": 0,
+     "revPerUser": 9.76
+    },
+    "RS": {
+     "users": 113,
+     "payers": 14,
+     "paidRate": 12.4,
+     "refundRate": 7.1,
+     "revPerUser": 3.67
+    },
+    "PL": {
+     "users": 148,
+     "payers": 16,
+     "paidRate": 10.8,
+     "refundRate": 6.3,
+     "revPerUser": 2.42
+    },
+    "GB": {
+     "users": 218,
+     "payers": 52,
+     "paidRate": 23.9,
+     "refundRate": 5.8,
+     "revPerUser": 9.33
+    },
+    "NL": {
+     "users": 65,
+     "payers": 23,
+     "paidRate": 35.4,
+     "refundRate": 0,
+     "revPerUser": 17.84
+    },
+    "BR": {
+     "users": 271,
+     "payers": 26,
+     "paidRate": 9.6,
+     "refundRate": 0,
+     "revPerUser": 2.49
+    },
+    "FR": {
+     "users": 126,
+     "payers": 31,
+     "paidRate": 24.6,
+     "refundRate": 6.5,
+     "revPerUser": 9.6
+    },
+    "MX": {
+     "users": 144,
+     "payers": 25,
+     "paidRate": 17.4,
+     "refundRate": 8,
+     "revPerUser": 3.77
+    },
+    "AU": {
+     "users": 84,
+     "payers": 17,
+     "paidRate": 20.2,
+     "refundRate": 5.9,
+     "revPerUser": 7.72
+    },
+    "SE": {
+     "users": 62,
+     "payers": 14,
+     "paidRate": 22.6,
+     "refundRate": 7.1,
+     "revPerUser": 8.18
+    },
+    "TR": {
+     "users": 101,
+     "payers": 10,
+     "paidRate": 9.9,
+     "refundRate": 0,
+     "revPerUser": 1.1
+    },
+    "JP": {
+     "users": 139,
+     "payers": 28,
+     "paidRate": 20.1,
+     "refundRate": 3.6,
+     "revPerUser": 5.49
+    }
+   },
+   "byChannel": {
+    "organic": {
+     "users": 1092,
+     "payers": 242,
+     "paidRate": 22.2,
+     "refundRate": 2.9,
+     "revPerUser": 7.96
+    },
+    "tiktok_ads": {
+     "users": 479,
+     "payers": 64,
+     "paidRate": 13.4,
+     "refundRate": 6.3,
+     "revPerUser": 5.39
+    },
+    "meta_ads": {
+     "users": 584,
+     "payers": 110,
+     "paidRate": 18.8,
+     "refundRate": 7.3,
+     "revPerUser": 7.28
+    },
+    "apple_search_ads": {
+     "users": 234,
+     "payers": 70,
+     "paidRate": 29.9,
+     "refundRate": 2.9,
+     "revPerUser": 11.72
+    },
+    "google_uac": {
+     "users": 540,
+     "payers": 99,
+     "paidRate": 18.3,
+     "refundRate": 3,
+     "revPerUser": 6.7
+    }
+   }
+  },
+  {
+   "weekOf": "2026-08-31",
+   "users": 2942,
+   "payers": 597,
+   "paidRate": 20.3,
+   "refundRate": 4.4,
+   "revPerUser": 7.46,
+   "byCountry": {
+    "IN": {
+     "users": 271,
+     "payers": 34,
+     "paidRate": 12.5,
+     "refundRate": 8.8,
+     "revPerUser": 1.65
+    },
+    "US": {
+     "users": 807,
+     "payers": 222,
+     "paidRate": 27.5,
+     "refundRate": 5.4,
+     "revPerUser": 10.87
+    },
+    "SE": {
+     "users": 63,
+     "payers": 12,
+     "paidRate": 19,
+     "refundRate": 0,
+     "revPerUser": 8.97
+    },
+    "TR": {
+     "users": 115,
+     "payers": 14,
+     "paidRate": 12.2,
+     "refundRate": 0,
+     "revPerUser": 1.85
+    },
+    "AU": {
+     "users": 96,
+     "payers": 28,
+     "paidRate": 29.2,
+     "refundRate": 0,
+     "revPerUser": 9.79
+    },
+    "FR": {
+     "users": 154,
+     "payers": 28,
+     "paidRate": 18.2,
+     "refundRate": 3.6,
+     "revPerUser": 7.37
+    },
+    "MX": {
+     "users": 164,
+     "payers": 21,
+     "paidRate": 12.8,
+     "refundRate": 4.8,
+     "revPerUser": 1.92
+    },
+    "CA": {
+     "users": 124,
+     "payers": 36,
+     "paidRate": 29,
+     "refundRate": 5.6,
+     "revPerUser": 12.1
+    },
+    "GB": {
+     "users": 206,
+     "payers": 44,
+     "paidRate": 21.4,
+     "refundRate": 2.3,
+     "revPerUser": 10.44
+    },
+    "PL": {
+     "users": 142,
+     "payers": 21,
+     "paidRate": 14.8,
+     "refundRate": 4.8,
+     "revPerUser": 4.68
+    },
+    "DE": {
+     "users": 207,
+     "payers": 51,
+     "paidRate": 24.6,
+     "refundRate": 5.9,
+     "revPerUser": 10.61
+    },
+    "BR": {
+     "users": 281,
+     "payers": 25,
+     "paidRate": 8.9,
+     "refundRate": 0,
+     "revPerUser": 2.25
+    },
+    "RS": {
+     "users": 116,
+     "payers": 16,
+     "paidRate": 13.8,
+     "refundRate": 6.3,
+     "revPerUser": 4.8
+    },
+    "JP": {
+     "users": 147,
+     "payers": 30,
+     "paidRate": 20.4,
+     "refundRate": 0,
+     "revPerUser": 7.19
+    },
+    "NL": {
+     "users": 49,
+     "payers": 15,
+     "paidRate": 30.6,
+     "refundRate": 6.7,
+     "revPerUser": 16.47
+    }
+   },
+   "byChannel": {
+    "apple_search_ads": {
+     "users": 252,
+     "payers": 83,
+     "paidRate": 32.9,
+     "refundRate": 1.2,
+     "revPerUser": 12.42
+    },
+    "organic": {
+     "users": 1036,
+     "payers": 232,
+     "paidRate": 22.4,
+     "refundRate": 2.2,
+     "revPerUser": 8.77
+    },
+    "meta_ads": {
+     "users": 649,
+     "payers": 131,
+     "paidRate": 20.2,
+     "refundRate": 6.9,
+     "revPerUser": 7.11
+    },
+    "tiktok_ads": {
+     "users": 455,
+     "payers": 55,
+     "paidRate": 12.1,
+     "refundRate": 12.7,
+     "revPerUser": 4.23
+    },
+    "google_uac": {
+     "users": 550,
+     "payers": 96,
+     "paidRate": 17.5,
+     "refundRate": 4.2,
+     "revPerUser": 5.81
+    }
+   }
+  },
+  {
+   "weekOf": "2026-09-07",
+   "users": 3012,
+   "payers": 598,
+   "paidRate": 19.9,
+   "refundRate": 3.5,
+   "revPerUser": 7.35,
+   "byCountry": {
+    "NL": {
+     "users": 67,
+     "payers": 18,
+     "paidRate": 26.9,
+     "refundRate": 0,
+     "revPerUser": 10.12
+    },
+    "DE": {
+     "users": 209,
+     "payers": 47,
+     "paidRate": 22.5,
+     "refundRate": 6.4,
+     "revPerUser": 9.68
+    },
+    "US": {
+     "users": 801,
+     "payers": 200,
+     "paidRate": 25,
+     "refundRate": 1.5,
+     "revPerUser": 11.15
+    },
+    "AU": {
+     "users": 87,
+     "payers": 19,
+     "paidRate": 21.8,
+     "refundRate": 5.3,
+     "revPerUser": 9.56
+    },
+    "TR": {
+     "users": 121,
+     "payers": 10,
+     "paidRate": 8.3,
+     "refundRate": 20,
+     "revPerUser": 1.44
+    },
+    "BR": {
+     "users": 277,
+     "payers": 36,
+     "paidRate": 13,
+     "refundRate": 5.6,
+     "revPerUser": 2.45
+    },
+    "MX": {
+     "users": 165,
+     "payers": 24,
+     "paidRate": 14.5,
+     "refundRate": 4.2,
+     "revPerUser": 2.93
+    },
+    "JP": {
+     "users": 180,
+     "payers": 32,
+     "paidRate": 17.8,
+     "refundRate": 3.1,
+     "revPerUser": 5.71
+    },
+    "IN": {
+     "users": 292,
+     "payers": 30,
+     "paidRate": 10.3,
+     "refundRate": 0,
+     "revPerUser": 1.46
+    },
+    "PL": {
+     "users": 151,
+     "payers": 26,
+     "paidRate": 17.2,
+     "refundRate": 7.7,
+     "revPerUser": 3.89
+    },
+    "FR": {
+     "users": 169,
+     "payers": 43,
+     "paidRate": 25.4,
+     "refundRate": 2.3,
+     "revPerUser": 11.79
+    },
+    "SE": {
+     "users": 65,
+     "payers": 16,
+     "paidRate": 24.6,
+     "refundRate": 6.3,
+     "revPerUser": 9.34
+    },
+    "GB": {
+     "users": 192,
+     "payers": 46,
+     "paidRate": 24,
+     "refundRate": 4.3,
+     "revPerUser": 9.62
+    },
+    "CA": {
+     "users": 104,
+     "payers": 26,
+     "paidRate": 25,
+     "refundRate": 3.8,
+     "revPerUser": 10.49
+    },
+    "RS": {
+     "users": 132,
+     "payers": 25,
+     "paidRate": 18.9,
+     "refundRate": 4,
+     "revPerUser": 5.76
+    }
+   },
+   "byChannel": {
+    "organic": {
+     "users": 1146,
+     "payers": 257,
+     "paidRate": 22.4,
+     "refundRate": 3.5,
+     "revPerUser": 8.29
+    },
+    "google_uac": {
+     "users": 537,
+     "payers": 105,
+     "paidRate": 19.6,
+     "refundRate": 4.8,
+     "revPerUser": 6.57
+    },
+    "apple_search_ads": {
+     "users": 234,
+     "payers": 61,
+     "paidRate": 26.1,
+     "refundRate": 0,
+     "revPerUser": 9.74
+    },
+    "meta_ads": {
+     "users": 616,
+     "payers": 118,
+     "paidRate": 19.2,
+     "refundRate": 4.2,
+     "revPerUser": 7.49
+    },
+    "tiktok_ads": {
+     "users": 479,
+     "payers": 57,
+     "paidRate": 11.9,
+     "refundRate": 3.5,
+     "revPerUser": 4.61
+    }
+   }
+  },
+  {
+   "weekOf": "2026-09-14",
+   "users": 2825,
+   "payers": 571,
+   "paidRate": 20.2,
+   "refundRate": 2.5,
+   "revPerUser": 7.88,
+   "byCountry": {
+    "US": {
+     "users": 834,
+     "payers": 219,
+     "paidRate": 26.3,
+     "refundRate": 2.7,
+     "revPerUser": 11.38
+    },
+    "IN": {
+     "users": 298,
+     "payers": 24,
+     "paidRate": 8.1,
+     "refundRate": 0,
+     "revPerUser": 0.99
+    },
+    "PL": {
+     "users": 142,
+     "payers": 27,
+     "paidRate": 19,
+     "refundRate": 0,
+     "revPerUser": 4.48
+    },
+    "GB": {
+     "users": 200,
+     "payers": 42,
+     "paidRate": 21,
+     "refundRate": 4.8,
+     "revPerUser": 10.89
+    },
+    "FR": {
+     "users": 133,
+     "payers": 39,
+     "paidRate": 29.3,
+     "refundRate": 5.1,
+     "revPerUser": 11.65
+    },
+    "JP": {
+     "users": 134,
+     "payers": 21,
+     "paidRate": 15.7,
+     "refundRate": 0,
+     "revPerUser": 5.63
+    },
+    "DE": {
+     "users": 196,
+     "payers": 54,
+     "paidRate": 27.6,
+     "refundRate": 5.6,
+     "revPerUser": 12.35
+    },
+    "CA": {
+     "users": 126,
+     "payers": 32,
+     "paidRate": 25.4,
+     "refundRate": 3.1,
+     "revPerUser": 12.55
+    },
+    "AU": {
+     "users": 79,
+     "payers": 17,
+     "paidRate": 21.5,
+     "refundRate": 0,
+     "revPerUser": 7.5
+    },
+    "MX": {
+     "users": 145,
+     "payers": 21,
+     "paidRate": 14.5,
+     "refundRate": 0,
+     "revPerUser": 4.05
+    },
+    "BR": {
+     "users": 242,
+     "payers": 24,
+     "paidRate": 9.9,
+     "refundRate": 0,
+     "revPerUser": 1.66
+    },
+    "TR": {
+     "users": 96,
+     "payers": 6,
+     "paidRate": 6.3,
+     "refundRate": 0,
+     "revPerUser": 0.57
+    },
+    "RS": {
+     "users": 99,
+     "payers": 20,
+     "paidRate": 20.2,
+     "refundRate": 0,
+     "revPerUser": 5.53
+    },
+    "NL": {
+     "users": 49,
+     "payers": 16,
+     "paidRate": 32.7,
+     "refundRate": 0,
+     "revPerUser": 17.24
+    },
+    "SE": {
+     "users": 52,
+     "payers": 9,
+     "paidRate": 17.3,
+     "refundRate": 0,
+     "revPerUser": 6.09
+    }
+   },
+   "byChannel": {
+    "meta_ads": {
+     "users": 534,
+     "payers": 105,
+     "paidRate": 19.7,
+     "refundRate": 3.8,
+     "revPerUser": 7.4
+    },
+    "apple_search_ads": {
+     "users": 227,
+     "payers": 73,
+     "paidRate": 32.2,
+     "refundRate": 1.4,
+     "revPerUser": 11.81
+    },
+    "organic": {
+     "users": 1057,
+     "payers": 230,
+     "paidRate": 21.8,
+     "refundRate": 1.3,
+     "revPerUser": 8.74
+    },
+    "google_uac": {
+     "users": 524,
+     "payers": 95,
+     "paidRate": 18.1,
+     "refundRate": 3.2,
+     "revPerUser": 7.48
+    },
+    "tiktok_ads": {
+     "users": 483,
+     "payers": 68,
+     "paidRate": 14.1,
+     "refundRate": 4.4,
+     "revPerUser": 5.08
+    }
+   }
+  },
+  {
+   "weekOf": "2026-09-21",
+   "users": 2947,
+   "payers": 566,
+   "paidRate": 19.2,
+   "refundRate": 4.2,
+   "revPerUser": 7.18,
+   "byCountry": {
+    "US": {
+     "users": 790,
+     "payers": 213,
+     "paidRate": 27,
+     "refundRate": 5.6,
+     "revPerUser": 11.1
+    },
+    "IN": {
+     "users": 284,
+     "payers": 15,
+     "paidRate": 5.3,
+     "refundRate": 0,
+     "revPerUser": 0.8
+    },
+    "SE": {
+     "users": 58,
+     "payers": 13,
+     "paidRate": 22.4,
+     "refundRate": 0,
+     "revPerUser": 10.27
+    },
+    "TR": {
+     "users": 134,
+     "payers": 17,
+     "paidRate": 12.7,
+     "refundRate": 5.9,
+     "revPerUser": 1.61
+    },
+    "GB": {
+     "users": 189,
+     "payers": 43,
+     "paidRate": 22.8,
+     "refundRate": 4.7,
+     "revPerUser": 9.41
+    },
+    "MX": {
+     "users": 173,
+     "payers": 24,
+     "paidRate": 13.9,
+     "refundRate": 0,
+     "revPerUser": 3.52
+    },
+    "FR": {
+     "users": 155,
+     "payers": 24,
+     "paidRate": 15.5,
+     "refundRate": 8.3,
+     "revPerUser": 8.26
+    },
+    "DE": {
+     "users": 213,
+     "payers": 53,
+     "paidRate": 24.9,
+     "refundRate": 5.7,
+     "revPerUser": 10.92
+    },
+    "BR": {
+     "users": 264,
+     "payers": 32,
+     "paidRate": 12.1,
+     "refundRate": 3.1,
+     "revPerUser": 2.77
+    },
+    "RS": {
+     "users": 128,
+     "payers": 22,
+     "paidRate": 17.2,
+     "refundRate": 0,
+     "revPerUser": 5.35
+    },
+    "AU": {
+     "users": 77,
+     "payers": 18,
+     "paidRate": 23.4,
+     "refundRate": 0,
+     "revPerUser": 6.98
+    },
+    "PL": {
+     "users": 159,
+     "payers": 26,
+     "paidRate": 16.4,
+     "refundRate": 0,
+     "revPerUser": 4.34
+    },
+    "CA": {
+     "users": 115,
+     "payers": 24,
+     "paidRate": 20.9,
+     "refundRate": 4.2,
+     "revPerUser": 9.53
+    },
+    "JP": {
+     "users": 145,
+     "payers": 26,
+     "paidRate": 17.9,
+     "refundRate": 3.8,
+     "revPerUser": 6.04
+    },
+    "NL": {
+     "users": 63,
+     "payers": 16,
+     "paidRate": 25.4,
+     "refundRate": 6.3,
+     "revPerUser": 12.01
+    }
+   },
+   "byChannel": {
+    "tiktok_ads": {
+     "users": 446,
+     "payers": 42,
+     "paidRate": 9.4,
+     "refundRate": 14.3,
+     "revPerUser": 2.9
+    },
+    "meta_ads": {
+     "users": 613,
+     "payers": 100,
+     "paidRate": 16.3,
+     "refundRate": 8,
+     "revPerUser": 5.13
+    },
+    "google_uac": {
+     "users": 530,
+     "payers": 104,
+     "paidRate": 19.6,
+     "refundRate": 1.9,
+     "revPerUser": 7.26
+    },
+    "organic": {
+     "users": 1128,
+     "payers": 250,
+     "paidRate": 22.2,
+     "refundRate": 2.4,
+     "revPerUser": 8.86
+    },
+    "apple_search_ads": {
+     "users": 230,
+     "payers": 70,
+     "paidRate": 30.4,
+     "refundRate": 2.9,
+     "revPerUser": 12.59
+    }
+   }
+  },
+  {
+   "weekOf": "2026-09-28",
+   "users": 2961,
+   "payers": 554,
+   "paidRate": 18.7,
+   "refundRate": 3.8,
+   "revPerUser": 6.96,
+   "byCountry": {
+    "IN": {
+     "users": 322,
+     "payers": 28,
+     "paidRate": 8.7,
+     "refundRate": 0,
+     "revPerUser": 0.93
+    },
+    "DE": {
+     "users": 216,
+     "payers": 47,
+     "paidRate": 21.8,
+     "refundRate": 2.1,
+     "revPerUser": 8.77
+    },
+    "US": {
+     "users": 785,
+     "payers": 177,
+     "paidRate": 22.5,
+     "refundRate": 4,
+     "revPerUser": 9.62
+    },
+    "AU": {
+     "users": 81,
+     "payers": 14,
+     "paidRate": 17.3,
+     "refundRate": 0,
+     "revPerUser": 6.96
+    },
+    "BR": {
+     "users": 272,
+     "payers": 34,
+     "paidRate": 12.5,
+     "refundRate": 2.9,
+     "revPerUser": 2.34
+    },
+    "MX": {
+     "users": 150,
+     "payers": 22,
+     "paidRate": 14.7,
+     "refundRate": 0,
+     "revPerUser": 4.51
+    },
+    "SE": {
+     "users": 54,
+     "payers": 12,
+     "paidRate": 22.2,
+     "refundRate": 8.3,
+     "revPerUser": 6.52
+    },
+    "FR": {
+     "users": 149,
+     "payers": 39,
+     "paidRate": 26.2,
+     "refundRate": 5.1,
+     "revPerUser": 12.39
+    },
+    "PL": {
+     "users": 150,
+     "payers": 24,
+     "paidRate": 16,
+     "refundRate": 4.2,
+     "revPerUser": 3.77
+    },
+    "RS": {
+     "users": 133,
+     "payers": 27,
+     "paidRate": 20.3,
+     "refundRate": 7.4,
+     "revPerUser": 5.85
+    },
+    "NL": {
+     "users": 59,
+     "payers": 17,
+     "paidRate": 28.8,
+     "refundRate": 0,
+     "revPerUser": 14.61
+    },
+    "TR": {
+     "users": 130,
+     "payers": 12,
+     "paidRate": 9.2,
+     "refundRate": 25,
+     "revPerUser": 1.15
+    },
+    "JP": {
+     "users": 144,
+     "payers": 18,
+     "paidRate": 12.5,
+     "refundRate": 0,
+     "revPerUser": 4.6
+    },
+    "GB": {
+     "users": 208,
+     "payers": 55,
+     "paidRate": 26.4,
+     "refundRate": 3.6,
+     "revPerUser": 12.55
+    },
+    "CA": {
+     "users": 108,
+     "payers": 28,
+     "paidRate": 25.9,
+     "refundRate": 3.6,
+     "revPerUser": 10.81
+    }
+   },
+   "byChannel": {
+    "google_uac": {
+     "users": 557,
+     "payers": 93,
+     "paidRate": 16.7,
+     "refundRate": 5.4,
+     "revPerUser": 6.39
+    },
+    "organic": {
+     "users": 1073,
+     "payers": 222,
+     "paidRate": 20.7,
+     "refundRate": 2.3,
+     "revPerUser": 7.6
+    },
+    "meta_ads": {
+     "users": 592,
+     "payers": 105,
+     "paidRate": 17.7,
+     "refundRate": 5.7,
+     "revPerUser": 6.46
+    },
+    "tiktok_ads": {
+     "users": 491,
+     "payers": 58,
+     "paidRate": 11.8,
+     "refundRate": 5.2,
+     "revPerUser": 4.84
+    },
+    "apple_search_ads": {
+     "users": 248,
+     "payers": 76,
+     "paidRate": 30.6,
+     "refundRate": 2.6,
+     "revPerUser": 10.85
+    }
+   }
+  },
+  {
+   "weekOf": "2026-10-05",
+   "users": 2841,
+   "payers": 557,
+   "paidRate": 19.6,
+   "refundRate": 3.6,
+   "revPerUser": 7.17,
+   "byCountry": {
+    "US": {
+     "users": 798,
+     "payers": 211,
+     "paidRate": 26.4,
+     "refundRate": 4.3,
+     "revPerUser": 10.11
+    },
+    "JP": {
+     "users": 161,
+     "payers": 35,
+     "paidRate": 21.7,
+     "refundRate": 0,
+     "revPerUser": 7.12
+    },
+    "GB": {
+     "users": 197,
+     "payers": 45,
+     "paidRate": 22.8,
+     "refundRate": 4.4,
+     "revPerUser": 10.89
+    },
+    "IN": {
+     "users": 250,
+     "payers": 27,
+     "paidRate": 10.8,
+     "refundRate": 3.7,
+     "revPerUser": 1.09
+    },
+    "DE": {
+     "users": 194,
+     "payers": 45,
+     "paidRate": 23.2,
+     "refundRate": 6.7,
+     "revPerUser": 10.89
+    },
+    "PL": {
+     "users": 135,
+     "payers": 8,
+     "paidRate": 5.9,
+     "refundRate": 12.5,
+     "revPerUser": 1.47
+    },
+    "AU": {
+     "users": 88,
+     "payers": 22,
+     "paidRate": 25,
+     "refundRate": 0,
+     "revPerUser": 10.28
+    },
+    "MX": {
+     "users": 148,
+     "payers": 17,
+     "paidRate": 11.5,
+     "refundRate": 11.8,
+     "revPerUser": 1.45
+    },
+    "FR": {
+     "users": 156,
+     "payers": 25,
+     "paidRate": 16,
+     "refundRate": 0,
+     "revPerUser": 6.51
+    },
+    "CA": {
+     "users": 109,
+     "payers": 27,
+     "paidRate": 24.8,
+     "refundRate": 0,
+     "revPerUser": 9.21
+    },
+    "BR": {
+     "users": 259,
+     "payers": 36,
+     "paidRate": 13.9,
+     "refundRate": 0,
+     "revPerUser": 3
+    },
+    "RS": {
+     "users": 118,
+     "payers": 20,
+     "paidRate": 16.9,
+     "refundRate": 5,
+     "revPerUser": 8.19
+    },
+    "TR": {
+     "users": 113,
+     "payers": 8,
+     "paidRate": 7.1,
+     "refundRate": 0,
+     "revPerUser": 1.01
+    },
+    "SE": {
+     "users": 56,
+     "payers": 16,
+     "paidRate": 28.6,
+     "refundRate": 6.3,
+     "revPerUser": 15.66
+    },
+    "NL": {
+     "users": 59,
+     "payers": 15,
+     "paidRate": 25.4,
+     "refundRate": 0,
+     "revPerUser": 9.22
+    }
+   },
+   "byChannel": {
+    "organic": {
+     "users": 1065,
+     "payers": 232,
+     "paidRate": 21.8,
+     "refundRate": 3,
+     "revPerUser": 7.93
+    },
+    "apple_search_ads": {
+     "users": 249,
+     "payers": 78,
+     "paidRate": 31.3,
+     "refundRate": 2.6,
+     "revPerUser": 11.62
+    },
+    "google_uac": {
+     "users": 519,
+     "payers": 92,
+     "paidRate": 17.7,
+     "refundRate": 3.3,
+     "revPerUser": 6.2
+    },
+    "meta_ads": {
+     "users": 576,
+     "payers": 106,
+     "paidRate": 18.4,
+     "refundRate": 3.8,
+     "revPerUser": 7.03
+    },
+    "tiktok_ads": {
+     "users": 432,
+     "payers": 49,
+     "paidRate": 11.3,
+     "refundRate": 8.2,
+     "revPerUser": 4.06
+    }
+   }
+  },
+  {
+   "weekOf": "2026-10-12",
+   "users": 3080,
+   "payers": 612,
+   "paidRate": 19.9,
+   "refundRate": 3.8,
+   "revPerUser": 7.41,
+   "byCountry": {
+    "PL": {
+     "users": 158,
+     "payers": 25,
+     "paidRate": 15.8,
+     "refundRate": 0,
+     "revPerUser": 5.45
+    },
+    "BR": {
+     "users": 297,
+     "payers": 40,
+     "paidRate": 13.5,
+     "refundRate": 2.5,
+     "revPerUser": 3.26
+    },
+    "IN": {
+     "users": 301,
+     "payers": 21,
+     "paidRate": 7,
+     "refundRate": 0,
+     "revPerUser": 1.11
+    },
+    "GB": {
+     "users": 200,
+     "payers": 45,
+     "paidRate": 22.5,
+     "refundRate": 2.2,
+     "revPerUser": 9.02
+    },
+    "US": {
+     "users": 842,
+     "payers": 232,
+     "paidRate": 27.6,
+     "refundRate": 6,
+     "revPerUser": 11.21
+    },
+    "DE": {
+     "users": 249,
+     "payers": 62,
+     "paidRate": 24.9,
+     "refundRate": 0,
+     "revPerUser": 11.54
+    },
+    "AU": {
+     "users": 94,
+     "payers": 19,
+     "paidRate": 20.2,
+     "refundRate": 10.5,
+     "revPerUser": 7.1
+    },
+    "CA": {
+     "users": 122,
+     "payers": 30,
+     "paidRate": 24.6,
+     "refundRate": 3.3,
+     "revPerUser": 8.83
+    },
+    "TR": {
+     "users": 134,
+     "payers": 16,
+     "paidRate": 11.9,
+     "refundRate": 0,
+     "revPerUser": 1.41
+    },
+    "FR": {
+     "users": 148,
+     "payers": 25,
+     "paidRate": 16.9,
+     "refundRate": 8,
+     "revPerUser": 6.5
+    },
+    "JP": {
+     "users": 136,
+     "payers": 25,
+     "paidRate": 18.4,
+     "refundRate": 4,
+     "revPerUser": 6.85
+    },
+    "NL": {
+     "users": 63,
+     "payers": 16,
+     "paidRate": 25.4,
+     "refundRate": 0,
+     "revPerUser": 12.06
+    },
+    "RS": {
+     "users": 117,
+     "payers": 25,
+     "paidRate": 21.4,
+     "refundRate": 0,
+     "revPerUser": 6.4
+    },
+    "MX": {
+     "users": 159,
+     "payers": 17,
+     "paidRate": 10.7,
+     "refundRate": 5.9,
+     "revPerUser": 2.86
+    },
+    "SE": {
+     "users": 60,
+     "payers": 14,
+     "paidRate": 23.3,
+     "refundRate": 0,
+     "revPerUser": 12.36
+    }
+   },
+   "byChannel": {
+    "meta_ads": {
+     "users": 610,
+     "payers": 105,
+     "paidRate": 17.2,
+     "refundRate": 1.9,
+     "revPerUser": 6.74
+    },
+    "organic": {
+     "users": 1168,
+     "payers": 249,
+     "paidRate": 21.3,
+     "refundRate": 2.8,
+     "revPerUser": 8.21
+    },
+    "apple_search_ads": {
+     "users": 253,
+     "payers": 77,
+     "paidRate": 30.4,
+     "refundRate": 2.6,
+     "revPerUser": 10.53
+    },
+    "google_uac": {
+     "users": 581,
+     "payers": 125,
+     "paidRate": 21.5,
+     "refundRate": 3.2,
+     "revPerUser": 8.48
+    },
+    "tiktok_ads": {
+     "users": 468,
+     "payers": 56,
+     "paidRate": 12,
+     "refundRate": 14.3,
+     "revPerUser": 3.25
+    }
+   }
+  },
+  {
+   "weekOf": "2026-10-19",
+   "users": 430,
+   "payers": 79,
+   "paidRate": 18.4,
+   "refundRate": 1.3,
+   "revPerUser": 7.5,
+   "byCountry": {
+    "MX": {
+     "users": 15,
+     "payers": 2,
+     "paidRate": 13.3,
+     "refundRate": 0,
+     "revPerUser": 2.52
+    },
+    "BR": {
+     "users": 33,
+     "payers": 5,
+     "paidRate": 15.2,
+     "refundRate": 0,
+     "revPerUser": 2.91
+    },
+    "PL": {
+     "users": 22,
+     "payers": 3,
+     "paidRate": 13.6,
+     "refundRate": 0,
+     "revPerUser": 3.75
+    },
+    "US": {
+     "users": 129,
+     "payers": 31,
+     "paidRate": 24,
+     "refundRate": 3.2,
+     "revPerUser": 10.59
+    },
+    "GB": {
+     "users": 32,
+     "payers": 4,
+     "paidRate": 12.5,
+     "refundRate": 0,
+     "revPerUser": 5.12
+    },
+    "FR": {
+     "users": 19,
+     "payers": 5,
+     "paidRate": 26.3,
+     "refundRate": 0,
+     "revPerUser": 18.05
+    },
+    "CA": {
+     "users": 18,
+     "payers": 4,
+     "paidRate": 22.2,
+     "refundRate": 0,
+     "revPerUser": 16.11
+    },
+    "RS": {
+     "users": 20,
+     "payers": 3,
+     "paidRate": 15,
+     "refundRate": 0,
+     "revPerUser": 6.16
+    },
+    "IN": {
+     "users": 54,
+     "payers": 7,
+     "paidRate": 13,
+     "refundRate": 0,
+     "revPerUser": 1.09
+    },
+    "DE": {
+     "users": 31,
+     "payers": 6,
+     "paidRate": 19.4,
+     "refundRate": 0,
+     "revPerUser": 11.48
+    },
+    "TR": {
+     "users": 14,
+     "payers": 1,
+     "paidRate": 7.1,
+     "refundRate": 0,
+     "revPerUser": 1.25
+    },
+    "AU": {
+     "users": 11,
+     "payers": 3,
+     "paidRate": 27.3,
+     "refundRate": 0,
+     "revPerUser": 7
+    },
+    "JP": {
+     "users": 17,
+     "payers": 2,
+     "paidRate": 11.8,
+     "refundRate": 0,
+     "revPerUser": 1.43
+    },
+    "SE": {
+     "users": 8,
+     "payers": 0,
+     "paidRate": 0,
+     "refundRate": 0,
+     "revPerUser": 0
+    },
+    "NL": {
+     "users": 7,
+     "payers": 3,
+     "paidRate": 42.9,
+     "refundRate": 0,
+     "revPerUser": 27.14
+    }
+   },
+   "byChannel": {
+    "meta_ads": {
+     "users": 83,
+     "payers": 16,
+     "paidRate": 19.3,
+     "refundRate": 0,
+     "revPerUser": 6.75
+    },
+    "google_uac": {
+     "users": 78,
+     "payers": 14,
+     "paidRate": 17.9,
+     "refundRate": 0,
+     "revPerUser": 8.26
+    },
+    "organic": {
+     "users": 167,
+     "payers": 33,
+     "paidRate": 19.8,
+     "refundRate": 3,
+     "revPerUser": 8.07
+    },
+    "apple_search_ads": {
+     "users": 36,
+     "payers": 8,
+     "paidRate": 22.2,
+     "refundRate": 0,
+     "revPerUser": 7.13
+    },
+    "tiktok_ads": {
+     "users": 66,
+     "payers": 8,
+     "paidRate": 12.1,
+     "refundRate": 0,
+     "revPerUser": 6.32
+    }
+   }
+  }
+ ],
+ "baselineByCountry": {
+  "US": {
+   "users": 12275,
+   "payers": 3261,
+   "paidRate": 26.6,
+   "refundRate": 4,
+   "revPerUser": 10.92
+  },
+  "IN": {
+   "users": 4399,
+   "payers": 367,
+   "paidRate": 8.3,
+   "refundRate": 2.5,
+   "revPerUser": 1.14
+  },
+  "DE": {
+   "users": 3165,
+   "payers": 768,
+   "paidRate": 24.3,
+   "refundRate": 4.4,
+   "revPerUser": 10.81
+  },
+  "PL": {
+   "users": 2220,
+   "payers": 338,
+   "paidRate": 15.2,
+   "refundRate": 3,
+   "revPerUser": 3.9
+  },
+  "RS": {
+   "users": 1801,
+   "payers": 312,
+   "paidRate": 17.3,
+   "refundRate": 2.9,
+   "revPerUser": 5.7
+  },
+  "BR": {
+   "users": 4039,
+   "payers": 501,
+   "paidRate": 12.4,
+   "refundRate": 2,
+   "revPerUser": 2.75
+  },
+  "GB": {
+   "users": 3112,
+   "payers": 742,
+   "paidRate": 23.8,
+   "refundRate": 4.2,
+   "revPerUser": 10.55
+  },
+  "MX": {
+   "users": 2355,
+   "payers": 298,
+   "paidRate": 12.7,
+   "refundRate": 4.7,
+   "revPerUser": 2.83
+  },
+  "JP": {
+   "users": 2179,
+   "payers": 407,
+   "paidRate": 18.7,
+   "refundRate": 2.5,
+   "revPerUser": 6.38
+  },
+  "NL": {
+   "users": 867,
+   "payers": 240,
+   "paidRate": 27.7,
+   "refundRate": 2.5,
+   "revPerUser": 12.86
+  },
+  "AU": {
+   "users": 1297,
+   "payers": 297,
+   "paidRate": 22.9,
+   "refundRate": 3.7,
+   "revPerUser": 8.44
+  },
+  "CA": {
+   "users": 1793,
+   "payers": 435,
+   "paidRate": 24.3,
+   "refundRate": 2.8,
+   "revPerUser": 10.21
+  },
+  "TR": {
+   "users": 1726,
+   "payers": 184,
+   "paidRate": 10.7,
+   "refundRate": 4.9,
+   "revPerUser": 1.38
+  },
+  "SE": {
+   "users": 870,
+   "payers": 204,
+   "paidRate": 23.4,
+   "refundRate": 2,
+   "revPerUser": 10.36
+  },
+  "FR": {
+   "users": 2234,
+   "payers": 488,
+   "paidRate": 21.8,
+   "refundRate": 4.5,
+   "revPerUser": 9.37
+  }
+ },
+ "baseline": {
+  "users": 44332,
+  "payers": 8842,
+  "paidRate": 19.9,
+  "refundRate": 3.6,
+  "revPerUser": 7.43
+ }
+}
