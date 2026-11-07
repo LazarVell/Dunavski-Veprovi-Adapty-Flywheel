@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
 import fs from "node:fs";
 import path from "node:path";
-import { adapty, appId, findFlowByName, unwrap, withTempFile, withTempJson } from "@/lib/adapty";
-import { buildPaywallDraft, type HeroImage, type LocaleInput } from "@/lib/flow";
+import { adapty, appId, findFlowByName, unwrap, withTempJson } from "@/lib/adapty";
+import { heroFor, renderUrl } from "@/lib/flow-media";
+import { buildPaywallDraft, type LocaleInput } from "@/lib/flow";
 import { getCurrent, saveAdPaywall } from "@/lib/campaign-store";
-import { readBinary, readCache, writeCache } from "@/lib/cache";
-import { heroCrop } from "@/lib/visuals";
 import { langByKey } from "@/lib/languages";
 import { adName, paywallFlowName, type AdPaywall } from "@/lib/ads";
 import type { Localized } from "@/lib/schemas";
@@ -23,38 +22,6 @@ async function baseConfig(app: string | null) {
     // Offline fallback: the seed kit's flow file (placeholder product ids; fine for preview, not for creation)
     const file = path.join(process.cwd(), "data", "derived", "paywall-base.flow.json");
     return { config: JSON.parse(fs.readFileSync(file, "utf8")), baseFlowId: null, source: "offline" as const, error: (e as Error).message };
-  }
-}
-
-/**
- * The ad's visual on Adapty's CDN. Uploaded once per app and image: `flows media upload` doesn't deduplicate,
- * and its preview thumbnail comes back from that one call only, so the result is kept on disk.
- */
-async function heroFor(app: string, visualUrl: string | undefined): Promise<HeroImage | null> {
-  const square = visualUrl?.match(/^\/api\/visual\/([a-f0-9]{16})$/)?.[1];
-  // The paywall gets the 2:1 crop around the people, not the ad's square photo with its empty headline space.
-  const key = square ? await heroCrop(square) : null;
-  if (!key) return null;
-  const cacheKey = `media-${app}-${key}`;
-  const hit = readCache<HeroImage>("adapty", cacheKey);
-  if (hit) return hit;
-  const bytes = readBinary("images", key, "jpg");
-  if (!bytes) return null;
-  const up = unwrap(
-    await withTempFile(bytes, "jpg", (f) => adapty<{ id: string | number; url: string; preview_base64?: string }>(["flows", "media", "upload", f, "--app", app])),
-  );
-  const hero: HeroImage = { id: String(up.id), url: up.url, previewValue: up.preview_base64 || undefined };
-  writeCache("adapty", cacheKey, hero);
-  return hero;
-}
-
-/** Adapty's own render of a config, so the demo shows the paywall as the device will (read-only). */
-async function renderUrl(config: unknown) {
-  try {
-    const r = await withTempJson(config, (f) => adapty<{ render_url?: string; url?: string }>(["flows", "config", "preview", f]));
-    return r.render_url ?? r.url ?? null;
-  } catch {
-    return null;
   }
 }
 

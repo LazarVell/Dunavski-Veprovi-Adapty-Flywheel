@@ -17,7 +17,7 @@ Ad tools optimize for installs and clicks. Adapty knows which users actually pay
 ```
 
 1. **Insights:** explains in plain English, with numbers, which users and channels make money (for example: Apple Search Ads users bring in $15.03 each in 60 days, TikTok users $5.09, and 15.5% of TikTok payers refund).
-2. **Creative Studio:** turns those findings into a campaign pack: brief, ad copy, banners in several languages, a video script, and a **matching paywall draft created in Adapty**.
+2. **Creative Studio:** turns those findings into a campaign pack: brief, ad copy, banners in several languages, a video script, and, for each ad, a **matching paywall and a matching onboarding drafted in Adapty**, a segment of that ad's installs and draft A/B tests against the current flows.
 3. **Funding:** shows what the campaign costs, how much could be advanced against unpaid store revenue (Adapty Finance), and when it pays back.
 4. **Watch:** follows the users the campaign brings in and posts Slack alerts (converting well, refund spike, creative fatigue). A tired ad gets a one-click "make fresh variants" that reopens Creative Studio with a refresh request.
 5. **Signal:** scores every install at 24 hours from what Adapty knows (channel, country, onboarding goal, AI edits on day one, platform, push opt-in) and sends what it's worth back to Meta, TikTok and Google, so their bidding looks for more paying users. On later users the model never saw, the top-scored fifth brought in 44.1% of 60-day revenue and the bottom fifth 3.7%; inside Meta Ads alone, the best fifth was worth $19.68 per user and the worst $1.29.
@@ -57,7 +57,7 @@ npm run precompute   # reads adapty-seed-data-hack/data/offline/*.csv.gz, writes
 |---|---|
 | Data analysis of the Lumen account and offline dataset, and GPT's explanations of it | Publishing to Meta/TikTok: we export an upload-ready pack instead, because their ad APIs need app review |
 | Banner rendering and all ad copy, in every language | Adapty Finance fee rate (a setting, default 2.5%) and acquisition cost per channel (typed in; the seed data has no ad spend) |
-| The matching paywall, created as a draft flow in Adapty, with its languages | Time passing in Watch: we replay a later group of users to stand in for "a week later" |
+| The matching paywall and onboarding, created as draft flows in Adapty (paywall in every language, onboarding in English), plus the segment and draft A/B tests | Time passing in Watch: we replay a later group of users to stand in for "a week later" |
 | Slack alerts through a real webhook | Demo visuals are generated ahead of time and cached locally; live generation is available |
 | Image generation through the OpenAI API | Sending Signal's value events to Meta, TikTok and Google: we show the payloads and post a Slack summary instead (ad APIs need app review) |
 | Signal's scoring model and its check on later users it never saw | Ad click-through in Watch (used for the fatigue alert) |
@@ -80,6 +80,9 @@ adapty-seed-data-hack/ (CSV.gz) ──► scripts/precompute.ts ──► data/d
          ──► /api/paywall   (Adapty CLI: config get "Main - 3 plans" → add copy + locales → validate →
                              flows create + config update, as a draft; published only on its own button,
                              because Adapty tests only published flows; A/B tests are created as drafts, never started)
+         ──► /api/onboarding (Adapty CLI: config get "Onboarding - Weekly first" → ad picture + words on the welcome
+                             screen → validate → flows create + config update as a draft; publish on its own button;
+                             draft A/B test on the onboarding placement)
   Funding page ◄── src/lib/funding.ts (unpaid store revenue, per-channel revenue curves, payback, advance)
   Watch page   ◄── src/lib/watch.ts (weekly cohorts replayed; alerts) ──► /api/slack (incoming webhook)
   Signal page  ◄── src/lib/signal.ts (data/derived/signal.json: base × one factor per day-one fact, trained on the

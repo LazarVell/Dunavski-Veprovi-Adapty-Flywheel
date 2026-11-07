@@ -71,12 +71,12 @@ const HERO_ID = "el_901M";
  * Puts the ad's visual on the paywall, right above the headline, so the user sees the picture they tapped.
  * Shape per the flow-generator skill (references/media.md): an `image` element with an inline localizable value.
  */
-function findHeadline(cfg: FlowConfig, def: string) {
+function findHeadline(cfg: FlowConfig, def: string, text = "Go Premium") {
   const els = (cfg.screens[0] as Screen)?.elements;
-  return els ? Object.entries(els.map).find(([, e]) => plainText(e.props?.content?.values?.[def]) === "Go Premium")?.[0] ?? null : null;
+  return els ? Object.entries(els.map).find(([, e]) => plainText(e.props?.content?.values?.[def]) === text)?.[0] ?? null : null;
 }
 
-function addHero(cfg: FlowConfig, hero: HeroImage, def: string, headlineId: string | null) {
+function addHero(cfg: FlowConfig, hero: HeroImage, def: string, headlineId: string | null, height?: number) {
   const els = (cfg.screens[0] as Screen)?.elements;
   if (!els || !headlineId) return false;
   const contains = (n: HierarchyNode, id: string): boolean => n.id === id || !!n.children?.some((c) => contains(c, id));
@@ -98,9 +98,9 @@ function addHero(cfg: FlowConfig, hero: HeroImage, def: string, headlineId: stri
     props: {
       position: { type: "relative" },
       width: { type: "fill" },
-      // Hug: the height follows the uploaded 2:1 crop, so nothing is cropped again on any screen width.
+      // Hug by default: the height follows the uploaded 2:1 crop, so nothing is cropped again on any screen width.
       // (A fixed height with `cover` fills from the top of the image, which showed only the empty sky.)
-      height: { type: "hug" },
+      height: height ? { type: "fixed", value: height } : { type: "hug" },
       objectFit: "cover",
       borderRadius: { tl: 20, tr: 20, bl: 20, br: 20 },
       image: { _localizable: true, values: { [def]: { id: hero.id, url: hero.url, ...(hero.previewValue ? { previewValue: hero.previewValue } : {}) } } },
@@ -159,4 +159,29 @@ export function buildPaywallDraft(base: FlowConfig, english: Localized, others: 
     if (!have.has(loc.flowLocale)) cfg.locales.push({ id: loc.flowLocale, code: loc.flowLocale, name: loc.name });
   }
   return { config: cfg, replaced, heroAdded, locales: cfg.locales.map((l) => l.id) };
+}
+
+/** The English welcome-screen lines of Lumen's "Onboarding - Weekly first" flow, which the ad's words replace. */
+const ONB_HEADLINE = "Edit photos by describing them";
+const ONB_SUBLINE = "Remove objects, fix light, change the sky. Just say what you want.";
+
+/**
+ * The matching-onboarding draft: Lumen's onboarding with the ad's picture, headline and subline on the welcome
+ * screen, so the first thing a user sees after install is the ad they tapped. The quiz and the closing paywall stay.
+ * English only for now: other locales would fall back to English for every line we don't write.
+ */
+export function buildOnboardingDraft(base: FlowConfig, ad: { headline: string; subline: string }, hero?: HeroImage) {
+  const cfg: FlowConfig = structuredClone(base);
+  const def = cfg.defaultLocale || "en";
+  const headlineId = findHeadline(cfg, def, ONB_HEADLINE);
+  let replaced = 0;
+  eachLocalizable(cfg.screens[0], (c) => {
+    const t = plainText(c.values[def]);
+    const text = t === ONB_HEADLINE ? ad.headline : t === ONB_SUBLINE ? ad.subline : null;
+    if (text == null) return;
+    c.values[def] = [{ type: "paragraph", content: [{ type: "text", text, attrs: ATTRS }] }];
+    replaced += 1;
+  });
+  const heroAdded = hero ? addHero(cfg, hero, def, headlineId, 280) : false;
+  return { config: cfg, replaced, heroAdded };
 }
