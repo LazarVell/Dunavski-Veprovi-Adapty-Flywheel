@@ -17,8 +17,9 @@ export function PaywallPreview({ pw, htmlLang, heroUrl }: { pw: Localized["paywa
       <div className="flex h-[600px] flex-col overflow-hidden rounded-[34px] px-5 pb-5 pt-9 text-[#14121C]">
         {/* the same picture as the ad, where Flywheel puts the image element in the Adapty flow */}
         {heroUrl ? (
+          // 2:1 like the crop Adapty gets, so this shows exactly what the device will
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={heroUrl} alt="" className="mb-3 h-[110px] w-full shrink-0 rounded-[14px] object-cover" />
+          <img src={heroUrl} alt="" className="mb-3 aspect-[2/1] w-full shrink-0 rounded-[14px] object-cover" />
         ) : null}
         <div className="text-[24px] font-black leading-tight tracking-tight">{pw.headline}</div>
         <div className="mt-1.5 text-[13px] leading-snug text-[#7D7990]">{pw.subtitle}</div>

@@ -28,14 +28,14 @@ Growth and marketing leads at subscription apps who run paid acquisition. Today 
 
 ## How to run it
 
-Quick start (runs on the committed data and demo cache, no keys needed):
+Copy `.env.example` to `.env` and add `OPENAI_API_KEY` (all AI in the app: copy, languages, meaning check, insight explanations and banner visuals), optionally `SLACK_WEBHOOK_URL`. Then:
 
 ```bash
 npm install
 npm run dev        # http://localhost:3000
 ```
 
-For live generation, copy `.env.example` to `.env` and add `OPENAI_API_KEY` (all AI in the app: copy, languages, meaning check, insight explanations and banner visuals) and optionally `SLACK_WEBHOOK_URL`. Drafting the paywall in Adapty needs the Adapty CLI, logged in.
+The numbers on every page come from the committed `data/derived/` and need no key. The AI-written parts (insight explanations, campaigns, languages, banner images) are generated live on first use and cached locally in `data/demo-cache/`, which is not committed; after that they replay instantly. Drafting the paywall in Adapty needs the Adapty CLI, logged in.
 
 To recompute the numbers from the raw dataset (optional; the results are committed in `data/derived/`):
 
@@ -58,7 +58,7 @@ npm run precompute   # reads adapty-seed-data-hack/data/offline/*.csv.gz, writes
 | Data analysis of the Lumen account and offline dataset, and GPT's explanations of it | Publishing to Meta/TikTok: we export an upload-ready pack instead, because their ad APIs need app review |
 | Banner rendering and all ad copy, in every language | Adapty Finance fee rate (a setting, default 2.5%) and acquisition cost per channel (typed in; the seed data has no ad spend) |
 | The matching paywall, created as a draft flow in Adapty, with its languages | Time passing in Watch: we replay a later group of users to stand in for "a week later" |
-| Slack alerts through a real webhook | Demo visuals are generated ahead of time and cached; live generation is available |
+| Slack alerts through a real webhook | Demo visuals are generated ahead of time and cached locally; live generation is available |
 | Image generation through the OpenAI API | Sending Signal's value events to Meta, TikTok and Google: we show the payloads and post a Slack summary instead (ad APIs need app review) |
 | Signal's scoring model and its check on later users it never saw | Ad click-through in Watch (used for the fatigue alert) |
 
@@ -78,14 +78,15 @@ adapty-seed-data-hack/ (CSV.gz) ──► scripts/precompute.ts ──► data/d
          ──► /api/visual    (OpenAI image API: one text-free visual per concept, reused for every language)
          ──► banners: React at real pixel size, text shrinks to fit, html-to-image → PNG, JSZip export pack
          ──► /api/paywall   (Adapty CLI: config get "Main - 3 plans" → add copy + locales → validate →
-                             flows create + config update, as a draft; never published)
+                             flows create + config update, as a draft; published only on its own button,
+                             because Adapty tests only published flows; A/B tests are created as drafts, never started)
   Funding page ◄── src/lib/funding.ts (unpaid store revenue, per-channel revenue curves, payback, advance)
   Watch page   ◄── src/lib/watch.ts (weekly cohorts replayed; alerts) ──► /api/slack (incoming webhook)
   Signal page  ◄── src/lib/signal.ts (data/derived/signal.json: base × one factor per day-one fact, trained on the
                    earlier 70% of installs, checked on the later 30%; payload previews) ──► /api/slack
 ```
 
-- **Text model calls** (`src/lib/llm.ts`): the OpenAI Responses API (`gpt-5.5` by default, `OPENAI_TEXT_MODEL` to change it) with structured outputs (Zod schemas in `src/lib/schemas.ts`). Every result is cached in `data/demo-cache/` by its inputs, so the demo replays instantly and runs without keys.
+- **Text model calls** (`src/lib/llm.ts`): the OpenAI Responses API (`gpt-5.5` by default, `OPENAI_TEXT_MODEL` to change it) with structured outputs (Zod schemas in `src/lib/schemas.ts`). Every result is cached locally in `data/demo-cache/` (git-ignored) by its inputs, so a demo replays instantly once generated.
 - **Adapty CLI** (`src/lib/adapty.ts`): runs the CLI's own entry file with Node, no shell. The CLI is limited to 2 requests per second per app and never retries.
 
 ## What we'd do next

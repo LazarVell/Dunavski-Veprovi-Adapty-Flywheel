@@ -27,6 +27,10 @@ out/
 cache/
 *.log
 
+# Model results, images and Adapty records the app caches as it runs (src/lib/cache.ts).
+# Local only: each machine builds its own on first use.
+data/demo-cache/
+
 # OS / editor
 .DS_Store
 Thumbs.db
