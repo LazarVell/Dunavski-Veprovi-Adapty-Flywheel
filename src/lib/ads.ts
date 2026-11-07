@@ -14,6 +14,10 @@ export const segmentTitle = (ad: string) => `Flywheel · Ad: ${ad}`.slice(0, 100
 
 export const abTestTitle = (conceptName: string) => `Flywheel: current vs matched paywall (${conceptName})`.slice(0, 100);
 
+export const onboardingFlowName = (campaignName: string, conceptName: string) => `Flywheel onboarding · ${campaignName} · ${conceptName}`.slice(0, 100);
+
+export const onbTestTitle = (conceptName: string) => `Flywheel: current vs matched onboarding (${conceptName})`.slice(0, 100);
+
 /** What Flywheel created in Adapty for one ad. Stored with the campaign so every step is reused, never duplicated. */
 export type AdPaywall = {
   conceptId: string;
@@ -34,5 +38,18 @@ export type AdPaywall = {
   configAt?: string;
   publishedAt?: string;
   publishError?: string;
+  /** The matching onboarding: the ad's picture and words on Lumen's welcome screen, plus its own draft test. */
+  onbFlowId?: string;
+  onbFlowName?: string;
+  onbValidation?: string;
+  onbRenderUrl?: string | null;
+  onbBuilderUrl?: string | null;
+  onbTestId?: string;
+  onbTestTitle?: string;
+  onbTestError?: string;
+  /** as configAt/publishedAt, for the onboarding flow */
+  onbConfigAt?: string;
+  onbPublishedAt?: string;
+  onbPublishError?: string;
   updatedAt: string;
 };

@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { Panel, Button, Tag, Spinner } from "@/components/ui";
 import { Banner, Scaled } from "@/components/Banner";
 import { PaywallPreview } from "@/components/PaywallPreview";
-import { adName, paywallFlowName, segmentTitle, abTestTitle, type AdPaywall } from "@/lib/ads";
+import { adName, paywallFlowName, segmentTitle, abTestTitle, onboardingFlowName, onbTestTitle, type AdPaywall } from "@/lib/ads";
 import type { Campaign, Localized } from "@/lib/schemas";
 import type { Lang } from "@/lib/languages";
 
@@ -15,11 +15,11 @@ async function post<T>(url: string, body: unknown): Promise<T> {
   return j as T;
 }
 
-type Step = "paywall" | "segment" | "publish" | "abtest";
+type Step = "paywall" | "segment" | "publish" | "abtest" | "onboarding" | "onbpublish" | "onbtest";
 
 /**
- * Each ad gets its own paywall: the ad's picture and words on Lumen's paywall, as a draft flow in Adapty,
- * plus a segment of that ad's installs and a draft A/B test. Every button says what it creates before the click.
+ * Each ad gets its own paywall and onboarding: the ad's picture and words on Lumen's flows, as draft flows in Adapty,
+ * plus a segment of that ad's installs and a draft A/B test for each. Every button says what it creates before the click.
  */
 export function AdToPaywall({
   campaign, lang, loc, ready, visuals, saved, onSaved, bannerUpdatedAt = {},
@@ -52,6 +52,7 @@ export function AdToPaywall({
   const langs = ready.map((r) => r.lang);
   // published, and nothing written to the flow since (an updated draft needs publishing again)
   const published = !!pw?.publishedAt && (!pw.configAt || pw.publishedAt >= pw.configAt);
+  const onbPublished = !!pw?.onbPublishedAt && (!pw.onbConfigAt || pw.onbPublishedAt >= pw.onbConfigAt);
 
   async function run(step: Step) {
     setBusy(step);
@@ -60,7 +61,11 @@ export function AdToPaywall({
       const r =
         step === "paywall"
           ? await post<AdPaywall>("/api/paywall", { create: true, conceptId: concept.id, locales: ready, visualUrl: square })
-          : await post<AdPaywall>("/api/audience", { conceptId: concept.id, step });
+          : step === "onboarding"
+            ? await post<AdPaywall>("/api/onboarding", { conceptId: concept.id, step: "flow", visualUrl: square })
+            : step === "onbpublish" || step === "onbtest"
+              ? await post<AdPaywall>("/api/onboarding", { conceptId: concept.id, step: step === "onbpublish" ? "publish" : "abtest" })
+              : await post<AdPaywall>("/api/audience", { conceptId: concept.id, step });
       onSaved(r);
     } catch (e) {
       const body = (e as { body?: AdPaywall }).body;
@@ -134,16 +139,65 @@ export function AdToPaywall({
       enabled: !!pw?.segmentId && published,
       cta: "Create the draft test",
     },
+    {
+      key: "onboarding",
+      title: "Open the onboarding with the same ad",
+      what: (
+        <>
+          Writes a <strong>draft</strong> flow “{onboardingFlowName(campaign.name, concept.name)}”: Lumen&apos;s “Onboarding - Weekly first” (the
+          winner in Insights&apos; A/B check) with the ad&apos;s picture and headline on the welcome screen. The quiz and closing paywall stay. English
+          only for now.
+        </>
+      ),
+      done: pw?.onbFlowId ? (
+        <>
+          Draft flow “{pw.onbFlowName}”.{" "}
+          {pw.onbValidation === "publishable" ? <Tag tone="money">Adapty says: publishable</Tag> : <Tag tone="warn">{pw.onbValidation?.slice(0, 120)}</Tag>}
+          <span className="mt-1 flex flex-wrap gap-3">
+            {pw.onbRenderUrl ? <a className="font-semibold text-lumen underline" href={pw.onbRenderUrl} target="_blank" rel="noreferrer">See it rendered by Adapty</a> : null}
+            {pw.onbBuilderUrl ? <a className="font-semibold text-lumen underline" href={pw.onbBuilderUrl} target="_blank" rel="noreferrer">Open in the Flow Builder</a> : null}
+          </span>
+        </>
+      ) : null,
+      enabled: !!pw,
+      cta: pw?.onbFlowId ? "Update the onboarding" : "Create the onboarding draft",
+    },
+    {
+      key: "onbpublish",
+      title: "Publish this ad's onboarding",
+      what: (
+        <>
+          Same as the paywall: Adapty only puts published flows into A/B tests, and publishing changes nothing users see until a test
+          using it is started.
+        </>
+      ),
+      done: onbPublished ? <>Published in Adapty.</> : null,
+      enabled: !!pw?.onbFlowId,
+      cta: pw?.onbPublishedAt && !onbPublished ? "Publish the update" : "Publish the flow",
+    },
+    {
+      key: "onbtest",
+      title: "Test it against the current onboarding",
+      what: (
+        <>
+          Creates a <strong>draft</strong> A/B test “{onbTestTitle(concept.name)}” on the Onboarding placement for the same segment: “Onboarding -
+          Weekly first” vs this ad&apos;s onboarding, 50/50.
+        </>
+      ),
+      done: pw?.onbTestId ? <>Draft test “{pw.onbTestTitle}” is waiting in Adapty. Starting it is your call.</> : null,
+      enabled: !!pw?.segmentId && onbPublished,
+      cta: "Create the draft test",
+    },
   ];
 
   return (
     <Panel className="mt-8">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div className="max-w-2xl">
-          <h2 className="text-xl font-bold">Each ad gets its own paywall</h2>
+          <h2 className="text-xl font-bold">Each ad gets its own paywall and onboarding</h2>
           <p className="mt-1 text-sm text-ink-2">
             Users who tap an ad should land on a paywall that repeats it. Adapty&apos;s own study of 8,000+ apps found intent-matched paywalls
-            lift trial-to-paid by 24% (Apple Ads data). Flywheel builds that paywall from the ad and wires it up in Adapty.
+            lift trial-to-paid by 24% (Apple Ads data). Flywheel builds that paywall, and an onboarding that opens with the same ad, and wires both up in Adapty.
           </p>
         </div>
         <div className="flex flex-wrap gap-1.5" role="tablist" aria-label="Ad">
@@ -189,7 +243,8 @@ export function AdToPaywall({
                   {s.done ? <div className="mt-2 text-sm">{s.done}</div> : null}
                   {err[s.key] ? <p className="mt-2 text-sm text-loss">{err[s.key]}</p> : null}
                   {s.key === "abtest" && pw?.abTestError && !err.abtest ? <p className="mt-2 text-sm text-loss">Adapty refused the test: {pw.abTestError}</p> : null}
-                  <Button kind={s.done ? "quiet" : "money"} className="mt-3" onClick={() => run(s.key)} disabled={!!busy || !s.enabled || (s.key !== "paywall" && !!s.done)}>
+                  {s.key === "onbtest" && pw?.onbTestError && !err.onbtest ? <p className="mt-2 text-sm text-loss">Adapty refused the test: {pw.onbTestError}</p> : null}
+                  <Button kind={s.done ? "quiet" : "money"} className="mt-3" onClick={() => run(s.key)} disabled={!!busy || !s.enabled || (s.key !== "paywall" && s.key !== "onboarding" && !!s.done)}>
                     {busy === s.key ? <Spinner /> : null}
                     {busy === s.key ? "Working in Adapty…" : s.cta}
                   </Button>

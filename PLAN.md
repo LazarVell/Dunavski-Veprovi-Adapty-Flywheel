@@ -38,6 +38,7 @@ The demo uses the Lumen app already seeded in the Adapty account (app id `e27c82
   - Fallback if the image API fails or is slow: pre-generate the demo visuals and cache them on disk.
 - **TikTok video script:** hook, shots and on-screen text.
 - **Matching paywall (real):** a paywall variant that carries the same message as the ad, created as a draft flow in Adapty (`adapty flows create/validate`; see the flow-generator skill). Only Adapty can line up the ad and the paywall like this.
+- **Matching onboarding (real):** per ad, a draft copy of "Onboarding - Weekly first" whose welcome screen shows the ad's picture, headline and subline, plus a draft A/B test on the onboarding placement for the ad's segment. English only for now (other locales would fall back to English for every line we don't write).
 - **Export pack:** banners, a copy CSV and targeting JSON, ready to upload.
 - **Mocked:** the "Publish to Meta/TikTok" button. Their ad APIs need app review, so we can't wire them up in a weekend.
 
