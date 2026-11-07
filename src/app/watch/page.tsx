@@ -126,6 +126,11 @@ export default function WatchPage() {
                 </div>
                 <div className="mt-1 text-sm font-semibold">{a.title}</div>
                 <p className="mt-1 text-sm leading-relaxed text-ink-2">{a.text}</p>
+                {a.action ? (
+                  <Link href={a.action.href} className="mt-2 inline-block rounded-md bg-ink px-3 py-1.5 text-xs font-semibold text-white hover:bg-ink/90">
+                    {a.action.label} →
+                  </Link>
+                ) : null}
               </div>
             ))}
           </div>
@@ -136,8 +141,9 @@ export default function WatchPage() {
         <Panel className="mt-5 flex flex-wrap items-center justify-between gap-4">
           <p className="max-w-2xl text-sm text-ink-2">
             What these users did is the next round of insights: which markets refunded, which concept wore out, which channel earned its advance back.
+            First, tell the ad platforms which of them were worth paying for.
           </p>
-          <Link href="/insights" className="rounded-lg bg-ink px-4 py-2 text-sm font-semibold text-white">Back to Insights</Link>
+          <Link href="/signal" className="rounded-lg bg-ink px-4 py-2 text-sm font-semibold text-white">Next: Signal</Link>
         </Panel>
       ) : null}
     </div>

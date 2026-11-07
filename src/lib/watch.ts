@@ -12,7 +12,11 @@ type Outcome = { users: number; payers: number; paidRate: number; refundRate: nu
 /** The last four complete weekly cohorts, used as weeks 1-4 after launch. */
 export const REPLAY_WEEKS = watch.weeks.filter((w) => w.users >= 1000).slice(-4);
 
-export type Alert = { id: string; week: number; level: "good" | "warn" | "info"; title: string; text: string };
+export type Alert = {
+  id: string; week: number; level: "good" | "warn" | "info"; title: string; text: string;
+  /** a next step the alert links to, e.g. Studio pre-filled to refresh a tired ad */
+  action?: { label: string; href: string };
+};
 
 const sum = (os: Outcome[]) => {
   const users = os.reduce((a, o) => a + o.users, 0), payers = os.reduce((a, o) => a + o.payers, 0);
@@ -74,7 +78,8 @@ export function alertsFor(i: number, channels: string[], conceptNames: { id: str
       week: i + 1,
       level: "info",
       title: `“${conceptNames[0].name}” is wearing out`,
-      text: `Click-through fell from 2.8% to 2.1% this week (simulated ad data). Rotate in the next concept.`,
+      text: `Click-through fell from 2.8% to 2.1% this week (simulated ad data). Rotate in the next concept, or make fresh variants of this one.`,
+      action: { label: "Make fresh variants", href: `/studio?refresh=${encodeURIComponent(conceptNames[0].id)}` },
     });
   }
   return out;

@@ -7,9 +7,9 @@ Agreed on 2026-11-07, day 1 of First Commit: Adapty Hackathon Belgrade.
 **The pitch:** ad tools optimize for installs and clicks. Adapty knows which users actually pay and stay paying once refunds come out. With Adapty Finance it can also advance the money. Flywheel is a separate workspace, connected to an Adapty account, that joins these into one loop covering the app, its marketing and its finances.
 
 ```
-  1. INSIGHTS ──► 2. CREATIVE STUDIO ──► 3. FUNDING ──► 4. WATCH
-       ▲                                                    │
-       └────────────────────────────────────────────────────┘
+  1. INSIGHTS ──► 2. CREATIVE STUDIO ──► 3. FUNDING ──► 4. WATCH ──► 5. SIGNAL
+       ▲                                                                  │
+       └──────────────────────────────────────────────────────────────────┘
 ```
 
 The demo uses the Lumen app already seeded in the Adapty account (app id `e27c8246-b940-45f0-a76e-5b119afbfa0a`; seed kit in `adapty-seed-data-hack/`).
@@ -55,8 +55,17 @@ The demo uses the Lumen app already seeded in the Adapty account (app id `e27c82
 **What it does:** follows the users the campaign brought in and posts alerts to Slack.
 - **Positive alert:** "Campaign users are converting at 31%, refunds are normal, keep going."
 - **Warning alert:** "Refunds are spiking in MX, I suggest pausing it."
-- **Creative fatigue:** a flag when an ad's results start dropping.
+- **Creative fatigue:** a flag when an ad's results start dropping, with a "Make fresh variants" button that opens Creative Studio pre-filled with a refresh request (keep the ad's promise and audience, new openings and visuals).
 - **Mocked:** time passing. We replay a later group of users to stand in for "a week later".
+
+## 5. Signal: teach the ad platforms who pays
+**What it does:** scores every install at 24 hours and sends what it's worth back to Meta, TikTok and Google, so their bidding looks for more of the users who pay ("same budget, better users").
+- **Model (real, in `scripts/precompute.ts`):** app-average 60-day revenue × one smoothed factor per day-one fact: channel, country, onboarding goal, AI edits on day one, platform, push opt-in. Trained on the earlier 70% of installs with a full 60 days, checked on the later 30%.
+- **Check on unseen users:** the top-scored fifth brought in 44.1% of revenue ($19.83 per user), the bottom fifth 3.7% ($1.66). Inside Meta Ads alone: best fifth $19.68 vs worst $1.29 per user.
+- **Page:** the proof chart, the spread inside each channel, a live scorer with the factor breakdown, and the event payload for each platform.
+- **Mocked:** sending to the ad platforms (their APIs need app review). "Send today's scores" posts a summary to Slack.
+- **Limit we state on stage:** Meta's predicted-LTV bidding takes web events only, so for app campaigns the score goes out as the value on a 24-hour event.
+- **Pitch hook:** Adapty's signal-engineering case (https://adapty.io/blog/same-budget-better-users-signal-engineering-on-meta/): weighting trial values by expected LTV tripled paid subscriptions from users 35+ on the same spend.
 
 ---
 
@@ -84,7 +93,8 @@ The demo uses the Lumen app already seeded in the Adapty account (app id `e27c82
 1. **Insights:** the TikTok vs Apple Search Ads gap, the AI-edit predictor, the best-paying markets, and the wrong A/B winner.
 2. **Creative Studio:** type the prompt, show the campaign pack (the before/after visual of Lumen's AI edit leads it), then the language switcher: **English → Russian → Serbian → German, Spanish and the rest**. The matching paywall switches language alongside it.
 3. **Funding:** the cost of the campaign, the advance, the payback period, and "don't fund TikTok."
-4. **Watch:** a Slack alert arrives. Then back to the loop diagram.
+4. **Watch:** a Slack alert arrives; the fatigue alert's "Make fresh variants" opens Studio with the refresh request.
+5. **Signal:** "inside Meta alone, the best fifth is worth 15× the worst, and Meta can't tell them apart." Show the payload, send the scores, then back to the loop diagram.
 
 ## What's real and what's mocked
 

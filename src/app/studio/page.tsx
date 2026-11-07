@@ -35,16 +35,21 @@ export default function StudioPage() {
   const [fit, setFit] = useState<Record<string, { shrunk: boolean; overflow: boolean }>>({});
   const [adPaywalls, setAdPaywalls] = useState<Record<string, AdPaywall>>({});
   const [pack, setPack] = useState<{ busy: boolean; progress?: string; confirm?: boolean }>({ busy: false });
+  const [refreshing, setRefreshing] = useState<string | null>(null);
 
   const campaign = cur?.campaign;
   const L = langByKey(lang)!;
 
-  // load the current campaign
+  // load the current campaign; ?refresh=<concept id> (from Watch's fatigue alert) pre-fills a refresh request
   useEffect(() => {
     fetch("/api/campaign").then((r) => r.json()).then((j) => {
       if (j.current) {
         setCur(j.current);
-        setPrompt(j.current.prompt);
+        const tired = (j.current as Stored).campaign.concepts.find((c) => c.id === new URLSearchParams(window.location.search).get("refresh"));
+        if (tired) {
+          setRefreshing(tired.name);
+          setPrompt(`“${tired.name}” is wearing out (click-through 2.8% → 2.1%). Keep its promise (“${tired.headline}”) and the same audience and markets; make 3 fresh concepts with new openings and visuals.`);
+        } else setPrompt(j.current.prompt);
       }
       setAdPaywalls(j.adapty?.adPaywalls ?? {});
     });
@@ -169,6 +174,12 @@ export default function StudioPage() {
       />
 
       <Panel>
+        {refreshing ? (
+          <div className="mb-3 flex flex-wrap items-center gap-2 text-sm text-ink-2">
+            <Tag tone="warn">Refreshing a tired ad</Tag>
+            Watch flagged “{refreshing}”. The request below keeps what worked; write it to get fresh variants.
+          </div>
+        ) : null}
         <form
           className="flex flex-col gap-3 md:flex-row"
           onSubmit={(e) => {

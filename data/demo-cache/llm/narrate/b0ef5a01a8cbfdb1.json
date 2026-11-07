@@ -1,0 +1,23 @@
+{
+ "data": {
+  "cards": [
+   {
+    "id": "channels",
+    "soWhat": "Apple Search Ads is bringing much stronger 60-day value than TikTok: $15.03 per user vs $5.09, mainly because far fewer TikTok users pay. Shift paid acquisition budget from TikTok toward Apple Search Ads and fix TikTok targeting or pre-qualification before scaling it."
+   },
+   {
+    "id": "ai-edits",
+    "soWhat": "Day-one AI edit depth is a strong revenue signal: users with 5+ edits pay at 32.4% and generate $15.21 per user. Optimize onboarding and early prompts to push more new users to complete 5+ AI edits on day one."
+   },
+   {
+    "id": "markets",
+    "soWhat": "NL, US, DE, SE, and GB are the best paid acquisition markets, with NL leading at $15.28 per user and 28.4% pay. Prioritize spend and creative testing in these markets while limiting scale in IN, TR, and MX."
+   },
+   {
+    "id": "segment",
+    "soWhat": "Product photos from Apple Search Ads is the strongest segment at $19.61 per user and 39.5% pay. Build a dedicated Apple Search Ads campaign for product photos and give it budget priority over family and travel."
+   }
+  ]
+ },
+ "model": "gpt-5.5"
+}

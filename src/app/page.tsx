@@ -3,6 +3,7 @@ import { STAGES } from "@/lib/stages";
 import { MobileStages } from "@/components/Rail";
 import { I, CHANNEL_LABEL } from "@/lib/insights";
 import funding from "../../data/derived/funding.json";
+import signal from "../../data/derived/signal.json";
 import { usd } from "@/components/ui";
 
 const asa = I.channels.find((c) => c.key === "apple_search_ads")!;
@@ -14,6 +15,7 @@ const SUMMARY: Record<string, string> = {
   "/studio": "A campaign pack aimed at those payers: copy, banners in 12 languages, a video script, and a matching paywall drafted in Adapty.",
   "/funding": `${usd(unpaid)} of store revenue is earned but not paid out yet. Adapty Finance can advance most of it to fund the campaign.`,
   "/watch": "Follows the users the campaign brings in, and posts to Slack when they pay, refund, or the ad wears out.",
+  "/signal": `Scores every install at 24 hours and tells Meta, TikTok and Google what it's worth. The top-scored fifth brings in ${signal.holdout.quintiles[4].revShare}% of revenue.`,
 };
 
 export default function Home() {
@@ -30,7 +32,7 @@ export default function Home() {
 
       <ol className="mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
         {STAGES.map((s) => (
-          <li key={s.href} className="bg-surface">
+          <li key={s.href} className="bg-surface sm:last:odd:col-span-2">
             <Link href={s.href} className="flex h-full gap-4 p-6 transition-colors hover:bg-canvas">
               <span className="font-display text-4xl font-extrabold text-money">{s.n}</span>
               <span>
@@ -42,7 +44,7 @@ export default function Home() {
         ))}
       </ol>
       <p className="mt-4 text-sm text-ink-3">
-        Stage 4 feeds stage 1: what the campaign&apos;s users actually do becomes the next round of insights.
+        Stage 5 feeds stage 1: better users arrive, and what they actually pay becomes the next round of insights.
       </p>
     </div>
   );

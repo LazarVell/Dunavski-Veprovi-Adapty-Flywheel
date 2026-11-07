@@ -1,0 +1,212 @@
+{
+ "base": 8.98,
+ "smoothing": 200,
+ "factors": {
+  "channel": {
+   "meta_ads": 0.889,
+   "organic": 1.107,
+   "google_uac": 1.01,
+   "tiktok_ads": 0.554,
+   "apple_search_ads": 1.608
+  },
+  "country": {
+   "FR": 1.189,
+   "US": 1.463,
+   "BR": 0.472,
+   "IN": 0.246,
+   "CA": 1.285,
+   "GB": 1.291,
+   "MX": 0.487,
+   "DE": 1.363,
+   "RS": 0.775,
+   "AU": 1.177,
+   "PL": 0.637,
+   "TR": 0.392,
+   "NL": 1.353,
+   "JP": 0.903,
+   "SE": 1.322
+  },
+  "goal": {
+   "travel": 0.982,
+   "social_content": 0.944,
+   "family": 0.995,
+   "selfies": 0.967,
+   "product_photos": 1.115
+  },
+  "edits": {
+   "0": 0.447,
+   "1-2": 0.731,
+   "5-7": 1.674,
+   "8-12": 1.556,
+   "13+": 1.359,
+   "3-4": 0.972
+  },
+  "platform": {
+   "Android": 0.853,
+   "iOS": 1.107
+  },
+  "push": {
+   "yes": 1.025,
+   "no": 0.958
+  }
+ },
+ "split": {
+  "train": 17474,
+  "holdout": 7490,
+  "trainInstalls": [
+   "2026-07-05",
+   "2026-08-17"
+  ],
+  "holdoutInstalls": [
+   "2026-08-17",
+   "2026-09-04"
+  ]
+ },
+ "holdout": {
+  "corr": 0.316,
+  "quintiles": [
+   {
+    "q": 1,
+    "users": 1498,
+    "pred": 2.11,
+    "actual": 1.66,
+    "paidRate": 7,
+    "revShare": 3.7
+   },
+   {
+    "q": 2,
+    "users": 1498,
+    "pred": 4.61,
+    "actual": 4.52,
+    "paidRate": 13,
+    "revShare": 10.1
+   },
+   {
+    "q": 3,
+    "users": 1498,
+    "pred": 7.59,
+    "actual": 8.08,
+    "paidRate": 18.6,
+    "revShare": 18
+   },
+   {
+    "q": 4,
+    "users": 1498,
+    "pred": 11.33,
+    "actual": 10.84,
+    "paidRate": 23.2,
+    "revShare": 24.1
+   },
+   {
+    "q": 5,
+    "users": 1498,
+    "pred": 20.85,
+    "actual": 19.83,
+    "paidRate": 38.6,
+    "revShare": 44.1
+   }
+  ]
+ },
+ "byChannel": [
+  {
+   "ch": "apple_search_ads",
+   "users": 614,
+   "avgPred": 17.98,
+   "actual": 14.58,
+   "top20Actual": 30.78,
+   "bottom20Actual": 3.67
+  },
+  {
+   "ch": "meta_ads",
+   "users": 1558,
+   "avgPred": 8.1,
+   "actual": 8.52,
+   "top20Actual": 19.68,
+   "bottom20Actual": 1.29
+  },
+  {
+   "ch": "google_uac",
+   "users": 1370,
+   "avgPred": 8.55,
+   "actual": 7.63,
+   "top20Actual": 14.92,
+   "bottom20Actual": 1.67
+  },
+  {
+   "ch": "tiktok_ads",
+   "users": 1183,
+   "avgPred": 5.05,
+   "actual": 6.05,
+   "top20Actual": 12.63,
+   "bottom20Actual": 1.15
+  }
+ ],
+ "tiers": [
+  3.25,
+  5.86,
+  9.13,
+  13.91
+ ],
+ "examples": [
+  {
+   "features": {
+    "channel": "organic",
+    "country": "IN",
+    "goal": "product_photos",
+    "edits": "1-2",
+    "platform": "iOS",
+    "push": "no"
+   },
+   "pred": 2.11,
+   "actual": 0
+  },
+  {
+   "features": {
+    "channel": "organic",
+    "country": "IN",
+    "goal": "travel",
+    "edits": "5-7",
+    "platform": "iOS",
+    "push": "yes"
+   },
+   "pred": 4.56,
+   "actual": 17.5
+  },
+  {
+   "features": {
+    "channel": "meta_ads",
+    "country": "GB",
+    "goal": "social_content",
+    "edits": "1-2",
+    "platform": "iOS",
+    "push": "no"
+   },
+   "pred": 7.55,
+   "actual": 0
+  },
+  {
+   "features": {
+    "channel": "organic",
+    "country": "FR",
+    "goal": "product_photos",
+    "edits": "3-4",
+    "platform": "Android",
+    "push": "yes"
+   },
+   "pred": 11.21,
+   "actual": 0
+  },
+  {
+   "features": {
+    "channel": "organic",
+    "country": "FR",
+    "goal": "product_photos",
+    "edits": "5-7",
+    "platform": "Android",
+    "push": "yes"
+   },
+   "pred": 19.3,
+   "actual": 20.97
+  }
+ ]
+}
