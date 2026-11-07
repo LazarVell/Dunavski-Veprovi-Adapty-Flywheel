@@ -5,7 +5,7 @@ import crypto from "node:crypto";
 
 /**
  * Demo cache: every generated result (model JSON, images, created flows) is written under
- * data/demo-cache/ and committed, so the demo replays instantly and runs without API keys.
+ * data/demo-cache/, so a demo replays instantly once generated. It is git-ignored: each machine builds its own.
  * Pass `fresh: true` to a route to bypass it.
  */
 export const CACHE_DIR = path.join(process.cwd(), "data", "demo-cache");
