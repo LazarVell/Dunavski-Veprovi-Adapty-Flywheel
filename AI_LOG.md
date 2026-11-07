@@ -21,7 +21,7 @@ How we used AI to build Adapty Flywheel at First Commit: Adapty Hackathon Belgra
 
 1. *"check if there are instructions on how the repo should look for adaptys hackathon. also here: <Notion link>"* — Claude went past the empty page fetch, read Notion's page data directly, followed links to a second, more detailed guide, and came back with a gap list for our repo.
 2. *(paraphrased)* "Find the Claude Code setup a past hackathon winner open-sourced, but check whether it's worth installing." — it surfaced a 300+ skill bundle and also the README's own warning about context cost, which is why we built a small, curated set instead.
-3. TODO: one prompt from building the product itself.
+3. *"research what we can add to app so we make it attractive to customers and users … we want to sell this!"* — Claude compared us with creative-analytics tools (Motion, Superscale, Segwise) and Adapty's own research. It picked "signal engineering" (send each install's predicted value back to the ad platforms) as the piece that closes our loop. Then it checked that this would hold up on our data before writing any code: on later users it never trained on, the top-scored fifth brought in 44% of revenue. That became stage 5, Signal.
 
 ## One thing AI got wrong, and how we caught it
 

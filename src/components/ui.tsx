@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { MobileStages } from "./Rail";
+import { STAGES } from "@/lib/stages";
 
 export function PageHead({ stage, title, lede, right }: { stage?: number; title: string; lede: string; right?: React.ReactNode }) {
   return (
@@ -7,7 +8,7 @@ export function PageHead({ stage, title, lede, right }: { stage?: number; title:
       <MobileStages />
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="max-w-2xl">
-          {stage ? <div className="mb-1 text-sm text-ink-3">Stage {stage} of 4</div> : null}
+          {stage ? <div className="mb-1 text-sm text-ink-3">Stage {stage} of {STAGES.length}</div> : null}
           <h1 className="text-3xl font-extrabold md:text-4xl">{title}</h1>
           <p className="mt-2 text-base leading-relaxed text-ink-2">{lede}</p>
         </div>
