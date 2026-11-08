@@ -2,7 +2,6 @@ import "server-only";
 import OpenAI from "openai";
 import { zodTextFormat } from "openai/helpers/zod";
 import type { z } from "zod";
-import { hashKey, readCache, writeCache } from "./cache";
 
 /**
  * Text models, best first. If one is unavailable (no access yet, not found, rate limited, server error),
@@ -43,13 +42,10 @@ export async function withFallback<T>(models: string[], call: (model: string) =>
   throw new Error(`No model in [${models.join(", ")}] could answer. Last error: ${(last as Error)?.message}`);
 }
 
-type Cached<T> = { data: T; model: string };
-
 /**
- * One structured call, cached on disk per model.
- * First pass: a cached result from any model in the chain wins (best model first), so the demo replays
- * instantly and never goes live by accident just because a key is set. Second pass: call the models in order.
- * `fresh: true` skips the cache and asks the best available model again.
+ * One structured call to the best available model. Nothing is cached: every call asks the model again,
+ * so the same request can give a new answer. Routes that need a result again (a campaign's languages)
+ * save it with the campaign instead.
  * The model only writes words: every number it may cite is passed in `user`, computed in code.
  */
 export async function generate<S extends z.ZodType>(opts: {
@@ -57,35 +53,19 @@ export async function generate<S extends z.ZodType>(opts: {
   schema: S;
   system: string;
   user: string;
-  fresh?: boolean;
   maxTokens?: number;
-}): Promise<{ data: z.infer<S>; cached: boolean; key: string; model: string }> {
-  const keyFor = (model: string) => hashKey(opts.kind, model, opts.system, opts.user);
-  const bucket = `llm/${opts.kind}`;
-  const hasKey = !!process.env.OPENAI_API_KEY;
+}): Promise<{ data: z.infer<S>; model: string }> {
+  if (!process.env.OPENAI_API_KEY) throw new LlmUnavailable("OPENAI_API_KEY is not set in .env.");
   let last: unknown = null;
-
-  if (!opts.fresh) {
-    for (const model of TEXT_MODELS) {
-      const key = keyFor(model);
-      const hit = readCache<Cached<z.infer<S>>>(bucket, key);
-      if (hit) return { data: hit.data, cached: true, key, model };
-    }
-  }
   for (const model of TEXT_MODELS) {
-    const key = keyFor(model);
-    if (!hasKey) continue;
     try {
-      const data = await callModel(model, opts);
-      writeCache(bucket, key, { data, model } satisfies Cached<z.infer<S>>);
-      return { data, cached: false, key, model };
+      return { data: await callModel(model, opts), model };
     } catch (e) {
       last = e;
       if (!shouldFallBack(e)) throw e;
       console.warn(`[fallback] ${model} unavailable for ${opts.kind}, trying next. ${(e as Error).message.slice(0, 120)}`);
     }
   }
-  if (!hasKey) throw new LlmUnavailable("OPENAI_API_KEY is not set in .env and nothing is cached for this input.");
   throw new Error(`No text model could answer (${TEXT_MODELS.join(", ")}). Last error: ${(last as Error)?.message}`);
 }
 

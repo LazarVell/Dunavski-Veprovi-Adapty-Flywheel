@@ -4,7 +4,7 @@
  * install's "creative", and the Adapty segment Flywheel creates matches on it. So users who tapped this
  * ad are the users who see this ad's paywall.
  */
-const slug = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+const slug = (s: string) => s.toLowerCase().normalize("NFKD").replace(/\p{M}/gu, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
 export const adName = (campaignName: string, conceptId: string) => `flywheel_${slug(campaignName).slice(0, 40)}_${slug(conceptId)}`;
 
@@ -17,6 +17,9 @@ export const abTestTitle = (conceptName: string) => `Flywheel: current vs matche
 export const onboardingFlowName = (campaignName: string, conceptName: string) => `Flywheel onboarding · ${campaignName} · ${conceptName}`.slice(0, 100);
 
 export const onbTestTitle = (conceptName: string) => `Flywheel: current vs matched onboarding (${conceptName})`.slice(0, 100);
+
+/** The banner was edited after this draft was written, so the draft in Adapty still has the old words and picture. */
+export const draftOutOfDate = (bannerEditedAt?: string, draftWrittenAt?: string) => !!bannerEditedAt && !!draftWrittenAt && bannerEditedAt > draftWrittenAt;
 
 /** What Flywheel created in Adapty for one ad. Stored with the campaign so every step is reused, never duplicated. */
 export type AdPaywall = {

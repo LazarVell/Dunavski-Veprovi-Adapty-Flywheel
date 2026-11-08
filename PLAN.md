@@ -71,13 +71,13 @@ The demo uses the Lumen app already seeded in the Adapty account (app id `e27c82
 ---
 
 ## Multi-language content
-- **Tier 1 (in the demo, checked by us):** English, Russian, Serbian, German, Spanish.
+- **Tier 1 (in the demo):** English, Russian, Serbian, German, Spanish.
 - **Tier 2 (marked "double-check before publishing"):** Portuguese (Brazil), French, Italian, Dutch, Swedish, Turkish.
 - **Data-suggested languages (on top of the defaults):** any other language that is a strong market in the app's own data is offered too, with the same "double-check before publishing" warning.
   - **"Strong market" rule (a setting):** at least 3% of the app's revenue, or at least 300 users with revenue per user at or above the app average.
   - **In Lumen, only Japanese qualifies:** 4.4% of revenue, 1,196 users, $8.34 per user. Polish (2.7%, $4.88) and Hindi (1.5%, $1.39) fall below the threshold and appear in a collapsed "not suggested" list with their numbers.
   - **Where it shows up:** a "Suggested from your data" label with the reason (for example "4.4% of your revenue, 1,196 users").
-- **Review warnings:** Tier 1 languages are marked "checked". Tier 2 and data-suggested languages show a yellow notice on every asset: "Machine-written. Have a native speaker check this before publishing." The export pack includes a `review_status` column and a list of what still needs review, and the first export asks for confirmation. Paywall languages go in only as drafts, never published automatically.
+- **Review warnings:** Tier 1 languages are marked "Machine-written, meaning checked" once the back-translation check passes (translations are written fresh per campaign, so no person has read them). Tier 2 and data-suggested languages show a yellow notice on every asset: "Machine-written. Have a native speaker check this before publishing." The export pack includes a `review_status` column and a list of what still needs review, and the first export asks for confirmation. Paywall languages go in only as drafts, never published automatically.
 - **Scripts:** Latin and Cyrillic use Noto Sans. Japanese, Chinese and Korean use the matching Noto Sans fonts, loaded only when needed (the browser handles line breaking), and Hindi uses Noto Sans Devanagari. Right-to-left languages (Arabic, Hebrew) get copy only, with no banners or paywall, because the layout would need mirroring.
 - **What gets translated:** ad copy, banners and video scripts, written for each language from the brief rather than translated line by line. "Lumen", plan names and "AI" stay the same in every language.
 - **Paywall in Adapty (real):** languages are added to the draft flow itself. Flow JSON has a `locales` list (currently only `en`) and marks translatable strings with `_localizable`.

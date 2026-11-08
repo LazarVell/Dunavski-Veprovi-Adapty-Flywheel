@@ -1,6 +1,7 @@
 import "server-only";
 import { toFile } from "openai";
 import sharp from "sharp";
+import crypto from "node:crypto";
 import { hashKey, hasBinary, readBinary, writeBinary } from "./cache";
 import { openai, withFallback } from "./llm";
 import type { Concept } from "./schemas";
@@ -28,8 +29,10 @@ Absolutely no text, letters, numbers, captions, logos, watermarks, borders, phon
 const EDIT_STYLE = `Change only what is asked. Keep everything else in the photo as it is: framing, subject, light, and the calm empty space in the top third.
 Absolutely no text, letters, numbers, captions, logos, watermarks, borders, phone frames or app UI anywhere in the image.`;
 
-/** The cache key of the photo generated from a description. The model is left out, so any model's photo is reused. */
+/** Where older campaigns kept a photo: keyed by its description. New photos get a key of their own (`newKey`). */
 export const promptKey = (prompt: string, aspect: Aspect) => hashKey("visual", prompt, aspect);
+/** A fresh image key (16 hex, the shape /api/visual/[key] serves). */
+const newKey = () => crypto.randomBytes(8).toString("hex");
 export const visualUrl = (key: string) => `/api/visual/${key}`;
 export const hasImage = (key: string) => hasBinary("images", key, "jpg");
 
@@ -39,9 +42,9 @@ function b64Of(res: { data?: { b64_json?: string }[] }) {
   return b64;
 }
 
-/** A new photo from a description, stored under the description's key. */
+/** A new photo from a description, every time. The caller records its key on the campaign. */
 export async function generateImage(prompt: string, aspect: Aspect, live = false) {
-  const key = promptKey(prompt, aspect);
+  const key = newKey();
   const { result, model, skipped } = await withFallback(modelsFor(live), async (model) =>
     b64Of(
       await openai().images.generate({
@@ -59,10 +62,9 @@ export async function generateImage(prompt: string, aspect: Aspect, live = false
   return { key, model, skipped };
 }
 
-/** Changes an existing photo as asked and keeps the rest. Cached per source photo and instruction. */
+/** Changes an existing photo as asked and keeps the rest. A new image every time. */
 export async function editImage(sourceKey: string, instruction: string, aspect: Aspect, live = false) {
-  const key = hashKey("visual-edit", sourceKey, instruction, aspect);
-  if (hasImage(key)) return { key, model: null as string | null };
+  const key = newKey();
   const src = readBinary("images", sourceKey, "jpg");
   if (!src) throw new Error("The banner's picture is missing from the cache");
   const { result, model } = await withFallback(modelsFor(live), async (model) =>
@@ -83,7 +85,7 @@ export async function editImage(sourceKey: string, instruction: string, aspect: 
   return { key, model };
 }
 
-/** The photo a banner shows: an edited one if the banner was edited, otherwise the one generated from its description. */
+/** The photo a banner shows: the one recorded on the campaign (older campaigns: the one stored under its description). */
 export const visualKeyFor = (cur: StoredCampaign, c: Concept, aspect: Aspect) =>
   cur.visualKeys?.[`${c.id}:${aspect}`] ?? promptKey(c.visualPrompt, aspect);
 

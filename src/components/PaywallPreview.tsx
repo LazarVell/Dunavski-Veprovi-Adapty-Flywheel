@@ -14,7 +14,8 @@ export function PaywallPreview({ pw, htmlLang, heroUrl }: { pw: Localized["paywa
   ];
   return (
     <div lang={htmlLang} className="mx-auto w-[300px] rounded-[44px] border-[10px] border-[#1b1b22] bg-white shadow-[0_24px_60px_-20px_rgba(22,33,58,.45)]" style={{ fontFamily: "var(--font-banner)" }}>
-      <div className="flex h-[600px] flex-col overflow-hidden rounded-[34px] px-5 pb-5 pt-9 text-[#14121C]">
+      {/* at least phone height, and taller when it must be: a fixed height clipped the button under a picture or long copy */}
+      <div className="flex min-h-[600px] flex-col overflow-hidden rounded-[34px] px-5 pb-5 pt-9 text-[#14121C]">
         {/* the same picture as the ad, where Flywheel puts the image element in the Adapty flow */}
         {heroUrl ? (
           // 2:1 like the crop Adapty gets, so this shows exactly what the device will
@@ -31,7 +32,7 @@ export function PaywallPreview({ pw, htmlLang, heroUrl }: { pw: Localized["paywa
             </div>
           ))}
         </div>
-        <div className="mt-auto space-y-2">
+        <div className="mt-auto space-y-2 pt-4">
           {plans.map((p, i) => (
             <div key={i} className={`rounded-2xl border-2 px-4 py-2.5 ${i === 2 ? "border-[#6C4CF5] bg-[#F4F3F8]" : "border-[#E4E2EC]"}`}>
               <div className="text-[14px] font-bold">{p.label}</div>

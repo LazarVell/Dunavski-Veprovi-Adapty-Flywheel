@@ -35,7 +35,9 @@ npm install
 npm run dev        # http://localhost:3000
 ```
 
-The numbers on every page come from the committed `data/derived/` and need no key. The AI-written parts (insight explanations, campaigns, languages, banner images) are generated live on first use and cached locally in `data/demo-cache/`, which is not committed; after that they replay instantly. Drafting the paywall in Adapty needs the Adapty CLI, logged in.
+The numbers on every page come from the committed `data/derived/` and need no key. The AI-written parts (insight explanations, campaigns, languages, banner images) are generated live: every new campaign is written from scratch, and nothing is reused from an earlier one. The current campaign, its languages and its pictures are saved locally in `data/demo-cache/` (not committed), so a reload doesn't write them again. Drafting the paywall in Adapty needs the Adapty CLI, logged in.
+
+Run the unit tests with `npm test` (`npm run test:watch` while working). They need no keys, make no model or Adapty calls, and don't touch `data/demo-cache/`.
 
 To recompute the numbers from the raw dataset (optional; the results are committed in `data/derived/`):
 
@@ -58,7 +60,7 @@ npm run precompute   # reads adapty-seed-data-hack/data/offline/*.csv.gz, writes
 | Data analysis of the Lumen account and offline dataset, and GPT's explanations of it | Publishing to Meta/TikTok: we export an upload-ready pack instead, because their ad APIs need app review |
 | Banner rendering and all ad copy, in every language | Adapty Finance fee rate (a setting, default 2.5%) and acquisition cost per channel (typed in; the seed data has no ad spend) |
 | The matching paywall and onboarding, created as draft flows in Adapty (paywall in every language, onboarding in English), plus the segment and draft A/B tests | Time passing in Watch: we replay a later group of users to stand in for "a week later" |
-| Slack alerts through a real webhook | Demo visuals are generated ahead of time and cached locally; live generation is available |
+| Slack alerts through a real webhook | |
 | Image generation through the OpenAI API | Sending Signal's value events to Meta, TikTok and Google: we show the payloads and post a Slack summary instead (ad APIs need app review) |
 | Signal's scoring model and its check on later users it never saw | Ad click-through in Watch (used for the fatigue alert) |
 
@@ -89,7 +91,8 @@ adapty-seed-data-hack/ (CSV.gz) ──► scripts/precompute.ts ──► data/d
                    earlier 70% of installs, checked on the later 30%; payload previews) ──► /api/slack
 ```
 
-- **Text model calls** (`src/lib/llm.ts`): the OpenAI Responses API (`gpt-5.5` by default, `OPENAI_TEXT_MODEL` to change it) with structured outputs (Zod schemas in `src/lib/schemas.ts`). Every result is cached locally in `data/demo-cache/` (git-ignored) by its inputs, so a demo replays instantly once generated.
+- **Text model calls** (`src/lib/llm.ts`): the OpenAI Responses API (`gpt-5.5` by default, `OPENAI_TEXT_MODEL` to change it) with structured outputs (Zod schemas in `src/lib/schemas.ts`). Nothing is cached by its inputs: every call asks the model again. The current campaign keeps its own languages and meaning checks, so the check reads the same text that is on screen.
+- **Creative Studio skill** (`.claude/skills/creative-studio/SKILL.md`): the Studio's playbook. The page runs its `## Flow` steps after a campaign is written (campaign → art direction → pictures and languages → hand-off to Adapty) and gives its `## Art direction` section to the art director model. The same file is a Claude Code skill for driving the Studio through the API.
 - **Adapty CLI** (`src/lib/adapty.ts`): runs the CLI's own entry file with Node, no shell. The CLI is limited to 2 requests per second per app and never retries.
 
 ## What we'd do next

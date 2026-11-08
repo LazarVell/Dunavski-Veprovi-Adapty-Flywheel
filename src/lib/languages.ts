@@ -1,7 +1,8 @@
 /**
  * Language catalog for Creative Studio.
  *
- * Tier 1: in the demo, checked by us. Tier 2: machine-written, flagged for native review.
+ * Every translation is machine-written, per campaign; no person has read it.
+ * Tier 1: languages shown by default. Tier 2: also flagged for native review before publishing.
  * "data": suggested because it is a strong market in the app's own data (see insights.langSuggestions).
  */
 import insights from "../../data/derived/insights.json";
@@ -64,6 +65,30 @@ export const ALL_LANGS: Lang[] = [...LANGS, ...suggestedDataLangs.map((d) => d.l
 export const langByKey = (k: string) => ALL_LANGS.find((l) => l.key === k) ?? dataLangs.find((d) => d.lang.key === k)?.lang;
 
 export const needsReview = (l: Lang) => l.tier !== 1;
+
+export type ReviewStatus = "source" | "needs_native_review" | "machine_written_meaning_checked" | "machine_written";
+
+/**
+ * What can honestly be said about a language, or one line of it. Translations are written fresh for every
+ * campaign, so none is ever "checked" by a person: the most a line gets is the machine back-translation check.
+ */
+export function reviewStatus(l: Lang, meaningChecked: boolean, meaningChanged = false): ReviewStatus {
+  if (l.key === "en") return "source";
+  if (meaningChanged || needsReview(l)) return "needs_native_review";
+  return meaningChecked ? "machine_written_meaning_checked" : "machine_written";
+}
+
+/** The main app language of each market in the dataset. */
+const COUNTRY_LANG: Record<string, string> = {
+  US: "en", CA: "en", GB: "en", AU: "en", DE: "de", NL: "nl", SE: "sv", FR: "fr", JP: "ja", PL: "pl",
+  BR: "pt-BR", MX: "es", TR: "tr", IN: "hi", RS: "sr-Latn",
+};
+
+/** The languages a campaign's markets need (ISO country codes), English first, each once. */
+export function langsForMarkets(markets: string[]) {
+  const keys = ["en", ...markets.map((m) => COUNTRY_LANG[m]).filter(Boolean)];
+  return [...new Set(keys)].filter((k) => langByKey(k));
+}
 
 /** Market numbers for a language, from the app's own data (60-day window). */
 export function marketFor(l: Lang) {

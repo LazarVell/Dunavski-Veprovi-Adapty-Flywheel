@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { Panel, Button, Tag, Spinner } from "@/components/ui";
 import { Banner, Scaled } from "@/components/Banner";
 import { PaywallPreview } from "@/components/PaywallPreview";
-import { adName, paywallFlowName, segmentTitle, abTestTitle, onboardingFlowName, onbTestTitle, type AdPaywall } from "@/lib/ads";
+import { adName, draftOutOfDate, paywallFlowName, segmentTitle, abTestTitle, onboardingFlowName, onbTestTitle, type AdPaywall } from "@/lib/ads";
 import type { Campaign, Localized } from "@/lib/schemas";
 import type { Lang } from "@/lib/languages";
 
@@ -46,8 +46,9 @@ export function AdToPaywall({
   // what the paywall shows: the server's 2:1 crop of the square photo (the same file Adapty gets)
   const hero = visuals[`${concept.id}:hero`] ?? square;
   const pw = saved[concept.id];
-  // The banner was edited after its paywall draft was written: the draft in Adapty still has the old words/picture.
-  const stale = !!pw && (bannerUpdatedAt[concept.id] ?? "") > pw.updatedAt;
+  // Compare with when each draft was written. `updatedAt` also moves on the segment, publish and test steps, which don't touch the draft.
+  const stale = draftOutOfDate(bannerUpdatedAt[concept.id], pw?.configAt ?? pw?.updatedAt);
+  const onbStale = draftOutOfDate(bannerUpdatedAt[concept.id], pw?.onbConfigAt);
   const name = adName(campaign.name, concept.id);
   const langs = ready.map((r) => r.lang);
   // published, and nothing written to the flow since (an updated draft needs publishing again)
@@ -152,6 +153,7 @@ export function AdToPaywall({
       done: pw?.onbFlowId ? (
         <>
           Draft flow “{pw.onbFlowName}”.{" "}
+          {onbStale ? <Tag tone="warn">The banner changed since. Update the onboarding.</Tag> : null}{" "}
           {pw.onbValidation === "publishable" ? <Tag tone="money">Adapty says: publishable</Tag> : <Tag tone="warn">{pw.onbValidation?.slice(0, 120)}</Tag>}
           <span className="mt-1 flex flex-wrap gap-3">
             {pw.onbRenderUrl ? <a className="font-semibold text-lumen underline" href={pw.onbRenderUrl} target="_blank" rel="noreferrer">See it rendered by Adapty</a> : null}
