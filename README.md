@@ -4,8 +4,6 @@
 
 Built at First Commit: Adapty Hackathon Belgrade, November 7–8, 2026.
 
-> Status: in progress during the hackathon. Sections marked **TODO** are filled in as we build.
-
 ## What it does
 
 Ad tools optimize for installs and clicks. Adapty knows which users actually pay, and keep paying after refunds. Flywheel is a workspace connected to an Adapty account that turns that knowledge into a loop:
@@ -50,7 +48,7 @@ Run the unit tests with `npm test` (`npm run test:watch` while working). They ne
 
 ### Full install
 
-For a new machine and a new Adapty account. Needs Node.js 18 and Python 3.9+. Seeding takes about 15 minutes.
+For a new machine and a new Adapty account. Needs Node.js 20+ and Python 3.9+. Seeding takes about 15 minutes.
 
 1. Get the code:
    ```bash
@@ -115,8 +113,6 @@ adapty-seed-data-hack/ (CSV.gz) ──► scripts/precompute.ts ──► data/d
 
 ## What we'd do next
 
-TODO: refine at the end. Current list:
-
 - Pull real ad spend from Adapty Attribution instead of typed-in costs.
 - Publish directly to the Meta and TikTok ad APIs once app review is done.
 - Generate the TikTok/Reels video by sending the script straight to Grok (the Studio's button is a placeholder for now).
@@ -126,12 +122,10 @@ TODO: refine at the end. Current list:
 
 ## Team
 
-TODO: names and who did what.
-
-| Who   | What they did |
-| ----- | ------------- |
-| Lazar | TODO          |
-| TODO  | TODO          |
+| Who     | What they did |
+| ------- | ------------- |
+| Lazar   | Built the core Flywheel app (Insights, Creative Studio, Funding, Watch), the Studio director skill, unit tests and demo polish. |
+| Nemanja | Built the ad-to-app match: a matching paywall and onboarding per ad in Adapty, the publish step, and the draft A/B test with its check. |
 
 ## Pre-existing code and third-party material
 
@@ -152,4 +146,4 @@ See [AI_LOG.md](AI_LOG.md) for the summary and [docs/AI_JOURNEY.md](docs/AI_JOUR
 
 ## License
 
-TODO: choose a license (rule 7: it's our call).
+No license chosen yet.
