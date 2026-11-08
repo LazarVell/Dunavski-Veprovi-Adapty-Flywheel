@@ -5,6 +5,10 @@ import { ChannelChart, EditsChart, MarketChart } from "@/components/InsightChart
 import { NarrationProvider, SoWhat } from "@/components/SoWhat";
 import { AbCheck } from "@/components/AbCheck";
 import { LANGS, marketFor, suggestedDataLangs, notSuggestedDataLangs } from "@/lib/languages";
+import { campaignIdeas } from "@/lib/campaign-ideas";
+
+// the seasonal ideas follow today's date, so rebuild the page at most hourly instead of freezing it at build time
+export const revalidate = 3600;
 
 const CHART: Record<string, React.ReactNode> = {
   channels: <ChannelChart />,
@@ -17,6 +21,7 @@ export default function InsightsPage() {
     .map((l) => ({ l, m: marketFor(l) }))
     .sort((a, b) => (b.m?.revPerUser ?? -1) - (a.m?.revPerUser ?? -1));
   const avg = I.overall.revPerUser;
+  const ideas = campaignIdeas(new Date());
 
   return (
     <NarrationProvider>
@@ -91,6 +96,31 @@ export default function InsightsPage() {
               </div>
             ))}
           </details>
+        </div>
+      </Panel>
+
+      <Panel className="mt-5">
+        <div className="flex flex-wrap items-baseline justify-between gap-3">
+          <h2 className="text-xl font-bold">Campaign ideas from your data</h2>
+          <span className="text-sm text-ink-3">Pick one: Creative Studio opens with it and starts writing the campaign, pictures and languages.</span>
+        </div>
+        <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {ideas.map((idea) => (
+            <div key={idea.id} className={`flex flex-col rounded-lg border p-4 ${idea.seasonal ? "border-lumen/30 bg-lumen-soft/40" : "border-line bg-canvas"}`}>
+              <div>
+                <Tag tone={idea.seasonal ? "lumen" : "neutral"}>{idea.label}</Tag>
+              </div>
+              <h3 className="mt-2 font-semibold">{idea.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed">“{idea.prompt}”</p>
+              <p className="mt-2 text-xs leading-relaxed text-ink-2">{idea.why}</p>
+              <Link
+                href={`/studio?prompt=${encodeURIComponent(idea.prompt)}&run=1`}
+                className="mt-auto self-start pt-3 text-sm font-semibold text-lumen underline-offset-2 hover:underline"
+              >
+                Run this campaign →
+              </Link>
+            </div>
+          ))}
         </div>
       </Panel>
 

@@ -35,6 +35,11 @@ export const BannersRewriteSchema = z.object({
   summary: z.string().describe("one short sentence for the user saying what changed"),
 });
 
+/** The shared look of a campaign's pictures, as one editable line for the instructions box. */
+export const ArtDirectionSchema = z.object({
+  direction: z.string().describe("1-2 sentences, at most 45 words"),
+});
+
 export const BannerCopySchema = z.object({
   concepts: z.array(z.object({ id: z.string(), headline: z.string(), subline: z.string(), cta: z.string() })),
 });

@@ -6,15 +6,42 @@ import { PageHead, Panel, Tag, usd } from "@/components/ui";
 import { DEFAULTS, PAID_CHANNELS, ADVANCE_FEE_RANGE, channelEconomics, simulate, F, type Settings, type Channel } from "@/lib/funding";
 import { CHANNEL_LABEL } from "@/lib/insights";
 
-function Num({ label, value, onChange, step = 1, prefix = "$", suffix = "", hint }: {
-  label: string; value: number; onChange: (v: number) => void; step?: number; prefix?: string; suffix?: string; hint?: string;
+/**
+ * A number box you can clear and retype. While typing, an empty box keeps the last good value in the model;
+ * out-of-range values are held to min/max; on leaving the box it shows the value actually in use.
+ */
+function NumberField({ value, onChange, min, max, step, className, label }: {
+  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; className?: string; label?: string;
+}) {
+  const [draft, setDraft] = useState<string | null>(null);
+  return (
+    <input
+      type="number"
+      aria-label={label}
+      min={min}
+      max={max}
+      step={step}
+      value={draft ?? value}
+      className={className}
+      onChange={(e) => {
+        setDraft(e.target.value);
+        const n = e.target.valueAsNumber;
+        if (Number.isFinite(n)) onChange(Math.min(max ?? Infinity, Math.max(min ?? -Infinity, n)));
+      }}
+      onBlur={() => setDraft(null)}
+    />
+  );
+}
+
+function Num({ label, value, onChange, step = 1, prefix = "$", suffix = "", hint, min = 0, max }: {
+  label: string; value: number; onChange: (v: number) => void; step?: number; prefix?: string; suffix?: string; hint?: string; min?: number; max?: number;
 }) {
   return (
     <label className="block text-sm">
       <span className="text-ink-2">{label}</span>
       <span className="mt-1 flex items-center rounded-lg border border-line bg-canvas px-3 focus-within:border-ink">
         {prefix ? <span className="text-ink-3">{prefix}</span> : null}
-        <input type="number" step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} className="w-full bg-transparent py-2 pl-1 tabular-nums outline-none" />
+        <NumberField step={step} min={min} max={max} value={value} onChange={onChange} className="w-full bg-transparent py-2 pl-1 tabular-nums outline-none" />
         {suffix ? <span className="text-ink-3">{suffix}</span> : null}
       </span>
       {hint ? <span className="mt-1 block text-xs text-ink-3">{hint}</span> : null}
@@ -107,8 +134,8 @@ export default function FundingPage() {
           <div className="mt-3 space-y-3">
             <Num label="Campaign budget" value={s.budget} step={1000} onChange={(v) => set("budget", v)} />
             <Num label="Cash on hand for ads" value={s.cashOnHand} step={1000} onChange={(v) => set("cashOnHand", v)} />
-            <Num label="Advance fee" prefix="" suffix="%" step={0.1} value={+(s.advanceFee * 100).toFixed(2)} onChange={(v) => set("advanceFee", v / 100)} hint="Adapty Finance publishes a flat 2.5%–3.25% per advance, depending on the app (adapty.io/finance)." />
-            <Num label="Store fee" prefix="" suffix="%" value={Math.round(s.storeFee * 100)} onChange={(v) => set("storeFee", v / 100)} />
+            <Num label="Advance fee" prefix="" suffix="%" step={0.1} max={100} value={+(s.advanceFee * 100).toFixed(2)} onChange={(v) => set("advanceFee", v / 100)} hint="Adapty Finance publishes a flat 2.5%–3.25% per advance, depending on the app (adapty.io/finance)." />
+            <Num label="Store fee" prefix="" suffix="%" max={100} value={Math.round(s.storeFee * 100)} onChange={(v) => set("storeFee", v / 100)} />
           </div>
         </Panel>
       </section>
@@ -137,8 +164,8 @@ export default function FundingPage() {
                 <tr key={e.ch} className="border-b border-line last:border-0">
                   <td className="py-2.5 font-medium">{CHANNEL_LABEL[e.ch]}</td>
                   <td className="py-2.5">
-                    <input type="number" step={0.1} value={s.cpi[e.ch]} aria-label={`Cost per install, ${CHANNEL_LABEL[e.ch]}`}
-                      onChange={(ev) => set("cpi", { ...s.cpi, [e.ch]: Number(ev.target.value) })}
+                    <NumberField step={0.1} min={0.01} value={s.cpi[e.ch]} label={`Cost per install, ${CHANNEL_LABEL[e.ch]}`}
+                      onChange={(v) => set("cpi", { ...s.cpi, [e.ch]: v })}
                       className="w-20 rounded-md border border-line bg-canvas px-2 py-1 tabular-nums" />
                   </td>
                   <td className="py-2.5">

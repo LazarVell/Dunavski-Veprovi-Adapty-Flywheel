@@ -2,7 +2,7 @@ import "server-only";
 import { readCache, writeCache } from "./cache";
 import { factSheet } from "./insights";
 import { visualUrls } from "./visuals";
-import type { Campaign, Concept } from "./schemas";
+import type { BackCheck, Campaign, Concept, Localized } from "./schemas";
 import type { AdPaywall } from "./ads";
 
 /** A banner as it was before an edit, for undo. `visualKeys` are its edited-photo overrides at the time (none = generated photo). */
@@ -15,10 +15,10 @@ export type StoredCampaign = {
   /** One matched paywall per ad, keyed by Adapty app id, then concept id. */
   adPaywalls?: Record<string, Record<string, AdPaywall>>;
   /**
-   * The campaign as the model first wrote it, kept once a banner is edited. Languages are written from it
-   * (so their cache stays valid), and only the banners that differ from it are re-written on top.
+   * The campaign's languages as written (English is the campaign itself), so a reload or the meaning check
+   * uses the same text that is on screen. Dropped with the campaign: a new campaign writes its own.
    */
-  base?: Campaign;
+  locales?: Record<string, SavedLocale>;
   /** Edited banner photos, `${conceptId}:${aspect}` -> image key. Unedited banners use the photo of their description. */
   visualKeys?: Record<string, string>;
   /** Earlier versions of each banner, oldest first. */
@@ -30,8 +30,30 @@ export type StoredCampaign = {
 };
 export type PaywallResult = { flowId: string; name: string; locales: string[]; createdAt: string; validation: string };
 
+/** One written language. `stale`: banners whose English words changed since, re-written on the next request. */
+export type SavedLocale = { data: Localized; model: string; stale?: string[]; check?: BackCheck; checkModel?: string };
+
 export const getCurrent = () => readCache<StoredCampaign>("campaigns", "current");
 export const setCurrent = (c: StoredCampaign) => writeCache("campaigns", "current", c);
+
+/**
+ * Saves one language of a campaign. Re-reads the store first (languages are written in parallel and take
+ * a while), and drops the result if a new campaign was written meanwhile.
+ */
+export function saveLocale(campaignId: string, lang: string, entry: SavedLocale) {
+  const latest = getCurrent();
+  if (!latest || latest.id !== campaignId) return false;
+  setCurrent({ ...latest, locales: { ...(latest.locales ?? {}), [lang]: entry } });
+  return true;
+}
+
+/** Records a banner's new picture (`${conceptId}:${aspect}` -> image key). Same re-read as saveLocale. */
+export function saveVisualKey(campaignId: string, slot: string, key: string) {
+  const latest = getCurrent();
+  if (!latest || latest.id !== campaignId) return false;
+  setCurrent({ ...latest, visualKeys: { ...(latest.visualKeys ?? {}), [slot]: key } });
+  return true;
+}
 
 /** Merge one ad's Adapty state into the stored campaign (re-reads first, so parallel steps don't clobber each other). */
 export function saveAdPaywall(app: string, p: AdPaywall) {
@@ -63,7 +85,8 @@ export async function campaignPayload(cur: StoredCampaign | null) {
   return {
     current: {
       ...cur,
-      base: undefined,
+      locales: undefined, // large; the page asks /api/localize per language
+      writtenLangs: Object.keys(cur.locales ?? {}), // ...for these, so a reload brings every written language back
       bannerHistory: undefined,
       unverified: unverifiedNumbers([...cur.campaign.brief.why, ...cur.campaign.brief.avoid]),
       undoable: Object.fromEntries(Object.entries(cur.bannerHistory ?? {}).filter(([, v]) => v.length).map(([k, v]) => [k, v.length])),

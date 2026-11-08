@@ -29,7 +29,7 @@ const SYSTEM = `You are the analyst inside Adapty Flywheel. For each A/B test yo
 Write the "action": at most 2 short sentences in plain English, telling a growth lead what to do next (re-run, keep, read on a longer window, watch refunds).
 Use only the numbers you are given; never invent or round differently. Return one entry per test, with the test name exactly as given.`;
 
-/** POST: the model's plain-English "what to do" for each check (cached on disk after the first run). */
+/** POST: the model's plain-English "what to do" for each check, written fresh on every call. */
 export async function POST() {
   try {
     const facts = checkFacts();
@@ -38,7 +38,7 @@ export async function POST() {
     const known = new Set((facts.match(/\d+(?:\.\d+)?/g) ?? []).map((n) => String(Number(n))));
     const ok = (s: string) => (s.match(/\d+(?:\.\d+)?/g) ?? []).every((n) => known.has(String(Number(n))));
     const actions = Object.fromEntries(r.data.tests.filter((t) => ok(t.action)).map((t) => [t.name, t.action]));
-    return NextResponse.json({ actions, model: r.model, cached: r.cached });
+    return NextResponse.json({ actions, model: r.model });
   } catch (e) {
     return NextResponse.json({ error: (e as Error).message }, { status: e instanceof LlmUnavailable ? 503 : 500 });
   }

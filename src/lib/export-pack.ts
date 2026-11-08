@@ -6,7 +6,7 @@ import { toPng } from "html-to-image";
 import JSZip from "jszip";
 import { Banner, FORMATS, type FormatKey } from "@/components/Banner";
 import type { Campaign, Localized, BackCheck } from "./schemas";
-import { langByKey, needsReview } from "./languages";
+import { langByKey, needsReview, reviewStatus } from "./languages";
 import { adName } from "./ads";
 
 /** Renders one banner off-screen at full size and returns a PNG data URL. */
@@ -15,16 +15,18 @@ async function bannerPng(props: Parameters<typeof Banner>[0]) {
   host.style.cssText = "position:fixed;left:-20000px;top:0;";
   document.body.appendChild(host);
   const root = createRoot(host);
-  flushSync(() => root.render(createElement(Banner, props)));
-  await document.fonts.ready;
-  await Promise.all(
-    [...host.querySelectorAll("img")].map((img) => (img.complete ? null : new Promise((r) => { img.onload = img.onerror = r; }))),
-  );
-  await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
-  const png = await toPng(host.firstElementChild as HTMLElement, { pixelRatio: 1, cacheBust: false });
-  root.unmount();
-  host.remove();
-  return png;
+  try {
+    flushSync(() => root.render(createElement(Banner, props)));
+    await document.fonts.ready;
+    await Promise.all(
+      [...host.querySelectorAll("img")].map((img) => (img.complete ? null : new Promise((r) => { img.onload = img.onerror = r; }))),
+    );
+    await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+    return await toPng(host.firstElementChild as HTMLElement, { pixelRatio: 1, cacheBust: false });
+  } finally {
+    root.unmount();
+    host.remove();
+  }
 }
 
 const csvCell = (s: string) => `"${String(s).replace(/"/g, '""')}"`;
@@ -48,14 +50,15 @@ export async function buildPack(opts: {
   for (const key of langs) {
     const lang = langByKey(key)!;
     const l = opts.locs[key];
-    const status = needsReview(lang) ? "needs_native_review" : "checked";
-    if (status !== "checked") review.push(`${lang.name} (${key}): machine-written, have a native speaker check every asset before publishing.`);
     const flagged = new Set((opts.checks[key]?.lines ?? []).filter((x) => x.meaningChanged).map((x) => x.field));
+    if (needsReview(lang)) review.push(`${lang.name} (${key}): machine-written, have a native speaker check every asset before publishing.`);
+    else if (flagged.size) review.push(`${lang.name} (${key}): the meaning check flagged ${[...flagged].join(", ")}. Have a native speaker check these lines.`);
     const flag = (field: string) => (flagged.has(field) ? "meaning_changed" : opts.checks[key] ? "ok" : "not_checked");
+    const status = (meaning: string) => reviewStatus(lang, meaning === "ok", meaning === "meaning_changed");
 
     for (const [ci, c] of l.concepts.entries()) {
       for (const [field, text] of [["headline", c.headline], ["subline", c.subline], ["cta", c.cta]] as const) {
-        rows.push([key, status, `banner:${c.id}`, adName(opts.campaign.name, c.id), field, text, flag(`${c.id} ${field}`)].map(csvCell).join(","));
+        rows.push([key, status(flag(`${c.id} ${field}`)), `banner:${c.id}`, adName(opts.campaign.name, c.id), field, text, flag(`${c.id} ${field}`)].map(csvCell).join(","));
       }
       // banners (RTL languages get copy only)
       if (!lang.rtl) {
@@ -68,9 +71,9 @@ export async function buildPack(opts: {
       }
     }
     l.adCopy.forEach((a, i) => {
-      rows.push([key, status, `ad:${i + 1}`, "", "primary_text", a.primaryText, flag(`ad ${i + 1} primary text`)].map(csvCell).join(","));
-      rows.push([key, status, `ad:${i + 1}`, "", "headline", a.headline, flag(`ad ${i + 1} headline`)].map(csvCell).join(","));
-      rows.push([key, status, `ad:${i + 1}`, "", "description", a.description, "not_checked"].map(csvCell).join(","));
+      rows.push([key, status(flag(`ad ${i + 1} primary text`)), `ad:${i + 1}`, "", "primary_text", a.primaryText, flag(`ad ${i + 1} primary text`)].map(csvCell).join(","));
+      rows.push([key, status(flag(`ad ${i + 1} headline`)), `ad:${i + 1}`, "", "headline", a.headline, flag(`ad ${i + 1} headline`)].map(csvCell).join(","));
+      rows.push([key, status("not_checked"), `ad:${i + 1}`, "", "description", a.description, "not_checked"].map(csvCell).join(","));
     });
     zip.file(
       `video-scripts/${key}.md`,
@@ -99,6 +102,6 @@ export async function buildPack(opts: {
       2,
     ),
   );
-  zip.file("NEEDS_REVIEW.txt", review.length ? review.join("\n") + "\n" : "All languages in this pack were checked.\n");
+  zip.file("NEEDS_REVIEW.txt", review.length ? review.join("\n") + "\n" : "Nothing flagged for review. Any translations in this pack are machine-written and were only checked by machine.\n");
   return zip.generateAsync({ type: "blob" });
 }

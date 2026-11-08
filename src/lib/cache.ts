@@ -4,9 +4,9 @@ import path from "node:path";
 import crypto from "node:crypto";
 
 /**
- * Demo cache: every generated result (model JSON, images, created flows) is written under
- * data/demo-cache/, so a demo replays instantly once generated. It is git-ignored: each machine builds its own.
- * Pass `fresh: true` to a route to bypass it.
+ * Local storage under data/demo-cache/ (git-ignored): the current campaign with its languages and checks,
+ * generated images, and records of what was uploaded to Adapty (uploads don't deduplicate there).
+ * Model results are NOT cached by their inputs: every request asks the model again (src/lib/llm.ts).
  */
 export const CACHE_DIR = path.join(process.cwd(), "data", "demo-cache");
 

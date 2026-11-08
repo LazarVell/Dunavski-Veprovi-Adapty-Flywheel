@@ -53,7 +53,7 @@ export function revAt(ch: string, d: number) {
 
 export function unpaid(s: Settings) {
   const gross = F.unpaidGross.appStore + F.unpaidGross.googlePlay;
-  const net = gross * (1 - s.storeFee);
+  const net = gross * Math.max(0, 1 - s.storeFee);
   const advanceMax = net * s.advanceRate;
   return { gross, net, advanceMax };
 }
@@ -63,9 +63,11 @@ export function channelEconomics(s: Settings) {
     const cpi = s.cpi[ch];
     const net = (d: number) => revAt(ch, d) * (1 - s.storeFee);
     let payback: number | null = null;
-    for (let d = 0; d <= s.horizonDays; d += 1) if (net(d) >= cpi) { payback = d; break; }
-    const roas60 = net(60) / cpi;
-    const roasH = net(s.horizonDays) / cpi;
+    // No usable cost per install means no return can be calculated, so the channel can't be recommended.
+    const priced = cpi > 0;
+    if (priced) for (let d = 0; d <= s.horizonDays; d += 1) if (net(d) >= cpi) { payback = d; break; }
+    const roas60 = priced ? net(60) / cpi : 0;
+    const roasH = priced ? net(s.horizonDays) / cpi : 0;
     const refundRate = (F.refundRateByChannel as Record<string, number>)[ch];
     // Guardrail: an advance is repaid from store payouts, so only fund spend that pays itself back inside the horizon.
     const fund = payback !== null && payback <= 60 && roas60 >= 1;
@@ -77,7 +79,7 @@ export function simulate(s: Settings) {
   const u = unpaid(s);
   const mixSum = PAID_CHANNELS.reduce((a, c) => a + s.mix[c], 0) || 1;
   const run = (spend: number) => {
-    const installs = Object.fromEntries(PAID_CHANNELS.map((c) => [c, (spend * s.mix[c]) / mixSum / s.cpi[c]])) as Record<Channel, number>;
+    const installs = Object.fromEntries(PAID_CHANNELS.map((c) => [c, s.cpi[c] > 0 ? (spend * s.mix[c]) / mixSum / s.cpi[c] : 0])) as Record<Channel, number>;
     const payouts = (d: number) =>
       PAID_CHANNELS.reduce((a, c) => a + installs[c] * revAt(c, d - s.payoutLagDays) * (1 - s.storeFee), 0);
     const revenue = (d: number) => PAID_CHANNELS.reduce((a, c) => a + installs[c] * revAt(c, d) * (1 - s.storeFee), 0);
@@ -85,9 +87,11 @@ export function simulate(s: Settings) {
     return { installs, payouts, revenue, users, spend };
   };
 
-  const spendNo = Math.min(s.budget, s.cashOnHand);
-  const advance = Math.min(u.advanceMax, Math.max(0, s.budget - s.cashOnHand));
-  const spendYes = Math.min(s.budget, s.cashOnHand + advance);
+  const budget = Math.max(0, s.budget);
+  const cash = Math.max(0, s.cashOnHand);
+  const spendNo = Math.min(budget, cash);
+  const advance = Math.min(u.advanceMax, Math.max(0, budget - cash));
+  const spendYes = Math.min(budget, cash + advance);
   const fee = advance * s.advanceFee;
   const no = run(spendNo), yes = run(spendYes);
 
