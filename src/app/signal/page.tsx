@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import clsx from "clsx";
+import { SIGNAL_ENABLED } from "@/lib/stages";
 import { Bar, BarChart, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis, LabelList } from "recharts";
 import { PageHead, Panel, Button, Tag, usd } from "@/components/ui";
 import { S, FEATURES, FEATURE_LABEL, OPTIONS, valueLabel, score, payloads, type Features } from "@/lib/signal";
@@ -20,7 +22,13 @@ const PRESETS: { name: string; x: Features }[] = [
   { name: "TikTok, 0 edits", x: { ...DEFAULT, channel: "tiktok_ads", country: "BR", goal: "selfies", edits: "0", platform: "Android" } },
 ];
 
+/** Switched off in src/lib/stages.ts: not part of the presented product, so its address is a 404. */
 export default function SignalPage() {
+  if (!SIGNAL_ENABLED) notFound();
+  return <SignalContent />;
+}
+
+function SignalContent() {
   const [x, setX] = useState<Features>(DEFAULT);
   const [tab, setTab] = useState<"Meta" | "TikTok" | "Google">("Meta");
   const [sent, setSent] = useState<null | "sending" | "sent" | "preview">(null);
@@ -46,7 +54,7 @@ export default function SignalPage() {
       <PageHead
         stage={5}
         title="Teach the ad platforms who pays"
-        lede="Today Meta, TikTok and Google only hear “an install happened” or “a trial started”. Flywheel scores every install at 24 hours from what Adapty already knows, and sends back what that user is worth. Their bidding then looks for more of the users who pay."
+        lede="Adapty Attribution already sends Meta a predicted value, grouped by country, store, device and locale. Flywheel makes it sharper by adding what each user does on day one: AI edits, onboarding goal and push opt-in, scored at 24 hours."
         right={<Tag tone="money">Same budget, better users</Tag>}
       />
 
@@ -201,16 +209,16 @@ export default function SignalPage() {
           </li>
           <li>Mocked: sending. The payloads follow each platform&apos;s documented shape; the ad APIs need app review, like Studio&apos;s publish.</li>
           <li>
-            Meta&apos;s predicted-LTV bidding currently accepts web events only. For app campaigns the score goes out as the value on a 24-hour event, which
-            Meta&apos;s value optimisation can use.
+            Adapty Attribution already has this idea live: Predicted LTV for Meta, and Revenue Override for trial values on Meta, TikTok and Google. What
+            Flywheel adds is day-one behaviour as an input.
           </li>
           <li>
-            Adapty documented the same approach for a fitness app on Meta: weighting trial values by expected lifetime value tripled paid subscriptions from
-            users 35+ on the same spend (
+            Adapty documented the same approach for a fitness app on Meta: weighting trial values by expected lifetime value went with 3× the paid
+            subscriptions from users 35+ on the same spend (
             <a className="underline" href="https://adapty.io/blog/same-budget-better-users-signal-engineering-on-meta/" target="_blank" rel="noreferrer">
               Adapty blog
             </a>
-            ).
+            ). That was a before-and-after comparison, not a controlled test, and the 3× applies only to users 35+.
           </li>
         </ul>
       </Panel>
