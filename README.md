@@ -29,40 +29,60 @@ Growth and marketing leads at subscription apps who run paid acquisition. Today 
 
 ## How to run it
 
-Copy `.env.example` to `.env` and add `OPENAI_API_KEY` (all AI in the app: copy, languages, meaning check, insight explanations and banner visuals), optionally `SLACK_WEBHOOK_URL`. Then:
+Copy `.env.example` to `.env`. To use every feature, connect all three services:
+
+- **OpenAI:** `OPENAI_API_KEY`, for all AI in the app (copy, languages, meaning check, insight explanations and banner visuals).
+- **Adapty:** the Adapty CLI (`npm install -g adapty@latest`, then `adapty auth login`), for the paywall, onboarding, segment and A/B test drafts. The account needs the seeded Lumen app; on a new account, follow [Full install](#full-install).
+- **Slack:** `SLACK_WEBHOOK_URL`, for Watch alerts. Without it they only show as a preview.
+
+Then:
 
 ```bash
 npm install
 npm run dev        # http://localhost:3000
 ```
 
-The numbers on every page come from the committed `data/derived/` and need no key. The AI-written parts (insight explanations, campaigns, languages, banner images) are generated live: every new campaign is written from scratch, and nothing is reused from an earlier one. The current campaign, its languages and its pictures are saved locally in `data/demo-cache/` (not committed), so a reload doesn't write them again. Each campaign is kept when a new one replaces it, and can be reopened from Previous campaigns in the Studio. Drafting the paywall in Adapty needs the Adapty CLI, logged in.
+For judging, we send test keys through the submission form, never in this repo.
+
+The numbers on every page come from the committed `data/derived/` and need no key. The AI-written parts (insight explanations, campaigns, languages, banner images) are generated live: every new campaign is written from scratch, and nothing is reused from an earlier one. The current campaign, its languages and its pictures are saved locally in `data/demo-cache/` (not committed), so a reload doesn't write them again. Each campaign is kept when a new one replaces it, and can be reopened from Previous campaigns in the Studio.
 
 Run the unit tests with `npm test` (`npm run test:watch` while working). They need no keys, make no model or Adapty calls, and don't touch `data/demo-cache/`.
 
-To recompute the numbers from the raw dataset (optional; the results are committed in `data/derived/`):
+### Full install
 
-1. Node.js 20+ and the Adapty CLI: `npm install -g adapty@latest`, then `adapty auth login`.
-2. Adapty's demo-data kit, cloned into this folder (it's git-ignored and not part of our code):
+For a new machine and a new Adapty account. Needs Node.js 18 and Python 3.9+. Seeding takes about 15 minutes.
+
+1. Get the code:
+   ```bash
+   git clone https://github.com/zyle47/dunavski_veprovi.git
+   cd dunavski_veprovi
+   npm install
+   cp .env.example .env   # Windows: copy .env.example .env
+   ```
+2. Fill in `OPENAI_API_KEY` and `SLACK_WEBHOOK_URL` in `.env`. Leave `ADAPTY_APP_ID` empty: the app finds Lumen by its title.
+3. Sign up at [app.adapty.io](https://app.adapty.io), then run `npm install -g adapty@latest` and `adapty auth login`.
+4. From this repo's folder, get Adapty's demo-data kit (git-ignored, not part of our code) and seed the Lumen app. Run it only once:
    ```bash
    git clone https://github.com/kpotehin/adapty-seed-data-hack.git
+   git -C adapty-seed-data-hack apply ../patches/seed_adapty-windows.patch   # Windows only
+   cd adapty-seed-data-hack
+   python3 seed_adapty.py   # Windows: python seed_adapty.py
+   cd ..
    ```
-   On Windows, apply our compatibility fix before seeding: `git -C adapty-seed-data-hack apply ../patches/seed_adapty-windows.patch`. Then seed **one new** Adapty app with `python seed_adapty.py`, following that repo's README.
-3. Copy `.env.example` to `.env` and fill in the keys. For judging, we send test keys through the submission form, never in this repo.
+   The script creates the app "Lumen - AI Photo Editor (Hackathon)". When it asks for the secret API key, copy it from Dashboard → Lumen app → App settings → General.
+5. Start it with `npm run dev` and open http://localhost:3000.
 
-```bash
-npm run precompute   # reads adapty-seed-data-hack/data/offline/*.csv.gz, writes data/derived/*.json
-```
+To recompute the numbers from the raw dataset (optional; the results are committed in `data/derived/`), clone the kit into this folder as in step 4 and run `npm run precompute`. It reads `adapty-seed-data-hack/data/offline/*.csv.gz` and writes `data/derived/*.json`.
 
 ## What's real and what's mocked
 
-| Real | Mocked or assumed |
-|---|---|
-| Data analysis of the Lumen account and offline dataset, and GPT's explanations of it | Publishing to Meta/TikTok: we export an upload-ready pack instead, because their ad APIs need app review |
-| Banner rendering and all ad copy, in every language | Adapty Finance fee rate (a setting, default 2.5%) and acquisition cost per channel (typed in; the seed data has no ad spend) |
-| The matching paywall and onboarding, created as draft flows in Adapty (paywall in every language, onboarding in English), plus the segment and draft A/B tests | Time passing in Watch: we replay a later group of users to stand in for "a week later" |
-| Slack alerts through a real webhook | Ad click-through in Watch (used for the fatigue alert) |
-| Image generation through the OpenAI API | |
+| Real                                                                                                                                                           | Mocked or assumed                                                                                                                                                                                                                         |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Analysis of Adapty's Lumen demo dataset (every number computed by our script), and GPT's explanations of it                                                    | Live account numbers: Insights, Funding and Watch use figures precomputed from the offline Lumen dataset, not read live from the account's analytics                                                                                      |
+| Banner rendering and all ad copy, in every language                                                                                                            | Publishing to Meta/TikTok: we export an upload-ready pack instead, because their ad APIs need app review                                                                                                                                  |
+| The matching paywall and onboarding, created as draft flows in Adapty (paywall in every language, onboarding in English), plus the segment and draft A/B tests | The Adapty Finance advance: an estimate from Adapty's published terms (up to 85%, fee 2.5%–3.25%, default 2.5%), with no real offer or eligibility check. Acquisition cost per channel is typed in, because the seed data has no ad spend |
+| Slack alerts through a real webhook                                                                                                                            | Time passing in Watch: we replay a later group of users to stand in for "a week later"                                                                                                                                                    |
+| Image generation through the OpenAI API                                                                                                                        | Ad click-through in Watch (used for the fatigue alert)                                                                                                                                                                                    |
 
 All data is Adapty's synthetic Lumen demo app. No real user data is used.
 
@@ -108,10 +128,10 @@ TODO: refine at the end. Current list:
 
 TODO: names and who did what.
 
-| Who | What they did |
-|---|---|
-| Lazar | TODO |
-| TODO | TODO |
+| Who   | What they did |
+| ----- | ------------- |
+| Lazar | TODO          |
+| TODO  | TODO          |
 
 ## Pre-existing code and third-party material
 
