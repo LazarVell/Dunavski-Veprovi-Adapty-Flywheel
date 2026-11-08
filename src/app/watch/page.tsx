@@ -6,6 +6,7 @@ import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, Legend } f
 import { PageHead, Panel, Button, Tag } from "@/components/ui";
 import { REPLAY_WEEKS, alertsFor, weekView, ctrSeries, W, type Alert } from "@/lib/watch";
 import { CHANNEL_LABEL } from "@/lib/insights";
+import { SIGNAL_ENABLED } from "@/lib/stages";
 
 type Concept = { id: string; name: string };
 
@@ -141,9 +142,11 @@ export default function WatchPage() {
         <Panel className="mt-5 flex flex-wrap items-center justify-between gap-4">
           <p className="max-w-2xl text-sm text-ink-2">
             What these users did is the next round of insights: which markets refunded, which concept wore out, which channel earned its advance back.
-            First, tell the ad platforms which of them were worth paying for.
+            {SIGNAL_ENABLED ? " First, tell the ad platforms which of them were worth paying for." : ""}
           </p>
-          <Link href="/signal" className="rounded-lg bg-ink px-4 py-2 text-sm font-semibold text-white">Next: Signal</Link>
+          <Link href={SIGNAL_ENABLED ? "/signal" : "/insights"} className="rounded-lg bg-ink px-4 py-2 text-sm font-semibold text-white">
+            {SIGNAL_ENABLED ? "Next: Signal" : "Back to Insights"}
+          </Link>
         </Panel>
       ) : null}
     </div>

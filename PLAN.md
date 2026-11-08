@@ -7,9 +7,9 @@ Agreed on 2026-11-07, day 1 of First Commit: Adapty Hackathon Belgrade.
 **The pitch:** ad tools optimize for installs and clicks. Adapty knows which users actually pay and stay paying once refunds come out. With Adapty Finance it can also advance the money. Flywheel is a separate workspace, connected to an Adapty account, that joins these into one loop covering the app, its marketing and its finances.
 
 ```
-  1. INSIGHTS ──► 2. CREATIVE STUDIO ──► 3. FUNDING ──► 4. WATCH ──► 5. SIGNAL
-       ▲                                                                  │
-       └──────────────────────────────────────────────────────────────────┘
+  1. INSIGHTS ──► 2. CREATIVE STUDIO ──► 3. FUNDING ──► 4. WATCH
+       ▲                                                    │
+       └────────────────────────────────────────────────────┘
 ```
 
 The demo uses the Lumen app already seeded in the Adapty account (app id `e27c8246-b940-45f0-a76e-5b119afbfa0a`; seed kit in `adapty-seed-data-hack/`).
@@ -59,7 +59,9 @@ The demo uses the Lumen app already seeded in the Adapty account (app id `e27c82
 - **Creative fatigue:** a flag when an ad's results start dropping, with a "Make fresh variants" button that opens Creative Studio pre-filled with a refresh request (keep the ad's promise and audience, new openings and visuals).
 - **Mocked:** time passing. We replay a later group of users to stand in for "a week later".
 
-## 5. Signal: teach the ad platforms who pays
+## 5. Signal: teach the ad platforms who pays (hidden, not presented)
+**Status:** switched off by `SIGNAL_ENABLED` in `src/lib/stages.ts`. Adapty Attribution already sends Meta a predicted LTV and offers Revenue Override, so the idea isn't new to them. What's left of this plan is below for reference.
+
 **What it does:** scores every install at 24 hours and sends what it's worth back to Meta, TikTok and Google, so their bidding looks for more of the users who pay ("same budget, better users").
 - **Model (real, in `scripts/precompute.ts`):** app-average 60-day revenue × one smoothed factor per day-one fact: channel, country, onboarding goal, AI edits on day one, platform, push opt-in. Trained on the earlier 70% of installs with a full 60 days, checked on the later 30%.
 - **Check on unseen users:** the top-scored fifth brought in 44.1% of revenue ($19.83 per user), the bottom fifth 3.7% ($1.66). Inside Meta Ads alone: best fifth $19.68 vs worst $1.29 per user.
@@ -95,7 +97,6 @@ The demo uses the Lumen app already seeded in the Adapty account (app id `e27c82
 2. **Creative Studio:** type the prompt, show the campaign pack (the before/after visual of Lumen's AI edit leads it), then the language switcher: **English → Russian → Serbian → German, Spanish and the rest**. The matching paywall switches language alongside it.
 3. **Funding:** the cost of the campaign, the advance, the payback period, and "don't fund TikTok."
 4. **Watch:** a Slack alert arrives; the fatigue alert's "Make fresh variants" opens Studio with the refresh request.
-5. **Signal:** "inside Meta alone, the best fifth is worth 15× the worst, and Meta can't tell them apart." Show the payload, send the scores, then back to the loop diagram.
 
 ## What's real and what's mocked
 

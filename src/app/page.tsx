@@ -44,7 +44,7 @@ export default function Home() {
         ))}
       </ol>
       <p className="mt-4 text-sm text-ink-3">
-        Stage 5 feeds stage 1: better users arrive, and what they actually pay becomes the next round of insights.
+        Stage {STAGES.length} feeds stage 1: what the campaign&apos;s users actually pay becomes the next round of insights.
       </p>
     </div>
   );
