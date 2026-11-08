@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import clsx from "clsx";
 import { PageHead, Panel, Button, Tag, Spinner } from "@/components/ui";
 import { Banner, Scaled, FORMATS, type FormatKey } from "@/components/Banner";
@@ -19,7 +19,10 @@ type Stored = {
   bannerUpdatedAt?: Record<string, string>;
   bannerInstructions?: string;
 };
-type Payload = { current: Stored | null; visuals: Record<string, string | null> };
+type Summary = { id: string; name: string; prompt: string; createdAt: string };
+type Payload = { current: Stored | null; visuals: Record<string, string | null>; previous?: Summary[] };
+/** What's on screen when a run starts, to put back if the new campaign can't be written. */
+type Held = { cur: Stored | null; visuals: Record<string, string | null>; adPaywalls: Record<string, AdPaywall> };
 type BannerResult = Payload & { summary: string; changed: { words: boolean; picture: boolean } };
 type LocState = { status: "idle" | "loading" | "ready" | "error"; data?: Localized; model?: string; error?: string; check?: BackCheck; checking?: boolean };
 type EditState = { text: string; busy?: boolean; note?: string; error?: string };
@@ -35,6 +38,38 @@ async function post<T>(url: string, body: unknown): Promise<T> {
   const j = await r.json();
   if (!r.ok) throw new Error(j.error || `${url} failed`);
   return j as T;
+}
+
+/** The saved campaigns, top right. Opening one needs no model call. */
+function PreviousCampaigns({ items, opening, disabled, onOpen }: { items: Summary[]; opening: string | null; disabled: boolean; onOpen: (id: string) => void }) {
+  const when = (iso: string) => new Date(iso).toLocaleString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
+  return (
+    <aside className="w-full rounded-xl border border-line bg-surface p-3 lg:w-80" aria-label="Previous campaigns">
+      <h2 className="px-2 text-sm font-semibold">Previous campaigns</h2>
+      {items.length === 0 ? (
+        <p className="mt-1 px-2 text-xs text-ink-3">None yet. A campaign is saved here when a new one replaces it.</p>
+      ) : (
+        <ul className="mt-1 max-h-40 overflow-y-auto">
+          {items.map((c) => (
+            <li key={c.id}>
+              <button
+                onClick={() => onOpen(c.id)}
+                disabled={disabled}
+                title={c.prompt}
+                className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left hover:bg-canvas disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-sm font-medium">{c.name}</span>
+                  <span className="block truncate text-xs text-ink-3">{when(c.createdAt)}</span>
+                </span>
+                {opening === c.id ? <Spinner /> : null}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </aside>
+  );
 }
 
 export default function StudioPage() {
@@ -59,7 +94,14 @@ export default function StudioPage() {
   const [edits, setEdits] = useState<Record<string, EditState>>({});
   const [director, setDirector] = useState<Director | null>(null);
   const [run, setRun] = useState<Record<string, StepRun>>({});
-  const [pendingRun, setPendingRun] = useState<string | null>(null);
+  const [pendingRun, setPendingRun] = useState<{ prompt: string; back: Held } | null>(null);
+  /** an Insights link opened the page and a run is about to start */
+  const [starting, setStarting] = useState(false);
+  const [previous, setPrevious] = useState<Summary[]>([]);
+  const [opening, setOpening] = useState<string | null>(null);
+  /** the page's link, read once: the address is cleaned straight after so a reload can't start another run */
+  const urlRef = useRef<{ suggested?: string; refresh: string | null; run: boolean } | null>(null);
+  const autoRunQueued = useRef(false);
   const locsRef = useRef(locs);
   locsRef.current = locs;
   /** languages being fetched, so one isn't asked for twice; and which campaign they belong to */
@@ -72,33 +114,49 @@ export default function StudioPage() {
   const campaignId = cur?.id;
   const L = langByKey(lang)!;
 
-  // load the current campaign. Pre-fills the request box:
-  // ?refresh=<concept id> from Watch's fatigue alert (waits for the user's click),
-  // ?prompt=<text>&run=1 from an Insights campaign idea (starts the flow right away).
+  // an Insights idea fills the request box before the first paint, without waiting for the server
+  useLayoutEffect(() => {
+    if (urlRef.current) return;
+    const params = new URLSearchParams(window.location.search);
+    const suggested = params.get("prompt")?.trim() || undefined;
+    const refresh = params.get("refresh");
+    const run = !!suggested && !refresh && params.get("run") === "1";
+    urlRef.current = { suggested, refresh, run };
+    // a reload must not start the same run again
+    if (params.has("prompt") || params.has("run")) window.history.replaceState(null, "", window.location.pathname);
+    if (suggested && !refresh) {
+      setPrompt(suggested);
+      setFromIdea(true);
+    }
+    if (run) setStarting(true);
+  }, []);
+
+  // load the current campaign. ?refresh=<concept id> from Watch's fatigue alert pre-fills the request and waits for a click;
+  // ?prompt=<text>&run=1 from an Insights idea starts the flow, so the old campaign is never put on screen.
   useEffect(() => {
     fetch("/api/campaign").then((r) => r.json()).then((j) => {
-      const params = new URLSearchParams(window.location.search);
-      const suggested = params.get("prompt")?.trim();
-      // a reload (or React's double mount in dev) must not start the same run again
-      if (params.has("prompt") || params.has("run")) window.history.replaceState(null, "", window.location.pathname);
+      const { suggested, refresh, run } = urlRef.current ?? { refresh: null, run: false };
+      setDirector(j.director ?? null);
+      setPrevious(j.previous ?? []);
+      if (run) {
+        if (!autoRunQueued.current) {
+          autoRunQueued.current = true;
+          setPendingRun({ prompt: suggested!, back: { cur: j.current ?? null, visuals: j.visuals ?? {}, adPaywalls: j.adapty?.adPaywalls ?? {} } });
+        }
+        return;
+      }
       if (j.current) {
         restoreLangs.current = j.current.writtenLangs ?? [];
         setCur(j.current);
         setInstructions(j.current.bannerInstructions ?? "");
-        const tired = (j.current as Stored).campaign.concepts.find((c) => c.id === params.get("refresh"));
+        const tired = (j.current as Stored).campaign.concepts.find((c) => c.id === refresh);
         if (tired) {
           setRefreshing(tired.name);
           setPrompt(`“${tired.name}” is wearing out (click-through 2.8% → 2.1%). Keep its promise (“${tired.headline}”) and the same audience and markets; make 3 fresh concepts with new openings and visuals.`);
         } else if (!suggested) setPrompt(j.current.prompt);
       }
-      if (suggested && !params.get("refresh")) {
-        setPrompt(suggested);
-        setFromIdea(true);
-        if (params.get("run") === "1") setPendingRun(suggested);
-      }
       setVisuals(j.visuals ?? {});
       setAdPaywalls(j.adapty?.adPaywalls ?? {});
-      setDirector(j.director ?? null);
     });
   }, []);
 
@@ -157,7 +215,7 @@ export default function StudioPage() {
     setLocs({});
     setEdits({});
     // English, plus every language already saved for this campaign (free: the server returns the saved text)
-    [...new Set(["en", ...restoreLangs.current])].forEach((k) => loadLang(k));
+    [...new Set(["en", ...restoreLangs.current])].filter((k) => langByKey(k)).forEach((k) => loadLang(k));
     restoreLangs.current = [];
   }, [campaignId, loadLang]);
 
@@ -170,24 +228,46 @@ export default function StudioPage() {
     if (!pendingRun || !director || busy) return;
     const p = pendingRun;
     setPendingRun(null);
-    runDirector({ prompt: p });
-    // runDirector reads the state of this render, which already has the loaded campaign and skill
+    runDirector(p);
+    // runDirector reads the state of this render, which already has the loaded skill
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pendingRun, director, busy]);
 
   /** Step "campaign": always a new campaign, replacing the current one. */
   async function generateCampaign(text: string): Promise<Payload> {
     const r = await post<Payload>("/api/campaign", { prompt: text });
-    setAdPaywalls({}); // a new campaign means new ads
-    setInstructions("");
-    setRewriteNote(null);
     setRefreshing(null); // the tired ad has been refreshed; a reload shouldn't offer it again
     if (window.location.search.includes("refresh=")) window.history.replaceState(null, "", window.location.pathname);
     restoreLangs.current = [];
     setCur(r.current);
     setVisuals(r.visuals);
-    setLang("en");
+    setPrevious(r.previous ?? []);
     return r;
+  }
+
+  /** Brings a saved campaign back, with its languages, pictures and edits. */
+  async function openCampaign(id: string) {
+    setOpening(id);
+    setErr(null);
+    try {
+      const r = await post<Payload & { adapty?: { adPaywalls?: Record<string, AdPaywall> } }>("/api/campaign", { open: id });
+      restoreLangs.current = r.current?.writtenLangs ?? [];
+      setRun({});
+      setRefreshing(null);
+      setFromIdea(false);
+      setRewriteNote(null);
+      setLang("en");
+      setPrompt(r.current?.prompt ?? "");
+      setInstructions(r.current?.bannerInstructions ?? "");
+      setCur(r.current);
+      setVisuals(r.visuals);
+      setAdPaywalls(r.adapty?.adPaywalls ?? {});
+      setPrevious(r.previous ?? []);
+    } catch (e) {
+      setErr((e as Error).message);
+    } finally {
+      setOpening(null);
+    }
   }
 
   /**
@@ -195,21 +275,33 @@ export default function StudioPage() {
    * (.claude/skills/creative-studio/SKILL.md, "## Flow"). Steps sharing a group run together;
    * `auto: false` steps (Adapty) are left for the user. A failed step stops the steps after it.
    */
-  async function runDirector(opts: { prompt?: string } = {}) {
+  async function runDirector(opts: { prompt?: string; back?: Held } = {}) {
     const text = (opts.prompt ?? prompt).trim();
     if (!text) return;
     const steps = director?.steps ?? [];
+    const back: Held = opts.back ?? { cur, visuals, adPaywalls };
+    let written = false;
+    setStarting(false);
     setBusy(true);
     setErr(null);
     setRun(Object.fromEntries(steps.map((s) => [s.id, { status: s.auto ? "pending" : "manual" }])));
+    // the old campaign leaves the page now, so it's never mistaken for the new one
+    setPrompt(text);
+    setCur(null);
+    setVisuals({});
+    setAdPaywalls({});
+    setInstructions("");
+    setRewriteNote(null);
+    setLang("en");
     const mark = (id: string, status: StepRun["status"], note?: string) => setRun((r) => ({ ...r, [id]: { status, note } }));
-    const ctx: { cur: Stored | null; visuals: Record<string, string | null> } = { cur, visuals };
+    const ctx: { cur: Stored | null; visuals: Record<string, string | null> } = { cur: null, visuals: {} };
 
     const runStep = async (s: FlowStep) => {
       if (!s.auto) return;
       mark(s.id, "running");
       if (s.id === "campaign") {
         const r = await generateCampaign(text);
+        written = true;
         Object.assign(ctx, { cur: r.current, visuals: r.visuals });
         return mark(s.id, "done", r.current?.campaign.name);
       }
@@ -248,6 +340,14 @@ export default function StudioPage() {
     } catch (e) {
       setErr((e as Error).message);
       setRun((r) => Object.fromEntries(Object.entries(r).map(([k, v]) => [k, v.status === "pending" ? { status: "skipped", note: "stopped" } : v])));
+      // no new campaign came back: the one that was on screen is still the current one
+      if (!written && back.cur) {
+        restoreLangs.current = [...new Set([...(back.cur.writtenLangs ?? []), ...Object.keys(locsRef.current)])];
+        setCur(back.cur);
+        setVisuals(back.visuals);
+        setAdPaywalls(back.adPaywalls);
+        setInstructions(back.cur.bannerInstructions ?? "");
+      }
     } finally {
       setBusy(false);
     }
@@ -389,6 +489,14 @@ export default function StudioPage() {
         stage={2}
         title="Ads for the users who pay"
         lede="Describe the campaign. Flywheel writes it from what Insights found: who to target, the hook, the markets. You get banners in every language, ad copy, a video script, and a paywall that makes the same promise."
+        right={
+          <PreviousCampaigns
+            items={previous}
+            opening={opening}
+            onOpen={openCampaign}
+            disabled={busy || starting || applying || visualBusy || pack.busy || !!opening || Object.values(edits).some((e) => e.busy)}
+          />
+        }
       />
 
       <Panel>
@@ -462,9 +570,15 @@ export default function StudioPage() {
       </Panel>
 
       {!campaign ? (
-        <p className="mt-8 max-w-xl text-ink-2">
-          No campaign yet. Ask for one above; GPT reads the numbers from Insights and builds the pack around the users who pay.
-        </p>
+        busy || starting ? (
+          <Panel className="mt-6 flex items-center gap-3 text-ink-2">
+            <Spinner /> Writing your new campaign. The pictures and languages follow.
+          </Panel>
+        ) : director ? (
+          <p className="mt-8 max-w-xl text-ink-2">
+            No campaign yet. Ask for one above; GPT reads the numbers from Insights and builds the pack around the users who pay.
+          </p>
+        ) : null
       ) : (
         <>
           {/* Brief */}
@@ -528,10 +642,11 @@ export default function StudioPage() {
                     }}
                     className={clsx(
                       "rounded-full px-3 py-1.5 text-sm transition-colors",
-                      lang === l.key ? "bg-ink text-white" : "bg-surface hover:bg-white",
-                      l.tier !== 1 && lang !== l.key && "text-ink-2",
+                      // active: solid. Already written: a faded version of it. Not written yet: plain.
+                      lang === l.key ? "bg-ink text-white" : st === "ready" ? "bg-ink/70 text-white hover:bg-ink/80" : "bg-surface hover:bg-white",
+                      l.tier !== 1 && lang !== l.key && st !== "ready" && "text-ink-2",
                     )}
-                    title={`${l.name}${l.tier === 1 ? "" : " · needs native review"}`}
+                    title={`${l.name}${st === "ready" ? " · written" : ""}${l.tier === 1 ? "" : " · needs native review"}`}
                   >
                     <span lang={l.htmlLang}>{l.native}</span>
                     {l.tier === "data" ? <span className="ml-1 text-xs opacity-70">from your data</span> : null}
@@ -558,9 +673,7 @@ export default function StudioPage() {
                   {L.name} speakers in your data: {market.users.toLocaleString()} users, ${market.revPerUser.toFixed(2)} each
                   {L.tier === "data" ? `, ${market.revenueShare}% of revenue` : ""}
                 </span>
-              ) : (
-                <span className="text-ink-3">No {L.name} speakers in your data yet. This is a new market.</span>
-              )}
+              ) : null}
               {L.key.startsWith("sr") ? (
                 <button className="text-ink-2 underline" onClick={() => setLang(L.key === "sr-Latn" ? "sr-Cyrl" : "sr-Latn")}>
                   {L.key === "sr-Latn" ? "Show Cyrillic" : "Show Latin"}
@@ -636,11 +749,13 @@ export default function StudioPage() {
                 const lc = loc?.concepts.find((x) => x.id === c.id) ?? loc?.concepts[i];
                 const f = fit[`${lang}:${format}:${c.id}`];
                 const ed = edits[c.id];
+                const bannerWidth = format === "story" ? 260 : 320;
                 return (
-                  <figure key={c.id}>
+                  // as wide as its banner and centred in the column, so the caption and edit box line up under the picture
+                  <figure key={c.id} className="mx-auto max-w-full" style={{ width: bannerWidth }}>
                     {lc ? (
                       <div className="relative w-fit">
-                        <Scaled width={format === "story" ? 260 : 320} format={format}>
+                        <Scaled width={bannerWidth} format={format}>
                           <Banner
                             format={format}
                             headline={lc.headline}
@@ -659,7 +774,7 @@ export default function StudioPage() {
                         ) : null}
                       </div>
                     ) : (
-                      <div className="grid aspect-[9/16] w-[260px] place-items-center rounded-lg bg-surface text-sm text-ink-3">
+                      <div className="mx-auto grid aspect-[9/16] w-[260px] max-w-full place-items-center rounded-lg bg-surface text-sm text-ink-3">
                         {locs[lang]?.status === "error" ? "Not written" : <Spinner />}
                       </div>
                     )}
@@ -748,7 +863,11 @@ export default function StudioPage() {
                 </div>
               </Panel>
               <Panel>
-                <h2 className="text-xl font-bold">TikTok / Reels script</h2>
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <h2 className="text-xl font-bold">TikTok / Reels script</h2>
+                  {/* placeholder: the idea is to send this script straight to Grok to generate the video */}
+                  <Button kind="quiet" disabled title="Coming soon: send this script straight to Grok to generate the video">Generate video with Grok</Button>
+                </div>
                 <p className="mt-2 text-sm font-semibold" lang={L.htmlLang}>{loc.videoScript.hook}</p>
                 <ol className="mt-3 space-y-3 text-sm" lang={L.htmlLang}>
                   {loc.videoScript.shots.map((s, i) => (

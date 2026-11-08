@@ -145,8 +145,7 @@ export function AdToPaywall({
       title: "Open the onboarding with the same ad",
       what: (
         <>
-          Writes a <strong>draft</strong> flow “{onboardingFlowName(campaign.name, concept.name)}”: Lumen&apos;s “Onboarding - Weekly first” (the
-          winner in Insights&apos; A/B check) with the ad&apos;s picture and headline on the welcome screen. The quiz and closing paywall stay. English
+          Writes a <strong>draft</strong> flow “{onboardingFlowName(campaign.name, concept.name)}”: Lumen&apos;s “Onboarding - Weekly first” with the ad&apos;s picture and headline on the welcome screen. The quiz and closing paywall stay. English
           only for now.
         </>
       ),

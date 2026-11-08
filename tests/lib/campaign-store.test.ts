@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("@/lib/cache", () => import("../helpers/memory-cache"));
 
-import { campaignPayload, getCurrent, saveAdPaywall, saveLocale, saveVisualKey, setCurrent } from "@/lib/campaign-store";
+import { campaignPayload, getCurrent, openPrevious, previousCampaigns, saveAdPaywall, saveLocale, saveVisualKey, setCurrent, startCampaign } from "@/lib/campaign-store";
 import type { AdPaywall } from "@/lib/ads";
 import { resetMemory } from "../helpers/memory-cache";
 import { makeLocalized, makeStored } from "../helpers/fixtures";
@@ -25,6 +25,64 @@ describe("saveLocale", () => {
 
   it("does nothing with no campaign", () => {
     expect(saveLocale("x", "de", { data: makeLocalized("DE"), model: "m" })).toBe(false);
+  });
+});
+
+describe("previous campaigns", () => {
+  const at = (n: number) => `2026-11-0${n}T10:00:00.000Z`;
+  const named = (id: string, n: number) => makeStored({ id, prompt: `prompt ${id}`, createdAt: at(n) });
+
+  it("has none until a campaign is replaced", () => {
+    startCampaign(named("a", 1));
+    expect(previousCampaigns()).toEqual([]);
+  });
+
+  it("saves the campaign a new one replaces, newest first", () => {
+    startCampaign(named("a", 1));
+    startCampaign(named("b", 2));
+    startCampaign(named("c", 3));
+    expect(previousCampaigns().map((x) => x.id)).toEqual(["b", "a"]);
+    expect(previousCampaigns()[0]).toEqual({ id: "b", name: "Test Campaign", prompt: "prompt b", createdAt: at(2) });
+  });
+
+  it("keeps everything made for it", () => {
+    startCampaign({ ...named("a", 1), locales: { de: { data: makeLocalized("DE"), model: "m" } }, visualKeys: { "a:square": "pic" }, bannerInstructions: "warm" });
+    startCampaign(named("b", 2));
+    const back = openPrevious("a")!;
+    expect(Object.keys(back.locales!)).toEqual(["de"]);
+    expect(back.visualKeys).toEqual({ "a:square": "pic" });
+    expect(back.bannerInstructions).toBe("warm");
+  });
+
+  it("includes changes made right up to the replacement", () => {
+    startCampaign(named("a", 1));
+    saveLocale("a", "fr", { data: makeLocalized("FR"), model: "m" });
+    startCampaign(named("b", 2));
+    expect(Object.keys(openPrevious("a")!.locales!)).toEqual(["fr"]);
+  });
+
+  it("swaps places when one is opened", () => {
+    startCampaign(named("a", 1));
+    startCampaign(named("b", 2));
+    openPrevious("a");
+    expect(getCurrent()!.id).toBe("a");
+    expect(previousCampaigns().map((x) => x.id)).toEqual(["b"]);
+  });
+
+  it("never lists the campaign on screen", () => {
+    startCampaign(named("a", 1));
+    startCampaign(named("b", 2));
+    openPrevious("a");
+    startCampaign(named("c", 3));
+    expect(previousCampaigns().map((x) => x.id)).toEqual(["b", "a"]);
+  });
+
+  it("doesn't open an unknown id, including one shaped like a file path", () => {
+    startCampaign(named("a", 1));
+    startCampaign(named("b", 2));
+    expect(openPrevious("zzz")).toBeNull();
+    expect(openPrevious("../campaigns/current")).toBeNull();
+    expect(getCurrent()!.id).toBe("b");
   });
 });
 
@@ -58,7 +116,7 @@ describe("saveAdPaywall", () => {
 
 describe("campaignPayload", () => {
   it("handles no campaign", async () => {
-    await expect(campaignPayload(null)).resolves.toEqual({ current: null, visuals: {} });
+    await expect(campaignPayload(null)).resolves.toEqual({ current: null, visuals: {}, previous: [] });
   });
 
   it("doesn't send the page data it doesn't need", async () => {

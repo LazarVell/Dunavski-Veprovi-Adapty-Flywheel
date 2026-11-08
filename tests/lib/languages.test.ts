@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ALL_LANGS, deepTranslit, langByKey, langsForMarkets, needsReview, reviewStatus, srCyrlToLatn } from "@/lib/languages";
+import { ALL_LANGS, deepTranslit, langByKey, langsForMarkets, marketFor, needsReview, reviewStatus, srCyrlToLatn } from "@/lib/languages";
 
 describe("srCyrlToLatn", () => {
   it.each([
@@ -69,6 +69,15 @@ describe("reviewStatus", () => {
 });
 
 describe("language catalog", () => {
+  it("only offers languages with users in the data", () => {
+    for (const l of ALL_LANGS) expect(marketFor(l), l.name).not.toBeNull();
+  });
+
+  it("no longer offers Russian or Italian", () => {
+    expect(langByKey("ru")).toBeUndefined();
+    expect(langByKey("it")).toBeUndefined();
+  });
+
   it("has no duplicate keys", () => {
     const keys = ALL_LANGS.map((l) => l.key);
     expect(new Set(keys).size).toBe(keys.length);

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { channelEconomics, DEFAULTS, F, PAID_CHANNELS, revAt, simulate, unpaid, type Settings } from "@/lib/funding";
+import { channelEconomics, DEFAULTS, evenMix, F, PAID_CHANNELS, rebalanceMix, revAt, simulate, unpaid, type Mix, type Settings } from "@/lib/funding";
 
 const settings = (over: Partial<Settings> = {}): Settings => ({ ...DEFAULTS, ...over });
 const allCpi = (v: number) => Object.fromEntries(PAID_CHANNELS.map((c) => [c, v])) as Settings["cpi"];
@@ -22,6 +22,63 @@ describe("revAt", () => {
   it.each(PAID_CHANNELS)("is never negative and grows overall for %s", (ch) => {
     for (let d = 0; d <= 120; d += 1) expect(revAt(ch, d)).toBeGreaterThanOrEqual(0);
     expect(revAt(ch, 120)).toBeGreaterThan(revAt(ch, 1));
+  });
+});
+
+describe("budget shares", () => {
+  const mix = (a: number, m: number, g: number, t: number): Mix => ({ apple_search_ads: a, meta_ads: m, google_uac: g, tiktok_ads: t });
+  const total = (x: Mix) => Math.round(PAID_CHANNELS.reduce((s, c) => s + x[c] * 100, 0));
+
+  it("splits evenly and adds up to exactly 100%", () => {
+    const m = evenMix(["apple_search_ads", "google_uac", "meta_ads"]);
+    expect(total(m)).toBe(100);
+    expect([m.apple_search_ads, m.google_uac, m.meta_ads].sort()).toEqual([0.33, 0.33, 0.34]);
+    expect(m.tiktok_ads).toBe(0);
+  });
+
+  it("gives a single channel everything", () => {
+    expect(evenMix(["meta_ads"])).toEqual(mix(0, 1, 0, 0));
+  });
+
+  it("sets the moved channel to exactly what was asked", () => {
+    expect(rebalanceMix(mix(0.34, 0.33, 0.33, 0), "meta_ads", 0.6).meta_ads).toBe(0.6);
+  });
+
+  it("can take a channel all the way to 100%, which the old sliders couldn't", () => {
+    expect(rebalanceMix(mix(0.34, 0.33, 0.33, 0), "meta_ads", 1)).toEqual(mix(0, 1, 0, 0));
+  });
+
+  it("keeps the other channels in proportion", () => {
+    expect(rebalanceMix(mix(0.6, 0.2, 0.2, 0), "meta_ads", 0.6)).toEqual(mix(0.3, 0.6, 0.1, 0));
+  });
+
+  it("leaves a channel at zero at zero", () => {
+    expect(rebalanceMix(mix(0.5, 0.5, 0, 0), "meta_ads", 0.2).tiktok_ads).toBe(0);
+  });
+
+  it.each(Array.from({ length: 21 }, (_, i) => i / 20))("always adds up to 100%% at share %f", (share) => {
+    for (const ch of PAID_CHANNELS) expect(total(rebalanceMix(mix(0.34, 0.33, 0.33, 0), ch, share))).toBe(100);
+  });
+
+  it("restores the mix when dragged back, scaling from the start of the drag", () => {
+    const start = mix(0.34, 0.33, 0.33, 0);
+    rebalanceMix(start, "meta_ads", 1);
+    expect(rebalanceMix(start, "meta_ads", 0.33)).toEqual(start);
+  });
+
+  it("when lowering a channel that had everything, shares the rest across the fallback", () => {
+    expect(rebalanceMix(mix(0, 1, 0, 0), "meta_ads", 0.6, ["apple_search_ads", "meta_ads", "google_uac"])).toEqual(mix(0.2, 0.6, 0.2, 0));
+  });
+
+  it("uses every other channel if there is no fallback left", () => {
+    const m = rebalanceMix(mix(0, 1, 0, 0), "meta_ads", 0.7, ["meta_ads"]);
+    expect(total(m)).toBe(100);
+    expect(m.tiktok_ads).toBeGreaterThan(0);
+  });
+
+  it("holds out-of-range shares to 0 and 100%", () => {
+    expect(rebalanceMix(mix(0.5, 0.5, 0, 0), "meta_ads", 5).meta_ads).toBe(1);
+    expect(rebalanceMix(mix(0.5, 0.5, 0, 0), "meta_ads", -1).meta_ads).toBe(0);
   });
 });
 

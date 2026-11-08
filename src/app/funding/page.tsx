@@ -1,9 +1,9 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { Area, AreaChart, CartesianGrid, Legend, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { PageHead, Panel, Tag, usd } from "@/components/ui";
-import { DEFAULTS, PAID_CHANNELS, ADVANCE_FEE_RANGE, channelEconomics, simulate, F, type Settings, type Channel } from "@/lib/funding";
+import { DEFAULTS, PAID_CHANNELS, ADVANCE_FEE_RANGE, channelEconomics, evenMix, rebalanceMix, simulate, F, type Settings, type Channel } from "@/lib/funding";
 import { CHANNEL_LABEL } from "@/lib/insights";
 
 /**
@@ -52,6 +52,8 @@ function Num({ label, value, onChange, step = 1, prefix = "$", suffix = "", hint
 export default function FundingPage() {
   const [s, setS] = useState<Settings>(DEFAULTS);
   const [campaignName, setCampaignName] = useState<string | null>(null);
+  const touched = useRef(false);
+  const dragStart = useRef<Settings["mix"] | null>(null);
 
   // Pull the channel mix from the current campaign's brief.
   useEffect(() => {
@@ -59,12 +61,23 @@ export default function FundingPage() {
       const chans: string[] = j.current?.campaign?.brief?.channels ?? [];
       const paid = chans.filter((c): c is Channel => (PAID_CHANNELS as readonly string[]).includes(c));
       if (j.current) setCampaignName(j.current.campaign.name);
-      if (paid.length) {
-        const mix = Object.fromEntries(PAID_CHANNELS.map((c) => [c, paid.includes(c) ? 1 / paid.length : 0])) as Record<Channel, number>;
-        setS((x) => ({ ...x, mix }));
-      }
+      // only if the user hasn't moved a slider already: this answer can arrive late
+      if (paid.length && !touched.current) setS((x) => ({ ...x, mix: evenMix(paid) }));
     });
   }, []);
+
+  /** Moves one channel's share; the others rescale so the shares always add up to 100%. */
+  function moveShare(ch: Channel, share: number) {
+    touched.current = true;
+    const fundable = econ.filter((e) => e.fund).map((e) => e.ch);
+    set("mix", rebalanceMix(dragStart.current ?? s.mix, ch, share, fundable));
+  }
+
+  /** Scale from the mix at the start of a drag, so dragging back restores it. */
+  function startDrag() {
+    dragStart.current = s.mix;
+    window.addEventListener("pointerup", () => { dragStart.current = null; }, { once: true });
+  }
 
   const econ = useMemo(() => channelEconomics(s), [s]);
   const sim = useMemo(() => simulate(s), [s]);
@@ -119,8 +132,9 @@ export default function FundingPage() {
                 <Tooltip formatter={(v, n) => [usd(Number(v)), n === "with" ? "With the advance" : "Without"]} labelFormatter={(d) => `Day ${d}`} />
                 <Legend formatter={(v) => (v === "with" ? `With the advance: spend ${usd(sim.spendYes)}` : `Cash only: spend ${usd(sim.spendNo)}`)} />
                 <ReferenceLine x={s.repayDay} stroke="#b4610b" strokeDasharray="4 4" label={{ value: "advance repaid", fontSize: 11, fill: "#b4610b", position: "insideTopLeft" }} />
-                <Area type="monotone" dataKey="without" stroke="#7a8399" fill="#7a8399" fillOpacity={0.08} strokeWidth={2} />
-                <Area type="monotone" dataKey="with" stroke="#0b7a5c" fill="#0b7a5c" fillOpacity={0.14} strokeWidth={2.5} />
+                {/* no animation: it restarted on every slider tick */}
+                <Area type="monotone" dataKey="without" stroke="#7a8399" fill="#7a8399" fillOpacity={0.08} strokeWidth={2} isAnimationActive={false} />
+                <Area type="monotone" dataKey="with" stroke="#0b7a5c" fill="#0b7a5c" fillOpacity={0.14} strokeWidth={2.5} isAnimationActive={false} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -169,9 +183,10 @@ export default function FundingPage() {
                       className="w-20 rounded-md border border-line bg-canvas px-2 py-1 tabular-nums" />
                   </td>
                   <td className="py-2.5">
-                    <input type="range" min={0} max={1} step={0.05} value={s.mix[e.ch]} aria-label={`Budget share, ${CHANNEL_LABEL[e.ch]}`}
-                      onChange={(ev) => set("mix", { ...s.mix, [e.ch]: Number(ev.target.value) })} className="w-28 accent-[#0b7a5c]" />
-                    <span className="ml-2 tabular-nums text-ink-3">{Math.round((100 * s.mix[e.ch]) / (PAID_CHANNELS.reduce((a, c) => a + s.mix[c], 0) || 1))}%</span>
+                    <input type="range" min={0} max={1} step={0.01} value={s.mix[e.ch]} aria-label={`Budget share, ${CHANNEL_LABEL[e.ch]}`}
+                      onPointerDown={startDrag}
+                      onChange={(ev) => moveShare(e.ch, Number(ev.target.value))} className="w-28 accent-[#0b7a5c]" />
+                    <span className="ml-2 inline-block w-10 tabular-nums text-ink-3">{Math.round(100 * s.mix[e.ch])}%</span>
                   </td>
                   <td className="py-2.5 text-right tabular-nums">{usd(e.net60, 2)}</td>
                   <td className={`py-2.5 text-right tabular-nums ${e.roas60 < 1 ? "text-loss" : ""}`}>{e.roas60.toFixed(2)}×</td>

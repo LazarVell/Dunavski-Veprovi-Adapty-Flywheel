@@ -44,7 +44,7 @@ logos, space for the headline): they are added to every picture anyway. At most 
   number it can't find there. Consumer-facing words (banners, ad copy, script, paywall) never mention data, payers,
   refunds or segments, and never invent prices, discounts, stats or testimonials.
 - **Languages.** Every translation is machine-written for that campaign, and no person has read it. Each one gets a
-  machine back-translation check against the English. Languages outside English, Russian, Serbian, German and Spanish,
+  machine back-translation check against the English. Only languages with users in the app's data are offered. Languages outside English, Serbian, German and Spanish,
   and any line whose meaning changed, are marked "needs native review" on screen and in the export pack. Serbian is written in Cyrillic and converted to
   Latin in code. Right-to-left languages get copy only, no banners.
 - **Adapty.** Flywheel creates flows and A/B tests as drafts. It publishes a flow only when the user clicks
@@ -60,9 +60,10 @@ The app runs at `http://localhost:3000` (`npm run dev`). Every route takes and r
 | Step | Call | Notes |
 |---|---|---|
 | Campaign | `/api/campaign` `{ "prompt": "…" }` | A new campaign every time, replacing the current one. Returns `current` and `visuals`. |
+| Reopen a campaign | `/api/campaign` `{ "open": "<id>" }` | Brings a saved one back with its languages, pictures and edits, with no model call. Ids come from `previous` in any `/api/campaign` response. |
 | Art direction | `/api/banner` `{ "action": "art-direction" }` | Writes the instructions line from the photo descriptions and stores it with the campaign. |
 | Pictures | `/api/visual` `{ "conceptId": "…", "aspect": "portrait" \| "square" }` | A new photo for that banner, saved with the campaign. Only ask for ones whose `visuals` entry is `null`. `"live": true` uses the faster model. |
-| Language | `/api/localize` `{ "lang": "de" }`, then `{ "lang": "de", "check": true }` | Written on the first request and saved with the campaign; the check reads that same text. Keys: `en ru sr-Latn sr-Cyrl de es pt-BR fr it nl sv tr`, plus `ja pl hi ar` when the data suggests them. |
+| Language | `/api/localize` `{ "lang": "de" }`, then `{ "lang": "de", "check": true }` | Written on the first request and saved with the campaign; the check reads that same text. Keys: `en sr-Latn sr-Cyrl de es pt-BR fr nl sv tr`, plus `ja pl hi ar` when the data suggests them. |
 | All banners | `/api/banner` `{ "action": "rewrite", "instructions": "…" }` | Rewrites words and photo descriptions; then make the pictures whose `visuals` entry is `null`. |
 | One banner | `/api/banner` `{ "action": "edit", "conceptId": "…", "instruction": "…" }` | Words, picture (edited in place) or both. `{ "action": "undo", "conceptId": "…" }` reverts. |
 | Ad's paywall | `/api/paywall` `{ "create": true, "conceptId": "…", "locales": [{ "lang", "localized" }], "visualUrl": <square visual> }` | Draft flow in Adapty, validated. Needs the Adapty CLI, logged in. |

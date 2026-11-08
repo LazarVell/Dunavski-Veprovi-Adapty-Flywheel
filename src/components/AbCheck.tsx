@@ -51,7 +51,7 @@ export function AbCheck() {
           Each test, judged on conversion and revenue, over the full offline history. State read live from Adapty.
         </span>
       </div>
-      <div className="mt-3 grid gap-5 lg:grid-cols-3">
+      <div className="mx-auto mt-3 grid max-w-4xl gap-5 lg:grid-cols-2">
         {CHECKS.map((c) => {
           const v = VERDICT[c.verdict];
           const l = live && live !== "off" ? live[c.name] : null;

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { STAGES } from "@/lib/stages";
 import { MobileStages } from "@/components/Rail";
 import { I, CHANNEL_LABEL } from "@/lib/insights";
+import { ALL_LANGS } from "@/lib/languages";
 import funding from "../../data/derived/funding.json";
 import signal from "../../data/derived/signal.json";
 import { usd } from "@/components/ui";
@@ -12,7 +13,7 @@ const unpaid = funding.unpaidGross.appStore + funding.unpaidGross.googlePlay;
 
 const SUMMARY: Record<string, string> = {
   "/insights": `${CHANNEL_LABEL.apple_search_ads} users bring in $${asa.revPerUser.toFixed(2)} each; TikTok users $${tiktok.revPerUser.toFixed(2)}, and ${tiktok.refundRate}% of them refund.`,
-  "/studio": "A campaign pack aimed at those payers: copy, banners in 12 languages, a video script, and a matching paywall drafted in Adapty.",
+  "/studio": `A campaign pack aimed at those payers: copy, banners in ${new Set(ALL_LANGS.map((l) => l.dataLang)).size} languages, a video script, and a matching paywall drafted in Adapty.`,
   "/funding": `${usd(unpaid)} of store revenue is earned but not paid out yet. Adapty Finance can advance most of it to fund the campaign.`,
   "/watch": "Follows the users the campaign brings in, and posts to Slack when they pay, refund, or the ad wears out.",
   "/signal": `Scores every install at 24 hours and tells Meta, TikTok and Google what it's worth. The top-scored fifth brings in ${signal.holdout.quintiles[4].revShare}% of revenue.`,

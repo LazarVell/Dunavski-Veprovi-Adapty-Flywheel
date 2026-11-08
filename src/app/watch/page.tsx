@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, Legend } from "recharts";
@@ -35,9 +35,15 @@ export default function WatchPage() {
     const alerts = alertsFor(next, channels, concepts);
     for (const a of alerts) {
       const r = await fetch("/api/slack", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(a) }).then((x) => x.json()).catch(() => ({ sent: false }));
-      setFeed((f) => [{ ...a, slack: r.sent ? "sent" : "preview" }, ...f]);
+      setFeed((f) => [...f, { ...a, slack: r.sent ? "sent" : "preview" }]);
     }
   }
+
+  // the feed fills left to right: keep the newest alert in view
+  const feedRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    feedRef.current?.scrollTo({ left: feedRef.current.scrollWidth, behavior: "smooth" });
+  }, [feed.length]);
 
   const view = week >= 0 ? weekView(week, channels) : null;
   const ctr = useMemo(() => ctrSeries(concepts.map((c) => c.id)).slice(0, Math.max(0, week + 1)), [concepts, week]);
@@ -67,7 +73,7 @@ export default function WatchPage() {
         </Button>
       </Panel>
 
-      <section className="mt-5 grid gap-5 lg:grid-cols-[1fr_380px]">
+      <section className="mt-5 space-y-5">
         <div className="space-y-5">
           <div className="grid gap-5 sm:grid-cols-3">
             <Panel>
@@ -117,10 +123,10 @@ export default function WatchPage() {
             <div className="font-semibold"># growth-alerts</div>
             <span className="text-xs text-ink-3">Slack</span>
           </div>
-          <div className="mt-4 space-y-3">
+          <div ref={feedRef} className="mt-4 flex snap-x gap-3 overflow-x-auto pb-2">
             {feed.length === 0 ? <p className="text-sm text-ink-3">Alerts appear here and in your Slack channel as the weeks go by.</p> : null}
             {feed.map((a) => (
-              <div key={a.id} className={clsx("slack-in rounded-lg border-l-4 bg-canvas p-3", a.level === "good" ? "border-[#2bb673]" : a.level === "warn" ? "border-[#f2a33a]" : "border-[#7aa7ff]")}>
+              <div key={a.id} className={clsx("slack-in flex w-80 max-w-[85%] shrink-0 snap-start flex-col rounded-lg border-l-4 bg-canvas p-3", a.level === "good" ? "border-[#2bb673]" : a.level === "warn" ? "border-[#f2a33a]" : "border-[#7aa7ff]")}>
                 <div className="flex items-center justify-between gap-2 text-xs text-ink-3">
                   <span className="font-semibold text-ink">Flywheel</span>
                   <span>week {a.week} · {a.slack === "sent" ? "sent to Slack" : "preview (Slack not connected)"}</span>
@@ -128,9 +134,11 @@ export default function WatchPage() {
                 <div className="mt-1 text-sm font-semibold">{a.title}</div>
                 <p className="mt-1 text-sm leading-relaxed text-ink-2">{a.text}</p>
                 {a.action ? (
-                  <Link href={a.action.href} className="mt-2 inline-block rounded-md bg-ink px-3 py-1.5 text-xs font-semibold text-white hover:bg-ink/90">
-                    {a.action.label} →
-                  </Link>
+                  <div className="mt-auto pt-2">
+                    <Link href={a.action.href} className="inline-block rounded-md bg-ink px-3 py-1.5 text-xs font-semibold text-white hover:bg-ink/90">
+                      {a.action.label} →
+                    </Link>
+                  </div>
                 ) : null}
               </div>
             ))}
