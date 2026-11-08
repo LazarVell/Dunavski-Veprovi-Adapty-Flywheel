@@ -181,7 +181,7 @@ const abAudit = abTests.map((t) => {
 
 // ---------- language suggestions ----------
 const LANG_RULE = { minRevenueShare: 3, minUsers: 300 };
-const DEFAULT_LANGS = ["en", "ru", "sr", "de", "es", "pt", "fr", "it", "nl", "sv", "tr"];
+const DEFAULT_LANGS = ["en", "sr", "de", "es", "pt", "fr", "nl", "sv", "tr"];
 const langSuggestions = languages
   .filter((l) => !DEFAULT_LANGS.includes(l.key))
   .map((l) => {

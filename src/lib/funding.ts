@@ -41,6 +41,44 @@ export const DEFAULTS: Settings = {
   mix: { apple_search_ads: 0.6, meta_ads: 0.4, google_uac: 0, tiktok_ads: 0 },
 };
 
+export type Mix = Record<Channel, number>;
+
+/** Splits 100 whole points by weight, rounding so they always add up to exactly `total`. */
+function allotPoints(channels: readonly Channel[], weights: (c: Channel) => number, total: number) {
+  const sum = channels.reduce((a, c) => a + weights(c), 0);
+  const exact = channels.map((c) => ({ c, raw: sum > 0 ? (total * weights(c)) / sum : 0 }));
+  const out = new Map(exact.map((x) => [x.c, Math.floor(x.raw)]));
+  let left = total - [...out.values()].reduce((a, b) => a + b, 0);
+  for (const x of [...exact].sort((a, b) => b.raw - Math.floor(b.raw) - (a.raw - Math.floor(a.raw)))) {
+    if (left <= 0) break;
+    if (weights(x.c) <= 0) continue;
+    out.set(x.c, out.get(x.c)! + 1);
+    left -= 1;
+  }
+  return out;
+}
+
+/** An even split across these channels, adding up to exactly 100%. */
+export function evenMix(channels: readonly Channel[]): Mix {
+  const points = allotPoints(channels, () => 1, 100);
+  return Object.fromEntries(PAID_CHANNELS.map((c) => [c, (points.get(c) ?? 0) / 100])) as Mix;
+}
+
+/**
+ * Sets one channel's share and rescales the others, keeping their proportions, so the total stays 100%.
+ * `base` is the mix to scale from: pass the mix from the start of a drag and a drag can be undone by dragging back.
+ * If the other channels all have nothing to scale, the rest is split evenly across `fallback`.
+ */
+export function rebalanceMix(base: Mix, channel: Channel, share: number, fallback: readonly Channel[] = PAID_CHANNELS): Mix {
+  const set = Math.round(Math.min(1, Math.max(0, share)) * 100);
+  const others = PAID_CHANNELS.filter((c) => c !== channel);
+  const hasWeight = others.some((c) => base[c] > 0);
+  const pool = fallback.filter((c) => c !== channel);
+  const weight = (c: Channel) => (hasWeight ? base[c] : (pool.length ? pool : others).includes(c) ? 1 : 0);
+  const points = allotPoints(others, weight, 100 - set);
+  return Object.fromEntries(PAID_CHANNELS.map((c) => [c, (c === channel ? set : points.get(c)!) / 100])) as Mix;
+}
+
 type Pt = { day: number; revPerUser: number };
 const C = curves as Record<string, Pt[]>;
 

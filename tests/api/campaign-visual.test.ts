@@ -53,6 +53,45 @@ describe("POST /api/campaign", () => {
     expect(s).not.toHaveProperty("adPaywalls");
   });
 
+  it("saves the campaign it replaces", async () => {
+    setCurrent(makeStored({ locales: { de: { data: makeLocalized("DE"), model: "m" } } }));
+    const { json } = await call(POST, { prompt: "new" });
+    expect(json.previous.map((p: { id: string }) => p.id)).toEqual(["campaign-1"]);
+  });
+
+  it("doesn't touch the saved list if writing fails", async () => {
+    setCurrent(makeStored());
+    generate.mockRejectedValue(new Error("boom"));
+    await call(POST, { prompt: "new" });
+    generate.mockImplementation(async () => ({ data: makeCampaign(), model: "m" }));
+    const j = await (await GET()).json();
+    expect(j.previous).toEqual([]);
+  });
+
+  describe("opening a saved campaign", () => {
+    it("brings it back with no model call", async () => {
+      setCurrent(makeStored({ visualKeys: { "a:square": "pic" }, adPaywalls: { app1: { a: { conceptId: "a" } as AdPaywall } } }));
+      await call(POST, { prompt: "new" });
+      generate.mockClear();
+      const { status, json } = await call(POST, { open: "campaign-1" });
+      expect(status).toBe(200);
+      expect(generate).not.toHaveBeenCalled();
+      expect(json.current.id).toBe("campaign-1");
+      expect(getCurrent()!.visualKeys).toEqual({ "a:square": "pic" });
+      expect(Object.keys(json.adapty.adPaywalls)).toEqual(["a"]);
+      expect(json.previous).toHaveLength(1);
+      expect(json.previous[0].id).not.toBe("campaign-1");
+    });
+
+    it("says so for one that isn't saved, and changes nothing", async () => {
+      setCurrent(makeStored());
+      const { status, json } = await call(POST, { open: "../campaigns/current" });
+      expect(status).toBe(404);
+      expect(json.error).toContain("isn't saved");
+      expect(getCurrent()!.id).toBe("campaign-1");
+    });
+  });
+
   it("gives the model the prompt and the Insights numbers", async () => {
     await call(POST, { prompt: "  for parents  " });
     const { user } = generate.mock.calls[0][0];

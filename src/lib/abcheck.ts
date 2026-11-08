@@ -102,7 +102,10 @@ function check(t: Audit): Check {
   return { ...base, verdict: "unclear", headline: `The ${short} test has no clear winner yet.`, facts: [convFact, revFact, n] };
 }
 
-export const CHECKS: Check[] = insights.abAudit.map(check);
+/** A clear result is already obvious from Adapty's own P2BB column, so the panel leaves this test out. */
+const NOT_SHOWN = new Set(["Onboarding: annual trial vs weekly first"]);
+
+export const CHECKS: Check[] = insights.abAudit.filter((t) => !NOT_SHOWN.has(t.name)).map(check);
 
 /** The facts the text model receives. Plain numbers only, all computed above. */
 export const checkFacts = () =>

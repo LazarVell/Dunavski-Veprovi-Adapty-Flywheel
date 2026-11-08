@@ -36,6 +36,48 @@ export type SavedLocale = { data: Localized; model: string; stale?: string[]; ch
 export const getCurrent = () => readCache<StoredCampaign>("campaigns", "current");
 export const setCurrent = (c: StoredCampaign) => writeCache("campaigns", "current", c);
 
+// ---------- previous campaigns: saved whole (languages, pictures, edits), locally, when another one replaces them ----------
+
+export type CampaignSummary = { id: string; name: string; prompt: string; createdAt: string };
+
+const ARCHIVE = "campaign-history";
+const readHistory = () => readCache<CampaignSummary[]>("campaigns", "history") ?? [];
+const writeHistory = (h: CampaignSummary[]) => writeCache("campaigns", "history", h);
+
+function archive(c: StoredCampaign) {
+  writeCache(ARCHIVE, c.id, c);
+  const entry: CampaignSummary = { id: c.id, name: c.campaign.name, prompt: c.prompt, createdAt: c.createdAt };
+  writeHistory([entry, ...readHistory().filter((x) => x.id !== c.id)].sort((a, b) => b.createdAt.localeCompare(a.createdAt)));
+}
+
+/** Makes a new campaign the current one, keeping the one it replaces. */
+export function startCampaign(next: StoredCampaign) {
+  const prev = getCurrent();
+  if (prev) archive(prev);
+  setCurrent(next);
+}
+
+/** Saved campaigns, newest first, without the one on screen. */
+export const previousCampaigns = () => {
+  const id = getCurrent()?.id;
+  return readHistory().filter((x) => x.id !== id);
+};
+
+/**
+ * Brings a saved campaign back as the current one, and saves the one it replaces.
+ * Only ids in the saved list are opened: the id comes from the request and names a file.
+ */
+export function openPrevious(id: string) {
+  if (!readHistory().some((x) => x.id === id)) return null;
+  const target = readCache<StoredCampaign>(ARCHIVE, id);
+  if (!target) return null;
+  const prev = getCurrent();
+  if (prev && prev.id !== id) archive(prev);
+  setCurrent(target);
+  writeHistory(readHistory().filter((x) => x.id !== id));
+  return target;
+}
+
 /**
  * Saves one language of a campaign. Re-reads the store first (languages are written in parallel and take
  * a while), and drops the result if a new campaign was written meanwhile.
@@ -81,7 +123,8 @@ function unverifiedNumbers(lines: string[]) {
 
 /** What the Studio page gets for the current campaign: the campaign with its number check, and its banner photos. */
 export async function campaignPayload(cur: StoredCampaign | null) {
-  if (!cur) return { current: null, visuals: {} };
+  const previous = previousCampaigns();
+  if (!cur) return { current: null, visuals: {}, previous };
   return {
     current: {
       ...cur,
@@ -92,5 +135,6 @@ export async function campaignPayload(cur: StoredCampaign | null) {
       undoable: Object.fromEntries(Object.entries(cur.bannerHistory ?? {}).filter(([, v]) => v.length).map(([k, v]) => [k, v.length])),
     },
     visuals: await visualUrls(cur),
+    previous,
   };
 }

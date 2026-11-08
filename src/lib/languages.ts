@@ -30,14 +30,12 @@ export type Lang = {
 
 export const LANGS: Lang[] = [
   { key: "en", name: "English", native: "English", tier: 1, script: "latin", htmlLang: "en", flowLocale: "en", dataLang: "en" },
-  { key: "ru", name: "Russian", native: "Русский", tier: 1, script: "cyrillic", htmlLang: "ru", flowLocale: "ru", dataLang: "ru" },
   { key: "sr-Latn", name: "Serbian (Latin)", native: "Srpski", tier: 1, script: "latin", htmlLang: "sr-Latn", flowLocale: "sr-Latn", dataLang: "sr", writeAs: "sr-Cyrl" },
   { key: "sr-Cyrl", name: "Serbian (Cyrillic)", native: "Српски", tier: 1, script: "cyrillic", htmlLang: "sr-Cyrl", flowLocale: "sr", dataLang: "sr" },
   { key: "de", name: "German", native: "Deutsch", tier: 1, script: "latin", htmlLang: "de", flowLocale: "de", dataLang: "de" },
   { key: "es", name: "Spanish", native: "Español", tier: 1, script: "latin", htmlLang: "es", flowLocale: "es", dataLang: "es" },
   { key: "pt-BR", name: "Portuguese (Brazil)", native: "Português", tier: 2, script: "latin", htmlLang: "pt-BR", flowLocale: "pt-BR", dataLang: "pt" },
   { key: "fr", name: "French", native: "Français", tier: 2, script: "latin", htmlLang: "fr", flowLocale: "fr", dataLang: "fr" },
-  { key: "it", name: "Italian", native: "Italiano", tier: 2, script: "latin", htmlLang: "it", flowLocale: "it", dataLang: "it" },
   { key: "nl", name: "Dutch", native: "Nederlands", tier: 2, script: "latin", htmlLang: "nl", flowLocale: "nl", dataLang: "nl" },
   { key: "sv", name: "Swedish", native: "Svenska", tier: 2, script: "latin", htmlLang: "sv", flowLocale: "sv", dataLang: "sv" },
   { key: "tr", name: "Turkish", native: "Türkçe", tier: 2, script: "latin", htmlLang: "tr", flowLocale: "tr", dataLang: "tr" },
@@ -60,7 +58,7 @@ export const dataLangs: { lang: Lang; s: LangSuggestion }[] = insights.langSugge
 export const suggestedDataLangs = dataLangs.filter((d) => d.s.suggested);
 export const notSuggestedDataLangs = dataLangs.filter((d) => !d.s.suggested);
 
-/** Demo switcher order: English > Russian > Serbian > the rest. */
+/** Only languages with users in the app's data are offered. Switcher order: English > Serbian > the rest. */
 export const ALL_LANGS: Lang[] = [...LANGS, ...suggestedDataLangs.map((d) => d.lang)];
 export const langByKey = (k: string) => ALL_LANGS.find((l) => l.key === k) ?? dataLangs.find((d) => d.lang.key === k)?.lang;
 

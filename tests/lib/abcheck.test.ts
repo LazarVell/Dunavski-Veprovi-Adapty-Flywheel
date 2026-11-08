@@ -97,6 +97,11 @@ describe("on the real data", () => {
     expect(CHECKS.find((c) => c.name.startsWith("Settings"))?.verdict).toBe("not-backed");
   });
 
+  it("shows only the two tests worth a second look", async () => {
+    const { CHECKS } = await import("@/lib/abcheck");
+    expect(CHECKS.map((c) => c.short)).toEqual(["Settings", "Main"]);
+  });
+
   it("gives the model every test, with no broken numbers", async () => {
     const { CHECKS, checkFacts } = await import("@/lib/abcheck");
     const facts = checkFacts();

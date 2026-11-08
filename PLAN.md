@@ -73,8 +73,9 @@ The demo uses the Lumen app already seeded in the Adapty account (app id `e27c82
 ---
 
 ## Multi-language content
-- **Tier 1 (in the demo):** English, Russian, Serbian, German, Spanish.
-- **Tier 2 (marked "double-check before publishing"):** Portuguese (Brazil), French, Italian, Dutch, Swedish, Turkish.
+- **Only languages with users in the data are offered.** Russian and Italian were dropped for having none.
+- **Tier 1 (in the demo):** English, Serbian, German, Spanish.
+- **Tier 2 (marked "double-check before publishing"):** Portuguese (Brazil), French, Dutch, Swedish, Turkish.
 - **Data-suggested languages (on top of the defaults):** any other language that is a strong market in the app's own data is offered too, with the same "double-check before publishing" warning.
   - **"Strong market" rule (a setting):** at least 3% of the app's revenue, or at least 300 users with revenue per user at or above the app average.
   - **In Lumen, only Japanese qualifies:** 4.4% of revenue, 1,196 users, $8.34 per user. Polish (2.7%, $4.88) and Hindi (1.5%, $1.39) fall below the threshold and appear in a collapsed "not suggested" list with their numbers.
@@ -86,7 +87,7 @@ The demo uses the Lumen app already seeded in the Adapty account (app id `e27c82
 - **Insights choose the languages:** "Add German, Dutch and Swedish first" (those markets bring in $12–15 per user). It warns on Portuguese (Brazil) and Turkish (under $2 per user, and over 6% of payments fail).
 - **Serbian:** Latin by default. Generated in Cyrillic and converted to Latin in code (љ→lj, њ→nj, џ→dž), so both versions always match. Converting Latin to Cyrillic isn't exact, so we avoid that direction. In the Adapty paywall flow, the locale code matters: `sr` means Cyrillic and `sr-Latn` means Latin. We add `sr-Latn`, plus `sr` if we want both.
 - **Fonts:** Noto Sans covers every language we support. Each banner is tagged with its language (`lang="sr-Latn"`, `lang="sr-Cyrl"`, `lang="ru"`, and so on) so Serbian letter shapes render correctly.
-- **Long text:** text shrinks to fit each banner size, and banners where it still overflows are flagged. German and Russian run about 20–35% longer than English.
+- **Long text:** text shrinks to fit each banner size, and banners where it still overflows are flagged. German runs about 20–35% longer than English.
 - **Quality check:** GPT translates each version back into English and flags any line whose meaning changed.
 - **Optional:** Insights explanations and Slack alerts in the team's own language. The interface stays in English.
 
@@ -94,7 +95,7 @@ The demo uses the Lumen app already seeded in the Adapty account (app id `e27c82
 
 ## Demo script (about 3 minutes)
 1. **Insights:** the TikTok vs Apple Search Ads gap, the AI-edit predictor, the best-paying markets, and the wrong A/B winner.
-2. **Creative Studio:** type the prompt, show the campaign pack (the before/after visual of Lumen's AI edit leads it), then the language switcher: **English → Russian → Serbian → German, Spanish and the rest**. The matching paywall switches language alongside it.
+2. **Creative Studio:** type the prompt, show the campaign pack (the before/after visual of Lumen's AI edit leads it), then the language switcher: **English → Serbian → German, Spanish and the rest**. The matching paywall switches language alongside it.
 3. **Funding:** the cost of the campaign, the advance, the payback period, and "don't fund TikTok."
 4. **Watch:** a Slack alert arrives; the fatigue alert's "Make fresh variants" opens Studio with the refresh request.
 

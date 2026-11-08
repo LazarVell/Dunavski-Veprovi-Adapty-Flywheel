@@ -36,7 +36,7 @@ npm install
 npm run dev        # http://localhost:3000
 ```
 
-The numbers on every page come from the committed `data/derived/` and need no key. The AI-written parts (insight explanations, campaigns, languages, banner images) are generated live: every new campaign is written from scratch, and nothing is reused from an earlier one. The current campaign, its languages and its pictures are saved locally in `data/demo-cache/` (not committed), so a reload doesn't write them again. Drafting the paywall in Adapty needs the Adapty CLI, logged in.
+The numbers on every page come from the committed `data/derived/` and need no key. The AI-written parts (insight explanations, campaigns, languages, banner images) are generated live: every new campaign is written from scratch, and nothing is reused from an earlier one. The current campaign, its languages and its pictures are saved locally in `data/demo-cache/` (not committed), so a reload doesn't write them again. Each campaign is kept when a new one replaces it, and can be reopened from Previous campaigns in the Studio. Drafting the paywall in Adapty needs the Adapty CLI, logged in.
 
 Run the unit tests with `npm test` (`npm run test:watch` while working). They need no keys, make no model or Adapty calls, and don't touch `data/demo-cache/`.
 
@@ -99,6 +99,7 @@ TODO: refine at the end. Current list:
 
 - Pull real ad spend from Adapty Attribution instead of typed-in costs.
 - Publish directly to the Meta and TikTok ad APIs once app review is done.
+- Generate the TikTok/Reels video by sending the script straight to Grok (the Studio's button is a placeholder for now).
 - Connect to Adapty Finance's real offer and eligibility.
 - Measure creative performance per language and feed it back into Insights.
 - Add day-one behaviour to the predicted value Adapty Attribution already sends Meta. On the synthetic Lumen data, adding AI edits, onboarding goal and push opt-in to country, store, device and locale raised the top-scored fifth's share of 60-day revenue on later users from 29.5% to 41.6%.

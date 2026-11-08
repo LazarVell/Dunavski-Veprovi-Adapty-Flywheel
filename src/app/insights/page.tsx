@@ -18,8 +18,11 @@ const CHART: Record<string, React.ReactNode> = {
 
 export default function InsightsPage() {
   const langRows = LANGS.filter((l) => l.key !== "sr-Cyrl")
-    .map((l) => ({ l, m: marketFor(l) }))
-    .sort((a, b) => (b.m?.revPerUser ?? -1) - (a.m?.revPerUser ?? -1));
+    .flatMap((l) => {
+      const m = marketFor(l);
+      return m ? [{ l, m }] : [];
+    })
+    .sort((a, b) => b.m.revPerUser - a.m.revPerUser);
   const avg = I.overall.revPerUser;
   const ideas = campaignIdeas(new Date());
 
@@ -58,22 +61,14 @@ export default function InsightsPage() {
         </div>
         <div className="mt-4 grid gap-x-8 gap-y-1 sm:grid-cols-2">
           {langRows.map(({ l, m }) => {
-            const tone = !m ? "neutral" : m.revPerUser >= 12 ? "money" : m.revPerUser < 2.5 || m.billingIssueRate > 6 ? "loss" : "neutral";
+            const tone = m.revPerUser >= 12 ? "money" : m.revPerUser < 2.5 || m.billingIssueRate > 6 ? "loss" : "neutral";
             return (
               <div key={l.key} className="flex items-center justify-between border-b border-line py-2 text-sm">
-                <span>
-                  {l.name} <span className="text-ink-3">· tier {l.tier}</span>
-                </span>
+                <span>{l.name}</span>
                 <span className="flex items-center gap-2">
-                  {m ? (
-                    <>
-                      <span className="tabular-nums">${m.revPerUser.toFixed(2)}</span>
-                      <span className="w-20 text-right text-xs text-ink-3">{m.users.toLocaleString()} users</span>
-                    </>
-                  ) : (
-                    <span className="text-xs text-ink-3">no users yet</span>
-                  )}
-                  <Tag tone={tone}>{!m ? "new market" : tone === "money" ? "write first" : tone === "loss" ? "low value" : "ok"}</Tag>
+                  <span className="tabular-nums">${m.revPerUser.toFixed(2)}</span>
+                  <span className="w-20 text-right text-xs text-ink-3">{m.users.toLocaleString()} users</span>
+                  <Tag tone={tone}>{tone === "money" ? "write first" : tone === "loss" ? "low value" : "ok"}</Tag>
                 </span>
               </div>
             );
