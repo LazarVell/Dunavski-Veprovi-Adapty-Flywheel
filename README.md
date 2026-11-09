@@ -52,8 +52,8 @@ For a new machine and a new Adapty account. Needs Node.js 20+ and Python 3.9+. S
 
 1. Get the code:
    ```bash
-   git clone https://github.com/zyle47/dunavski_veprovi.git
-   cd dunavski_veprovi
+   git clone https://github.com/LazarVell/Dunavski-Veprovi-Adapty-Flywheel.git
+   cd Dunavski-Veprovi-Adapty-Flywheel
    npm install
    cp .env.example .env   # Windows: copy .env.example .env
    ```
